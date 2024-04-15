@@ -32,13 +32,13 @@ The February release focused on stability and performance improvements.
 
 ### January 2024
 
-The January release added support for the Ethereum [Holesky](https://github.com/eth-clients/holesky) testnet in preview. Holesky data can be explored in the portal Playground, queried by [SQL](sql-query-tables/holesky/) and Firecache, and made available to applications by JSON-RPC [API](../api/holesky/). &#x20;
+The January release added support for the Ethereum [Holesky](https://github.com/eth-clients/holesky) testnet in preview. Holesky data can be explored in the portal Playground, queried by [SQL](broken-reference) and Firecache, and made available to applications by JSON-RPC [API](../api/holesky/). &#x20;
 
 <figure><img src="../.gitbook/assets/image (37).png" alt=""><figcaption><p>Holesky Testnet APIs and datasets available in preview</p></figcaption></figure>
 
 **New in this release**
 
-1. \[Platform] Added Ethereum [Holesky](sql-query-tables/holesky/) testnet data and API's.
+1. \[Platform] Added Ethereum [Holesky](broken-reference) testnet data and API's.
 2. \[Platform] Achieved [SOC 2 Type II compliance](../security/security.md).
 
 **Changes**

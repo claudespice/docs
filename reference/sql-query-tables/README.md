@@ -14,6 +14,6 @@
 [bitcoin](bitcoin/)
 {% endcontent-ref %}
 
-{% content-ref url="holesky/" %}
-[holesky](holesky/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
