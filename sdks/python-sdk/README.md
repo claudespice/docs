@@ -62,7 +62,7 @@ from spicepy import Client
 
 client = Client('API_KEY')
 data = client.query('SELECT * FROM eth.recent_blocks LIMIT 10;', timeout=5*60)
-pd = data.read_pandas()_pandas()
+pd = data.read_pandas()
 ```
 
 Querying data is done through a `Client` object that initializes the connection with the Spice.ai endpoint. `Client` has the following arguments:
