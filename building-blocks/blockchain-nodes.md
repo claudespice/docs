@@ -10,8 +10,6 @@ Spice.ai hosted blockchain nodes deliver high-performance, enterprise-grade acce
 
 1. **Ethereum Mainnet (ETH):** The original smart contract proof-of-work chain which [merged](https://ethereum.org/en/roadmap/merge/) with the beacon chain and became the execution-layer of Ethereum.
 2. **Ethereum Beacon layer**: Ethereum's proof-of-stake consensus layer, which handles block gossip and consensus logic.
-3. **Holesky Testnet:** A proof-of-stake execution layer Ethereum testnet.  Holesky replaces Goerli as a staking, infrastructure and protocol-developer testnet.
-4. **Holesky Beacon Layer:** Holesky's proof-of-stake consensus layer Ethereum testnet.
 
 #### Key Features:
 
@@ -21,4 +19,6 @@ Spice.ai hosted blockchain nodes deliver high-performance, enterprise-grade acce
 * **Client Diversity:** Combinations of consensus (Prysm & Lighthouse) and execution (Geth, Erigon, & Reth) clients to ensure maximum uptime.
 * **Archive Data**: All nodes are archive nodes.
 
-<table><thead><tr><th width="334">Blockchain Network</th><th>API Endpoint</th></tr></thead><tbody><tr><td><a href="../api/ethereum/json-rpc-methods.md">Ethereum</a></td><td><strong><code>https://data.spiceai.io/eth</code></strong></td></tr><tr><td><a href="../api/ethereum/beacon-http-api.md">Ethereum Beacon</a></td><td><strong><code>https://data.spiceai.io/eth/beacon</code></strong></td></tr><tr><td><a href="../api/holesky/json-rpc-methods.md">Holesky</a></td><td><strong><code>https://data.spiceai.io/holesky</code></strong></td></tr><tr><td><a href="../api/holesky/beacon-http-api.md">Holesky Beacon</a></td><td><strong><code>https://data.spiceai.io/holesky/beacon</code></strong></td></tr></tbody></table>
+<table><thead><tr><th width="334">Blockchain Network</th><th>API Endpoint</th></tr></thead><tbody>
+
+<tr><td><a href="../api/ethereum/json-rpc-methods.md">Ethereum</a></td><td><strong><code>https://data.spiceai.io/eth</code></strong></td></tr><tr><td><a href="../api/ethereum/beacon-http-api.md">Ethereum Beacon</a></td><td><strong><code>https://data.spiceai.io/eth/beacon</code></strong></td></tr></tbody></table>
