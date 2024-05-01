@@ -10,7 +10,7 @@ It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) 
 
 ### Requirements
 
-* [Rust 1.73.0](https://blog.rust-lang.org/2023/10/05/Rust-1.73.0.html)
+* [Rust 1.77.0](https://blog.rust-lang.org/2024/03/21/Rust-1.77.0.html)
 
 ### Installation
 
@@ -22,14 +22,19 @@ cargo add spiceai
 
 ### Usage
 
-1\. Create a `SpiceClient` by passing in your API key. Get your free API key at [spice.ai](https://spice.ai/).
+1\. Create a `SpiceClient` by passing in your API key to `ClientBuilder`. Get your free API key at [spice.ai](https://spice.ai/).
 
 ```rust
-use spiceai::Client;
+use spiceai::ClientBuilder;
 
 #[tokio::main]
 async fn main() {
-  let mut client = Client::new("API_KEY").await.unwrap();
+  let mut client = ClientBuilder::new()
+    .api_key("API_KEY")
+    .use_spiceai_cloud()
+    .build()
+    .await
+    .unwrap();
 }
 ```
 
@@ -54,3 +59,23 @@ while let Some(batch) = flight_data_stream.next().await {
     };
 }
 ```
+
+### Usage with local Spice runtime
+
+Follow the [quickstart guide](https://github.com/spiceai/spiceai?tab=readme-ov-file#%EF%B8%8F-quickstart-local-machine) to install and run spice locally.
+
+```rust
+use spiceai::ClientBuilder;
+
+#[tokio::main]
+async fn main() {
+  let mut client = ClientBuilder::new()
+    .build()
+    .await
+    .unwrap();
+
+  let data = client.query("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;").await;
+}
+```
+
+Check [Spice OSS documentation](https://docs.spiceai.org/clients) to learn more.

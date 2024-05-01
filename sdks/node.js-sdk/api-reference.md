@@ -1,11 +1,34 @@
 # API Reference
 
-## SpiceClient(apiKey, url)
+## SpiceClient(params)
 
 The top-level object that connects to Spice.ai
 
-* `apiKey`(string, required): API key to authenticate with the endpoint
-* `url`(string, optional): URL of the endpoint to use (default: flight.spiceai.io:443)
+* `params.api_key` (string, optional): API key to authenticate with the endpoint
+* `params.http_url` (string, optional):&#x20;
+* `params.flight_url` (string, optional): URL of the endpoint to use (default: `localhost:50051`, using local spice runtime)
+
+Default connection to local spice runtime:
+
+```javascript
+import { SpiceClient } from "@spiceai/spice";
+
+const spiceClient = new Spiceclient();
+```
+
+Connect to spice.ai api:
+
+```javascript
+import { SpiceClient } from "@spiceai/spice";
+
+const spiceClient = new Spiceclient({
+    api_key: 'API_KEY',
+    http_url: 'https://data.spiceai.io',
+    flight_url: 'flight.spiceai.io:443'
+});
+```
+
+Or using shorthand:
 
 ```javascript
 import { SpiceClient } from "@spiceai/spice";
@@ -40,64 +63,4 @@ const table = await client.query(
 
 let baseFeeGwei = tableResult.getChild("base_fee_per_gas_gwei");
 console.log(baseFeeGwei?.toJSON())
-```
-
-**getLatestPrices**(pairs: string[]) => LatestPrices
-* `pairs`: (Array of string, required): The crypto/currency pairs, for example ["BTC-USD", "USD-ETH"]. 
-
-`getLatestPrices` returns the latest prices for a list of asset pairs. `getLatestPrices` returns
-```javascript
-LatestPrice {
-  [pair: string]: {
-    prices?: { [exchange: string]: string };
-    minPrice?: string;
-    maxPrice?: string;
-    avePrice?: string;
-  }
-}
-```
-
-Example API query
-```javascript
-  let pairs = ["BTC-USD", "USD-ETH"]; 
-  const price = await client.getLatestPrices([pairs]);
-  pairs.forEach((v: string) => {
-    price[v].prices.forEach((exchange: string) => {
-      console.log("pair=" + v, "exchange=" + exchange, price[v].prices[exchange])
-    })
-  })
-```
-
-**getPrices**(pair: string[], startTime?: number, endTime?: number, granularity?: string) => HistoricalPrices
-* `pairs`: (Array of string, required): The crypto/currency pairs, for example ["BTC-USD", "USD-ETH"]. 
-* `startTime`: start time milliseconds since Unix Epoch
-* `endTime`: end time milliseconds since Unix Epoch
-* `granularity`: valid [duration](https://docs.spice.ai/core-concepts/duration-literals)
-
-`getPrices` returns prices for a list of asset pairs for a given period of time. `getPrices` returns 
-```javascript
-HistoricalPrices {
-  [pair: string]: {
-    timestamp: string;
-    price: number;
-    high?: number;
-    low?: number;
-    open?: number;
-    close?: number;
-  }
-}
-```
-
-Example API Query
-```javascript
-const prices = await client.getPrices(
-  pairs,
-  new Date('2023-01-01').getTime() / 1000,
-  new Date('2023-01-02').getTime() / 1000,
-  '1h'
-);
-
-pairs.forEach((v: string) => {
-  console.log(price[v])
-})
 ```

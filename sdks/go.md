@@ -12,14 +12,14 @@ GoDocs available at [pkg.go.dev/github.com/spiceai/gospice](https://pkg.go.dev/g
 
 ### Requirements
 
-* [Go 1.20](https://go.dev/doc/go1.20) (or later)
+* [Go 1.22](https://go.dev/doc/go1.22) (or later)
 
 ### Installation
 
 Get the **gospice** package.
 
 ```bash
-go get github.com/spiceai/gospice/v5
+go get github.com/spiceai/gospice/v6
 ```
 
 ### Usage
@@ -27,7 +27,7 @@ go get github.com/spiceai/gospice/v5
 1\. Import the package.
 
 ```go
-import "github.com/spiceai/gospice/v5"
+import "github.com/spiceai/gospice/v6"
 ```
 
 2\. Create a SpiceClient passing in your API key. Get your free API key at [spice.ai](https://spice.ai/).
@@ -40,7 +40,10 @@ defer spice.Close()
 3\. Initialize the SpiceClient.
 
 ```go
-if err := spice.Init("API Key"); err != nil {
+if err := spice.Init(
+    spice.WithApiKey(ApiKey),
+    spice.WithSpiceCloudAddress()
+); err != nil {
     panic(fmt.Errorf("error initializing SpiceClient: %w", err))
 }
 ```
@@ -64,6 +67,34 @@ for reader.Next() {
     fmt.Println(record)
 }
 ```
+
+### Usage with local Spice runtime
+
+Follow the [quickstart guide](https://github.com/spiceai/spiceai?tab=readme-ov-file#%EF%B8%8F-quickstart-local-machine) to install and run spice locally.
+
+```go
+spice := gospice.NewSpiceClient()
+defer spice.Close()
+
+if err := spice.Init(); err != nil {
+    panic(fmt.Errorf("error initializing SpiceClient: %w", err))
+}
+```
+
+Or using custom flight address:
+
+```go
+spice := gospice.NewSpiceClient()
+defer spice.Close()
+
+if err := spice.Init(
+    spice.WithFlightAddress("grpc://localhost:50052")
+); err != nil {
+    panic(fmt.Errorf("error initializing SpiceClient: %w", err))
+}
+```
+
+Check [Spice OSS documentation](https://docs.spiceai.org/clients) to learn more.
 
 ### Example
 
