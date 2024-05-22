@@ -1,4 +1,4 @@
-# 🆕 Example Ethereum Beacon SQL Queries
+# Example Ethereum Beacon SQL Queries
 
 {% content-ref url="slots.md" %}
 [slots.md](slots.md)

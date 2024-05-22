@@ -4,13 +4,11 @@ description: Welcome to the Spice.ai Cloud Platform documentation!
 
 # Welcome to Spice.ai
 
-**Spice.ai** is a data and time-series AI application platform; an AI-backend-as-a-service comprising of composable, ready-to-use data and AI building blocks, including a managed [Spice.ai OSS](https://github.com/spiceai/spiceai) service, and  preloaded with 100TB+ of ready-to-use data.
+The **Spice.ai Cloud Platform** is a data and AI application platform; an AI-backend-as-a-service comprising of composable, ready-to-use data and AI building blocks including federated SQL query, machine learning, and cloud-scale, managed [Spice.ai OSS](https://github.com/spiceai/spiceai).
 
 {% hint style="info" %}
-This is the Spice.ai Cloud Platform documentation. If you are looking for Spice.ai OSS documentation please visit [docs.spiceai.org](https://docs.spiceai.org).
+This is the **Spice.ai Cloud Platform** documentation. If you are looking for the **Spice.ai OSS** project documentation please visit [docs.spiceai.org](https://docs.spiceai.org).
 {% endhint %}
-
-Spice.ai connects real-time and historical time-series data, federated SQL query, ETL, serverless compute, machine learning training and inferencing, in a unified cloud platform and developer-focused community hub.
 
 **Operating data and AI infrastructure can be painful.**&#x20;
 
@@ -46,7 +44,6 @@ Building blocks available in the Spice.ai platform today include:
 * [Spice Firecache](building-blocks/spice-firecache/) (managed Spice.ai OSS)
 * [ML Models](building-blocks/spice-models.md) (in Preview)
 * [AI Predictions](api/predictions/) (in Preview)
-* [Hosted Blockchain Nodes](building-blocks/blockchain-nodes.md)
 * Community Data including [Blockchain Data](building-blocks/datasets.md)
 
 Take it for a spin by starting with the [getting started guide](getting-started/get-started/).

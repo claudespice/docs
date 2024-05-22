@@ -24,7 +24,6 @@
   * [DuckDB Export Database](building-blocks/spice-firecache/duckdb-export-database.md)
 * [External Data Sources](building-blocks/external-data-sources.md)
 * [Spice Models](building-blocks/spice-models.md)
-* [Blockchain Nodes](building-blocks/blockchain-nodes.md)
 * [Community Data](building-blocks/datasets.md)
 
 ## 💻 API
@@ -460,8 +459,6 @@
 * [Specifications](reference/specifications/README.md)
   * [Dataset & View YAML Specification](reference/specifications/dataset-and-view-yaml-specification/README.md)
     * [Firecache](reference/specifications/dataset-and-view-yaml-specification/firecache.md)
-  * [Spice Functions YAML Specification](reference/specifications/spice-functions-yaml-specification/README.md)
-    * [Triggers](reference/specifications/spice-functions-yaml-specification/triggers.md)
   * [Models YAML Specification](reference/specifications/models-yaml-specification/README.md)
     * [Model Type Specification](reference/specifications/models-yaml-specification/model-type-specification.md)
 * [Samples and Examples](reference/samples-and-examples/README.md)
@@ -475,7 +472,7 @@
     * [ENS Domains](reference/samples-and-examples/example-ethereum-evm-sql-queries/ens-domains.md)
     * [Wallet Balances](reference/samples-and-examples/example-ethereum-sql-queries/wallet-balances.md)
     * [Blobs](reference/samples-and-examples/example-ethereum-evm-sql-queries/blobs.md)
-  * [🆕 Example Ethereum Beacon SQL Queries](reference/samples-and-examples/example-ethereum-beacon-sql-queries/README.md)
+  * [Example Ethereum Beacon SQL Queries](reference/samples-and-examples/example-ethereum-beacon-sql-queries/README.md)
     * [Slots](reference/samples-and-examples/example-ethereum-beacon-sql-queries/slots.md)
     * [Attestations](reference/samples-and-examples/example-ethereum-beacon-sql-queries/attestations.md)
     * [Voluntary Exits](reference/samples-and-examples/example-ethereum-beacon-sql-queries/voluntary-exits.md)
