@@ -52,7 +52,7 @@ Examples of indexed columns:
 
 ### Use the Apache Arrow API and SDKs
 
-The [Apache Arrow API](../api/sql-query/apache-arrow-flight-api.md) uses Apache Arrow Flight to deliver results over a high-performance connection. There is no limit to the number of results you can pull through the Arrow API while the HTTP API is [limited to results of 500 rows](limitations.md).
+The [Apache Arrow API](sql-query/apache-arrow-flight-api.md) uses Apache Arrow Flight to deliver results over a high-performance connection. There is no limit to the number of results you can pull through the Arrow API while the HTTP API is [limited to results of 500 rows](../reference/limitations.md).
 
 SDKs like the [Python SDK](../sdks/python-sdk/) always use the Arrow API, so they are a convenient way to access Spice data.
 

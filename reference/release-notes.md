@@ -106,7 +106,7 @@ General Availability launches a brand-new collaborative developer experience, v1
    1. [SQL Query API ](../api/sql-query/http-api.md)
    2. [Prices API](../api/prices-api.md)
    3. [Gas Fees API](../api/ethereum/gas-fees.md)
-   4. [Predictions API](../api/predictions/)
+   4. [Predictions API](../api/predictions.md)
 2. \[Portal] New Portal and developer experience, without waitlist limitations.
 3. \[Portal] New pricing plans are available, [learn more](https://docs.spice.ai/getting-started/pricing).
 4. \[Portal] Datasets and Views generally available, [learn more](release-notes.md#datasets-and-views).

@@ -1,6 +1,6 @@
 # Transfer an App
 
-You can transfer an App's ownership to another [**organization**](../../getting-started/core-concepts/organizations.md)**.**
+You can transfer an App's ownership to another [**organization**](../../reference/core-concepts/organizations.md)**.**
 
 {% hint style="info" %}
 App transfer is currently limited to organizations you have access to.

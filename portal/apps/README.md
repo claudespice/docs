@@ -2,7 +2,7 @@
 
 **Apps** are self-contained sets of SQL, datasets, monitoring, and configuration that run on the Spice.ai platform.
 
-Each app has a unique API Key and can be owned by individual accounts or [**organizations**](../../getting-started/core-concepts/organizations.md).
+Each app has a unique API Key and can be owned by individual accounts or [**organizations**](../../reference/core-concepts/organizations.md).
 
 ### Learn how to:
 

@@ -8,11 +8,6 @@
   * [Step 2 - SQL Query](getting-started/get-started/step-2-sql-query.md)
   * [Step 3 - Leverage a SDK](getting-started/get-started/step-3-leverage-a-sdk.md)
   * [Next Steps](getting-started/get-started/next-steps.md)
-* [Core Concepts](getting-started/core-concepts/README.md)
-  * [Organizations](getting-started/core-concepts/organizations.md)
-  * [Duration Literals](getting-started/core-concepts/duration-literals.md)
-* [Best Practices](getting-started/best-practices.md)
-* [Limitations](getting-started/limitations.md)
 * [Pricing](getting-started/pricing/README.md)
   * [🆕 Community Edition](getting-started/pricing/community-edition.md)
 * [FAQ](getting-started/faq.md)
@@ -32,14 +27,15 @@
   * [HTTP API](api/sql-query/http-api.md)
   * [Async HTTP API](api/sql-query/http-api-1.md)
   * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
+  * [Predictions API Terms and Conditions](api/sql-query/predictions-api-terms-and-conditions.md)
 * [Ethereum API](api/ethereum/README.md)
   * [JSON RPC Methods](api/ethereum/json-rpc-methods.md)
   * [Beacon HTTP API](api/ethereum/beacon-http-api.md)
   * [Gas Fees](api/ethereum/gas-fees.md)
 * [Asset Prices API](api/prices-api.md)
-* [Predictions API](api/predictions/README.md)
-  * [Predictions API Terms and Conditions](api/predictions/predictions-api-terms-and-conditions.md)
+* [Predictions API](api/predictions.md)
 * [Health API](api/health.md)
+* [Best Practices](api/best-practices.md)
 
 ## 👨‍💻 Portal
 
@@ -492,9 +488,13 @@
     * [Transaction Inputs/Outputs](reference/samples-and-examples/example-bitcoin-queries/transaction-inputs-outputs.md)
   * [Example Cross-Chain Queries](reference/samples-and-examples/example-cross-chain-queries.md)
   * [Arrow Flight Samples](reference/samples-and-examples/arrow-flight-samples.md)
+  * [Kaggle Notebooks](reference/samples-and-examples/kaggle-notebooks.md)
 * [Data Science & Machine Learning](reference/data-science-and-machine-learning.md)
-* [Kaggle Notebooks](reference/kaggle-notebooks.md)
 * [Release Notes](reference/release-notes.md)
+* [Limitations](reference/limitations.md)
+* [Core Concepts](reference/core-concepts/README.md)
+  * [Organizations](reference/core-concepts/organizations.md)
+  * [Duration Literals](reference/core-concepts/duration-literals.md)
 
 ## 🆘 Support
 

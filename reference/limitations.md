@@ -1,7 +1,7 @@
 # Limitations
 
 {% hint style="info" %}
-See plan-specific limits in [Pricing](pricing/)
+See plan-specific limits in [Pricing](../getting-started/pricing/)
 {% endhint %}
 
 Spice.ai has the following limitations:

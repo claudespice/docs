@@ -1,6 +1,6 @@
 # Organizations
 
-[**Organizations**](../getting-started/core-concepts/organizations.md) enable you to share apps, datasets, users, billing, and settings with your team. Organization administrators can set who has access to their organization's resources and data.
+[**Organizations**](../reference/core-concepts/organizations.md) enable you to share apps, datasets, users, billing, and settings with your team. Organization administrators can set who has access to their organization's resources and data.
 
 ### Creating an organization
 
