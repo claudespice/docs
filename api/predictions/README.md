@@ -5,7 +5,7 @@ description: Run predictions using pre-trained AI models
 # Predictions API
 
 {% hint style="info" %}
-The Spice AI Predictions API is made available for research purposes only. By accessing and using the APIs, in addition to the [Spice AI Terms](../legal/terms-of-service.md), you agree to these [terms and conditions](sql-query/predictions-api-terms-and-conditions.md).
+The Spice AI Predictions API is made available for research purposes only. By accessing and using the APIs, in addition to the [Spice AI Terms](../../legal/terms-of-service.md), you agree to these [terms and conditions](predictions-api-terms-and-conditions.md).
 {% endhint %}
 
 Spice AI has trained a number of AI models for predictions on blockchain data. These models come with data included, so all you need to get a glimpse of the future is a simple API request.

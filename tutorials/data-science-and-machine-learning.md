@@ -2,7 +2,7 @@
 description: Getting started with data science and ML workflow
 ---
 
-# Data Science & Machine Learning
+# Data Science
 
 Built with technologies like [Apache Arrow](../api/sql-query/apache-arrow-flight-api.md), Spice is designed from the ground-up for data-driven apps, data science and machine learning.
 
@@ -14,7 +14,7 @@ Spice includes a growing set of web3 data, including blockchain data, cryptocurr
 
 <figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>The dataset reference in the SQL Playground.</p></figcaption></figure>
 
-Explore the full list of [**datasets**](../building-blocks/datasets.md) for an overview and see [**SQL Query Tables**](sql-query-tables/) for schemas and details.
+Explore the full list of [**datasets**](../building-blocks/datasets.md) for an overview and see [**SQL Query Tables**](../reference/sql-query-tables/) for schemas and details.
 
 ### 2. Query datasets using SQL
 
@@ -30,7 +30,7 @@ Spice uses an [**Apache Calcite**](https://calcite.apache.org) based query engin
 
 <figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>The SQL Reference at docs.spice.ai</p></figcaption></figure>
 
-Refer to the [**SQL reference**](sql-reference/) for dialect specific data types, functions, and commands. SQL keywords are also indexed in search for quick lookup.
+Refer to the [**SQL reference**](../reference/sql-reference/) for dialect specific data types, functions, and commands. SQL keywords are also indexed in search for quick lookup.
 
 ### 4. Use the Python SDK
 

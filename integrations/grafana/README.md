@@ -26,24 +26,24 @@ After installing a plugin, go to connections -> your connections -> data sources
 
 Set API Key from your Spice.ai application and click **Save & test**:
 
-<figure><img src="../.gitbook/assets/CleanShot 2023-07-18 at 16.04.58@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2023-07-18 at 16.04.58@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## Creating visualisations
 
 Create new Grafana panel and select `Spice.ai` data source, edit the query and configure visualisation.
 
-<figure><img src="../.gitbook/assets/CleanShot 2023-07-18 at 16.08.00@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2023-07-18 at 16.08.00@2x.png" alt=""><figcaption></figcaption></figure>
 
 Visit [Grafana Docs](https://grafana.com/docs/grafana/latest/panels-visualizations/) for more information about panels visualisations, and also check spice queries examples for reference:
 
-[Broken link](broken-reference "mention")
+[broken-reference](../broken-reference/ "mention")
 
-[example-ethereum-beacon-sql-queries](../reference/samples-and-examples/example-ethereum-beacon-sql-queries/ "mention")
+[example-ethereum-beacon-sql-queries](../../reference/samples-and-examples/example-ethereum-beacon-sql-queries/ "mention")
 
-[example-dex-queries](../reference/samples-and-examples/example-dex-queries/ "mention")
+[example-dex-queries](../../reference/samples-and-examples/example-dex-queries/ "mention")
 
-[example-bitcoin-queries](../reference/samples-and-examples/example-bitcoin-queries/ "mention")
+[example-bitcoin-queries](../../reference/samples-and-examples/example-bitcoin-queries/ "mention")
 
-[Broken link](broken-reference "mention")
+[broken-reference](../broken-reference/ "mention")
 
-[example-cross-chain-queries.md](../reference/samples-and-examples/example-cross-chain-queries.md "mention")
+[example-cross-chain-queries.md](../../reference/samples-and-examples/example-cross-chain-queries.md "mention")

@@ -72,6 +72,6 @@ Clicking **Predict** will demonstrate calling the predictions API using lookback
 
 The **Training Runs** page provides training details including a copyable `curl` command to make a prediction from the command line.
 
-For details on the API, see [Prediction Documentation](../api/predictions.md).&#x20;
+For details on the API, see [Prediction Documentation](../api/predictions/).&#x20;
 
 <figure><img src="../.gitbook/assets/CleanShot 2024-01-30 at 11.00.34@2x.png" alt=""><figcaption><p>Detailed training run page with the predictions API</p></figcaption></figure>

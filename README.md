@@ -43,7 +43,7 @@ Building blocks available in the Spice.ai platform today include:
 * [Datasets and Views](building-blocks/datasets-and-views.md)
 * [Spice Firecache](building-blocks/spice-firecache/) (managed Spice.ai OSS)
 * [ML Models](building-blocks/spice-models.md) (in Preview)
-* [AI Predictions](api/predictions.md) (in Preview)
+* [AI Predictions](api/predictions/) (in Preview)
 * Community Data including [Blockchain Data](building-blocks/datasets.md)
 
 Take it for a spin by starting with the [getting started guide](getting-started/get-started/).

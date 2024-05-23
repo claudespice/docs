@@ -8,9 +8,9 @@
   * [Step 2 - SQL Query](getting-started/get-started/step-2-sql-query.md)
   * [Step 3 - Leverage a SDK](getting-started/get-started/step-3-leverage-a-sdk.md)
   * [Next Steps](getting-started/get-started/next-steps.md)
+* [FAQ](getting-started/faq.md)
 * [Pricing](getting-started/pricing/README.md)
   * [🆕 Community Edition](getting-started/pricing/community-edition.md)
-* [FAQ](getting-started/faq.md)
 
 ## 🧱 Building Blocks
 
@@ -27,15 +27,15 @@
   * [HTTP API](api/sql-query/http-api.md)
   * [Async HTTP API](api/sql-query/http-api-1.md)
   * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
-  * [Predictions API Terms and Conditions](api/sql-query/predictions-api-terms-and-conditions.md)
+  * [Best Practices](api/sql-query/best-practices.md)
 * [Ethereum API](api/ethereum/README.md)
   * [JSON RPC Methods](api/ethereum/json-rpc-methods.md)
   * [Beacon HTTP API](api/ethereum/beacon-http-api.md)
   * [Gas Fees](api/ethereum/gas-fees.md)
 * [Asset Prices API](api/prices-api.md)
-* [Predictions API](api/predictions.md)
+* [Predictions API](api/predictions/README.md)
+  * [Predictions API Terms and Conditions](api/predictions/predictions-api-terms-and-conditions.md)
 * [Health API](api/health.md)
-* [Best Practices](api/best-practices.md)
 
 ## 👨‍💻 Portal
 
@@ -61,15 +61,19 @@
 
 ## 🔌 Integrations
 
-* [Grafana](integrations/grafana.md)
-* [Grafana Dashboard Examples](integrations/grafana-dashboard-examples.md)
+* [Grafana](integrations/grafana/README.md)
+  * [Grafana Dashboard Examples](integrations/grafana/grafana-dashboard-examples.md)
 
 ## 🎓 Tutorials
 
+* [Data Science](tutorials/data-science-and-machine-learning.md)
 * [Tokens & NFTs](tutorials/tokens-and-nfts.md)
 
 ## 📚 REFERENCE
 
+* [Core Concepts](reference/core-concepts/README.md)
+  * [Organizations](reference/core-concepts/organizations.md)
+  * [Duration Literals](reference/core-concepts/duration-literals.md)
 * [SQL Reference](reference/sql-reference/README.md)
   * [Data Types](reference/sql-reference/data-types.md)
   * [SQL Functions](reference/sql-reference/all-functions/README.md)
@@ -457,6 +461,8 @@
     * [Firecache](reference/specifications/dataset-and-view-yaml-specification/firecache.md)
   * [Models YAML Specification](reference/specifications/models-yaml-specification/README.md)
     * [Model Type Specification](reference/specifications/models-yaml-specification/model-type-specification.md)
+* [Limitations](reference/limitations.md)
+* [Release Notes](reference/release-notes.md)
 * [Samples and Examples](reference/samples-and-examples/README.md)
   * [Example Ethereum (EVM) SQL Queries](reference/samples-and-examples/example-ethereum-evm-sql-queries/README.md)
     * [Blocks](reference/samples-and-examples/example-ethereum-evm-sql-queries/blocks.md)
@@ -489,12 +495,6 @@
   * [Example Cross-Chain Queries](reference/samples-and-examples/example-cross-chain-queries.md)
   * [Arrow Flight Samples](reference/samples-and-examples/arrow-flight-samples.md)
   * [Kaggle Notebooks](reference/samples-and-examples/kaggle-notebooks.md)
-* [Data Science & Machine Learning](reference/data-science-and-machine-learning.md)
-* [Release Notes](reference/release-notes.md)
-* [Limitations](reference/limitations.md)
-* [Core Concepts](reference/core-concepts/README.md)
-  * [Organizations](reference/core-concepts/organizations.md)
-  * [Duration Literals](reference/core-concepts/duration-literals.md)
 
 ## 🆘 Support
 
