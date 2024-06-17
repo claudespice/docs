@@ -42,10 +42,12 @@
 * [Apps](portal/apps/README.md)
   * [Connect GitHub repository](portal/apps/connect-github-repository.md)
   * [Transfer an App](portal/apps/app-transfer.md)
+  * [App API keys](portal/apps/app-api-keys.md)
 * [Organizations](portal/organizations.md)
 * [SQL Query Editor](portal/sql-query-editor.md)
 * [Monitoring and Request Logs](portal/monitoring-and-request-logs.md)
 * [Profile Settings](portal/profile-settings.md)
+* [Personal Access Tokens](portal/personal-access-tokens.md)
 
 ## 🔗 SDKs
 
