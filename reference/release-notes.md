@@ -4,6 +4,15 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+### May 2024
+
+The May release included [EigenLayer Delegation Manager datasets.](sql-query-tables/ethereum/eigenlayer-tables/)  The datasets can be explored in the portal Playground and queried via SQL.
+
+**Changes**
+
+1. \[Data] SQL Datasets for Eigenlayer now include Delegation Manager datasets.
+2. \[Platform] Performance, reliability, and security improvements.
+
 ### April 2024
 
 The April release included updates to the Spice SDK's to support querying a local [Spice Runtime](https://github.com/spiceai/spiceai) without requiring a Spice.ai API key.  Details and examples can be found in the [Rust](../sdks/rust-sdk/), [Go](../sdks/go.md), [Python](../sdks/python-sdk/), and [Node.js](../sdks/node.js-sdk/) SDK documentation.
@@ -26,7 +35,7 @@ Holesky JSON RPC and Beacon API's requests to **/holesky** will return a 404 Not
 
 **Ethereum Goerli nodes were shut down on Friday March 22 at 5pm PST.**
 
-The Ethereum Foundation planned to stop supporting Goerli [one month after Dencun](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fspice.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3De853435dd452a4d343ea1133d%26id%3D1f0eddc002%26e%3D9d81a8fb5f\&data=05%7C02%7Cluke%40spice.ai%7C2ecaa574022c4aac7f8c08dc4833dd51%7C925431232b6a4eec9b6f595720cd1c8f%7C0%7C0%7C638464634819771165%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\&sdata=6xvJI%2Fdn210TQ7ejvHXrdNTQCH7wkUF2ARQ8JHXCJ1c%3D\&reserved=0) was activated on Ethereum mainnet, which would be April 13th, however nearly all Goerli Validators were already shut down, effectively shutting the network down prematurely. Spice AI is shut down nodes early  aligned to other providers decisions to also shut down, such as [Alchemy](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fspice.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3De853435dd452a4d343ea1133d%26id%3D351e541bfd%26e%3D9d81a8fb5f\&data=05%7C02%7Cluke%40spice.ai%7C2ecaa574022c4aac7f8c08dc4833dd51%7C925431232b6a4eec9b6f595720cd1c8f%7C0%7C0%7C638464634819780937%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\&sdata=HAX45r3B5W95bt3JRpQvgoGN1Q7brf4yFHNtdYk4%2BKg%3D\&reserved=0).
+The Ethereum Foundation planned to stop supporting Goerli [one month after Dencun](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fspice.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3De853435dd452a4d343ea1133d%26id%3D1f0eddc002%26e%3D9d81a8fb5f\&data=05%7C02%7Cluke%40spice.ai%7C2ecaa574022c4aac7f8c08dc4833dd51%7C925431232b6a4eec9b6f595720cd1c8f%7C0%7C0%7C638464634819771165%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\&sdata=6xvJI%2Fdn210TQ7ejvHXrdNTQCH7wkUF2ARQ8JHXCJ1c%3D\&reserved=0) was activated on Ethereum mainnet, which would be April 13th, however nearly all Goerli Validators were already shut down, effectively shutting the network down prematurely. Spice AI is shutting down nodes early, aligned to other providers decisions to also shut down, such as [Alchemy](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fspice.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3De853435dd452a4d343ea1133d%26id%3D351e541bfd%26e%3D9d81a8fb5f\&data=05%7C02%7Cluke%40spice.ai%7C2ecaa574022c4aac7f8c08dc4833dd51%7C925431232b6a4eec9b6f595720cd1c8f%7C0%7C0%7C638464634819780937%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\&sdata=HAX45r3B5W95bt3JRpQvgoGN1Q7brf4yFHNtdYk4%2BKg%3D\&reserved=0).
 
 After the shutdown, JSON RPC and Beacon requests to **/goerli** returned 404 Not Found and Goerli SQL datasets, while still available for query, are no longer being updated, including Firecache datasets.
 
