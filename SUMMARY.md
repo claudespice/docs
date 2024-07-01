@@ -60,6 +60,7 @@
 * [Go SDK](sdks/go.md)
 * [Rust SDK](sdks/rust-sdk/README.md)
   * [API Reference](sdks/rust-sdk/api-reference.md)
+* [Dotnet SDK](sdks/dotnet-sdk.md)
 
 ## 🔌 Integrations
 
