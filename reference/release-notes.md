@@ -4,6 +4,15 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+### June 2024
+
+The June release included a [C# SDK](../sdks/dotnet-sdk.md) for Spice AI and Spice OSS to allow for development using .Net Standard 2.0 and .Net 6.0 or greater.
+
+**Changes**
+
+1. \[Dotnet SDK] Released v0.1.0
+2. \[Platform] Performance, reliability, and security improvements.
+
 ### May 2024
 
 The May release included [EigenLayer Delegation Manager datasets.](sql-query-tables/ethereum/eigenlayer-tables/)  The datasets can be explored in the portal Playground and queried via SQL.
