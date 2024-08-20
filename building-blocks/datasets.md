@@ -65,50 +65,6 @@ Explore SQL-queryable datasets organized by chain and data type, each with repre
 | Loans (latest view)      | `eth.aave_v2.loans`              |                                         |
 | Collateral (latest view) | `eth.aave_v2.collateral`         |                                         |
 
-#### [Goerli Datasets](../reference/sql-query-tables/goerli/)
-
-<table data-header-hidden><thead><tr><th width="230.5"></th><th width="235"></th><th></th></tr></thead><tbody><tr><td>Blocks</td><td><code>goerli.blocks</code></td><td><code>goerli.recent_blocks</code></td></tr><tr><td>Transactions</td><td><code>goerli.transactions</code></td><td><code>goerli.recent_transactions</code></td></tr><tr><td>Logs</td><td><code>goerli.logs</code></td><td><code>goerli.recent_logs</code></td></tr><tr><td>Contracts</td><td><code>goerli.contracts</code></td><td></td></tr><tr><td>Traces</td><td><code>goerli.traces</code></td><td><code>goerli.recent_traces</code></td></tr><tr><td>Withdrawals</td><td><code>goerli.withdrawals</code></td><td><code>goerli.recent_withdrawals</code></td></tr></tbody></table>
-
-#### [Goerli Token Datasets](../reference/sql-query-tables/goerli/token-tables/)
-
-<table data-header-hidden><thead><tr><th width="278.5"></th><th width="236"></th><th></th></tr></thead><tbody><tr><td>Contracts (erc20, erc721, erc1155)</td><td><code>goerli.contracts</code></td><td></td></tr><tr><td>Tokens (erc20, erc721, erc1155)</td><td><code>goerli.tokens</code></td><td></td></tr><tr><td>Token Transfers (erc20, erc721, erc1155)</td><td><code>goerli.token_transfers</code></td><td><code>goerli.recent_token_transfers</code></td></tr><tr><td>Token Mints (erc20, erc721, erc1155)</td><td><code>goerli.token_mints</code></td><td><code>goerli.recent_token_mints</code></td></tr></tbody></table>
-
-#### [Goerli Wallet Balances Dataset](../reference/sql-query-tables/goerli/token-tables-1/)
-
-| A block-level view of all changes to any account's Ether balance | `goerli.wallet_balances` | `goerli.recent_wallet_balances` |
-| ---------------------------------------------------------------- | ------------------------ | ------------------------------- |
-
-#### [Goerli Beacon Chain Datasets](../reference/sql-query-tables/goerli/beacon-chain-tables/)
-
-<table data-header-hidden><thead><tr><th width="218"></th><th></th><th></th></tr></thead><tbody><tr><td>Validators</td><td><code>goerli.beacon.validators</code></td><td></td></tr><tr><td>Slots</td><td><code>goerli.beacon.slots</code></td><td><code>goerli.beacon.recent_slots</code></td></tr><tr><td>Attestations</td><td><code>goerli.beacon.attestations</code></td><td><code>goerli.beacon.recent_attestations</code></td></tr><tr><td>Deposits</td><td><code>goerli.beacon.deposits</code></td><td><code>goerli.beacon.recent_deposits</code></td></tr><tr><td>Voluntary Exits</td><td><code>goerli.beacon.voluntary_exits</code></td><td><code>goerli.beacon.recent_voluntary_exits</code></td></tr><tr><td>Attester Slashings</td><td><code>goerli.beacon.attester_slashings</code></td><td><code>goerli.beacon.recent_attester_slashings</code></td></tr><tr><td>Proposer Slashings</td><td><code>goerli.beacon.proposer_slashings</code></td><td><code>goerli.beacon.recent_proposer_slashings</code></td></tr><tr><td>BLS To Execution Changes</td><td><code>goerli.beacon.bls_to_execution_changes</code></td><td><code>goerli.beacon.recent_bls_to_execution_changes</code></td></tr><tr><td>Withdrawals</td><td><code>goerli.beacon.withdrawals</code></td><td><code>goerli.beacon.recent_withdrawals</code></td></tr></tbody></table>
-
 [**Bitcoin datasets**](../reference/sql-query-tables/bitcoin/)
 
 <table data-header-hidden><thead><tr><th width="240.5"></th><th></th><th></th></tr></thead><tbody><tr><td>Blocks</td><td><code>btc.blocks</code></td><td><code>btc.recent_blocks</code></td></tr><tr><td>Transactions</td><td><code>btc.transactions</code></td><td><code>btc.recent_transactions</code></td></tr><tr><td>Transaction Inputs</td><td><code>btc.transaction_inputs</code></td><td><code>btc.recent_transaction_inputs</code></td></tr><tr><td>Transaction Outputs</td><td><code>btc.transaction_outputs</code></td><td><code>btc.recent_transaction_outputs</code></td></tr></tbody></table>
-
-#### [Chainlink datasets](../reference/sql-query-tables/ethereum/chainlink-tables/)
-
-|                     |                        |                               |
-| ------------------- | ---------------------- | ----------------------------- |
-| Prices (historical) | `eth.chainlink.prices` | `eth.chainlink.recent_prices` |
-
-### Time-series Datasets
-
-* [Ethereum blocks](https://docs.spice.ai/api/ethereum/blocks)
-* [Ethereum gas fees](https://docs.spice.ai/api/ethereum/gas-fees)
-
-#### [Spot and historical Prices](../getting-started/broken-reference/)
-
-* Binance
-  * Spot/latest prices for all pairs traded on Binance.
-  * Historical OHLC prices at 1-min granularity for all pairs.
-* Coinbase
-  * Spot/latest prices for all pairs traded on Coinbase.
-  * Historical OHLC prices at 1-min granularity for all pairs.
-* Gemini
-  * Spot/latest prices for all pairs traded on Gemini.
-  * Partial historical OHLC prices at 1-min granularity for all pairs.
-
-### JSON RPC Methods
-
-* See [JSON RPC Methods](datasets.md#time-series-datasets-1)

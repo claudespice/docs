@@ -122,9 +122,9 @@ General Availability launches a brand-new collaborative developer experience, v1
 
 1. \[HTTP API] Add v1 API:
    1. [SQL Query API ](../api/sql-query/http-api.md)
-   2. [Prices API](../api/prices-api.md)
-   3. [Gas Fees API](../api/ethereum/gas-fees.md)
-   4. [Predictions API](../api/predictions/)
+   2. [Prices API](broken-reference)
+   3. [Gas Fees API](broken-reference)
+   4. [Predictions API](broken-reference)
 2. \[Portal] New Portal and developer experience, without waitlist limitations.
 3. \[Portal] New pricing plans are available, [learn more](https://docs.spice.ai/getting-started/pricing).
 4. \[Portal] Datasets and Views generally available, [learn more](release-notes.md#datasets-and-views).
@@ -142,7 +142,7 @@ General Availability launches a brand-new collaborative developer experience, v1
 
 In the September release, Crypto/Token Prices data has been significantly expanded and improved upon.
 
-Historical and latest prices are available via [REST API](../api/prices-api.md) and [SQL Query](broken-reference).
+Historical and latest prices are available via [REST API](broken-reference) and [SQL Query](broken-reference).
 
 The number of token pairs supported by the REST API has greatly increased. In addition, if a pair does not have swap data, the platform will attempt to calculate a synthetic price for the pair, routed via swaps across different exchanges. For example, if a price for the pair BAO-AUD does not exist, but the pairs BAO-USDT and USDT-AUD do, then the API will calculate the routed price across the two swaps to determine a synthetic price, which will be returned in the payload as the `spiceai` price. The API will use data cross both centralized and decentralized exchanges. This enables pricing data where it was not possible before.
 
@@ -253,7 +253,7 @@ Wallet Balances datasets do not yet have full historical data.
 {% endhint %}
 
 * [`eth.wallet_balances`](sql-query-tables/ethereum/wallet-balances/)
-* [`goerli.wallet_balances`](sql-query-tables/goerli/token-tables-1/)
+* [`goerli.wallet_balances`](broken-reference)
 
 #### Flow Datasets
 
@@ -382,7 +382,7 @@ All [Goerli testnet data APIs](broken-reference) are available at **/goerli/v0.1
 * [Contracts](broken-reference)
 * [Gas Fees](broken-reference)
 
-**Ethereum Beacon API:** The [Ethereum API](../api/ethereum/) is now updated to support Beacon requests via the **`https://data.spiceai.io/eth/beacon`** API. This is compatible with the read-only GET requests from the [Beacon Node API specification](https://ethereum.github.io/beacon-APIs/).&#x20;
+**Ethereum Beacon API:** The [Ethereum API](broken-reference) is now updated to support Beacon requests via the **`https://data.spiceai.io/eth/beacon`** API. This is compatible with the read-only GET requests from the [Beacon Node API specification](https://ethereum.github.io/beacon-APIs/).&#x20;
 
 See the full list of Beacon API requests [here](https://docs.spice.xyz/api/ethereum/beacon-http-api).&#x20;
 
@@ -666,7 +666,7 @@ Read more on the [Spice AI blog](https://blog.spice.ai/whats-new-b7f637897df8).
 **Changes**
 
 * [Prices dataset](broken-reference) now out of preview
-* Added export to CSV results format in addition to existing formats [JSON](../api/ethereum/json-rpc-methods.md) and [Apache Arrow](../api/sql-query/apache-arrow-flight-api.md), for easy use with apps, ML, or libraries like NumPy and Pandas
+* Added export to CSV results format in addition to existing formats [JSON](broken-reference) and [Apache Arrow](../api/sql-query/apache-arrow-flight-api.md), for easy use with apps, ML, or libraries like NumPy and Pandas
 * Added performance improvements for faster queries across existing datasets including `eth.traces`&#x20;
 
 #### Resources
