@@ -96,11 +96,11 @@ The November release focused on [External Data Sources](../building-blocks/exter
 
 You can now connect external data sources like PostgreSQL and MySQL to Spice.ai, which are then available to query with SQL including joining with any other Spice.ai dataset in the Spice.ai platform.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>New Data Source dialog for connecting external data sources.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>New Data Source dialog for connecting external data sources.</p></figcaption></figure>
 
 Navigation is also easier with the addition of the Command Bar. Simply use **Cmd+K** on Mac or **Windows+K** in Windows to quickly navigate the portal by keyboard! Give it a try!
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>The new navigation command bar.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>The new navigation command bar.</p></figcaption></figure>
 
 **New In this Release**
 

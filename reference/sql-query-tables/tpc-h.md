@@ -25,7 +25,7 @@ DESCRIBE tpch.supplier;
 
 The components of TPC-H consist of eight separate and individual tables (the Base Tables). The relationships between columns in these tables are illustrated in the following ER diagram:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>The TPC-H Schema. Source: <a href="http://www.tpc.org/tpc_documents_current_versions/pdf/tpc-h_v2.17.1.pdf">TPC Benchmark H Standard Specification</a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>The TPC-H Schema. Source: <a href="http://www.tpc.org/tpc_documents_current_versions/pdf/tpc-h_v2.17.1.pdf">TPC Benchmark H Standard Specification</a></p></figcaption></figure>
 
 ### Example TPC-H query
 

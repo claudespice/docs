@@ -7,7 +7,9 @@ description: Welcome to the Spice.ai Cloud Platform documentation!
 The **Spice.ai Cloud Platform** is a data and AI application platform; an AI-backend-as-a-service comprising of composable, ready-to-use data and AI building blocks including federated SQL query, machine learning, and cloud-scale, managed [Spice.ai OSS](https://github.com/spiceai/spiceai).
 
 {% hint style="info" %}
-This is the **Spice.ai Cloud Platform** documentation. If you are looking for the **Spice.ai OSS** project documentation please visit [docs.spiceai.org](https://docs.spiceai.org).
+This is the **Spice.ai Cloud Platform** documentation. If you are looking for the **Spice.ai OSS** project documentation please visit [**docs.spiceai.org**](https://docs.spiceai.org).
+
+![](<.gitbook/assets/image (1).png>)
 {% endhint %}
 
 **Operating data and AI infrastructure can be painful.**&#x20;
