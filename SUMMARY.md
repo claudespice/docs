@@ -58,6 +58,7 @@
 
 ## 🔌 Integrations
 
+* [GitHub Copilot](integrations/github-copilot.md)
 * [Grafana](integrations/grafana/README.md)
   * [Grafana Dashboard Examples](integrations/grafana/grafana-dashboard-examples.md)
 
