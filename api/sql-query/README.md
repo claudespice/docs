@@ -12,6 +12,6 @@ See [SQL Query Tables](../../reference/sql-query-tables/) for [community data](.
 
 * [Ethereum (EVM) Queries](../../reference/sql-query-tables/ethereum/)
 * [Ethereum Beacon Queries](../../reference/samples-and-examples/example-ethereum-beacon-sql-queries/)
-* [Decentralized-Exchange (DEX) Queries](../../reference/samples-and-examples/example-dex-queries/)
+* [Decentralized-Exchange (DEX) Queries](broken-reference)
 * [Bitcoin Queries](../../reference/samples-and-examples/example-bitcoin-queries/)
-* [Cross-Chain Queries](../../reference/samples-and-examples/example-cross-chain-queries.md)
+* [Cross-Chain Queries](broken-reference)

@@ -37,7 +37,7 @@ With **Spice.ai,** you can:
 * Define and manage custom datasets in GitHub along with your application code.
 * Bring and federate your own data or leverage 100TB+ of preloaded community data.
 
-Spice.ai is preloaded with community data from ecosystems including **Ethereum**, **Bitcoin,** and **EigenLayer** along with enriched datasets for NFTs, DeFi, DEXs, ENS, Asset Prices, and more. Most datasets are open-source and available at [github.com/spiceai/datasets](https://github.com/spiceai/datasets).
+Spice.ai is preloaded with community data from ecosystems including **Ethereum**, **Bitcoin,** and **EigenLayer** along with enriched datasets for NFTs, ENS, Asset Prices, and more. Most datasets are open-source and available at [github.com/spiceai/datasets](https://github.com/spiceai/datasets).
 
 Building blocks available in the Spice.ai platform today include:
 
@@ -45,7 +45,6 @@ Building blocks available in the Spice.ai platform today include:
 * [Datasets and Views](building-blocks/datasets-and-views.md)
 * [Spice Firecache](building-blocks/spice-firecache/) (managed Spice.ai OSS)
 * [ML Models](building-blocks/spice-models.md) (in Preview)
-* [AI Predictions](broken-reference) (in Preview)
 * Community Data including [Blockchain Data](building-blocks/datasets.md)
 
 Take it for a spin by starting with the [getting started guide](getting-started/get-started/).

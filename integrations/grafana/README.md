@@ -40,10 +40,10 @@ Visit [Grafana Docs](https://grafana.com/docs/grafana/latest/panels-visualizatio
 
 [example-ethereum-beacon-sql-queries](../../reference/samples-and-examples/example-ethereum-beacon-sql-queries/ "mention")
 
-[example-dex-queries](../../reference/samples-and-examples/example-dex-queries/ "mention")
+[Broken link](broken-reference "mention")
 
 [example-bitcoin-queries](../../reference/samples-and-examples/example-bitcoin-queries/ "mention")
 
 [broken-reference](../broken-reference/ "mention")
 
-[example-cross-chain-queries.md](../../reference/samples-and-examples/example-cross-chain-queries.md "mention")
+[Broken link](broken-reference "mention")

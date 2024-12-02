@@ -107,7 +107,7 @@ Navigation is also easier with the addition of the Command Bar. Simply use **Cmd
 1. \[Portal] Added PostgreSQL and MySQL external data sources. See the [docs](../building-blocks/external-data-sources.md) for details.
 2. \[Portal] Added Dark Mode! Configure via [Profile Settings](../portal/profile-settings.md#dark-mode).
 3. \[Portal] Added Command Bar navigation.
-4. \[Data] Added [`eth.wallet_lst_balances`](sql-query-tables/ethereum/wallet-balances/eth.wallet\_lst\_balances.md) including rETH, stETH, and cbETH LSTs.
+4. \[Data] Added [`eth.wallet_lst_balances`](sql-query-tables/ethereum/wallet-balances/eth.wallet_lst_balances.md) including rETH, stETH, and cbETH LSTs.
 5. \[Firecache] Upgraded to DuckDB 0.92.
 6. \[Platform] Performance, reliability, and security improvements.
 7. \[Go SDK] Released v3.0.0, [learn more](https://github.com/spiceai/gospice/releases/tag/v3.0.0).
@@ -151,7 +151,7 @@ Additional tables have been added for token prices and assets.
 * [prices.assets](broken-reference) list all assets tracked and available via SQL Query. 8,856 assets are currently available.
 * [prices.all\_pairs](broken-reference) list all the token pairs with prices available via SQL Query. 3,342 pairs are currently available.
 
-In addition to the existing [prices.\[tokenA-tokenB\]](sql-query-tables/ethereum/chainlink-tables/prices-tables/) a table of prices for each token pair.
+In addition to the existing [prices.\[tokenA-tokenB\]](broken-reference) a table of prices for each token pair.
 
 Note: In both cases, the list is a subset of what is available via the REST API.
 
@@ -297,7 +297,7 @@ Portal UX improvements include the ability to search the dataset reference for s
 
 The May release includes significant platform performance upgrades with the rollout of Spice AI's **second generation platform architecture (Gen. 2)** along with several usability and user-experience improvements.
 
-[Ethereum](sql-query-tables/ethereum/) and [Polygon](broken-reference) block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like [NFTs](broken-reference), [ENS](sql-query-tables/ethereum/token-tables-1/), [Uniswap](samples-and-examples/example-dex-queries/uniswap.md), and [Sushiswap](samples-and-examples/example-dex-queries/sushiswap.md). Query execution speed is now **1.5x-10x faster!**
+[Ethereum](sql-query-tables/ethereum/) and [Polygon](broken-reference) block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like [NFTs](broken-reference), [ENS](sql-query-tables/ethereum/token-tables-1/), [Uniswap](broken-reference), and [Sushiswap](broken-reference). Query execution speed is now **1.5x-10x faster!**
 
 <figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p><a href="samples-and-examples/example-ethereum-beacon-sql-queries/">Example Queries</a> referenced in docs are now <strong>1.5x-10x faster!</strong></p></figcaption></figure>
 
@@ -337,7 +337,7 @@ This includes accessing the latest, minute-precision data on `transaction_hash`,
 Data for for [Curve](https://classic.curve.fi/whitepaper), [Balancer](https://balancer.fi/), [Aave](https://aave.com/), [Yearn](https://yearn.finance/), [DAI](https://makerdao.com/en/), [Tether USD](https://tether.to/en/about-us/) and 30 other top assets is available. See the full list of supported data feeds [here](https://docs.spice.xyz/reference/sql-query-tables/sql-query-tables/chainlink-tables/prices-tables).&#x20;
 
 \
-**Aave V2 Dataset:** In addition to the Aave token prices data feed on the Chainlink network, we have released indexed [Aave V2](sql-query-tables/ethereum/aave-v2-tables/) data for loans, collaterals and prices. You can query for the latest updates to Aave loans and collateral by querying `eth.aave_v2.loan_updates` and `eth.aave_v2.collateral_updates`.&#x20;
+**Aave V2 Dataset:** In addition to the Aave token prices data feed on the Chainlink network, we have released indexed [Aave V2](broken-reference) data for loans, collaterals and prices. You can query for the latest updates to Aave loans and collateral by querying `eth.aave_v2.loan_updates` and `eth.aave_v2.collateral_updates`.&#x20;
 
 <figure><img src="../.gitbook/assets/Screen Shot 2023-05-09 at 9.49.27 AM.png" alt=""><figcaption><p>Latest view of all Aave V2 loans query, sample output</p></figcaption></figure>
 
@@ -361,7 +361,7 @@ from eth_withdrawn
 
 <figure><img src="../.gitbook/assets/Screen Shot 2023-05-10 at 10.20.00 PM.png" alt=""><figcaption><p>Get ETH withdrawn after the Ethereum Shanghai upgrade, sample output</p></figcaption></figure>
 
-Explore detailed sample SQL queries for [DEX](samples-and-examples/example-dex-queries/), [Cross-Chain](samples-and-examples/example-cross-chain-queries.md), [Ethereum](broken-reference), [Beacon](samples-and-examples/example-ethereum-beacon-sql-queries/), and [Bitcoin](samples-and-examples/example-bitcoin-queries/) in the Spice Docs.\
+Explore detailed sample SQL queries for [DEX](broken-reference), [Cross-Chain](broken-reference), [Ethereum](broken-reference), [Beacon](samples-and-examples/example-ethereum-beacon-sql-queries/), and [Bitcoin](samples-and-examples/example-bitcoin-queries/) in the Spice Docs.\
 
 
 **Goerli Testnet:** Full support for the Goerli testnet has been added, including hosted beacon and execution nodes, and fully indexed datasets, helping developers test their applications before mainnet launch.&#x20;
@@ -419,7 +419,7 @@ See the full list of Beacon API requests [here](https://docs.spice.xyz/api/ether
 * \[Aave V2] added `eth.aave_v2.loan_updates`, `eth.aave_v2.loans`
 * \[Aave V2] added `eth.aave_v2.collateral_updates`, `eth.aave_v2.collateral`
 * \[Chainlink] added `eth.chainlink.prices`, `eth.chainlink.recent_prices`
-* \[Chainlink] added [price feed support](sql-query-tables/ethereum/chainlink-tables/) for the following assets:
+* \[Chainlink] added [price feed support](broken-reference) for the following assets:
   * USD Coin (USDC)&#x20;
   * 1INCH Token (1INCH)&#x20;
   * Yearn.finance (YFI)&#x20;
@@ -652,7 +652,7 @@ Read more on the [Spice AI Blog](https://blog.spice.ai/build-multi-chain-with-sp
 
 **DEX Liquidity & Events Dataset**
 
-Spice now features DEX Liquidity and Events Dataset where users can access indexed liquidity data from UniSwap \[[V2](sql-query-tables/ethereum/uniswap-v2-tables/), [V3](sql-query-tables/ethereum/uniswap-v3-tables/)] and [SushiSwap](sql-query-tables/ethereum/sushiswap-tables/) liquidity pools, _within seconds_.&#x20;
+Spice now features DEX Liquidity and Events Dataset where users can access indexed liquidity data from UniSwap \[[V2](broken-reference), [V3](broken-reference)] and [SushiSwap](broken-reference) liquidity pools, _within seconds_.&#x20;
 
 Data is available both historically and in real time, providing unparalleled visibility on DEX liquidity pools.
 
