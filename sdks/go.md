@@ -19,7 +19,7 @@ GoDocs available at [pkg.go.dev/github.com/spiceai/gospice](https://pkg.go.dev/g
 Get the **gospice** package.
 
 ```bash
-go get github.com/spiceai/gospice/v6
+go get github.com/spiceai/gospice/v7
 ```
 
 ### Usage
@@ -27,7 +27,7 @@ go get github.com/spiceai/gospice/v6
 1\. Import the package.
 
 ```go
-import "github.com/spiceai/gospice/v6"
+import "github.com/spiceai/gospice/v7"
 ```
 
 2\. Create a SpiceClient passing in your API key. Get your free API key at [spice.ai](https://spice.ai/).
@@ -111,4 +111,4 @@ spice.SetMaxRetries(5) // Setting to 0 will disable retries
 
 Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example RESOURCE\_EXHAUSTED (HTTP 429).
 
-See [client\_test.go](https://github.com/spiceai/gospice/blob/trunk/client\_test.go) for examples on querying Ethereum and Polygon blocks.
+See [client\_test.go](https://github.com/spiceai/gospice/blob/trunk/client_test.go) for examples on querying Ethereum and Polygon blocks.
