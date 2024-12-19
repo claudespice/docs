@@ -4,6 +4,38 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+### July 2024
+
+#### New Features
+
+**Spicepod Deployment Enhancements:**
+
+* Added support for deploying Spicepods directly from GitHub repositories.
+* Introduced new flows for provisioning and configuring Spicepods, including updated formats and integration with external connections.
+* Unified Spicepod setup for both general and GitHub Copilot-specific use cases.
+
+**AI Chat Playground Updates:**
+
+* Launched an improved playground for AI chat applications.
+* /v1/chat/completions now supports streaming responses compatible with OpenAI SDK.
+
+**SQL Explorer:**
+
+* Introduced a unified SQL Explorer playground with enhanced query capabilities and debugging tools.
+* Improved SQL support for managed spiced instances, including better routing and error handling.
+* Added SQL error marker detection with line and column details.
+
+#### **Enhancements**
+
+**UI and UX Refinements:**
+
+* Updated rounded corners, button radii, and other style tweaks for a more consistent look.
+* Enhanced chat UI and added new interactive features like chat spinners and error markers for SQL.
+
+#### **Bug Fixes**
+
+* Fixed inconsistencies in Copilot configuration, ensuring seamless provisioning and deployment.
+
 ### June 2024
 
 The June release included a [C# SDK](../sdks/dotnet-sdk.md) for Spice AI and Spice OSS to allow for development using .Net Standard 2.0 and .Net 6.0 or greater.
