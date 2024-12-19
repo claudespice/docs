@@ -299,7 +299,7 @@ The May release includes significant platform performance upgrades with the roll
 
 [Ethereum](sql-query-tables/ethereum/) and [Polygon](broken-reference) block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like [NFTs](broken-reference), [ENS](sql-query-tables/ethereum/token-tables-1/), [Uniswap](broken-reference), and [Sushiswap](broken-reference). Query execution speed is now **1.5x-10x faster!**
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p><a href="samples-and-examples/example-ethereum-beacon-sql-queries/">Example Queries</a> referenced in docs are now <strong>1.5x-10x faster!</strong></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p><a href="broken-reference">Example Queries</a> referenced in docs are now <strong>1.5x-10x faster!</strong></p></figcaption></figure>
 
 Portal UX improvements include the ability to collapse the sidebar, resize the SQL query input and results pane, and expand to a fullscreen focus mode. SQL query errors are now highlighted with red underline swiggles along with a more readable error pane. Finally, results render faster and app switching is faster.
 
@@ -361,7 +361,7 @@ from eth_withdrawn
 
 <figure><img src="../.gitbook/assets/Screen Shot 2023-05-10 at 10.20.00 PM.png" alt=""><figcaption><p>Get ETH withdrawn after the Ethereum Shanghai upgrade, sample output</p></figcaption></figure>
 
-Explore detailed sample SQL queries for [DEX](broken-reference), [Cross-Chain](broken-reference), [Ethereum](broken-reference), [Beacon](samples-and-examples/example-ethereum-beacon-sql-queries/), and [Bitcoin](samples-and-examples/example-bitcoin-queries/) in the Spice Docs.\
+Explore detailed sample SQL queries for [DEX](broken-reference), [Cross-Chain](broken-reference), [Ethereum](broken-reference), [Beacon](broken-reference), and [Bitcoin](broken-reference) in the Spice Docs.\
 
 
 **Goerli Testnet:** Full support for the Goerli testnet has been added, including hosted beacon and execution nodes, and fully indexed datasets, helping developers test their applications before mainnet launch.&#x20;
@@ -753,7 +753,7 @@ Read more on the [Spice AI blog](https://medium.com/spice-ai/).
   * `btc.transactions` / `btc.recent_transactions`
   * `btc.transaction_inputs` / `btc.recent_transaction_inputs`
   * `btc.transaction_outputs` / `btc.recent_transaction_outputs`
-* [example-bitcoin-queries](samples-and-examples/example-bitcoin-queries/ "mention") for querying Bitcoin data.
+* [Broken link](broken-reference "mention") for querying Bitcoin data.
 
 #### Resources
 

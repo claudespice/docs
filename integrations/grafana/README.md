@@ -38,11 +38,11 @@ Visit [Grafana Docs](https://grafana.com/docs/grafana/latest/panels-visualizatio
 
 [broken-reference](../broken-reference/ "mention")
 
-[example-ethereum-beacon-sql-queries](../../reference/samples-and-examples/example-ethereum-beacon-sql-queries/ "mention")
+[Broken link](broken-reference "mention")
 
 [Broken link](broken-reference "mention")
 
-[example-bitcoin-queries](../../reference/samples-and-examples/example-bitcoin-queries/ "mention")
+[Broken link](broken-reference "mention")
 
 [broken-reference](../broken-reference/ "mention")
 

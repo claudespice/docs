@@ -8,7 +8,7 @@ SQL query results are now available as [Apache Arrow](https://arrow.apache.org) 
 
 Arrow Flight is a data protocol built on the high-performance, open-source [gRPC](https://grpc.io) protocol.
 
-This enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README.md), and [Rust](https://docs.rs/arrow-flight/latest/arrow\_flight/), and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
+This enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README.md), and [Rust](https://docs.rs/arrow-flight/latest/arrow_flight/), and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
 
 We recommend using our SDKs to connect and query this endpoint. SDKs are available for [Python](../../sdks/python-sdk/), [Node.js](../../sdks/node.js-sdk/), and [Go](../../sdks/go.md) with more coming soon. In Python, the query results from the SDK can be easily converted to Pandas or NumPy format.
 
@@ -37,7 +37,7 @@ See the [Python SDK page](../../sdks/python-sdk/#m1-macs) for installation steps
 
 #### Samples
 
-Find code samples in Python in [Arrow Flight Samples](../../reference/samples-and-examples/arrow-flight-samples.md).
+Find code samples in Python in [Arrow Flight Samples](broken-reference).
 
 ### Troubleshooting
 
