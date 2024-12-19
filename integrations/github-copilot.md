@@ -33,7 +33,7 @@ Scroll down, and click **Install it for free**.
 
 <figure><img src="../.gitbook/assets/copilot_chat_again.png" alt="" width="375"><figcaption><p>Starting a conversaton with @spiceai</p></figcaption></figure>
 
-2. A prompt will appear to connect to the Spice.ai Platform.
+2. A prompt will appear to connect to the Spice.ai Cloud Platform.
 
 <figure><img src="../.gitbook/assets/copilot_connect.png" alt="" width="369"><figcaption><p>Connection prompt</p></figcaption></figure>
 
@@ -41,11 +41,11 @@ Scroll down, and click **Install it for free**.
 
 <figure><img src="../.gitbook/assets/copilot_authorize.png" alt="" width="563"><figcaption><p>Permissions screen for the Spice AI Extension</p></figcaption></figure>
 
-4. To create an account on the Spice.ai Cloud Platform, click **Authorize Spice.ai Cloud Platform.**
+4. To create an account on the Spice.ai Cloud Platform, click **Authorize Spice AI Platform.**
 
 <figure><img src="../.gitbook/assets/copilot_authorize_platform.png" alt="" width="563"><figcaption><p>Authorizing the Spice.ai Cloud Platform</p></figcaption></figure>
 
-5. Once your account is created, you can configure the extension. Select from a set of ready-to-use datasets to get started. You'll have a chance to configure other datasets after setup.
+5. Once your account is created, you can configure the extension. Select from a set of ready-to-use datasets to get started. You can configure other datasets after setup.
 
 <figure><img src="../.gitbook/assets/copilot_extension_setup.png" alt="" width="563"><figcaption><p>GitHub Copilot Extension Setup page</p></figcaption></figure>
 
