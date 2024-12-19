@@ -22,6 +22,7 @@
 * [SQL Query API](api/sql-query/README.md)
   * [HTTP API](api/sql-query/http-api.md)
   * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
+* [OpenAI API](api/openai-api.md)
 * [Health API](api/health.md)
 
 ## 👨‍💻 Portal
