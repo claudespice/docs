@@ -1,8 +1,12 @@
+---
+icon: cubes
+---
+
 # Apps
 
-**Apps** are self-contained sets of SQL, datasets, monitoring, and configuration that run on the Spice.ai platform.
+**Apps** are self-contained instances of Spice OSS Runtime, running in Spice.ai Cloud Platform.
 
-Each app has a unique API Key and can be owned by individual accounts or [**organizations**](../../reference/core-concepts/organizations.md).
+Each app has a unique API Key and owned by individual accounts or [**organizations**](../organizations.md).
 
 ### Learn how to:
 

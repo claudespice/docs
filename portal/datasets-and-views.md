@@ -1,8 +1,10 @@
 ---
 description: Custom Datasets and Views documentation.
+hidden: true
+icon: table
 ---
 
-# Datasets and Views
+# Datasets
 
 The Spice.ai platform comes pre-loaded with a variety of community [datasets](broken-reference).
 

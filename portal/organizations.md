@@ -1,6 +1,12 @@
+---
+icon: sitemap
+---
+
 # Organizations
 
-[**Organizations**](../reference/core-concepts/organizations.md) enable you to share apps, datasets, users, billing, and settings with your team. Organization administrators can set who has access to their organization's resources and data.
+[**Organizations**](broken-reference) enable you to share apps, datasets, users, billing, and settings with your team. Organization administrators can set who has access to their organization's resources and data.
+
+When you create an account on Spice.ai, a single member organization of the same name as your username is created for you and you are automatically added as a member and the owner of the organization.
 
 ### Creating an organization
 

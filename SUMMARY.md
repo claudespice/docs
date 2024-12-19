@@ -25,19 +25,24 @@
 * [OpenAI API](api/openai-api.md)
 * [Health API](api/health.md)
 
-## 👨‍💻 Portal
+## Portal
 
+* [Organizations](portal/organizations.md)
 * [Apps](portal/apps/README.md)
   * [Connect GitHub repository](portal/apps/connect-github-repository.md)
   * [Transfer an App](portal/apps/app-transfer.md)
   * [App API keys](portal/apps/app-api-keys.md)
-* [Organizations](portal/organizations.md)
+* [Public Apps](portal/public-apps.md)
+* [App Secrets](portal/app-secrets.md)
 * [SQL Query Editor](portal/sql-query-editor.md)
-* [Datasets and Views](portal/datasets-and-views.md)
-* [External Data Sources](portal/external-data-sources.md)
-* [Monitoring and Request Logs](portal/monitoring-and-request-logs.md)
+* [Datasets](portal/datasets-and-views.md)
+* [Models](portal/models.md)
+* [Spicepod (preview)](portal/spicepod-preview.md)
+* [Monitoring](portal/monitoring-and-request-logs.md)
+* [Observability](portal/observability.md)
 * [Profile Settings](portal/profile-settings.md)
 * [Personal Access Tokens](portal/personal-access-tokens.md)
+* [External Data Sources](portal/external-data-sources.md)
 
 ## 🔗 SDKs
 
@@ -59,7 +64,6 @@
 ## 📚 REFERENCE
 
 * [Core Concepts](reference/core-concepts/README.md)
-  * [Organizations](reference/core-concepts/organizations.md)
   * [Duration Literals](reference/core-concepts/duration-literals.md)
 * [SQL Reference](reference/sql-reference/README.md)
   * [Data Types](reference/sql-reference/data-types.md)

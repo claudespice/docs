@@ -1,3 +1,7 @@
+---
+icon: key-skeleton
+---
+
 # Personal Access Tokens
 
 Personal Access Tokens (PATs) provide a secure and straightforward way to authenticate and manage access to your Spice AI account via the API and CLI.
