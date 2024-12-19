@@ -8,7 +8,7 @@ The [Go SDK](https://github.com/spiceai/gospice) `gospice` is the easiest way to
 
 It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) to efficiently stream data to the client and [Apache Arrow](https://arrow.apache.org/) Records as data frames.
 
-GoDocs available at [pkg.go.dev/github.com/spiceai/gospice](https://pkg.go.dev/github.com/spiceai/gospice/v5)[.](https://pkg.go.dev/github.com/spiceai/gospice/v5)
+GoDocs are available at: [pkg.go.dev/github.com/spiceai/gospice](https://pkg.go.dev/github.com/spiceai/gospice/v5)[.](https://pkg.go.dev/github.com/spiceai/gospice/v5)
 
 ### Requirements
 
@@ -30,14 +30,14 @@ go get github.com/spiceai/gospice/v7
 import "github.com/spiceai/gospice/v7"
 ```
 
-2\. Create a SpiceClient passing in your API key. Get your free API key at [spice.ai](https://spice.ai/).
+2\. Create a `SpiceClient` by providing your API key. Get your free API key at [spice.ai](https://spice.ai/).
 
 ```go
 spice := gospice.NewSpiceClient()
 defer spice.Close()
 ```
 
-3\. Initialize the SpiceClient.
+3\. Initialize the `SpiceClient`.
 
 ```go
 if err := spice.Init(
@@ -48,10 +48,10 @@ if err := spice.Init(
 }
 ```
 
-4\. Execute a query and get back an Apache Arrow Reader.
+4\. Execute a query and get back an [Apache Arrow Record Reader](https://pkg.go.dev/github.com/apache/arrow/go/v17@v17.0.0/arrow#example-package-RecordReader).
 
 ```go
-reader, err := spice.Query(context.Background(), "SELECT * FROM eth.recent_blocks ORDER BY number LIMIT 10")
+reader, err := spice.Query(context.Background(), "SELECT * FROM tpch.lineitem LIMIT 10")
 if err != nil {
     panic(fmt.Errorf("error querying: %w", err))
 }
@@ -109,6 +109,8 @@ spice := NewSpiceClient()
 spice.SetMaxRetries(5) // Setting to 0 will disable retries
 ```
 
-Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example RESOURCE\_EXHAUSTED (HTTP 429).
+Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example `RESOURCE_EXHAUSTED (HTTP 429)`.
 
-See [client\_test.go](https://github.com/spiceai/gospice/blob/trunk/client_test.go) for examples on querying Ethereum and Polygon blocks.
+### Contributing
+
+Contribute to or file an issue with the `gospice` library at: [https://github.com/spiceai/gospice](https://github.com/spiceai/gospice)

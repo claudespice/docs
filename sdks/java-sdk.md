@@ -8,8 +8,10 @@ It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) 
 
 This library supports the following Java implementations:
 
+* OpenJDK 11
 * OpenJDK 17
 * OpenJDK 21
+* OracleJDK 11
 * OracleJDK 17
 * OracleJDK 21
 * OracleJDK 22
@@ -22,7 +24,7 @@ This library supports the following Java implementations:
 <dependency>
     <groupId>ai.spice</groupId>
     <artifactId>spiceai</artifactId>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -30,7 +32,7 @@ This library supports the following Java implementations:
 
 {% tab title="Gradle" %}
 ```groovy
-implementation 'ai.spice:spiceai:0.1.0'
+implementation 'ai.spice:spiceai:0.3.0'
 ```
 {% endtab %}
 {% endtabs %}
@@ -43,7 +45,7 @@ implementation 'ai.spice:spiceai:0.1.0'
 import ai.spice.SpiceClient;
 ```
 
-2\. Create a SpiceClient passing in your API key. Get your free API key at [spice.ai](https://spice.ai/).
+2\. Create a `SpiceClient` by providing your API key. Get your free API key at [spice.ai](https://spice.ai/).
 
 ```java
 SpiceClient spice = SpiceClient.builder()
@@ -52,13 +54,13 @@ SpiceClient spice = SpiceClient.builder()
     .build()
 ```
 
-3\. Execute a query and get back a FlightStream.
+3\. Execute a query and get back a [`FlightStream`](https://arrow.apache.org/docs/java/reference/org.apache.arrow.flight.core/org/apache/arrow/flight/FlightStream.html).
 
 ```java
-FlightStream stream = spice.query("SELECT * FROM eth.recent_blocks ORDER BY number LIMIT 10");
+FlightStream stream = spice.query("SELECT * FROM tpch.lineitem LIMIT 10");
 ```
 
-5\. Iterate through the  FlightStream to access the records.
+5\. Iterate through the `FlightStream` to access the records.
 
 ```java
 while (stream.next()) {
@@ -100,4 +102,8 @@ SpiceClient client = SpiceClient.builder()
     .build();
 ```
 
-Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example RESOURCE\_EXHAUSTED (HTTP 429).
+Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example `RESOURCE_EXHAUSTED (HTTP 429)`.
+
+### Contributing
+
+Contribute to or file an issue with the `spice-rs` library at: [https://github.com/spiceai/spice-java](https://github.com/spiceai/spice-java)

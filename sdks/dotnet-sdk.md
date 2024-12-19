@@ -22,7 +22,7 @@ dotnet add package spiceai
 
 ### Usage
 
-1. Create a `SpiceClient` by passing in your API key to `SpiceClientBuilder`.  Get your free API key at [Spice.ai](https://spice.ai/).
+1. Create a `SpiceClient` by providing your API key to `SpiceClientBuilder`.  Get your free API key at [Spice.ai](https://spice.ai/).
 
 ```csharp
 using Spice;
@@ -36,7 +36,7 @@ var client = new SpiceClientBuilder()
 2. Execute a query and get back an Apache Arrow [Flight Client Record Batch Stream Reader](https://github.com/apache/arrow/blob/67bbf846d0d47075e1711b3fb4cf8fb05c74bd09/csharp/src/Apache.Arrow.Flight/Client/FlightClientRecordBatchStreamReader.cs#L22).
 
 ```csharp
-var reader = await client.Query("SELECT * FROM eth.recent_blocks LIMIT 10;");
+var reader = await client.Query("SELECT * FROM tpch.lineitem LIMIT 10;");
 ```
 
 3. Iterate through the reader to access the records.
@@ -63,5 +63,6 @@ var client = new SpiceClientBuilder()
 var data = await client.Query("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;");
 ```
 
-\
-Check [Spice OSS documentation](https://docs.spiceai.org/sdks/dotnet) to learn more.
+### Contributing
+
+Contribute to or file an issue with the `spice-dotnet` library at: [https://github.com/spiceai/spice-dotnet](https://github.com/spiceai/spice-dotnet)

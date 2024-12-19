@@ -22,7 +22,7 @@ cargo add spiceai
 
 ### Usage
 
-1\. Create a `SpiceClient` by passing in your API key to `ClientBuilder`. Get your free API key at [spice.ai](https://spice.ai/).
+1\. Create a `SpiceClient` by providing your API key to `ClientBuilder`. Get your free API key at [spice.ai](https://spice.ai/).
 
 ```rust
 use spiceai::ClientBuilder;
@@ -38,10 +38,10 @@ async fn main() {
 }
 ```
 
-2\. Execute a query and get back an Apache Arrow [Flight Record Batch Stream](https://arrow.apache.org/rust/arrow\_flight/decode/struct.FlightRecordBatchStream.html).
+2\. Execute a query and get back an Apache Arrow [Flight Record Batch Stream](https://arrow.apache.org/rust/arrow_flight/decode/struct.FlightRecordBatchStream.html).
 
 ```rust
-let flight_data_stream = client.query("SELECT * FROM eth.recent_blocks LIMIT 10;").await.expect("Error executing query");
+let flight_data_stream = client.query("SELECT * FROM tpch.lineitem LIMIT 10;").await.expect("Error executing query");
 ```
 
 3\. Iterate through the reader to access the records.
@@ -78,4 +78,6 @@ async fn main() {
 }
 ```
 
-Check [Spice OSS documentation](https://docs.spiceai.org/clients) to learn more.
+### Contributing
+
+Contribute to or file an issue with the `spice-rs` library at: [https://github.com/spiceai/spice-rs](https://github.com/spiceai/spice-rs)

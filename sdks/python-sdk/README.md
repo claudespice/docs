@@ -91,8 +91,6 @@ data = client.query('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY
 pd = data.read_pandas()
 ```
 
-Check [Spice OSS documentation](https://docs.spiceai.org/clients) to learn more.
-
 ### Contributing
 
-Contribute to or file an issue with the `spicepy` library at [https://github.com/spiceai/spicepy](https://github.com/spiceai/spicepy)
+Contribute to or file an issue with the `spicepy` library at: [https://github.com/spiceai/spicepy](https://github.com/spiceai/spicepy)

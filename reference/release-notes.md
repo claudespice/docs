@@ -24,7 +24,7 @@ The May release included [EigenLayer Delegation Manager datasets.](sql-query-tab
 
 ### April 2024
 
-The April release included updates to the Spice SDK's to support querying a local [Spice Runtime](https://github.com/spiceai/spiceai) without requiring a Spice.ai API key.  Details and examples can be found in the [Rust](../sdks/rust-sdk/), [Go](../sdks/go.md), [Python](../sdks/python-sdk/), and [Node.js](../sdks/node.js-sdk/) SDK documentation.
+The April release included updates to the Spice SDK's to support querying a local [Spice Runtime](https://github.com/spiceai/spiceai) without requiring a Spice.ai API key.  Details and examples can be found in the [Rust](../sdks/rust-sdk.md), [Go](../sdks/go.md), [Python](../sdks/python-sdk/), and [Node.js](../sdks/node.js-sdk/) SDK documentation.
 
 **Ethereum Holesky nodes were shut down and datasets were removed on Thursday, April 25th at 8pm PST.**
 

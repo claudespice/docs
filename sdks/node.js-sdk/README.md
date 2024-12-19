@@ -82,8 +82,8 @@ const spiceClient = new SpiceClient('API_KEY');
 spiceClient.setMaxRetries(5); // Setting to 0 will disable retries
 ```
 
-Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example RESOURCE\_EXHAUSTED (HTTP 429).
+Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example `RESOURCE_EXHAUSTED (HTTP 429)`.
 
 ### Contributing
 
-Contribute to or file an issue with the Spice.js library at [https://github.com/spiceai/spice.js](https://github.com/spiceai/spice.js)
+Contribute to or file an issue with the `spice.js` library at: [https://github.com/spiceai/spice.js](https://github.com/spiceai/spice.js).

@@ -18,28 +18,26 @@ The object returned from `spicepy.Client.query()` is a [`pyarrow.flight.FlightSt
 
 Calling `to_pandas()` on the `FlightStreamReader` will wait for the stream to return all of the data before returning a pandas DataFrame.
 
-To operate on partial results while the data is streaming, we will take advantage of the [`read_chunk()`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.flight.FlightStreamReader.html#pyarrow.flight.FlightStreamReader.read\_chunk) method on `FlightStreamReader`. This returns a `FlightStreamChunk`, which has a `data` attribute that is a [`RecordBatch`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch). Once we have the RecordBatch, we can call `to_pandas()` on it to return the partial data as a pandas DataFrame. When the stream has ended, calling `read_chunk()` will raise a `StopIteration` exception that we can catch.
+To operate on partial results while the data is streaming, we will take advantage of the [`read_chunk()`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.flight.FlightStreamReader.html#pyarrow.flight.FlightStreamReader.read_chunk) method on `FlightStreamReader`. This returns a `FlightStreamChunk`, which has a `data` attribute that is a [`RecordBatch`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch). Once we have the RecordBatch, we can call `to_pandas()` on it to return the partial data as a pandas DataFrame. When the stream has ended, calling `read_chunk()` will raise a `StopIteration` exception that we can catch.
 
-Let's see how this works in practice. Imagine we want to iterate over all of the owners of the Bored Ape Yacht Club NFT collection. There are 10000 NFTs in the collection, so we could write the below query that would return all 10k NFTs with their owners in one call:
+In this example, we retrieve all 10,000 suppliers from the TPCH Suppliers table. This query retrieves all suppliers in a single call:
 
 ```python
 from spicepy import Client
 
 client = Client(os.environ["API_KEY"])
 query = """
-    SELECT token_id, owner 
-    FROM eth.nft_owners 
-    WHERE token_address = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
-    ORDER BY CAST(token_id AS NUMERIC)
+    SELECT s_suppkey, s_name
+    FROM tpch.supplier
 """
 
 reader = client.query(query)
-baycOwners = reader.read_pandas()
+suppliers = reader.read_pandas()
 ```
 
-The result is that we get a pandas DataFrame with all 10k NFTs, but we have to wait for all of the data to arrive before we can begin processing.
+This call will return a pandas [`DataFrame`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) with all 10,000 suppliers, and is a synchronous call that waits for all data to arrive before returning.
 
-We can do better by processing the NFT owners as the results are streamed down. To take advantage of this, we need to call the `read_chunk()` method on the returned `FlightStreamReader` object to process each chunk of data as it arrives. Rewriting the above code in this format looks like:
+Alternatively, to process chunks of data as they arrive instead of waiting for all data to arrive, `FlightStreamReader` supports reading chunks of data as they become available with `read_chunk()`. Using the same query example above, but processing data chunk by chunk:
 
 ```python
 reader = client.query(query)

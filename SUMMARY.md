@@ -49,10 +49,8 @@
 * [Node.js SDK](sdks/node.js-sdk/README.md)
   * [Streaming](sdks/node.js-sdk/streaming.md)
   * [API Reference](sdks/node.js-sdk/api-reference.md)
-  * [Converting Large Numbers](sdks/node.js-sdk/converting-large-numbers.md)
 * [Go SDK](sdks/go.md)
-* [Rust SDK](sdks/rust-sdk/README.md)
-  * [API Reference](sdks/rust-sdk/api-reference.md)
+* [Rust SDK](sdks/rust-sdk.md)
 * [Dotnet SDK](sdks/dotnet-sdk.md)
 * [Java SDK](sdks/java-sdk.md)
 
