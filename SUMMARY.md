@@ -58,10 +58,6 @@
 * [Grafana](integrations/grafana/README.md)
   * [Grafana Dashboard Examples](integrations/grafana/grafana-dashboard-examples.md)
 
-## 🎓 Tutorials
-
-* [Data Science](tutorials/data-science-and-machine-learning.md)
-
 ## 📚 REFERENCE
 
 * [Core Concepts](reference/core-concepts/README.md)
