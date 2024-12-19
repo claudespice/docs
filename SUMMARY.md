@@ -1,23 +1,24 @@
 # Table of contents
 
-## 🌟 Getting Started
+## Getting Started
 
 * [Welcome to Spice.ai Cloud](README.md)
 * [Quickstart](getting-started/get-started/README.md)
   * [Step 1 - Portal Login](getting-started/get-started/portal-login.md)
-  * [Step 2 - SQL Query](getting-started/get-started/step-2-sql-query.md)
+  * [Step 2 - Add Dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
+  * [Step 3 - Add AI Model and chat with your app](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
   * [Step 3 - Leverage a SDK](getting-started/get-started/step-3-leverage-a-sdk.md)
   * [Next Steps](getting-started/get-started/next-steps.md)
 * [FAQ](getting-started/faq.md)
 * [Pricing](getting-started/pricing/README.md)
   * [🆕 Community Edition](getting-started/pricing/community-edition.md)
 
-## 🧱 Building Blocks
+## Building Blocks
 
 * [Federated SQL Query](building-blocks/spice-firecache.md)
 * [Spice Models](building-blocks/spice-models.md)
 
-## 💻 API
+## API
 
 * [SQL Query API](api/sql-query/README.md)
   * [HTTP API](api/sql-query/http-api.md)
@@ -35,6 +36,7 @@
 * [Public Apps](portal/public-apps.md)
 * [App Secrets](portal/app-secrets.md)
 * [SQL Query Editor](portal/sql-query-editor.md)
+* [Code](portal/code.md)
 * [Datasets](portal/datasets-and-views.md)
 * [Models](portal/models.md)
 * [Spicepod (preview)](portal/spicepod-preview.md)

@@ -29,7 +29,11 @@ A GitHub account is required to access the Spice.ai platform. If you don't have 
    3. Optionally, select one or more of the available datasets to get started quickly.
    4. Click **Create application**.
 
-> _Note: You can configure model providers and datasets later as needed._
+{% hint style="info" %}
+You can configure model providers and datasets later as needed.
+{% endhint %}
+
+
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 09.52.03@2x.png" alt=""><figcaption><p>Create first Spice.ai App</p></figcaption></figure>
 
