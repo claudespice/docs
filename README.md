@@ -16,6 +16,8 @@ For documentation on the self-hostable **Spice.ai OSS Project**, please visit [*
 ![](<.gitbook/assets/image (1).png>)
 {% endhint %}
 
+<figure><img src=".gitbook/assets/image (40).png" alt=""><figcaption><p>Spice.ai Cloud, powered by Spice.ai OSS delivers a secure compute environment for AI applications and agents</p></figcaption></figure>
+
 With the **Spice.ai Cloud Platform**, powered by **Spice.ai OSS**, you can:
 
 1. **Query and accelerate data**: Run high-performance SQL queries across multiple data sources with results optimized for AI applications and agents.

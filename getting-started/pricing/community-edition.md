@@ -10,4 +10,3 @@ The Community Edition of the Spice.ai Platform is currently provided without fee
 | Requests per second   | 3 rps                  |
 | Request/Query timeout | 10 seconds             |
 | SQL query concurrency | 1 concurrent SQL query |
-| Data                  | Recent data only       |
