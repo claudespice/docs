@@ -24,7 +24,7 @@ The May release included [EigenLayer Delegation Manager datasets.](sql-query-tab
 
 ### April 2024
 
-The April release included updates to the Spice SDK's to support querying a local [Spice Runtime](https://github.com/spiceai/spiceai) without requiring a Spice.ai API key.  Details and examples can be found in the [Rust](../sdks/rust-sdk.md), [Go](../sdks/go.md), [Python](../sdks/python-sdk/), and [Node.js](../sdks/node.js-sdk/) SDK documentation.
+The April release included updates to the Spice SDK's to support querying a local [Spice Runtime](https://github.com/spiceai/spiceai) without requiring a Spice.ai API key.  Details and examples can be found in the [Rust](../sdks/rust-sdk/), [Go](../sdks/go.md), [Python](../sdks/python-sdk/), and [Node.js](../sdks/node.js-sdk/) SDK documentation.
 
 **Ethereum Holesky nodes were shut down and datasets were removed on Thursday, April 25th at 8pm PST.**
 
@@ -92,19 +92,19 @@ The December release focused on stability and performance improvements.
 
 ### November 2023
 
-The November release focused on [External Data Sources](../building-blocks/external-data-sources.md) and overall performance improvements following the [General Availability (GA)](https://blog.spice.ai/spice-ai-is-generally-available-d76c4289960c) release in October.
+The November release focused on [External Data Sources](../portal/external-data-sources.md) and overall performance improvements following the [General Availability (GA)](https://blog.spice.ai/spice-ai-is-generally-available-d76c4289960c) release in October.
 
 You can now connect external data sources like PostgreSQL and MySQL to Spice.ai, which are then available to query with SQL including joining with any other Spice.ai dataset in the Spice.ai platform.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>New Data Source dialog for connecting external data sources.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>New Data Source dialog for connecting external data sources.</p></figcaption></figure>
 
 Navigation is also easier with the addition of the Command Bar. Simply use **Cmd+K** on Mac or **Windows+K** in Windows to quickly navigate the portal by keyboard! Give it a try!
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>The new navigation command bar.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>The new navigation command bar.</p></figcaption></figure>
 
 **New In this Release**
 
-1. \[Portal] Added PostgreSQL and MySQL external data sources. See the [docs](../building-blocks/external-data-sources.md) for details.
+1. \[Portal] Added PostgreSQL and MySQL external data sources. See the [docs](../portal/external-data-sources.md) for details.
 2. \[Portal] Added Dark Mode! Configure via [Profile Settings](../portal/profile-settings.md#dark-mode).
 3. \[Portal] Added Command Bar navigation.
 4. \[Data] Added [`eth.wallet_lst_balances`](sql-query-tables/ethereum/wallet-balances/eth.wallet_lst_balances.md) including rETH, stETH, and cbETH LSTs.
@@ -165,7 +165,7 @@ Note: In both cases, the list is a subset of what is available via the REST API.
 
 ### August 2023
 
-The August release expands the functionality of [Spice Functions](broken-reference) (beta) and [Datasets and Views](../building-blocks/datasets-and-views.md).
+The August release expands the functionality of [Spice Functions](broken-reference) (beta) and [Datasets and Views](../portal/datasets-and-views.md).
 
 #### Spice Functions
 
@@ -209,17 +209,17 @@ See [Broken link](broken-reference "mention") for full documentation on creating
 Spice Firecache is in beta and initially available for Design Partners. Get in touch for more info.
 {% endhint %}
 
-[Spice Firecache](../building-blocks/spice-firecache/) is a real-time SQL cache that enables developers to cache Spice datasets for high concurrency, blazing fast SQL query up to 10x the performance of general SQL query.
+[Spice Firecache](../building-blocks/spice-firecache.md) is a real-time SQL cache that enables developers to cache Spice datasets for high concurrency, blazing fast SQL query up to 10x the performance of general SQL query.
 
 The Spice platform completely manages the Spice Firecache data lifecycle, ensuring datasets are real-time updated on triggers like new blocks and with stale data being automatically evicted.
 
-See [spice-firecache](../building-blocks/spice-firecache/ "mention") for full documentation on deploying datasets to the Spice Firecache.
+See [spice-firecache.md](../building-blocks/spice-firecache.md "mention") for full documentation on deploying datasets to the Spice Firecache.
 
 #### Custom Datasets
 
 Spice now supports the definition and creation of your own private Datasets and Views, which can then be queried with SQL, cached in Spice Firecache, and published publicly to be shared with others.
 
-See [datasets-and-views.md](../building-blocks/datasets-and-views.md "mention") for full documentation on creating private Datasets and Views.
+See [datasets-and-views.md](../portal/datasets-and-views.md "mention") for full documentation on creating private Datasets and Views.
 
 #### Connecting Github Repos
 

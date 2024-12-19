@@ -4,7 +4,7 @@ description: Custom Datasets and Views documentation.
 
 # Datasets and Views
 
-The Spice.ai platform comes pre-loaded with a variety of community [datasets](datasets.md).
+The Spice.ai platform comes pre-loaded with a variety of community [datasets](broken-reference).
 
 In addition, you can define and create your own custom and private Datasets and Views, which can then be queried with SQL, cached in Spice Firecache, and published publicly to be shared with others.
 
@@ -12,7 +12,7 @@ In addition, you can define and create your own custom and private Datasets and 
 
 ### Defining a Dataset
 
-To define a dataset, first ensure your Spice app is connected to a [GitHub repository](../portal/apps/connect-github-repository.md), then add a [dataset manifest](../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
+To define a dataset, first ensure your Spice app is connected to a [GitHub repository](apps/connect-github-repository.md), then add a [dataset manifest](../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
 
 For example:
 

@@ -8,4 +8,4 @@ Each app has a unique API Key and can be owned by individual accounts or [**orga
 
 * [Transfer an app to another organization](app-transfer.md)
 * [Connect an app with your existing GitHub repository](connect-github-repository.md)
-* [Create and toggle custom Dataset and Views](../../building-blocks/datasets-and-views.md)
+* [Create and toggle custom Dataset and Views](../datasets-and-views.md)

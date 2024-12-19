@@ -14,12 +14,8 @@
 
 ## 🧱 Building Blocks
 
-* [Datasets and Views](building-blocks/datasets-and-views.md)
-* [🔥 Spice Firecache](building-blocks/spice-firecache/README.md)
-  * [DuckDB Export Database](building-blocks/spice-firecache/duckdb-export-database.md)
-* [External Data Sources](building-blocks/external-data-sources.md)
+* [Federated SQL Query](building-blocks/spice-firecache.md)
 * [Spice Models](building-blocks/spice-models.md)
-* [Community Data](building-blocks/datasets.md)
 
 ## 💻 API
 
@@ -38,6 +34,8 @@
   * [App API keys](portal/apps/app-api-keys.md)
 * [Organizations](portal/organizations.md)
 * [SQL Query Editor](portal/sql-query-editor.md)
+* [Datasets and Views](portal/datasets-and-views.md)
+* [External Data Sources](portal/external-data-sources.md)
 * [Monitoring and Request Logs](portal/monitoring-and-request-logs.md)
 * [Profile Settings](portal/profile-settings.md)
 * [Personal Access Tokens](portal/personal-access-tokens.md)
@@ -50,7 +48,7 @@
   * [Streaming](sdks/node.js-sdk/streaming.md)
   * [API Reference](sdks/node.js-sdk/api-reference.md)
 * [Go SDK](sdks/go.md)
-* [Rust SDK](sdks/rust-sdk.md)
+* [Rust SDK](sdks/rust-sdk/README.md)
 * [Dotnet SDK](sdks/dotnet-sdk.md)
 * [Java SDK](sdks/java-sdk.md)
 

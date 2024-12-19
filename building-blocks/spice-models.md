@@ -12,13 +12,13 @@ Spice Models enable the training and use of AI/ML models natively on the Spice p
 
 The platform currently supports time-series forecasting models, with other categories of models planned.
 
-Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](datasets.md), [user managed datasets](external-data-sources.md), and [custom datasets and views](datasets-and-views.md). Additionally, [Spice Firecache](spice-firecache/) can be leveraged to train and infer up to 10x faster.
+Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](broken-reference), [user managed datasets](../portal/external-data-sources.md), and [custom datasets and views](../portal/datasets-and-views.md). Additionally, [Spice Firecache](spice-firecache.md) can be leveraged to train and infer up to 10x faster.
 
 ### Defining a Model
 
 Models are defined using a [model manifest](../reference/specifications/models-yaml-specification/) YAML file. Model details such as data requirements, architecture, training parameters, and other important hyperparameters are defined in the `model.yaml.`
 
-Add a `model.yaml` file to the repository path `/models/[model_name]/model.yaml` of a [GitHub connected Spice app](../portal/apps/connect-github-repository.md), replacing `[model_name]` with the desired model name. For example, the [Gas Fees Predictions demo model](https://github.com/lukekim/demo/blob/main/models/gas\_fees-firecache/model.yaml) uses the path `/models/gas-fees/model.yaml`.
+Add a `model.yaml` file to the repository path `/models/[model_name]/model.yaml` of a [GitHub connected Spice app](../portal/apps/connect-github-repository.md), replacing `[model_name]` with the desired model name. For example, the [Gas Fees Predictions demo model](https://github.com/lukekim/demo/blob/main/models/gas_fees-firecache/model.yaml) uses the path `/models/gas-fees/model.yaml`.
 
 Refer to the [Models YAML specification](../reference/specifications/models-yaml-specification/) for all available configuration options.
 
