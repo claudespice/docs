@@ -402,7 +402,6 @@
     * [Firecache](reference/specifications/dataset-and-view-yaml-specification/firecache.md)
   * [Models YAML Specification](reference/specifications/models-yaml-specification/README.md)
     * [Model Type Specification](reference/specifications/models-yaml-specification/model-type-specification.md)
-* [Limitations](reference/limitations.md)
 * [Release Notes](reference/release-notes.md)
 
 ## 🆘 Support
