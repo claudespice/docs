@@ -1,10 +1,10 @@
 # Security at Spice AI
 
-**Last updated:** February 20, 2024
+**Last updated:** December 18, 2024
 
-Spice AI's approach to security when providing services including Spice.ai, data.spiceai.io, and spicerack.org.
+Spice AI's approach to security when providing services including Spice.ai Cloud, data.spiceai.io, and spicerack.org.
 
-To report a vulnerability see: [report.md](report.md "mention")
+To report a vulnerability, see: [report.md](report.md "mention")
 
 ### Principles
 
@@ -16,8 +16,9 @@ Spice AI takes a principled approach to security. These principles include:
 * **Multi-Factor-Authentication (MFA):** All authentication systems require and enforce Multi-Factor-Authentication (MFA).
 * **Least Privilege:** Least-Privilege-Access is employed so that users, employees, and contractors do not have greater access than necessary.
 * **Defense-in-Depth:** Multiple security controls in depth.
-* **Auditable:** Access and usage is logged and auditable.
+* **Auditable:** Access and usage are logged and auditable.
 * **Secure Code:** Code is scanned and tested for secrets and vulnerabilities.
+* **Code Audits**: Codebases are audited by internal and external experts to identify and address vulnerabilities, maintain best practices, and ensure adherence to security standards.
 * **Just-In-Time Access:** Access is given only when it's required.
 
 ### Compliance
@@ -61,6 +62,10 @@ Access is logged and auditable.
 ### Secure Code & Patch Management
 
 Code is scanned and tested for secrets and vulnerabilities during Continuous Integration (CI) systems, using [GitHub Security](https://docs.github.com/en/code-security) features like Dependabot, CodeQL, and Secrets Scanner. Base level operating systems and container images are monitored, upgraded, and updated on regular cycles.
+
+### Code Audits
+
+Spice AI conducts regular code audits, leveraging both internal expertise and independent third-party security firms. These audits identify potential vulnerabilities, validate compliance with industry standards, and ensure that best practices for secure software development are consistently followed.
 
 ### Just-In-Time Access
 
