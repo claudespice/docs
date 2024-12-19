@@ -14,7 +14,7 @@ Spice includes a growing set of web3 data, including blockchain data, cryptocurr
 
 <figure><img src="../.gitbook/assets/image (2) (1).png" alt="" width="375"><figcaption><p>The dataset reference in the SQL Playground.</p></figcaption></figure>
 
-Explore the full list of [**datasets**](broken-reference) for an overview and see [**SQL Query Tables**](../reference/sql-query-tables/) for schemas and details.
+Explore the full list of [**datasets**](broken-reference) for an overview and see [**SQL Query Tables**](broken-reference) for schemas and details.
 
 ### 2. Query datasets using SQL
 

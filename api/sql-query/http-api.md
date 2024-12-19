@@ -6,7 +6,7 @@ description: Query web3 data with SQL via the HTTP API
 
 Blockchain and contract data may be queried by posting SQL to the `/v1/sql` API and `/v1/firesql` API for Firecached data. For documentation on the Spice Firecache see [Broken link](broken-reference "mention").
 
-See [Tables](../../reference/sql-query-tables/) for a list of tables to query or browse the example queries listed in the menu.
+See [Tables](broken-reference) for a list of tables to query or browse the example queries listed in the menu.
 
 #### Requirements and limitations
 

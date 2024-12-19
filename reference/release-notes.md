@@ -15,7 +15,7 @@ The June release included a [C# SDK](../sdks/dotnet-sdk.md) for Spice AI and Spi
 
 ### May 2024
 
-The May release included [EigenLayer Delegation Manager datasets.](sql-query-tables/ethereum/eigenlayer-tables/)  The datasets can be explored in the portal Playground and queried via SQL.
+The May release included [EigenLayer Delegation Manager datasets.](broken-reference)  The datasets can be explored in the portal Playground and queried via SQL.
 
 **Changes**
 
@@ -50,7 +50,7 @@ After the shutdown, JSON RPC and Beacon requests to **/goerli** returned 404 Not
 
 [Goerli SQL Tables](https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fspice.us5.list-manage.com%2Ftrack%2Fclick%3Fu%3De853435dd452a4d343ea1133d%26id%3D8eb3381cbc%26e%3D9d81a8fb5f\&data=05%7C02%7Cluke%40spice.ai%7C2ecaa574022c4aac7f8c08dc4833dd51%7C925431232b6a4eec9b6f595720cd1c8f%7C0%7C0%7C638464634819763981%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\&sdata=I%2BdPMW%2FBgLUJXMio7efzCxu3l2R1ju9RLE%2FcvxK0w54%3D\&reserved=0) will remain available for historical query purposes.
 
-The [Ethereum](sql-query-tables/ethereum/) and [Beacon](sql-query-tables/ethereum/beacon-chain-tables/) datasets now include fields from the Cancun and Dencun network upgrade.
+The [Ethereum](broken-reference) and [Beacon](broken-reference) datasets now include fields from the Cancun and Dencun network upgrade.
 
 **Changes**
 
@@ -107,7 +107,7 @@ Navigation is also easier with the addition of the Command Bar. Simply use **Cmd
 1. \[Portal] Added PostgreSQL and MySQL external data sources. See the [docs](../portal/external-data-sources.md) for details.
 2. \[Portal] Added Dark Mode! Configure via [Profile Settings](../portal/profile-settings.md#dark-mode).
 3. \[Portal] Added Command Bar navigation.
-4. \[Data] Added [`eth.wallet_lst_balances`](sql-query-tables/ethereum/wallet-balances/eth.wallet_lst_balances.md) including rETH, stETH, and cbETH LSTs.
+4. \[Data] Added [`eth.wallet_lst_balances`](broken-reference) including rETH, stETH, and cbETH LSTs.
 5. \[Firecache] Upgraded to DuckDB 0.92.
 6. \[Platform] Performance, reliability, and security improvements.
 7. \[Go SDK] Released v3.0.0, [learn more](https://github.com/spiceai/gospice/releases/tag/v3.0.0).
@@ -116,7 +116,7 @@ Navigation is also easier with the addition of the Command Bar. Simply use **Cmd
 
 Spice.ai is now generally available! [Read the announcement](https://blog.spice.ai/spice-ai-is-generally-available-d76c4289960c).
 
-General Availability launches a brand-new collaborative developer experience, v1 APIs and SDKs, over [100 open-source community](https://github.com/spiceai/datasets) and [EigenLayer](sql-query-tables/ethereum/eigenlayer-tables/) datasets, and a removal of the waitlist. Any developer can now sign-up and use Spice.ai with one of the new [pricing plans](../getting-started/pricing/), including the $99 developer plan and the complementary [Community Edition](../getting-started/pricing/community-edition.md).
+General Availability launches a brand-new collaborative developer experience, v1 APIs and SDKs, over [100 open-source community](https://github.com/spiceai/datasets) and [EigenLayer](broken-reference) datasets, and a removal of the waitlist. Any developer can now sign-up and use Spice.ai with one of the new [pricing plans](../getting-started/pricing/), including the $99 developer plan and the complementary [Community Edition](../getting-started/pricing/community-edition.md).
 
 **New In this Release**
 
@@ -252,7 +252,7 @@ The wallet balances datasets contains a block-level view of all Ether balance ch
 Wallet Balances datasets do not yet have full historical data.
 {% endhint %}
 
-* [`eth.wallet_balances`](sql-query-tables/ethereum/wallet-balances/)
+* [`eth.wallet_balances`](broken-reference)
 * [`goerli.wallet_balances`](broken-reference)
 
 #### Flow Datasets
@@ -297,7 +297,7 @@ Portal UX improvements include the ability to search the dataset reference for s
 
 The May release includes significant platform performance upgrades with the rollout of Spice AI's **second generation platform architecture (Gen. 2)** along with several usability and user-experience improvements.
 
-[Ethereum](sql-query-tables/ethereum/) and [Polygon](broken-reference) block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like [NFTs](broken-reference), [ENS](sql-query-tables/ethereum/token-tables-1/), [Uniswap](broken-reference), and [Sushiswap](broken-reference). Query execution speed is now **1.5x-10x faster!**
+[Ethereum](broken-reference) and [Polygon](broken-reference) block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like [NFTs](broken-reference), [ENS](broken-reference), [Uniswap](broken-reference), and [Sushiswap](broken-reference). Query execution speed is now **1.5x-10x faster!**
 
 <figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p><a href="broken-reference">Example Queries</a> referenced in docs are now <strong>1.5x-10x faster!</strong></p></figcaption></figure>
 
@@ -626,7 +626,7 @@ Read the announcement post at [blog.spice.ai](https://blog.spice.ai/spice-xyz-ja
 
 ### December 2022
 
-Spice supports querying [Polygon data](broken-reference) in addition to the existing [Ethereum](sql-query-tables/ethereum/) and [BItcoin](sql-query-tables/bitcoin/) datasets.
+Spice supports querying [Polygon data](broken-reference) in addition to the existing [Ethereum](broken-reference) and [BItcoin](broken-reference) datasets.
 
 Read more on the [Spice AI Blog](https://blog.spice.ai/build-multi-chain-with-spice-ai-now-with-polygon-support-9db156f36d80).
 
@@ -657,7 +657,7 @@ Spice now features DEX Liquidity and Events Dataset where users can access index
 Data is available both historically and in real time, providing unparalleled visibility on DEX liquidity pools.
 
 **ENS (Preview)**\
-You can now preview the new dataset for [Ethereum Name Service events](sql-query-tables/ethereum/token-tables-1/), available by querying `eth.ens`. Within the dataset, you’ll find that each ENS event will have its own table as immutable data.
+You can now preview the new dataset for [Ethereum Name Service events](broken-reference), available by querying `eth.ens`. Within the dataset, you’ll find that each ENS event will have its own table as immutable data.
 
 This also includes the new `ens.domains` dataset, which is updated in real-time to have the latest `eth_address` whenever a transfer or name-registered event happens
 
@@ -742,7 +742,7 @@ Key infrastructure improvements were made for Spice's query performance, securit
 
 ### July 2022
 
-Spice supports querying [Bitcoin data](sql-query-tables/bitcoin/) in addition to the existing [Ethereum datasets](sql-query-tables/ethereum/).
+Spice supports querying [Bitcoin data](broken-reference) in addition to the existing [Ethereum datasets](broken-reference).
 
 Read more on the [Spice AI blog](https://medium.com/spice-ai/).
 
@@ -767,7 +767,7 @@ Read more on the [Spice AI blog](https://medium.com/spice-ai/).
 
 This update includes a new [Javascript/Typescript SDK](../sdks/node.js-sdk/) for Node.js, an improved [Python SDK](../sdks/python-sdk/), and performance improvements for Ethereum tokens and NFT datasets.
 
-[Ethereum Name Service (ENS)](sql-query-tables/ethereum/token-tables-1/) support is also available in beta with the new `ens.domains` dataset.
+[Ethereum Name Service (ENS)](broken-reference) support is also available in beta with the new `ens.domains` dataset.
 
 Read more on the [Spice AI blog](https://medium.com/spice-ai/spice-xyz-june-update-f74d60faff61).
 
@@ -789,7 +789,7 @@ Read more on the [Spice AI blog](https://medium.com/spice-ai/spice-xyz-june-upda
 
 ### May 2022
 
-Spice now has some of the best automated token standard detection for erc20, erc721, and erc1155 tokens available. Tokens are detected by their signatures and as they emit events over time, so Spice provides a probability of standards compliance to each contract. Along with this support are now token-specific tables like `eth.tokens_erc1155` and `eth.token_transfers_erc20`. See the entire list [Tokens Tables](sql-query-tables/ethereum/token-tables/).
+Spice now has some of the best automated token standard detection for erc20, erc721, and erc1155 tokens available. Tokens are detected by their signatures and as they emit events over time, so Spice provides a probability of standards compliance to each contract. Along with this support are now token-specific tables like `eth.tokens_erc1155` and `eth.token_transfers_erc20`. See the entire list [Tokens Tables](broken-reference).
 
 Performance is now even better, especially for larger queries, and for results over the HTTP API. We still recommend the [Apache Arrow Flight API](../api/sql-query/apache-arrow-flight-api.md) that's easily accessible via the [Python SDK](../sdks/python-sdk/) for production use though.
 

@@ -4,7 +4,7 @@ description: Query web3 data with SQL via the async HTTP API
 
 # Async HTTP API
 
-Blockchain and contract data may be queried by posting SQL to the `/v1/sql` API. See [Tables](../../reference/sql-query-tables/) for a list of tables to query or browse the example queries listed in the menu.
+Blockchain and contract data may be queried by posting SQL to the `/v1/sql` API. See [Tables](broken-reference) for a list of tables to query or browse the example queries listed in the menu.
 
 By posting a JSON payload specifying list of query completion `notifications` results can be fetched asynchronously once the query has completed.
 
@@ -33,32 +33,34 @@ Results will only be available for fetching for 20 mins after the query was made
 * Results are limited to 500 rows. Use `offset` and `limit` to page through results.
 * Requests are limited to 90 seconds.
 
-{% swagger method="post" path="/v1/sql" baseUrl="https://data.spiceai.io" summary="Perform an async SQL query" %}
-{% swagger-description %}
+## Perform an async SQL query
+
+<mark style="color:green;">`POST`</mark> `https://data.spiceai.io/v1/sql`
+
 The SQL query should be sent in the JSON payload along with the list of notification configs.
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Content-Type" required="true" %}
-application/json
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="api_key" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+| Name     | Type   | Description                    |
+| -------- | ------ | ------------------------------ |
+| api\_key | String | The API Key for your Spice app |
 
-{% swagger-parameter in="header" name="X-API-KEY" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-parameter in="body" required="true" name="sql" %}
-The SQL query
-{% endswagger-parameter %}
+| Name                                           | Type   | Description                    |
+| ---------------------------------------------- | ------ | ------------------------------ |
+| Content-Type<mark style="color:red;">\*</mark> | String | application/json               |
+| X-API-KEY                                      | String | The API Key for your Spice app |
 
-{% swagger-parameter in="body" name="notifications" type="Array" required="true" %}
-Array of notification objects.
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-response status="200: OK" description="Sample query result" %}
+| Name                                            | Type   | Description                    |
+| ----------------------------------------------- | ------ | ------------------------------ |
+| sql<mark style="color:red;">\*</mark>           | String | The SQL query                  |
+| notifications<mark style="color:red;">\*</mark> | Array  | Array of notification objects. |
+
+{% tabs %}
+{% tab title="200: OK Sample query result" %}
 ```json
 {
 	"sql": "SELECT number, \"timestamp\", hash, transaction_count, gas_used FROM eth.recent_blocks LIMIT 10",
@@ -71,43 +73,46 @@ Array of notification objects.
 	]
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="The query could not be parsed" %}
+{% tab title="400: Bad Request The query could not be parsed" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Missing the API Key" %}
+{% tab title="401: Unauthorized Missing the API Key" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="get" path="/v1/sql/{query_id}" baseUrl="https://data.spiceai.io" summary="Fetch SQL query results" %}
-{% swagger-description %}
+## Fetch SQL query results
+
+<mark style="color:blue;">`GET`</mark> `https://data.spiceai.io/v1/sql/{query_id}`
+
 Use the queryId returned from the query request or from the body of the webhook notification to fetch the results.
-{% endswagger-description %}
 
-{% swagger-parameter in="path" name="query_id" required="true" %}
-The ID of the SQL query
-{% endswagger-parameter %}
+#### Path Parameters
 
-{% swagger-parameter in="query" name="offset" type="Number" required="false" %}
-The row offset to fetch results from. Use this to page through results.
-{% endswagger-parameter %}
+| Name                                        | Type   | Description             |
+| ------------------------------------------- | ------ | ----------------------- |
+| query\_id<mark style="color:red;">\*</mark> | String | The ID of the SQL query |
 
-{% swagger-parameter in="query" name="limit" type="Number" required="false" %}
-The limit of rows to return in each response. Max limit per request is 500.
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-response status="200: OK" description="Sample response" %}
+| Name   | Type   | Description                                                                 |
+| ------ | ------ | --------------------------------------------------------------------------- |
+| offset | Number | The row offset to fetch results from. Use this to page through results.     |
+| limit  | Number | The limit of rows to return in each response. Max limit per request is 500. |
+
+{% tabs %}
+{% tab title="200: OK Sample response" %}
 ```json
 {
 	"rowCount": 10,
@@ -217,5 +222,5 @@ The limit of rows to return in each response. Max limit per request is 500.
 	]
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
