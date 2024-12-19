@@ -11,7 +11,7 @@ See [Tables](broken-reference) for a list of tables to query or browse the examp
 #### Requirements and limitations
 
 * An API key is required for all SQL queries.
-* Results are limited to 500 rows. Use the [Apache Arrow Flight API](apache-arrow-flight-api.md) to fetch up to 1M rows in a single query or the [Async HTTP API](http-api-1.md) to fetch results with paging.
+* Results are limited to 500 rows. Use the [Apache Arrow Flight API](apache-arrow-flight-api.md) to fetch up to 1M rows in a single query or the [Async HTTP API](broken-reference) to fetch results with paging.
 * Requests are limited to 90 seconds.
 
 ## Perform a SQL query
