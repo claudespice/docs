@@ -4,4 +4,4 @@ Learn more about building AI applications and agents with Spice using [SQL Query
 
 * Start experimenting in the [Playground](https://spice.ai/login).
 * Read the [Apps](../../portal/apps/) guide.
-* Keep the in mind [Best Practices](../../api/sql-query/best-practices.md) as you start building.
+* Keep the in mind [Best Practices](broken-reference) as you start building.
