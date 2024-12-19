@@ -4,7 +4,7 @@ description: Query web3 data with SQL via the HTTP API
 
 # HTTP API
 
-Blockchain and contract data may be queried by posting SQL to the `/v1/sql` API and `/v1/firesql` API for Firecached data. For documentation on the Spice Firecache see [firecache.md](../../reference/specifications/dataset-and-view-yaml-specification/firecache.md "mention").
+Blockchain and contract data may be queried by posting SQL to the `/v1/sql` API and `/v1/firesql` API for Firecached data. For documentation on the Spice Firecache see [Broken link](broken-reference "mention").
 
 See [Tables](../../reference/sql-query-tables/) for a list of tables to query or browse the example queries listed in the menu.
 
@@ -14,24 +14,27 @@ See [Tables](../../reference/sql-query-tables/) for a list of tables to query or
 * Results are limited to 500 rows. Use the [Apache Arrow Flight API](apache-arrow-flight-api.md) to fetch up to 1M rows in a single query or the [Async HTTP API](http-api-1.md) to fetch results with paging.
 * Requests are limited to 90 seconds.
 
-{% swagger method="post" path="/v1/sql" baseUrl="https://data.spiceai.io" summary="Perform a SQL query" %}
-{% swagger-description %}
+## Perform a SQL query
+
+<mark style="color:green;">`POST`</mark> `https://data.spiceai.io/v1/sql`
+
 The SQL query should be sent in the body of the request as plain text
-{% endswagger-description %}
 
-{% swagger-parameter in="header" name="Content-Type" required="true" %}
-text/plain
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="query" name="api_key" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+| Name     | Type   | Description                    |
+| -------- | ------ | ------------------------------ |
+| api\_key | String | The API Key for your Spice app |
 
-{% swagger-parameter in="header" name="X-API-KEY" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200: OK" description="Query result" %}
+| Name                                           | Type   | Description                    |
+| ---------------------------------------------- | ------ | ------------------------------ |
+| Content-Type<mark style="color:red;">\*</mark> | String | text/plain                     |
+| X-API-KEY                                      | String | The API Key for your Spice app |
+
+{% tabs %}
+{% tab title="200: OK Query result" %}
 ```javascript
 {
     // Example response from: `select count(number) from eth.recent_blocks`
@@ -53,54 +56,57 @@ The API Key for your Spice app
 }
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="400: Bad Request" description="The query could not be parsed" %}
+{% tab title="400: Bad Request The query could not be parsed" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="401: Unauthorized" description="Missing the API Key" %}
+{% tab title="401: Unauthorized Missing the API Key" %}
 ```javascript
 {
     // Response
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger baseUrl="https://data.spiceai.io" path="/v1/firesql" method="post" summary="Perform a Firecache SQL Query" %}
-{% swagger-description %}
+## Perform a Firecache SQL Query
+
+<mark style="color:green;">`POST`</mark> `https://data.spiceai.io/v1/firesql`
+
 The SQL query should be sent in the body of the request as plain text
-{% endswagger-description %}
 
-{% swagger-parameter in="query" name="api_key" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+#### Query Parameters
 
-{% swagger-parameter in="header" name="Content-Type" required="true" %}
-text/plain
-{% endswagger-parameter %}
+| Name     | Type   | Description                    |
+| -------- | ------ | ------------------------------ |
+| api\_key | String | The API Key for your Spice app |
 
-{% swagger-parameter in="header" name="X-API-KEY" required="false" %}
-The API Key for your Spice app
-{% endswagger-parameter %}
+#### Headers
 
-{% swagger-response status="200: OK" description="Query result" %}
+| Name                                           | Type   | Description                    |
+| ---------------------------------------------- | ------ | ------------------------------ |
+| Content-Type<mark style="color:red;">\*</mark> | String | text/plain                     |
+| X-API-KEY                                      | String | The API Key for your Spice app |
 
-{% endswagger-response %}
+{% tabs %}
+{% tab title="200: OK Query result" %}
 
-{% swagger-response status="400: Bad Request" description="The query could not be parsed" %}
+{% endtab %}
 
-{% endswagger-response %}
+{% tab title="400: Bad Request The query could not be parsed" %}
 
-{% swagger-response status="401: Unauthorized" description="Missing the API Key" %}
+{% endtab %}
 
-{% endswagger-response %}
-{% endswagger %}
+{% tab title="401: Unauthorized Missing the API Key" %}
+
+{% endtab %}
+{% endtabs %}
 
 {% tabs %}
 {% tab title="cURL" %}

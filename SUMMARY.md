@@ -397,11 +397,6 @@
       * [eth.eigenlayer.delegation\_manager\_withdrawal\_completed](reference/sql-query-tables/ethereum/eigenlayer-tables/eth.eigenlayer.delegation_manager_withdrawal_completed.md)
       * [eth.eigenlayer.delegation\_manager\_withdrawal\_migrated](reference/sql-query-tables/ethereum/eigenlayer-tables/eth.eigenlayer.delegation_manager_withdrawal_migrated.md)
       * [eth.eigenlayer.eigenpod\_validators](reference/sql-query-tables/ethereum/eigenlayer-tables/eth.eigenlayer.eigenpod_validators.md)
-* [Specifications](reference/specifications/README.md)
-  * [Dataset & View YAML Specification](reference/specifications/dataset-and-view-yaml-specification/README.md)
-    * [Firecache](reference/specifications/dataset-and-view-yaml-specification/firecache.md)
-  * [Models YAML Specification](reference/specifications/models-yaml-specification/README.md)
-    * [Model Type Specification](reference/specifications/models-yaml-specification/model-type-specification.md)
 * [Release Notes](reference/release-notes.md)
 
 ## 🆘 Support

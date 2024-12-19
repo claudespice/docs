@@ -12,7 +12,7 @@ In addition, you can define and create your own custom and private Datasets and 
 
 ### Defining a Dataset
 
-To define a dataset, first ensure your Spice app is connected to a [GitHub repository](apps/connect-github-repository.md), then add a [dataset manifest](../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
+To define a dataset, first ensure your Spice app is connected to a [GitHub repository](apps/connect-github-repository.md), then add a [dataset manifest](broken-reference) file to the GitHub repository in the `.spice/datasets` path.
 
 For example:
 
