@@ -4,6 +4,29 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+### August 2024
+
+### What's New
+
+#### Features
+
+* **Schema Integration**: Added functionality to pipe `GetSchema` from API to spiced backend when using PATH type.
+* **Enhanced Spicepod Functionality**: Streamlined setup flow using `spicepod.yaml` from GitHub and support for custom registries and images. Improved task history monitoring and deployment logic.
+
+#### Reliability
+
+* **Error Handling**: Improved error handling in Copilot agent and chat completions.
+
+#### User Interface Updates
+
+* **SQL Playground Improvements**: Enabled new features such as default queries, table formatting, and JSON parsing. Updated SQL Explorer with a streamlined layout and new tools.
+* **Chat and Layout Enhancements**: Added multiline chat input, improved layout consistency, and table formatting in chat.
+
+### Fixes and Improvements
+
+* Fixed chat completion streaming and cleaned up Copilot agent handler.
+* Updated SQL Explorer and trace views with better handling of inputs, outputs, and errors.
+
 ### July 2024
 
 #### New Features
