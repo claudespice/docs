@@ -1,4 +1,8 @@
-# Transfer an App
+---
+icon: arrow-right-from-arc
+---
+
+# Transfer
 
 You can transfer an App's ownership to another [**organization**](broken-reference)**.**
 

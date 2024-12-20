@@ -1,6 +1,10 @@
-# App API keys
+---
+icon: key
+---
 
-Each Spice app have two pre-generated API keys, which can be used with [Spice SDKs](broken-reference), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](connect-github-repository.md).
+# API keys
+
+Each Spice app have two pre-generated API keys, which can be used with [Spice SDKs](broken-reference), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](connect-github.md).
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-06-16 at 23.11.33@2x.png" alt=""><figcaption></figcaption></figure>
 

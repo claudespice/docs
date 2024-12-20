@@ -1,6 +1,6 @@
 ---
-description: Federated SQL Query documentation
 icon: arrow-progress
+description: Federated SQL Query documentation
 ---
 
 # Federated SQL Query
@@ -17,7 +17,7 @@ The Playground SQL Explorer is the fastest way to get started with federated que
 
 <figure><img src="../.gitbook/assets/Screenshot 2023-10-24 at 5.53.08 PM.png" alt=""><figcaption><p>The Playground SQL Query Editor.</p></figcaption></figure>
 
-See [sql-query-editor.md](../portal/sql-query-editor.md "mention") for further documentation on using the SQL Query Editor.
+See [sql-query-editor.md](../portal/playground/sql-query-editor.md "mention") for further documentation on using the SQL Query Editor.
 
 ### Apache Arrow Flight API
 

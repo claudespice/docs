@@ -28,22 +28,26 @@
 
 ## Portal
 
+* [Playground](portal/playground/README.md)
+  * [SQL Query](portal/playground/sql-query-editor.md)
+  * [NSQL Query](portal/playground/nsql-query.md)
+  * [AI Chat](portal/playground/ai-chat.md)
+  * [Search](portal/playground/search.md)
 * [Organizations](portal/organizations.md)
 * [Apps](portal/apps/README.md)
-  * [Connect GitHub repository](portal/apps/connect-github-repository.md)
-  * [Transfer an App](portal/apps/app-transfer.md)
-  * [App API keys](portal/apps/app-api-keys.md)
+  * [API keys](portal/apps/api-keys.md)
+  * [Secrets](portal/apps/secrets.md)
+  * [Connect GitHub](portal/apps/connect-github.md)
+  * [Transfer](portal/apps/transfer.md)
 * [Public Apps](portal/public-apps.md)
-* [App Secrets](portal/app-secrets.md)
-* [SQL Query Editor](portal/sql-query-editor.md)
 * [Code](portal/code.md)
 * [Datasets](portal/datasets-and-views.md)
 * [Models](portal/models.md)
 * [Spicepod (preview)](portal/spicepod-preview.md)
 * [Monitoring](portal/monitoring-and-request-logs.md)
 * [Observability](portal/observability.md)
-* [Profile Settings](portal/profile-settings.md)
-* [Personal Access Tokens](portal/personal-access-tokens.md)
+* [Profile](portal/profile/README.md)
+  * [Personal Access Tokens](portal/profile/personal-access-tokens.md)
 * [External Data Sources](portal/external-data-sources.md)
 
 ## SDKs

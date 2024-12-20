@@ -27,7 +27,7 @@ To configure your Spice app with a custom dataset, navigate to the **Code** tab.
 
 ### Execute a SQL query using cURL
 
-Go app **Settings** and copy one of the API Keys. Learn more about [App API Keys](../../portal/apps/app-api-keys.md).
+Go app **Settings** and copy one of the API Keys. Learn more about [App API Keys](../../portal/apps/api-keys.md).
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 12.25.51@2x.png" alt=""><figcaption></figcaption></figure>
 

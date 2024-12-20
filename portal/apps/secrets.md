@@ -2,7 +2,7 @@
 icon: lock
 ---
 
-# App Secrets
+# Secrets
 
 App Secrets are key-value pairs that are passed to the Spice Runtime instance as environment secrets. Secrets are securely encrypted and accessible only through the app in which they were created.
 
@@ -14,7 +14,7 @@ Once a secret is saved, its value cannot be retrieved through Spice Cloud. If yo
 2. Navigate to **Settings** tab and select **Secrets** section.
 3. Fill **Secret Name** and **Secret Value** fields and click **Add**.
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 01.54.41@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2024-12-20 at 01.54.41@2x.png" alt=""><figcaption></figcaption></figure>
 
 4. Saved secrets can be referenced in the Spicepod configuration as\
    `${secrets::<SECRET_NAME>}`, for example:
@@ -27,4 +27,4 @@ models:
       openai_api_key: ${secrets:OPENAI_API_KEY}
 ```
 
-5. To apply secrets, you must initiate a new spicepod deployment. [Learn more about deployments.](spicepod-preview.md)
+5. To apply secrets, you must initiate a new spicepod deployment. [Learn more about deployments.](../spicepod-preview.md)

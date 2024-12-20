@@ -10,7 +10,7 @@ Personal Access Tokens (PATs) provide a secure and straightforward way to authen
 
 Personal Access Tokens can be created in [Account settings](https://spice.ai/account/tokens).
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-06-16 at 22.46.56@2x.png" alt=""><figcaption><p>Creating new Personal Access Token (PAT)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2024-06-16 at 22.46.56@2x.png" alt=""><figcaption><p>Creating new Personal Access Token (PAT)</p></figcaption></figure>
 
 * Click the profile picture on the top right corner of the portal interface.
 * From the dropdown menu, find and select the **Account settings** option.
@@ -20,4 +20,4 @@ Personal Access Tokens can be created in [Account settings](https://spice.ai/acc
 * Select expiration date
 * After creating a token, copy and securely store the value, as it cannot be retrieved later.
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-06-16 at 22.51.49@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2024-06-16 at 22.51.49@2x.png" alt=""><figcaption></figcaption></figure>

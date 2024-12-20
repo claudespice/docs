@@ -160,7 +160,7 @@ Navigation is also easier with the addition of the Command Bar. Simply use **Cmd
 **New In this Release**
 
 1. \[Portal] Added PostgreSQL and MySQL external data sources. See the [docs](../portal/external-data-sources.md) for details.
-2. \[Portal] Added Dark Mode! Configure via [Profile Settings](../portal/profile-settings.md#dark-mode).
+2. \[Portal] Added Dark Mode! Configure via [Profile Settings](../portal/profile/#dark-mode).
 3. \[Portal] Added Command Bar navigation.
 4. \[Data] Added [`eth.wallet_lst_balances`](broken-reference) including rETH, stETH, and cbETH LSTs.
 5. \[Firecache] Upgraded to DuckDB 0.92.
@@ -280,7 +280,7 @@ See [datasets-and-views.md](../portal/datasets-and-views.md "mention") for full 
 
 Connecting your Spice.xyz app to a GitHub repository allows you to create custom Datasets and Views, add datasets to Spice Firecache, author Spice Functions, and train AI Models.
 
-See [connect-github-repository.md](../portal/apps/connect-github-repository.md "mention") for full documentation on connecting your Github Repo to a Spice App.
+See [connect-github.md](../portal/apps/connect-github.md "mention") for full documentation on connecting your Github Repo to a Spice App.
 
 **New In this Release**
 

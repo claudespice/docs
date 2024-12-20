@@ -50,7 +50,7 @@ models:
 
 ### Call chat completions API using cURL
 
-Replace `[API-KEY]` in the sample below with your API Key. Learn more about [App API Keys](../../portal/apps/app-api-keys.md).
+Replace `[API-KEY]` in the sample below with your API Key. Learn more about [App API Keys](../../portal/apps/api-keys.md).
 
 {% tabs %}
 {% tab title="cURL" %}
