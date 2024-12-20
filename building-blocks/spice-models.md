@@ -1,5 +1,6 @@
 ---
 description: Spice Models (beta)
+icon: brain-circuit
 ---
 
 # Spice Models

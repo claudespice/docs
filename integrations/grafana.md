@@ -1,3 +1,7 @@
+---
+icon: plug
+---
+
 # Grafana
 
 Create custom dashboards and visualizations using the FlightSQL or Infinity Grafana Plugins:

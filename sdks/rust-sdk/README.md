@@ -1,5 +1,6 @@
 ---
 description: Rust SDK for Spice.ai
+icon: rust
 ---
 
 # Rust SDK

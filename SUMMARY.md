@@ -46,7 +46,7 @@
 * [Personal Access Tokens](portal/personal-access-tokens.md)
 * [External Data Sources](portal/external-data-sources.md)
 
-## 🔗 SDKs
+## SDKs
 
 * [Python SDK](sdks/python-sdk/README.md)
   * [Streaming](sdks/python-sdk/streaming.md)
@@ -58,12 +58,12 @@
 * [Dotnet SDK](sdks/dotnet-sdk.md)
 * [Java SDK](sdks/java-sdk.md)
 
-## 🔌 Integrations
+## Integrations
 
 * [GitHub Copilot](integrations/github-copilot.md)
 * [Grafana](integrations/grafana.md)
 
-## 📚 REFERENCE
+## REFERENCE
 
 * [Core Concepts](reference/core-concepts/README.md)
   * [Duration Literals](reference/core-concepts/duration-literals.md)
@@ -324,16 +324,16 @@
     * [WITH](reference/sql-reference/sql-commands/with.md)
 * [Release Notes](reference/release-notes.md)
 
-## 🆘 Support
+## Support
 
 * [Support](support/support.md)
 
-## 🔐 Security
+## Security
 
 * [Security at Spice AI](security/security.md)
 * [Report a vulnerability](security/report.md)
 
-## ⚖️ Legal
+## Legal
 
 * [Privacy Policy](legal/privacy.md)
 * [Website Terms of Use](legal/terms.md)

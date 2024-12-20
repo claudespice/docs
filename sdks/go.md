@@ -1,5 +1,6 @@
 ---
 description: Golang SDK for Spice.ai
+icon: golang
 ---
 
 # Go SDK

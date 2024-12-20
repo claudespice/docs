@@ -1,5 +1,6 @@
 ---
 description: Dotnet SDK for Spice.ai
+icon: code
 ---
 
 # Dotnet SDK

@@ -1,3 +1,7 @@
+---
+icon: node
+---
+
 # Node.js SDK
 
 The Node.js SDK [spice.js](https://www.npmjs.com/package/@spiceai/spice) is the easiest way to use and query [Spice.ai](https://spice.ai) with Node.js.

@@ -1,3 +1,7 @@
+---
+icon: file-contract
+---
+
 # Terms of Service
 
 Last Updated: September 13, 2023

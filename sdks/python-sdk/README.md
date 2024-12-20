@@ -1,3 +1,7 @@
+---
+icon: python
+---
+
 # Python SDK
 
 The [Python SDK](https://github.com/spiceai/spicepy) `spicepy` is the easiest way to use and query [Spice.ai](https://spice.ai) in Python.

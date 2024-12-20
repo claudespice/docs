@@ -1,19 +1,22 @@
 ---
 description: Health HTTP API documentation
+icon: brackets-curly
 ---
 
 # Health API
 
 The health API can be called to confirm the overall availability of the API service.
 
-{% swagger method="get" path="/health" baseUrl="https://data.spiceai.io" summary="Get API Health" %}
-{% swagger-description %}
-This endpoint gets the health of the API.
-{% endswagger-description %}
+## Get API Health
 
-{% swagger-response status="200: OK" description="The API is healthy." %}
+<mark style="color:blue;">`GET`</mark> `https://data.spiceai.io/health`
+
+This endpoint gets the health of the API.
+
+{% tabs %}
+{% tab title="200: OK The API is healthy." %}
 ```javascript
 ok
 ```
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}

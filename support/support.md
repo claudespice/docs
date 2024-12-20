@@ -1,3 +1,7 @@
+---
+icon: message-question
+---
+
 # Support
 
 **Spice.ai Cloud** was created by the **Spice AI** team.

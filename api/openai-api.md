@@ -1,3 +1,7 @@
+---
+icon: brackets-curly
+---
+
 # OpenAI API
 
 ## Chat Completions

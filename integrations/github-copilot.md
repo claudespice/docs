@@ -1,5 +1,6 @@
 ---
 description: How to use the Spice.ai for GitHub Copilot Extension
+icon: github
 ---
 
 # GitHub Copilot

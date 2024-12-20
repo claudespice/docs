@@ -1,5 +1,6 @@
 ---
 description: Spice AI, Inc.
+icon: file-contract
 ---
 
 # Privacy Policy

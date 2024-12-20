@@ -1,3 +1,7 @@
+---
+icon: java
+---
+
 # Java SDK
 
 The [`Java SDK`](https://github.com/spiceai/spice-java) is the easiest way to query the Spice Cloud Platform from Java.

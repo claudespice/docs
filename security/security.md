@@ -1,3 +1,7 @@
+---
+icon: shield-check
+---
+
 # Security at Spice AI
 
 **Last updated:** December 18, 2024

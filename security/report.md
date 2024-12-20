@@ -1,3 +1,7 @@
+---
+icon: flag-swallowtail
+---
+
 # Report a vulnerability
 
 {% hint style="info" %}

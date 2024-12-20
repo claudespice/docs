@@ -1,3 +1,7 @@
+---
+icon: file-contract
+---
+
 # Website Terms of Use
 
 Last Updated: November 3, 2023

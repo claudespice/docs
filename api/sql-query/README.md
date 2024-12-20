@@ -1,5 +1,6 @@
 ---
 description: SQL Query (Cloud Data Warehouse) API
+icon: brackets-curly
 ---
 
 # SQL Query API
