@@ -13,10 +13,10 @@
 * [Pricing](getting-started/pricing/README.md)
   * [🆕 Community Edition](getting-started/pricing/community-edition.md)
 
-## Building Blocks
+## Features
 
-* [Federated SQL Query](building-blocks/spice-firecache.md)
-* [Spice Models](building-blocks/spice-models.md)
+* [Federated SQL Query](features/spice-firecache.md)
+* [Spice Models](features/spice-models.md)
 
 ## API
 
