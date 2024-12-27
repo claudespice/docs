@@ -58,14 +58,13 @@
   * [Personal Access Tokens](portal/profile/personal-access-tokens.md)
 * [External Data Sources](portal/external-data-sources.md)
 
-***
+## Use-Cases
 
-* [Use-Cases](use-cases/README.md)
-  * [Agentic AI Apps](use-cases/agentic-ai-apps.md)
-  * [Database CDN](use-cases/database-cdn.md)
-  * [Data Lakehouse](use-cases/data-lakehouse.md)
-  * [Enterprise Search](use-cases/enterprise-search.md)
-  * [Enterprise RAG](use-cases/enterprise-rag.md)
+* [Agentic AI Apps](use-cases/agentic-ai-apps.md)
+* [Database CDN](use-cases/database-cdn.md)
+* [Data Lakehouse](use-cases/data-lakehouse.md)
+* [Enterprise Search](use-cases/enterprise-search.md)
+* [Enterprise RAG](use-cases/enterprise-rag.md)
 
 ## SDKs
 
