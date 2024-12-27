@@ -61,6 +61,7 @@
 
 * [Use-Cases](use-cases/README.md)
   * [Agentic AI Apps](use-cases/agentic-ai-apps.md)
+  * [Database CDN](use-cases/database-cdn.md)
 
 ## SDKs
 
