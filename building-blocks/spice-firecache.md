@@ -1,6 +1,6 @@
 ---
-icon: arrow-progress
 description: Federated SQL Query documentation
+icon: arrow-progress
 ---
 
 # Federated SQL Query

@@ -1,6 +1,6 @@
 ---
-description: Welcome to the Spice.ai Cloud Platform documentation!
 icon: hand-wave
+description: Welcome to the Spice.ai Cloud Platform documentation!
 ---
 
 # Welcome to Spice.ai Cloud
@@ -30,7 +30,7 @@ With the **Spice.ai Cloud Platform**, powered by **Spice.ai OSS**, you can:
 * **Performance and reliability**: Manage replicas of hot data, cache SQL queries and AI results, and load-balance AI services to improve resiliency and scalability.
 * **Production-grade AI workflows**: Use Spice.ai Cloud as a data and AI proxy for secure, monitored, and compliant production environments, complete with advanced observability and performance management.
 
-Take it for a spin by starting with the [getting started guide](getting-started/get-started/).
+Take it for a spin by starting with the [getting started guide](getting-started/getting-started/).
 
 {% hint style="info" %}
 Feel free to ask any questions or queries to the team in [<mark style="color:purple;">Discord</mark>](https://discord.gg/kZnTfneP5u).
