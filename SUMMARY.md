@@ -16,14 +16,14 @@
 ## Features
 
 * [Federated SQL Query](building-blocks/spice-firecache.md)
-* [ML Models](building-blocks/spice-models.md)
-* [Semantic Models](features/semantic-models.md)
-* [AI Gateway](features/ai-gateway.md)
-* [Search & Retrieval](features/search-and-retrieval.md)
 * [Data Acceleration](features/data-acceleration/README.md)
   * [In-Memory Arrow Data Accelerator](features/data-acceleration/in-memory-arrow-data-accelerator.md)
   * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
   * [Page 1](features/data-acceleration/page-1.md)
+* [Search & Retrieval](features/search-and-retrieval.md)
+* [AI Gateway](features/ai-gateway.md)
+* [Semantic Models](features/semantic-models.md)
+* [ML Models](building-blocks/spice-models.md)
 
 ## API
 
