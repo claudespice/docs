@@ -20,6 +20,10 @@
 * [Semantic Models](features/semantic-models.md)
 * [AI Gateway](features/ai-gateway.md)
 * [Search & Retrieval](features/search-and-retrieval.md)
+* [Data Acceleration](features/data-acceleration/README.md)
+  * [In-Memory Arrow Data Accelerator](features/data-acceleration/in-memory-arrow-data-accelerator.md)
+  * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
+  * [Page 1](features/data-acceleration/page-1.md)
 
 ## API
 
