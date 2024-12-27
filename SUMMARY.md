@@ -16,7 +16,7 @@
 ## Features
 
 * [Federated SQL Query](building-blocks/spice-firecache.md)
-* [Spice Models](building-blocks/spice-models.md)
+* [ML Models](features/ml-models.md)
 * [Semantic Models](features/semantic-models.md)
 
 ## API

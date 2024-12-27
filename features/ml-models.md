@@ -1,19 +1,19 @@
 ---
-description: Spice Models (beta)
 icon: brain-circuit
+description: Spice Machine Learning (ML) Models
 ---
 
-# Spice Models
+# ML Models
 
 {% hint style="info" %}
 Spice Models are in beta for Design Partners. Get in touch for more info.
 {% endhint %}
 
-Spice Models enable the training and use of AI/ML models natively on the Spice platform.
+Spice Models enable the training and use of ML models natively on the Spice platform.
 
 The platform currently supports time-series forecasting models, with other categories of models planned.
 
-Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](broken-reference), [user managed datasets](../portal/external-data-sources.md), and [custom datasets and views](../portal/datasets-and-views.md). Additionally, [Spice Firecache](spice-firecache.md) can be leveraged to train and infer up to 10x faster.
+Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](broken-reference), [user managed datasets](../portal/external-data-sources.md), and [custom datasets and views](../portal/datasets-and-views.md). Additionally, [Spice Firecache](../building-blocks/spice-firecache.md) can be leveraged to train and infer up to 10x faster.
 
 ### Defining a Model
 

@@ -13,7 +13,7 @@ In Spice, semantic models transform raw data into meaningful business concepts b
 
 #### Large Language Models (LLMs)
 
-The semantic model is automatically used by [Spice Models](../building-blocks/spice-models.md) as context to produce more accurate and context-aware AI responses.
+The semantic model is automatically used by [Spice Models](ml-models.md) as context to produce more accurate and context-aware AI responses.
 
 ### Defining a Semantic Model
 
