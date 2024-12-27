@@ -1,6 +1,6 @@
 ---
-icon: cube
 description: Monitor and manage app Spicepod instances and deployments.
+icon: cube
 ---
 
 # Spicepods

@@ -27,4 +27,4 @@ models:
       openai_api_key: ${secrets:OPENAI_API_KEY}
 ```
 
-5. To apply secrets, you must initiate a new spicepod deployment. [Learn more about deployments.](../spicepods.md)
+5. To apply secrets, you must initiate a new spicepod deployment. [Learn more about deployments.](../spicepod-preview.md)
