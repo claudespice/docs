@@ -19,6 +19,7 @@
 * [ML Models](building-blocks/spice-models.md)
 * [Semantic Models](features/semantic-models.md)
 * [AI Gateway](features/ai-gateway.md)
+* [Search & Retrieval](features/search-and-retrieval.md)
 
 ## API
 
