@@ -50,7 +50,7 @@
 * [Code](portal/code.md)
 * [Datasets](portal/datasets-and-views.md)
 * [Models](portal/models.md)
-* [Spicepod (preview)](portal/spicepod-preview.md)
+* [Spicepods](portal/spicepods.md)
 * [Monitoring](portal/monitoring-and-request-logs.md)
 * [Observability](portal/observability.md)
 * [Profile](portal/profile/README.md)

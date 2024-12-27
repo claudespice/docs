@@ -1,13 +1,9 @@
 ---
-description: Monitor the status of your app instance and manage deployments.
 icon: cube
+description: Monitor and manage app Spicepod instances and deployments.
 ---
 
-# Spicepod (preview)
-
-{% hint style="info" %}
-The Spicepods feature is currently in preview.
-{% endhint %}
+# Spicepods
 
 <figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.36.09@2x.png" alt=""><figcaption><p>Spicepod Instance</p></figcaption></figure>
 
