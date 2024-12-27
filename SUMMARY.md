@@ -63,6 +63,7 @@
   * [Agentic AI Apps](use-cases/agentic-ai-apps.md)
   * [Database CDN](use-cases/database-cdn.md)
   * [Data Lakehouse](use-cases/data-lakehouse.md)
+  * [Enterprise Search](use-cases/enterprise-search.md)
 
 ## SDKs
 
