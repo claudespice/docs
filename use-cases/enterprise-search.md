@@ -1,5 +1,6 @@
 ---
 description: Use Spice for Enterprise Search and Retrieval
+icon: magnifying-glass
 ---
 
 # Enterprise Search

@@ -1,5 +1,6 @@
 ---
 description: Use Spice for Retrieval-Augmented-Generation (RAG)
+icon: searchengin
 ---
 
 # Enterprise RAG

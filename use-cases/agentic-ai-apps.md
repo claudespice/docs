@@ -1,5 +1,6 @@
 ---
 description: Using Spice.ai for Agentic AI Applications
+icon: brain-circuit
 ---
 
 # Agentic AI Apps

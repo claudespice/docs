@@ -1,5 +1,6 @@
 ---
 description: Use Spice as a CDN for Databases
+icon: rocket-launch
 ---
 
 # Database CDN

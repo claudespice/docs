@@ -1,5 +1,6 @@
 ---
 description: Create a Data Lakehouse using Spice
+icon: water-arrow-up
 ---
 
 # Data Lakehouse
