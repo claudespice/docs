@@ -8,7 +8,7 @@ To use the In-Memory Arrow Data Accelerator, no additional configuration is requ
 
 Example:
 
-```
+```yaml
 datasets:
   - from: spice.ai:path.to.my_dataset
     name: my_dataset
@@ -18,7 +18,7 @@ datasets:
 
 However Arrow can be specified explicitly using `arrow` as the `engine` for acceleration.
 
-```
+```yaml
 datasets:
   - from: spice.ai:path.to.my_dataset
     name: my_dataset

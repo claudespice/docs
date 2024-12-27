@@ -2,7 +2,7 @@
 
 To use DuckDB as Data Accelerator, specify `duckdb` as the `engine` for acceleration.
 
-```
+```yaml
 datasets:
   - from: spice.ai:path.to.my_dataset
     name: my_dataset
@@ -36,6 +36,4 @@ Configuration `params` are provided in the `acceleration` section for a data sto
 **MEMORY CONSIDERATIONS**
 
 When accelerating a dataset using `mode: memory` (the default), some or all of the dataset is loaded into memory. Ensure sufficient memory is available, including overhead for queries and the runtime, especially with concurrent queries.
-
-In-memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](https://docs.spiceai.org/components/data-accelerators/duckdb) and [`sqlite`](https://docs.spiceai.org/components/data-accelerators/sqlite) accelerators by specifying `mode: file`.
 {% endhint %}

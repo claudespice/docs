@@ -13,7 +13,7 @@ Dataset acceleration is enabled by setting the `acceleration` configuration. Spi
 
 #### Example - Locally Accelerating taxi\_trips with Arrow Accelerator <a href="#example" id="example"></a>
 
-```
+```yaml
 datasets:
   - from: spice.ai/spiceai/quickstart/datasets/taxi_trips
     name: taxi_trips
@@ -35,7 +35,7 @@ Spice supports three modes to refresh/update locally accelerated data from a con
 
 #### Example - Accelerate with arrow accelerator under full refresh mode <a href="#example" id="example"></a>
 
-```
+```yaml
 datasets:
   - from: databricks:my_dataset
     name: accelerated_dataset
@@ -50,7 +50,7 @@ Database indexes are essential for optimizing query performance. Configure index
 
 #### Example - Configure indexes with SQLite Accelerator <a href="#example" id="example"></a>
 
-```
+```yaml
 datasets:
   - from: spice.ai/eth.recent_blocks
     name: eth.recent_blocks
@@ -70,7 +70,7 @@ Constraints are specified using [column references](https://docs.spiceai.org/#co
 
 #### Example - Configure primary key constraints  with SQLite Accelerator <a href="#example" id="example"></a>
 
-```
+```yaml
 datasets:
   - from: spice.ai/eth.recent_blocks
     name: eth.recent_blocks
