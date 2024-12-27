@@ -25,7 +25,7 @@ A GitHub account is required to access the Spice.ai Cloud Platform. If you don't
 
 4. You will be redirected to the **new application page.**&#x20;
 
-Continue to [Step 2 to configure your first Spice application](portal-login-1.md).
+Continue to [Step 2 to configure your first Spice application](../getting-started/portal-login-1.md).
 
 {% hint style="info" %}
 Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).

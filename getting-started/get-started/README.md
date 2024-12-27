@@ -1,6 +1,6 @@
 ---
-icon: bolt
 description: Get started with the Spice.ai Cloud Platform in 5 mins.
+icon: bolt
 ---
 
 # Getting Started
@@ -13,12 +13,12 @@ description: Get started with the Spice.ai Cloud Platform in 5 mins.
 
 ### Add a dataset and query it
 
-{% content-ref url="step-3-add-a-dataset-and-query-data.md" %}
-[step-3-add-a-dataset-and-query-data.md](step-3-add-a-dataset-and-query-data.md)
+{% content-ref url="step-2-add-dataset-and-query-data.md" %}
+[step-2-add-dataset-and-query-data.md](step-2-add-dataset-and-query-data.md)
 {% endcontent-ref %}
 
 ### Add an AI Model and chat with it
 
-{% content-ref url="step-4-add-ai-model-and-chat-with-your-data.md" %}
-[step-4-add-ai-model-and-chat-with-your-data.md](step-4-add-ai-model-and-chat-with-your-data.md)
+{% content-ref url="step-3-add-ai-model-and-chat-with-your-app.md" %}
+[step-3-add-ai-model-and-chat-with-your-app.md](step-3-add-ai-model-and-chat-with-your-app.md)
 {% endcontent-ref %}

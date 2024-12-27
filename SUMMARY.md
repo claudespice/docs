@@ -3,12 +3,12 @@
 ## Getting Started
 
 * [Welcome to Spice.ai Cloud](README.md)
-* [Getting Started](getting-started/getting-started/README.md)
-  * [Step 1 - Sign in with GitHub](getting-started/getting-started/portal-login.md)
+* [Getting Started](getting-started/get-started/README.md)
+  * [Step 1 - Sign in with GitHub](getting-started/get-started/portal-login.md)
   * [Step 2 - Create a Spice app](getting-started/getting-started/portal-login-1.md)
-  * [Step 3 - Add a Dataset and query data](getting-started/getting-started/step-3-add-a-dataset-and-query-data.md)
-  * [Step 4 - Add AI Model and chat with your data](getting-started/getting-started/step-4-add-ai-model-and-chat-with-your-data.md)
-  * [Next Steps](getting-started/getting-started/next-steps.md)
+  * [Step 3 - Add a Dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
+  * [Step 4 - Add AI Model and chat with your data](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
+  * [Next Steps](getting-started/get-started/next-steps.md)
 * [FAQ](getting-started/faq.md)
 * [Pricing](getting-started/pricing/README.md)
   * [🆕 Community Edition](getting-started/pricing/community-edition.md)
@@ -17,6 +17,7 @@
 
 * [Federated SQL Query](building-blocks/spice-firecache.md)
 * [Spice Models](building-blocks/spice-models.md)
+* [Semantic Models](features/semantic-models.md)
 
 ## API
 
