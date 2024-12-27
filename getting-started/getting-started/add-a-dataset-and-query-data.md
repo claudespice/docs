@@ -1,8 +1,9 @@
 ---
 description: Add a dataset and query it using SQL Query in the Playground
+icon: circle-3
 ---
 
-# Step 3 - Add a Dataset and query data
+# Add a Dataset and query data
 
 To add a dataset to the Spice app, navigate to the [**Code**](../../portal/code.md) tab.
 
@@ -52,7 +53,7 @@ curl --request POST \
 
 🎉 Congratulations, you've now added a dataset and queried it.
 
-Continue to [Step 4 to add an AI Model and chat with the dataset](step-3-add-ai-model-and-chat-with-your-app.md).
+Continue to [Step 4 to add an AI Model and chat with the dataset](add-ai-model-and-chat-with-your-data.md).
 
 {% hint style="info" %}
 Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).

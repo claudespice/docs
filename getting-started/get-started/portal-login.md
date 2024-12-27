@@ -1,8 +1,9 @@
 ---
 description: Sign in to the Portal with GitHub
+icon: circle-1
 ---
 
-# Step 1 - Sign in with GitHub
+# Sign in with GitHub
 
 {% hint style="info" %}
 A GitHub account is required to access the Spice.ai Cloud Platform. If you don't have one, you can [create an accout here](https://github.com/signup).

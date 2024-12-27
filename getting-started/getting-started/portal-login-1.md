@@ -1,8 +1,9 @@
 ---
 description: Create your first Spice app
+icon: circle-2
 ---
 
-# Step 2 - Create a Spice app
+# Create a Spice app
 
 Once [signed in with GitHub](../get-started/portal-login.md), you will be redirected to the **new application page.** Set a name, add a model provider, and optionally select one of ready to use datasets.
 
@@ -26,7 +27,7 @@ Once [signed in with GitHub](../get-started/portal-login.md), you will be redire
 
 🎉 **Congrats, you've created your first** [**Spice app**](../../portal/apps/)**!**
 
-Continue to [Step. 3 to add a dataset and query it](../get-started/step-2-add-dataset-and-query-data.md).
+Continue to [Step. 3 to add a dataset and query it](add-a-dataset-and-query-data.md).
 
 {% hint style="info" %}
 Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).
