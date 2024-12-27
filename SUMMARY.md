@@ -64,6 +64,7 @@
   * [Database CDN](use-cases/database-cdn.md)
   * [Data Lakehouse](use-cases/data-lakehouse.md)
   * [Enterprise Search](use-cases/enterprise-search.md)
+  * [Enterprise RAG](use-cases/enterprise-rag.md)
 
 ## SDKs
 
