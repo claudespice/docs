@@ -10,12 +10,13 @@ In addition to the built-in `runtime.task_history` SQL table, Spice can export t
 
 ### Enabling Zipkin Export
 
-Zipkin export is defined in the `spicepod.yaml` under the `runtime`section:
+Zipkin export is defined in the `spicepod.yaml` under the `runtime.tracing`section:
 
 ```yaml
 runtime:
-  zipkin_enabled: true
-  zipkin_endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    zipkin_enabled: true
+    zipkin_endpoint: http://localhost:9411/api/v2/spans
 ```
 
 * `zipkin_enabled`: Optional. Default `false`. Enables or disables the Zipkin trace export.
