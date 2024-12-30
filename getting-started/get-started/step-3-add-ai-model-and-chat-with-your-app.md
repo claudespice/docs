@@ -74,7 +74,7 @@ curl --request POST \
 
 🎉 Congratulations, you've now added an OpenAI model and can use it to ask questions of the NYC Taxi Trips dataset.
 
-Continue to [Next Steps](../get-started/next-steps.md) to explore use-cases to do more with the Spice.ai Cloud Platform.
+Continue to [Next Steps](next-steps.md) to explore use-cases to do more with the Spice.ai Cloud Platform.
 
 {% hint style="info" %}
 Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).

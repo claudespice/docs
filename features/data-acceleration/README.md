@@ -1,6 +1,6 @@
 ---
+icon: bolt
 description: Configure local acceleration for datasets in Spice for faster queries
-icon: rocket-launch
 ---
 
 # Data Acceleration

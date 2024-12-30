@@ -5,7 +5,7 @@ icon: circle-3
 
 # Add a Dataset and query data
 
-To add a dataset to the Spice app, navigate to the [**Code**](../../portal/code.md) tab.
+To add a dataset to the Spice app, navigate to the [**Code**](../../portal/app-spicepod/) tab.
 
 Use the **Components sidebar** on the right to select from available **Data Connectors**, **Model Providers**, and ready-to-use **Datasets**.
 
@@ -53,7 +53,7 @@ curl --request POST \
 
 🎉 Congratulations, you've now added a dataset and queried it.
 
-Continue to [Step 4 to add an AI Model and chat with the dataset](add-ai-model-and-chat-with-your-data.md).
+Continue to [Step 4 to add an AI Model and chat with the dataset](step-3-add-ai-model-and-chat-with-your-app.md).
 
 {% hint style="info" %}
 Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).
