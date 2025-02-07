@@ -37,7 +37,7 @@ datasets:
     acceleration:
       engine: postgres
       params:
-        pg_host: localhost
+        pg_host: my_db_host
         pg_port: 5432
         pg_db: my_database
         pg_user: my_user
