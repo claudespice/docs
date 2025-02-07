@@ -75,11 +75,11 @@ SELECT COUNT(*) FROM cool_dataset;
 
 ### Acceleration Settings
 
-:::warning
+{% hint style="warning" %}
 
 Using the Debezium connector **requires** [acceleration](/docs/components/data-accelerators/index.md) to be enabled.
 
-:::
+{% endhint %}
 
 The following settings are required:
 

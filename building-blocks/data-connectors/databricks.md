@@ -81,13 +81,17 @@ Configure the connection to the object store when using `mode: delta_lake`. Use 
 
 ### Azure Blob
 
-:::info Note
-**One** of the following auth values must be provided for Azure Blob:
+{% hint style="info" %}
+
+**Note**
+
+One of the following auth values must be provided for Azure Blob:
 
 - `databricks_azure_storage_account_key`,
 - `databricks_azure_storage_client_id` and `azure_storage_client_secret`, or
 - `databricks_azure_storage_sas_key`.
-  :::
+
+{% endhint %}
 
 | Parameter Name                           | Description                                                            |
 | ---------------------------------------- | ---------------------------------------------------------------------- |
@@ -208,15 +212,17 @@ Spice integrates with multiple secret stores to help manage sensitive data secur
 
 - When using `mode: spark_connect`, correlated scalar subqueries can only be used in filters, aggregations, projections, and UPDATE/MERGE/DELETE commands. [Spark Docs](https://spark.apache.org/docs/latest/sql-error-conditions-unsupported-subquery-expression-category-error-class.html#unsupported_correlated_scalar_subquery)
 
- :::warning[Memory Considerations]
+{% hint style="warning" %}
 
- When using the Databricks (mode: delta_lake) Data connector without acceleration, data is loaded into memory during query execution. Ensure sufficient memory is available, including overhead for queries and the runtime, especially with concurrent queries.
+**Memory Considerations**
 
- Memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](../data-accelerators/duckdb.md) and [`sqlite`](../data-accelerators/sqlite.md) accelerators by specifying `mode: file`.
+When using the Databricks (mode: delta_lake) Data connector without acceleration, data is loaded into memory during query execution. Ensure sufficient memory is available, including overhead for queries and the runtime, especially with concurrent queries.
+
+Memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](../data-accelerators/duckdb.md) and [`sqlite`](../data-accelerators/sqlite.md) accelerators by specifying `mode: file`.
 
 - The Databricks Connector (`mode: spark_connect`) does not yet support streaming query results from Spark.
 
- :::
+{% endhint %}
 
 ## Cookbook
 
