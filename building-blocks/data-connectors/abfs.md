@@ -125,20 +125,6 @@ Configure service principal authentication by setting the `abfs_client_secret` p
 
 Configure service principal authentication by setting the `abfs_access_key` parameter to [Azure Storage Account Access Key](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-keys-manage?tabs=azure-portal)
 
-### Access token authentication
-
-Configure access token authentication by setting the `abfs_bearer_token` parameter, typically obtained through the following the OAuth2 flow with `spice login abfs`.
-
-1. Create a new Azure AD application in the [Azure portal](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview).
-2. Under the application's `API permissions`, add the permission: `Azure Storage - user_impersonation`.
-3. Under the applications's `Authentication`, add `http://localhost` as Mobile and desktop applications redirect URI.
-4. Grant the user read access to the storage account under `Access Control (IAM)`, this can typically be done using the `Storage Blob Data Reader` built-in role.
-5. Obtain the `abfs_bearer_token` using the following command. The `abfs_bearer_token`, `abfs_client_id`, `abfs_tenant_id` will be automatically filled in environment secret after login. Refere to [`spice login`](/docs/cli/reference/login) documentation for more details.
-
-```shell
-spice login abfs --tenant-id $TENANT_ID --client-id $CLIENT_ID
-```
-
 ## Supported file formats
 
 Specify the file format using `file_format` parameter. More details in [Object Store File Formats](/docs/components/data-connectors/index.md#object-store-file-formats).
@@ -202,7 +188,3 @@ datasets:
       abfs_client_id: ${ secrets:MY_CLIENT_ID }
       abfs_client_secret: ${ secrets:MY_CLIENT_SECRET }
 ```
-
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).

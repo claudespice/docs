@@ -56,7 +56,7 @@ curl -H "Authorization: Bearer $OPENAI_API_KEY" https://api.openai.com/v1/models
 
 ### `name`
 
-The model name. This will be used as the model ID within Spice and Spice's endpoints (i.e. `http://localhost:8090/v1/models`). This can be set to the same value as the model ID in the `from` field.
+The model name. This will be used as the model ID within Spice and Spice's endpoints (i.e. `https://data.spiceai.io/v1/models`). This can be set to the same value as the model ID in the `from` field.
 
 ### `params`
 

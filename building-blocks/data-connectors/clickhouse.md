@@ -59,22 +59,6 @@ The ClickHouse data connector can be configured by providing the following `para
 
 ## Examples
 
-### Connecting to localhost
-
-```yaml
-datasets:
-  - from: clickhouse:my.dataset
-    name: my_dataset
-    params:
-      clickhouse_host: localhost
-      clickhouse_tcp_port: 9000
-      clickhouse_db: my_database
-      clickhouse_user: my_user
-      clickhouse_pass: ${secrets:my_clickhouse_pass}
-      connection_timeout: 10000
-      clickhouse_secure: false
-```
-
 ### Specifying a connection timeout
 
 ```yaml
@@ -82,7 +66,7 @@ datasets:
   - from: clickhouse:my.dataset
     name: my_dataset
     params:
-      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@localhost:9000/my_database
+      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@host/my_database
       connection_timeout: 10000
       clickhouse_secure: true
 ```
@@ -94,7 +78,7 @@ datasets:
   - from: clickhouse:my.dataset
     name: my_dataset
     params:
-      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@localhost:9000/my_database?connection_timeout=10000&secure=true
+      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@host/my_database?connection_timeout=10000&secure=true
 ```
 
 ## Secrets

@@ -59,7 +59,6 @@ The sharepoint connector does not yet support creating a dataset from a single f
 | `sharepoint_client_id`     | **Yes**   | The client ID of the Azure AD (Entra) application                                                                                                |
 | `sharepoint_tenant_id`     | **Yes**   | The tenant ID of the Azure AD (Entra) application.                                                                                               |
 | `sharepoint_client_secret` | Optional  | For service principal authentication. The client secret of the Azure AD (Entra) application.                                                     |
-| `sharepoint_bearer_token`  | Optional  | For user authentication. The bearer access token obtained from the OAuth2 flow (see `spice login sharepoint` [docs](/docs/cli/reference/login)). |
 
 {% hint style="note" %}
 Only one of `sharepoint_client_secret` or `sharepoint_bearer_token` is allowed.
@@ -105,11 +104,6 @@ Within a drive, the SharePoint connector can load documents from:
 
 ## Authentication
 
-As outlined in the [connector parameters](#parameters), the SharePoint connector supports two types of authentication:
-
-1. Service principal authentication, by setting the `sharepoint_client_secret` parameter.
-2. User authentication, by setting the `sharepoint_bearer_token` parameter. Generally this is obtained by running `spice login sharepoint` and following the OAuth2 flow.
-
 ### Creating an Enterprise Application
 
 To use the SharePoint connector with service principal authentication, you will need to create an Azure AD application and grant it the necessary permissions. This will also support OAuth2 authentication for users within the tenant (i.e. `sharepoint_bearer_token`).
@@ -118,34 +112,5 @@ To use the SharePoint connector with service principal authentication, you will 
 2. Under the application's `API permissions`, add the following permissions: `Sites.Read.All`, `Files.Read.All`, `User.Read`, `GroupMember.Read.All`
    - For service principal authentication, Application permissions are required.
    - For user authentication, only delegated permissions are required.
-3. (For user authentication): Under the applications's `Authentication`, add `http://localhost` as Mobile and desktop applications redirect URI.
 4. Add `sharepoint_client_id` (from the `Application (Client) ID` field) and `sharepoint_tenant_id` to the connector configuration.
-5. (For service principal authentication): Under the application's `Certificates & secrets`, create a new client secret. Use this for the `sharepoint_client_secret` parameter.
-
-### Default Spice Application
-
-For your convenience, Spice AI maintains a default Entra (Azure AD) application that can be used for authentication against your SharePoint instance. This application requires OAuth2 authentication. To use it:
-
-```yaml
-datasets:
-  - from: sharepoint:me/root # Set the drive and subpath as needed.
-    name: my_data
-    params:
-      sharepoint_client_id: f2b3116e-b4c4-464f-80ec-73cd9d9886b4
-      sharepoint_tenant_id: #${env:TENANT_ID}
-      sharepoint_bearer_token: ${secrets:SPICE_SHAREPOINT_BEARER_TOKEN}
-```
-
-And set the `SPICE_SHAREPOINT_BEARER_TOKEN` secret via:
-
-```shell
-spice login sharepoint --tenant-id $TENANT_ID --client-id f2b3116e-b4c4-464f-80ec-73cd9d9886b4
-```
-
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
-## Cookbook
-
-- A cookbook recipe to configure Sharepoint as a data connector in Spice. [SharePoint Data Connector](https://github.com/spiceai/cookbook/tree/trunk/sharepoint#readme)
+5. Under the application's `Certificates & secrets`, create a new client secret. Use this for the `sharepoint_client_secret` parameter.

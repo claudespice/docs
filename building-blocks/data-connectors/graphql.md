@@ -278,7 +278,7 @@ By default, the Spice Runtime will error when a duplicate column is detected dur
 For example, this example `spicepod.yml` query would fail due to `name` fields:
 
 ```yaml
-from: graphql:https://localhost
+from: graphql:https://my-graphql-api.com
 name: stargazers
 params:
   unnest_depth: 2
@@ -305,7 +305,7 @@ Avoid this error by [using aliases in the query](https://www.apollographql.com/d
 The example below uses a GraphQL alias to rename `emergency_contact.name` as `emergencyContactName`.
 
 ```yaml
-from: graphql:https://localhost
+from: graphql:https://my-graphql-api.com
 name: stargazers
 params:
   unnest_depth: 2

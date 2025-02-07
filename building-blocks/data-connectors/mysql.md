@@ -17,7 +17,7 @@ datasets:
   - from: mysql:mytable
     name: my_dataset
     params:
-      mysql_host: localhost
+      mysql_host: my_db_host
       mysql_tcp_port: 3306
       mysql_db: my_database
       mysql_user: my_user
@@ -140,7 +140,7 @@ datasets:
   - from: mysql:path.to.my_dataset
     name: my_dataset
     params:
-      mysql_host: localhost
+      mysql_host: my_db_host
       mysql_tcp_port: 3306
       mysql_db: my_database
       mysql_user: my_user
@@ -154,7 +154,7 @@ datasets:
   - from: mysql:path.to.my_dataset
     name: my_dataset
     params:
-      mysql_host: localhost
+      mysql_host: my_db_host
       mysql_tcp_port: 3306
       mysql_db: my_database
       mysql_user: my_user
@@ -170,7 +170,7 @@ datasets:
   - from: mysql:path.to.my_dataset
     name: my_dataset
     params:
-      mysql_connection_string: mysql://${secrets:my_user}:${secrets:my_password}@localhost:3306/my_db
+      mysql_connection_string: mysql://${secrets:my_user}:${secrets:my_password}@my_db_host:3306/my_db
 ```
 
 ### Connecting to the default database
@@ -180,18 +180,8 @@ datasets:
   - from: mysql:mytable
     name: my_dataset
     params:
-      mysql_host: localhost
+      mysql_host: my_db_host
       mysql_tcp_port: 3306
       mysql_user: my_user
       mysql_pass: ${secrets:mysql_pass}
 ```
-
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
-## Cookbook
-
-- A cookbook recipe to configure MySQL as a data connector in Spice. [MySQL Data Connector](https://github.com/spiceai/cookbook/tree/trunk/mysql/connector#readme)
-- A cookbook recipe to configure AWS RDS Aurora (MySQL Compatible) as a data connector in Spice. [AWS RDS Aurora (MySQL Data Connector)](https://github.com/spiceai/cookbook/tree/trunk/mysql/rds-aurora#readme)
-- A cookbook recipe to configure Planetscale as a data connector in Spice. [Planetscale (MySQL Data Connector)](https://github.com/spiceai/cookbook/tree/trunk/mysql/planetscale#readme)

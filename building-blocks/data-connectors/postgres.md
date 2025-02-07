@@ -125,7 +125,7 @@ datasets:
   - from: postgres:my_database.my_schema.my_table
     name: my_dataset
     params:
-      pg_host: localhost
+      pg_host: my_db_host
       pg_port: 5432
       pg_db: my_database
       pg_user: my_user
@@ -139,7 +139,7 @@ datasets:
   - from: postgres:my_database.my_schema.my_table
     name: my_dataset
     params:
-      pg_host: localhost
+      pg_host: my_db_host
       pg_port: 5432
       pg_db: my_database
       pg_user: my_user
@@ -157,7 +157,7 @@ datasets:
   - from: postgres:my_schema.my_table
     name: my_dataset
     params:
-      pg_host: localhost
+      pg_host: my_db_host
       pg_port: 5432
       pg_db: my_database
       pg_user: my_user
@@ -165,19 +165,9 @@ datasets:
     acceleration:
       engine: postgres
       params:
-        pg_host: localhost
+        pg_host: my_db_host
         pg_port: 5433
         pg_db: acceleration
         pg_user: two_user_two_furious
         pg_pass: ${secrets:pg2_pass}
 ```
-
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
-## Cookbook
-
-- A cookbook recipe to configure PostgreSQL as a data connector in Spice. [PostgreSQL Data Accelerator](https://github.com/spiceai/cookbook/tree/trunk/postgres/accelerator#readme)
-- A cookbook recipe to configure AWS RDS for PostgreSQL as a data connector in Spice. [AWS RDS for PostgreSQL](https://github.com/spiceai/cookbook/tree/trunk/postgres/rds#readme)
-- A cookbook recipe to configure Supabase a data connector in Spice. [Supabase (PostgreSQL Data Connector)](https://github.com/spiceai/cookbook/tree/trunk/postgres/supabase#readme)

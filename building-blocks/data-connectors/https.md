@@ -9,7 +9,7 @@ The HTTP(s) Data Connector enables federated SQL query across [supported file fo
 
 ```yaml
 datasets:
-  - from: http://static_username@localhost:3001/report.csv
+  - from: http://my-http-api.com/report.csv
     name: local_report
     params:
       http_password: ${env:MY_HTTP_PASS}
@@ -19,7 +19,7 @@ datasets:
 
 ### `from`
 
-The `from` field must contain a valid URI to the location of a [supported file](/docs/components/data-connectors/index.md#object-store-file-formats). For example, `http://static_username@localhost:3001/report.csv`.
+The `from` field must contain a valid URI to the location of a [supported file](/docs/components/data-connectors/index.md#object-store-file-formats). For example, `http://static_username@my-http-api/report.csv`.
 
 ### `name`
 
@@ -29,7 +29,7 @@ Example:
 
 ```yaml
 datasets:
-  - from: http://static_username@localhost:3001/report.csv
+  - from: http://static_username@my-http-api.com/report.csv
     name: cool_dataset
     params: ...
 ```
@@ -71,7 +71,7 @@ datasets:
 
 ```yaml
 datasets:
-  - from: http://static_username@localhost:3001/report.csv
+  - from: http://static_username@my-http-api.com/report.csv
     name: local_report
     params:
       http_password: ${env:MY_HTTP_PASS}
