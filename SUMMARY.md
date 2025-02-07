@@ -57,7 +57,7 @@
   * [snowflake](building-blocks/data-connectors/snowflake.md)
   * [spark](building-blocks/data-connectors/spark.md)
   * [spiceai](building-blocks/data-connectors/spiceai.md)
-* [Model Providers](building-blocks/model)
+* [Model Providers](building-blocks/model-providers)
   - [anthropic](building-blocks/models/anthropic.md)
   - [azure](building-blocks/models/azure.md)
   - [filesystem](building-blocks/models/filesystem.md)

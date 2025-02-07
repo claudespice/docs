@@ -3,6 +3,8 @@ description: 'Overview of supported model providers for ML and LLMs in Spice.'
 icon: brain-circuit
 ---
 
+# Model Providers
+
 Spice supports various model providers for traditional machine learning (ML) models and large language models (LLMs).
 
 | Name                | Description                                  | Status            | ML Format(s) | LLM Format(s)\*                 |
