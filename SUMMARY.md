@@ -56,15 +56,14 @@
   * [Snowflake](building-blocks/data-connectors/snowflake.md)
   * [Spark](building-blocks/data-connectors/spark.md)
   * [SpiceAI](building-blocks/data-connectors/spiceai.md)
-
 * [Model Providers](building-blocks/model-providers)
-  - [Anthropic](building-blocks/model-providers/anthropic.md)
-  - [Azure](building-blocks/model-providers/azure.md)
-  - [Hugging Face](building-blocks/model-providers/huggingface.md)
-  - [OpenAI](building-blocks/model-providers/openai.md)
-  - [Perplexity](building-blocks/model-providers/perplexity.md)
-  - [SpiceAI](building-blocks/model-providers/spiceai.md)
-  - [XAI](building-blocks/model-providers/xai.md)
+  * [Anthropic](building-blocks/model-providers/anthropic.md)
+  * [Azure](building-blocks/model-providers/azure.md)
+  * [Hugging Face](building-blocks/model-providers/huggingface.md)
+  * [OpenAI](building-blocks/model-providers/openai.md)
+  * [Perplexity](building-blocks/model-providers/perplexity.md)
+  * [SpiceAI](building-blocks/model-providers/spiceai.md)
+  * [XAI](building-blocks/model-providers/xai.md)
 
 ## API
 
