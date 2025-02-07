@@ -31,9 +31,9 @@ The `from` field should specify the DynamoDB table name:
 | ---------------- | ------------------------------------------------- |
 | `dynamodb:table` | Read data from a DynamoDB table named `table`     |
 
-:::note
+{% hint style="note" %}
 If an expected table is not found, verify the `dynamodb_aws_region` parameter. DynamoDB tables are region-specific.
-:::
+{% endhint %}
 
 ### `name`
 
@@ -93,12 +93,12 @@ If AWS credentials are not explicitly provided in the configuration, the connect
      region = us-west-2
      ```
 
-   :::tip
+   {% hint style="info" %}
    To set up SSO authentication:
    1. Run `aws configure sso` to configure a new SSO profile
    2. Use the profile by setting `AWS_PROFILE=sso-profile`
    3. Run `aws sso login` to start a new SSO session
-   :::
+   {% endhint %}
 
 3. **Web Identity Token Credentials**:
    - Used primarily with OpenID Connect (OIDC) and OAuth
@@ -116,9 +116,10 @@ If AWS credentials are not explicitly provided in the configuration, the connect
 
 The connector will try each source in order until valid credentials are found. If no valid credentials are found, an authentication error will be returned.
 
-:::note[IAM Permissions]
+{% hint style="note" %}
+**IAM Permissions**
 Regardless of the credential source, the IAM role or user must have appropriate DynamoDB permissions (e.g., `dynamodb:Scan`, `dynamodb:DescribeTable`) to access the table.
-:::
+{% endhint %}
 
 ## Required IAM Permissions
 
@@ -208,13 +209,13 @@ The IAM role or user needs the following permissions to access DynamoDB tables:
 }
 ```
 
-:::warning[Security Considerations]
+{% hint style="warning" %}
+Security Considerations
 
 - Avoid using `dynamodb:*` permissions as it grants more access than necessary.
 - Consider using more restrictive policies in production environments.
 - When using IAM roles with EKS, ensure the [service account is properly configured with IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
-
-:::
+{% endhint %}
 
 ## Examples
 
@@ -271,13 +272,13 @@ FROM (
 WHERE address.city = 'San Francisco';
 ```
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - The DynamoDB connector currently does not support filter push-down optimization. All filtering is performed after data is retrieved from DynamoDB.
 - Primary key optimizations are not yet implemented - retrieving items by their primary key will still scan the table.
 - The DynamoDB connector will scan the first 10 items to determine the schema of the table. This may miss columns that are not present in the first 10 items.
-
-:::
+{% endhint %}
 
 ## Data Types
 

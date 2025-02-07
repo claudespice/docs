@@ -23,11 +23,11 @@ This connector enables using Dremio as a data source for federated SQL queries.
 
 The `from` field takes the form `dremio:dataset` where `dataset` is the fully qualified name of the dataset to read from.
 
-:::warning [Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 Currently, only up to three levels of nesting are supported for dataset names (e.g., a.b.c). Additional levels are not supported at this time.
-
-:::
+{% endhint %}
 
 ### `name`
 
@@ -103,6 +103,9 @@ Spice integrates with multiple secret stores to help manage sensitive data secur
 
 ## Limitations
 
+{% hint style="warning" %}
+**Limitations**
+
 - Dremio connector does not support queries with the EXCEPT and INTERSECT keywords in Spice REPL. Use DISTINCT and IN/NOT IN instead. See the example below.
 
 ```SQL
@@ -128,8 +131,7 @@ WHERE ws_item_sk NOT IN (
     SELECT DISTINCT ss_item_sk FROM store_sales
 );
 ```
-
-:::
+{% endhint %}
 
 ## Cookbook
 

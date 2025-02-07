@@ -125,14 +125,12 @@ SELECT * FROM read_json('todos.json');
 ```
 
 {% hint style="warning" %}
-
 **Limitations**
 
 - The DuckDB connector does not support enum, dictionary, or map [field types](https://duckdb.org/docs/sql/data_types/overview). For example:
   - Unsupported:
     - `SELECT MAP(['key1', 'key2', 'key3'], [10, 20, 30])`
 - The DuckDB connector does not support `Decimal256` (76 digits), as it exceeds DuckDB's maximum Decimal width of 38 digits.
-
 {% endhint %}
 
 ## Cookbook

@@ -7,15 +7,15 @@ icon: brain-circuit
 
 Spice supports various model providers for traditional machine learning (ML) models and large language models (LLMs).
 
-| Name                | Description                                  | Status            | ML Format(s) | LLM Format(s)\*                 |
-| ------------------- | -------------------------------------------- | ----------------- | ------------ | ------------------------------- |
-| [`openai`][openai]  | OpenAI (or compatible) LLM endpoint          | Release Candidate | -            | OpenAI-compatible HTTP endpoint |
-| [`file`][file]      | Local filesystem                             | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
-| [`huggingface`][hf] | Models hosted on HuggingFace                 | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
-| [`spice.ai`][spice] | Models hosted on the Spice.ai Cloud Platform | Alpha             | ONNX         | OpenAI-compatible HTTP endpoint |
-| [`azure`][azure]    | Azure OpenAI                                 | Alpha             | -            | OpenAI-compatible HTTP endpoint |
-| [`anthropic`][ant]  | Models hosted on Anthropic                   | Alpha             | -            | OpenAI-compatible HTTP endpoint |
-| [`xai`][xai]        | Models hosted on xAI                         | Alpha             | -            | OpenAI-compatible HTTP endpoint |
+| Name                | Description                                  | ML Format(s) | LLM Format(s)\*                 |
+| ------------------- | -------------------------------------------- | ------------ | ------------------------------- |
+| [`openai`][openai]  | OpenAI (or compatible) LLM endpoint          | -            | OpenAI-compatible HTTP endpoint |
+| [`file`][file]      | Local filesystem                             | ONNX         | GGUF, GGML, SafeTensor          |
+| [`huggingface`][hf] | Models hosted on HuggingFace                 | ONNX         | GGUF, GGML, SafeTensor          |
+| [`spice.ai`][spice] | Models hosted on the Spice.ai Cloud Platform | ONNX         | OpenAI-compatible HTTP endpoint |
+| [`azure`][azure]    | Azure OpenAI                                 | -            | OpenAI-compatible HTTP endpoint |
+| [`anthropic`][ant]  | Models hosted on Anthropic                   | -            | OpenAI-compatible HTTP endpoint |
+| [`xai`][xai]        | Models hosted on xAI                         | -            | OpenAI-compatible HTTP endpoint |
 
 [file]: /components/embeddings/local.md
 [hf]: ./huggingface.md
