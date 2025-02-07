@@ -68,7 +68,3 @@ datasets:
 1. The connector supports password-based and [key-pair](https://docs.snowflake.com/en/user-guide/key-pair-auth) authentication.
 
 {% endhint %}
-
-## Cookbook
-
-- A cookbook recipe to configure Snowflake as a data connector in Spice. [Snowflake Data Connector](https://github.com/spiceai/cookbook/tree/trunk/snowflake#readme)

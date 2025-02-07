@@ -80,11 +80,3 @@ datasets:
     params:
       clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@host/my_database?connection_timeout=10000&secure=true
 ```
-
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
-## Cookbook
-
-- A cookbook recipe to configure ClickHouse as data connector in Spice. [Clickhouse Data Connector](https://github.com/spiceai/cookbook/tree/trunk/clickhouse#readme)

@@ -196,10 +196,6 @@ The table below shows the Databricks (mode: delta_lake) data types supported, al
 | `STRUCT`            | `Struct`                              |
 | `MAP`               | `Map`                                 |
 
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
 ## Limitations
 
 - Databricks connector (mode: delta_lake) does not support reading Delta tables with the `V2Checkpoint` feature enabled. To use the Databricks connector (mode: delta_lake) with such tables, drop the `V2Checkpoint` feature by executing the following command:
@@ -223,7 +219,3 @@ Memory limitations can be mitigated by storing acceleration data on disk, which 
 - The Databricks Connector (`mode: spark_connect`) does not yet support streaming query results from Spark.
 
 {% endhint %}
-
-## Cookbook
-
-- A cookbook recipe to configure Databricks as data connector in Spice under `delta_lake` mode. [Spice on Databricks (mode: delta_lake)](https://github.com/spiceai/cookbook/tree/trunk/databricks/delta_lake#readme)

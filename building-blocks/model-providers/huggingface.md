@@ -114,7 +114,3 @@ For more details on authentication, see [access tokens](#access-tokens).
 - ML models currently only support ONNX file format.
 
 {% endhint %}
-
-## Cookbook
-
-- Use the Llama family of models locally from HuggingFace using Spice. [Running Llama3 Locally](https://github.com/spiceai/cookbook/blob/trunk/llama/README.md)

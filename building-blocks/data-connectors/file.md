@@ -119,7 +119,3 @@ When using the File Data connector without acceleration, data is loaded into mem
 
 Memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](../data-accelerators/duckdb.md) and [`sqlite`](../data-accelerators/sqlite.md) accelerators by specifying `mode: file`.
 {% endhint %}
-
-## Cookbook
-
-Refer to the [File cookbook recipe](https://github.com/spiceai/cookbook/tree/trunk/file) to see an example of the File connector in use.

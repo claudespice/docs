@@ -132,7 +132,3 @@ SELECT * FROM read_json('todos.json');
     - `SELECT MAP(['key1', 'key2', 'key3'], [10, 20, 30])`
 - The DuckDB connector does not support `Decimal256` (76 digits), as it exceeds DuckDB's maximum Decimal width of 38 digits.
 {% endhint %}
-
-## Cookbook
-
-- A cookbook recipe to configure DuckDB as a data connector in Spice. [DuckDB Data Connector](https://github.com/spiceai/cookbook/tree/trunk/duckdb/connector#readme)

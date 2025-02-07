@@ -97,10 +97,6 @@ The table below shows the Dremio data types supported, along with the type mappi
 | `STRUCT`    | `Struct`                       |
 | `MAP`       | `Map`                          |
 
-## Secrets
-
-Spice integrates with multiple secret stores to help manage sensitive data securely. For detailed information on supported secret stores, refer to the [secret stores documentation](/docs/components/secret-stores). Additionally, learn how to use referenced secrets in component parameters by visiting the [using referenced secrets guide](/docs/components/secret-stores#using-secrets).
-
 ## Limitations
 
 {% hint style="warning" %}
@@ -132,7 +128,3 @@ WHERE ws_item_sk NOT IN (
 );
 ```
 {% endhint %}
-
-## Cookbook
-
-- A cookbook recipe to configure Dremio as data connector in Spice. [Dremio Data Connector](https://github.com/spiceai/cookbook/tree/trunk/dremio#readme)

@@ -36,7 +36,3 @@ datasets:
     acceleration:
       enabled: true # This dataset accelerates the parent `test` dataset into in-memory Arrow records and is synchronized with the parent
 ```
-
-## Cookbook
-
-- A cookbook recipe to configure Localpod as a data connector in Spice. [Local dataset replication (Localpod)](https://github.com/spiceai/cookbook/tree/trunk/localpod#readme)
