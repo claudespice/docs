@@ -1,6 +1,6 @@
 ---
 description: 'Learn how to use Data Connector to query external data.'
-icon: magnifying-glass
+icon: server
 ---
 
 # Data Connectors
@@ -25,7 +25,6 @@ Supported Data Connectors include:
 | `databricks (mode: spark_connect)` | [Databricks][databricks]              | Beta              | [Spark Connect][spark]       |
 | `flightsql`                        | FlightSQL                             | Beta              | Arrow Flight SQL             |
 | `mssql`                            | Microsoft SQL Server                  | Beta              | Tabular Data Stream (TDS)    |
-| `odbc`                             | ODBC                                  | Beta              | ODBC                         |
 | `snowflake`                        | Snowflake                             | Beta              | Arrow                        |
 | `spark`                            | Spark                                 | Beta              | [Spark Connect][spark]       |
 | `spice.ai`                         | [Spice.ai][spiceai]                   | Beta              | Arrow Flight                 |
@@ -36,18 +35,7 @@ Supported Data Connectors include:
 | `dynamodb`                         | DynamoDB                              | Alpha             |                              |
 | `ftp`, `sftp`                      | FTP/SFTP                              | Alpha             | Parquet, CSV                 |
 | `http`, `https`                    | HTTP(s)                               | Alpha             | Parquet, CSV                 |
-| `localpod`                         | [Local dataset replication][localpod] | Alpha             |                              |
 | `sharepoint`                       | Microsoft SharePoint                  | Alpha             | Unstructured UTF-8 documents |
-| `elasticsearch`                    | ElasticSearch                         | Roadmap           |                              |
-| `mongodb`                          | MongoDB                               | Roadmap           |                              |
-
-[databricks]: https://github.com/spiceai/cookbook/tree/trunk/databricks/delta_lake
-[spark]: https://spark.apache.org/docs/latest/spark-connect-overview.html
-[s3]: https://github.com/spiceai/cookbook/tree/trunk/s3#readme
-[spiceai]: https://github.com/spiceai/cookbook/tree/trunk/spiceai#readme
-[dremio]: https://github.com/spiceai/cookbook/tree/trunk/dremio#readme
-[localpod]: https://github.com/spiceai/cookbook/blob/trunk/localpod/README.md
-[iceberg]: https://github.com/spiceai/cookbook/tree/trunk/catalogs/iceberg#readme
 
 ## Object Store File Formats
 

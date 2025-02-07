@@ -52,7 +52,6 @@
   * [mysql](building-blocks/data-connectors/mysql.md)
   * [odbc](building-blocks/data-connectors/odbc.md)
   * [postgres](building-blocks/data-connectors/postgres.md)
-  * [README](building-blocks/data-connectors/README.md)
   * [s3](building-blocks/data-connectors/s3.md)
   * [sharepoint](building-blocks/data-connectors/sharepoint.md)
   * [snowflake](building-blocks/data-connectors/snowflake.md)
