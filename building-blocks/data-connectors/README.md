@@ -1,6 +1,6 @@
 ---
-title: 'Data Connectors'
 description: 'Learn how to use Data Connector to query external data.'
+icon: magnifying-glass
 ---
 
 # Data Connectors
