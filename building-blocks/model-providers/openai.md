@@ -1,8 +1,7 @@
 ---
-title: 'OpenAI (or Compatible) Language Models'
 description: 'Instructions for using language models hosted on OpenAI or compatible services with Spice.'
-sidebar_position: 1
 ---
+# OpenAI (or Compatible) Language Models
 
 To use a language model hosted on OpenAI (or compatible), specify the `openai` path in the `from` field.
 

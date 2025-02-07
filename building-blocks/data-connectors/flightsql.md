@@ -1,7 +1,8 @@
 ---
-title: 'Flight SQL Data Connector'
 description: 'Flight SQL Data Connector Documentation'
 ---
+
+# Flight SQL Data Connector
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

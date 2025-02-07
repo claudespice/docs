@@ -1,11 +1,12 @@
 ---
-title: 'MySQL Data Connector'
 description: 'MySQL Data Connector Documentation'
 tags:
   - data-connectors
   - mysql
   - relational
 ---
+
+# MySQL Data Connector
 
 MySQL is an open-source relational database management system that uses structured query language (SQL) for managing and manipulating databases.
 

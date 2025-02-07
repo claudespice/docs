@@ -1,7 +1,8 @@
 ---
-title: 'Dremio Data Connector'
 description: 'Dremio Data Connector Documentation'
 ---
+
+# Dremio Data Connector
 
 [Dremio](https://www.dremio.com/) is a data lake engine that enables high-performance SQL queries directly on data lake storage. It provides a unified interface for querying and analyzing data from various sources without the need for complex data movement or transformation.
 
@@ -127,3 +128,4 @@ WHERE ws_item_sk NOT IN (
 );
 ```
 {% endhint %}
+````

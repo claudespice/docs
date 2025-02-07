@@ -1,8 +1,8 @@
 ---
-title: 'xAI Models'
 description: 'Instructions for using xAI models'
-sidebar_position: 7
 ---
+
+# xAI Models
 
 To use a language model hosted on xAI, specify `xai` path in the `from` field and the associated `xai_api_key` parameter:
 

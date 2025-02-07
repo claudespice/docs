@@ -1,7 +1,8 @@
 ---
-title: 'DuckDB Data Connector'
 description: 'DuckDB Data Connector Documentation'
 ---
+
+# DuckDB Data Connector
 
 DuckDB is an in-process SQL OLAP (Online Analytical Processing) database management system designed for analytical query workloads. It is optimized for fast execution and can be embedded directly into applications, providing efficient data processing without the need for a separate database server.
 

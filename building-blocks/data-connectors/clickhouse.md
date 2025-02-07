@@ -1,7 +1,8 @@
 ---
-title: 'ClickHouse Data Connector'
 description: 'ClickHouse Data Connector Documentation'
 ---
+
+# ClickHouse Data Connector
 
 ClickHouse is a fast, open-source columnar database management system designed for online analytical processing (OLAP) and real-time analytics. This connector enables federated SQL queries from a ClickHouse server.
 

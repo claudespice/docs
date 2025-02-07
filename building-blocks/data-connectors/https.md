@@ -1,8 +1,8 @@
 ---
-title: 'HTTP(s) Data Connector'
 description: 'HTTP(s) Data Connector Documentation'
-pagination_prev: null
 ---
+
+# HTTP(s) Data Connector
 
 The HTTP(s) Data Connector enables federated SQL query across [supported file formats](/building-blocks/data-connectors#object-store-file-formats) stored at an HTTP(s) endpoint.
 

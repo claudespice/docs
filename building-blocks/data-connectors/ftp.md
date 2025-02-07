@@ -1,7 +1,8 @@
 ---
-title: 'FTP/SFTP Data Connector'
 description: 'FTP/SFTP Data Connector Documentation'
 ---
+
+# FTP/SFTP Data Connector
 
 FTP (File Transfer Protocol) and SFTP (SSH File Transfer Protocol) are network protocols used for transferring files between a client and server, with FTP being less secure and SFTP providing encrypted file transfer over SSH.
 

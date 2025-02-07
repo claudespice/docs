@@ -1,7 +1,8 @@
 ---
-title: 'GraphQL Data Connector'
 description: 'GraphQL Data Connector Documentation'
 ---
+
+# GraphQL Data Connector
 
 The [GraphQL](https://graphql.org/) Data Connector enables federated SQL queries on any GraphQL endpoint by specifying `graphql` as the selector in the `from` value for the dataset.
 

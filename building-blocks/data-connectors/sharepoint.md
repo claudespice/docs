@@ -1,8 +1,8 @@
 ---
-title: 'SharePoint Data Connector'
 description: 'SharePoint Data Connector Documentation'
-pagination_prev: null
 ---
+
+# SharePoint Data Connector
 
 The SharePoint Data Connector enables federated SQL queries on documents stored in SharePoint.
 

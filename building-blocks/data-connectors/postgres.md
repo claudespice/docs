@@ -1,7 +1,8 @@
 ---
-title: 'PostgreSQL Data Connector'
 description: 'PostgreSQL Data Connector Documentation'
 ---
+
+# PostgreSQL Data Connector
 
 PostgreSQL is an advanced open-source relational database management system known for its robustness, extensibility, and support for SQL compliance.
 

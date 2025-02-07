@@ -1,8 +1,8 @@
 ---
-title: 'Apache Spark Connector'
 description: 'Apache Spark Connector Documentation'
-pagination_prev: null
 ---
+
+# Apache Spark Connector
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

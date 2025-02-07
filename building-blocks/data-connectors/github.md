@@ -1,8 +1,9 @@
 ---
-title: 'GitHub Data Connector'
 description: 'GitHub Data Connector Documentation'
 tags: ['data-connector', 'github', 'sql', 'api', 'integration']
 ---
+
+# GitHub Data Connector
 
 The GitHub Data Connector enables federated SQL queries on various GitHub resources such as files, issues, pull requests, and commits by specifying `github` as the selector in the `from` value for the dataset.
 

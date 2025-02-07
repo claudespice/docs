@@ -1,8 +1,7 @@
 ---
-title: 'Filesystem Hosted Models'
 description: 'Instructions for using models hosted on a filesystem with Spice.'
-sidebar_position: 5
 ---
+# Filesystem Hosted Models
 
 To use a model hosted on a filesystem, specify the path to the model file or folder in the `from` field:
 

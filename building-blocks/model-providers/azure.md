@@ -1,8 +1,7 @@
 ---
-title: 'Azure OpenAI Models'
 description: 'Instructions for using Azure OpenAI models'
-sidebar_position: 2
 ---
+# Azure OpenAI Models
 
 To use a language model hosted on Azure OpenAI, specify the `azure` path in the `from` field and the following parameters from the [Azure OpenAI Model Deployment](https://ai.azure.com/resource/deployments) page:
 

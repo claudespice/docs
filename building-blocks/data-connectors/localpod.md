@@ -1,8 +1,8 @@
 ---
-title: 'Localpod Data Connector'
 description: 'Localpod Data Connector Documentation'
-pagination_prev: null
 ---
+
+# Localpod Data Connector
 
 The Localpod Data Connector enables setting up a parent/child relationship between datasets in the current Spicepod. This can be used for configuring multiple/tiered accelerations for a single dataset, and ensuring that the data is only downloaded once from the remote source. For example, you can use the `localpod` connector to create a child dataset that is accelerated in-memory, while the parent dataset is accelerated to a file.
 

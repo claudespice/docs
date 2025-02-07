@@ -1,8 +1,9 @@
 ---
-title: 'Debezium Data Connector'
 description: 'Debezium Data Connector Documentation'
 hidden: true
 ---
+
+# Debezium Data Connector
 
 [Debezium](https://debezium.io/) is an open-source platform that enables [Change Data Capture (CDC)](/docs/features/cdc/index.md) for efficient real-time updates of locally accelerated datasets. Spice supports connecting to a Kafka topic managed by Debezium to keep datasets up-to-date with the source data.
 

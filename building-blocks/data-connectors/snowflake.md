@@ -1,8 +1,8 @@
 ---
-title: 'Snowflake Data Connector'
 description: 'Snowflake Data Connector Documentation'
-pagination_prev: null
 ---
+
+# Snowflake Data Connector
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

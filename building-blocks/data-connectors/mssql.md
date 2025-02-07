@@ -1,7 +1,8 @@
 ---
-title: 'Microsoft SQL Server Data Connector'
 description: 'Microsoft SQL Server Data Connector'
 ---
+
+# Microsoft SQL Server Data Connector
 
 [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server) is a relational database management system developed by Microsoft.
 

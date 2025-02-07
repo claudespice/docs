@@ -1,8 +1,9 @@
 ---
-title: 'File Data Connector'
 description: 'File Data Connector Documentation'
 hidden: true
 ---
+
+# File Data Connector
 
 The File Data Connector enables federated SQL queries on files stored by locally accessible filesystems. It supports querying individual files or entire directories, where all child files within the directory will be loaded and queried.
 
@@ -118,3 +119,4 @@ When using the File Data connector without acceleration, data is loaded into mem
 
 Memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](../data-accelerators/duckdb.md) and [`sqlite`](../data-accelerators/sqlite.md) accelerators by specifying `mode: file`.
 {% endhint %}
+

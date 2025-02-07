@@ -1,8 +1,7 @@
 ---
-title: 'Anthropic Models'
 description: 'Instructions for using language models hosted on Anthropic with Spice.'
-sidebar_position: 3
 ---
+# Anthropic Models
 
 To use a language model hosted on Anthropic, specify `anthropic` in the `from` field.
 

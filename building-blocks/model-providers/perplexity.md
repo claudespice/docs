@@ -1,8 +1,7 @@
 ---
-title: 'Perplexity Models'
 description: 'Instructions for using language models hosted on Perplexity with Spice.'
-sidebar_position: 4
 ---
+# Perplexity Models
 
 To use a language model hosted on Perplexity, specify `perplexity` in the `from` field.
 
