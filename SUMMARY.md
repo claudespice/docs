@@ -57,6 +57,15 @@
   * [snowflake](building-blocks/data-connectors/snowflake.md)
   * [spark](building-blocks/data-connectors/spark.md)
   * [spiceai](building-blocks/data-connectors/spiceai.md)
+* [Model Providers](building-blocks/model)
+  - [anthropic](building-blocks/models/anthropic.md)
+  - [azure](building-blocks/models/azure.md)
+  - [filesystem](building-blocks/models/filesystem.md)
+  - [huggingface](building-blocks/models/huggingface.md)
+  - [openai](building-blocks/models/openai.md)
+  - [perplexity](building-blocks/models/perplexity.md)
+  - [spiceai](building-blocks/models/spiceai.md)
+  - [xai](building-blocks/models/xai.md)
 
 ## API
 

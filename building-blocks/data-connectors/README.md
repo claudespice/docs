@@ -1,6 +1,6 @@
 ---
 description: 'Learn how to use Data Connector to query external data.'
-icon: server
+icon: database
 ---
 
 # Data Connectors
