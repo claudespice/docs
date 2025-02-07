@@ -15,7 +15,6 @@ Supported Data Connectors include:
 | `delta_lake`                       | Delta Lake                            | Delta Lake                   |
 | `dremio`                           | [Dremio][dremio]                      | Arrow Flight                 |
 | `duckdb`                           | DuckDB                                | Embedded                     |
-| `file`                             | File                                  | Parquet, CSV                 |
 | `github`                           | GitHub                                | GitHub API                   |
 | `postgres`                         | PostgreSQL                            |                              |
 | `s3`                               | [S3][s3]                              | Parquet, CSV                 |

@@ -2,6 +2,7 @@
 title: 'File Data Connector'
 sidebar_label: 'File Data Connector'
 description: 'File Data Connector Documentation'
+hidden: true
 ---
 
 The File Data Connector enables federated SQL queries on files stored by locally accessible filesystems. It supports querying individual files or entire directories, where all child files within the directory will be loaded and queried.

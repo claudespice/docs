@@ -10,7 +10,6 @@ Spice supports various model providers for traditional machine learning (ML) mod
 | Name                | Description                                  | ML Format(s) | LLM Format(s)\*                 |
 | ------------------- | -------------------------------------------- | ------------ | ------------------------------- |
 | [`openai`][openai]  | OpenAI (or compatible) LLM endpoint          | -            | OpenAI-compatible HTTP endpoint |
-| [`file`][file]      | Local filesystem                             | ONNX         | GGUF, GGML, SafeTensor          |
 | [`huggingface`][hf] | Models hosted on HuggingFace                 | ONNX         | GGUF, GGML, SafeTensor          |
 | [`spice.ai`][spice] | Models hosted on the Spice.ai Cloud Platform | ONNX         | OpenAI-compatible HTTP endpoint |
 | [`azure`][azure]    | Azure OpenAI                                 | -            | OpenAI-compatible HTTP endpoint |
@@ -200,8 +199,9 @@ models:
 Finally, use Spice to ask the chat model about the general themes of new issues in the last 14 days. The following `curl` command demonstrates how to make this request using the OpenAI-compatible API.
 
 ```bash
-curl -X POST http://localhost:8090/v1/chat/completions \
+curl -X POST https://data.spiceai.io/v1/chat/completions \
   -H "Content-Type: application/json" \
+  -H 'X-API-KEY: <spiceai_api_key>' \
   -d '{
     "model": "github-issues-analyzer",
     "messages": [
@@ -212,7 +212,3 @@ curl -X POST http://localhost:8090/v1/chat/completions \
 ```
 
 Refer to the [Create Chat Completion API documentation](/docs/api/HTTP/post-chat-completions.api.mdx) for more details on making chat completion requests.
-
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
