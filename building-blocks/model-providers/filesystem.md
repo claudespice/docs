@@ -139,8 +139,10 @@ models:
 - `add_generation_prompt`: Boolean flag whether to add a [generation prompt](https://huggingface.co/docs/transformers/main/chat_templating#what-are-generation-prompts).
 - `tools`: List of callable tools, in the OpenAI [format](https://platform.openai.com/docs/api-reference/chat/create#chat-create-tools).
 
-:::warning[Limitations]
+{% hint style="warning" %}
+
+**Limitations**
 
 - The throughput, concurrency & latency of a locally hosted model will vary based on the underlying hardware and model size. Spice supports [Apple metal](/installation.md#metal-support) and [CUDA](/installation.md#cuda-support) for accelerated inference.
 
-:::
+{% endhint %}
