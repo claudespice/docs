@@ -45,9 +45,10 @@ Returns
 ]
 ````
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 The sharepoint connector does not yet support creating a dataset from a single file (e.g. an Excel spreadsheet). Datasets must be created from a folder of documents (see [Document Support](/docs/components/data-connectors/index.md#document-support)).
-:::
+{% endhint %}
 
 ## Configuration
 
@@ -60,9 +61,9 @@ The sharepoint connector does not yet support creating a dataset from a single f
 | `sharepoint_client_secret` | Optional  | For service principal authentication. The client secret of the Azure AD (Entra) application.                                                     |
 | `sharepoint_bearer_token`  | Optional  | For user authentication. The bearer access token obtained from the OAuth2 flow (see `spice login sharepoint` [docs](/docs/cli/reference/login)). |
 
-:::note
+{% hint style="note" %}
 Only one of `sharepoint_client_secret` or `sharepoint_bearer_token` is allowed.
-:::
+{% endhint %}
 
 ### `from` formats
 
@@ -86,9 +87,9 @@ from: 'sharepoint:<drive_type>:<drive_id>/<subpath_type>:<subpath_value>'
 | `groupId`  | A SharePoint group's ID     | `from: sharepoint:groupId:b!Mh8opUGD80ec7zGXgX9r/...` |
 | `me`       | A user's OneDrive           | `from: sharepoint:me/...`                             |
 
-:::note
+{% hint style="note" %}
 For the `me` drive type the user is identified based on `sharepoint_client_code` and cannot be used with `sharepoint_client_secret`
-:::
+{% endhint %}
 
 For a name-based `drive_id`, the connector will attempt to resolve the name to an ID at startup.
 

@@ -37,11 +37,12 @@ GitHub Apps provide a secure and scalable way to integrate with GitHub's API. [L
 | `github_private_key`     | Required. Specifies the private key for GitHub App Installation auth mode.     |
 | `github_installation_id` | Required. Specifies the installation ID for GitHub App Installation auth mode. |
 
-:::note[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 With GitHub App Installation authentication, the connector's functionality depends on the permissions and scope of the GitHub App. Ensure that the app is installed on the repositories and configured with content, commits, issues and pull permissions to allow the corresponding datasets to work.
 
-:::
+{% endhint %}
 
 #### Common Parameters
 
@@ -68,24 +69,26 @@ When set to `search`, Issues and Pull Requests will use the GitHub [Search API](
 
 All other filters are supported when `github_query_mode` is set to `search`, but cannot be pushed down to the GitHub API for improved performance.
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - GitHub has a limitation in the Search API where it may return more stale data than the standard API used in the default query mode.
 - GitHub has a limitation in the Search API where it only returns a maximum of 1000 results for a query. Use [append mode acceleration](/features/data-acceleration/data-refresh.md) to retrieve more results over time. See the [append example](#append-example) for pull requests.
 
-:::
+{% endhint %}
 
 ## Examples
 
 ### Querying GitHub Files
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - `content` column is fetched only when acceleration is enabled.
 - Querying GitHub files does not support filter push down, which may result in long query times when acceleration is disabled.
 - Setting `github_query_mode` to `search` is not supported.
 
-:::
+{% endhint %}
 
 - `ref` - Required. Specifies the GitHub branch or tag to fetch files from.
 - `include` - Optional. Specifies a pattern to include specific files. Supports glob patterns. If not specified, all files are included by default.
@@ -141,11 +144,12 @@ Time: 0.005067 seconds. 1 rows.
 
 ### Querying GitHub Issues
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - Querying with filters using date columns requires the use of [ISO8601 formatted dates](https://www.iso.org/iso-8601-date-and-time-format.html). For example, `WHERE created_at > '2024-09-24'`.
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:
@@ -205,11 +209,12 @@ Time: 0.011877542 seconds. 5 rows.
 
 ### Querying GitHub Pull Requests
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - Querying with filters using date columns requires the use of [ISO8601 formatted dates](https://www.iso.org/iso-8601-date-and-time-format.html). For example, `WHERE created_at > '2024-09-24'`.
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:
@@ -285,12 +290,13 @@ datasets:
 
 ### Querying GitHub Commits
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - Querying with filters using date columns requires the use of [ISO8601 formatted dates](https://www.iso.org/iso-8601-date-and-time-format.html). For example, `WHERE committed_date > '2024-09-24'`.
 - Setting `github_query_mode` to `search` is not supported.
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:
@@ -349,12 +355,13 @@ Time: 0.0065395 seconds. 10 rows.
 
 ### Querying GitHub stars (Stargazers)
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - Querying with filters using date columns requires the use of [ISO8601 formatted dates](https://www.iso.org/iso-8601-date-and-time-format.html). For example, `WHERE starred_at > '2024-09-24'`.
 - Setting `github_query_mode` to `search` is not supported.
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:

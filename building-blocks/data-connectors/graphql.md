@@ -23,12 +23,13 @@ datasets:
         }
 ```
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - The GraphQL data connector does not support variables in the query.
 - Filter pushdown, with the exclusion of `LIMIT`, is not currently supported. Using a `LIMIT` will reduce the amount of data requested from the GraphQL server.
 
-:::
+{% endhint %}
 
 ## Configuration
 

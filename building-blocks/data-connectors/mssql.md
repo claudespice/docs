@@ -8,12 +8,13 @@ description: 'Microsoft SQL Server Data Connector'
 
 The Microsoft SQL Server Data Connector enables federated/accelerated SQL queries on data stored in MSSQL databases.
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 1. The connector supports SQL Server authentication (SQL Login and Password) only.
 1. Spatial types (`geography`) are not supported, and columns with these types will be ignored.
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:

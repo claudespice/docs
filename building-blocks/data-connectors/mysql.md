@@ -125,11 +125,11 @@ The table below shows the MySQL data types supported, along with the type mappin
 | `ENUM`       | `Dictionary(UInt16, Utf8)`     |
 | `BIT`        | `UInt64`                       |
 
-:::note
+{% hint style="note" %}
 
 - The MySQL `TIMESTAMP` value is [retrieved as a UTC time value](https://dev.mysql.com/doc/refman/8.4/en/datetime.html).
 
-:::
+{% endhint %}
 
 ## Examples
 

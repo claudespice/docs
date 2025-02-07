@@ -6,7 +6,7 @@ description: 'ODBC Data Connector Documentation'
 
 ODBC (Open Database Connectivity) is a standard API that allows applications to connect to and interact with various database management systems using a common interface. To connect to any ODBC database for federated/accelerated SQL queries, specify `odbc` as the selector in the `from` value for the dataset. The `odbc_connection_string` parameter is required.
 
-:::warning
+{% hint style="warning" %}
 
 Spice must be [built with the `odbc` feature](#building-spice-with-odbc), and the host/container must have a [valid ODBC configuration](https://www.unixodbc.org/odbcinst.html).
 
@@ -24,7 +24,7 @@ docker pull spiceai/spiceai:latest
 docker pull spiceai/spiceai:0.20.0-beta
 ```
 
-:::
+{% endhint %}
 
 ```yaml
 datasets:
@@ -46,11 +46,11 @@ Non-Windows systems additionally require the installation of an ODBC Driver Mana
 - Ubuntu: `sudo apt-get install unixodbc`
 - MacOS: `brew install unixodbc`
 
-:::info
+{% hint style="note" %}
 
 For the best `JOIN` performance, ensure all ODBC datasets from the same database are configured with the exact same `odbc_connection_string` in Spice.
 
-:::
+{% endhint %}
 
 ## ODBC Connection String
 
@@ -188,9 +188,9 @@ docker build -t spice-libsqliteodbc .
 
 Validate that the ODBC configuration was updated to reference the newly installed driver:
 
-:::warning[Note]
+{% hint style="warning" %}
 Since `libsqliteodbc` is vendored by Debian, the package install hooks append the driver configuration to `/etc/odbcinst.ini`. When using a custom driver (e.g. [Databricks Simba](https://www.databricks.com/spark/odbc-drivers-download)), it is your responsibility to update `/etc/odbcinst.ini` to point at the location of the newly installed driver.
-:::
+{% endhint %}
 
 ```bash
 $ docker run --entrypoint /bin/bash -it spice-libsqliteodbc
