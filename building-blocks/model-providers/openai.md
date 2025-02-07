@@ -1,7 +1,6 @@
 ---
 title: 'OpenAI (or Compatible) Language Models'
 description: 'Instructions for using language models hosted on OpenAI or compatible services with Spice.'
-sidebar_label: 'OpenAI'
 sidebar_position: 1
 ---
 

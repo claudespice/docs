@@ -1,6 +1,5 @@
 ---
 title: 'DuckDB Data Connector'
-sidebar_label: 'DuckDB Data Connector'
 description: 'DuckDB Data Connector Documentation'
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'DynamoDB Data Connector'
-sidebar_label: 'DynamoDB Data Connector'
 description: 'DynamoDB Data Connector Documentation'
 tags:
   - data-connectors

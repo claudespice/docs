@@ -1,6 +1,5 @@
 ---
 title: 'Snowflake Data Connector'
-sidebar_label: 'Snowflake Data Connector'
 description: 'Snowflake Data Connector Documentation'
 pagination_prev: null
 ---

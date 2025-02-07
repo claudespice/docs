@@ -1,7 +1,6 @@
 ---
 title: 'HuggingFace'
 description: 'Instructions for using machine learning models hosted on HuggingFace with Spice.'
-sidebar_label: 'HuggingFace'
 sidebar_position: 4
 ---
 

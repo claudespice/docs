@@ -1,6 +1,5 @@
 ---
 title: 'ClickHouse Data Connector'
-sidebar_label: 'ClickHouse Data Connector'
 description: 'ClickHouse Data Connector Documentation'
 ---
 

@@ -1,11 +1,10 @@
 ---
 title: 'HTTP(s) Data Connector'
-sidebar_label: 'HTTP(s) Data Connector'
 description: 'HTTP(s) Data Connector Documentation'
 pagination_prev: null
 ---
 
-The HTTP(s) Data Connector enables federated SQL query across [supported file formats](/docs/components/data-connectors/index.md#object-store-file-formats) stored at an HTTP(s) endpoint.
+The HTTP(s) Data Connector enables federated SQL query across [supported file formats](/building-blocks/data-connectors#object-store-file-formats) stored at an HTTP(s) endpoint.
 
 ```yaml
 datasets:
@@ -19,7 +18,7 @@ datasets:
 
 ### `from`
 
-The `from` field must contain a valid URI to the location of a [supported file](/docs/components/data-connectors/index.md#object-store-file-formats). For example, `http://static_username@my-http-api/report.csv`.
+The `from` field must contain a valid URI to the location of a [supported file](/building-blocks/data-connectors#object-store-file-formats). For example, `http://static_username@my-http-api/report.csv`.
 
 ### `name`
 

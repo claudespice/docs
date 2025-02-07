@@ -1,7 +1,6 @@
 ---
 title: 'Anthropic Models'
 description: 'Instructions for using language models hosted on Anthropic with Spice.'
-sidebar_label: 'Anthropic'
 sidebar_position: 3
 ---
 

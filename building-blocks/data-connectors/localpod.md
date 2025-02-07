@@ -1,6 +1,5 @@
 ---
 title: 'Localpod Data Connector'
-sidebar_label: 'Localpod Data Connector'
 description: 'Localpod Data Connector Documentation'
 pagination_prev: null
 ---

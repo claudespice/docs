@@ -1,6 +1,5 @@
 ---
 title: 'Microsoft SQL Server Data Connector'
-sidebar_label: 'Microsoft SQL Server'
 description: 'Microsoft SQL Server Data Connector'
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: 'xAI Models'
 description: 'Instructions for using xAI models'
-sidebar_label: 'xAI'
 sidebar_position: 7
 ---
 

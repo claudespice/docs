@@ -1,6 +1,5 @@
 ---
 title: 'Apache Spark Connector'
-sidebar_label: 'Apache Spark Connector'
 description: 'Apache Spark Connector Documentation'
 pagination_prev: null
 ---

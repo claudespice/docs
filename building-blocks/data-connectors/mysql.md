@@ -1,6 +1,5 @@
 ---
 title: 'MySQL Data Connector'
-sidebar_label: 'MySQL Data Connector'
 description: 'MySQL Data Connector Documentation'
 tags:
   - data-connectors

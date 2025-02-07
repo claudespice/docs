@@ -1,6 +1,5 @@
 ---
 title: 'GitHub Data Connector'
-sidebar_label: 'GitHub Data Connector'
 description: 'GitHub Data Connector Documentation'
 tags: ['data-connector', 'github', 'sql', 'api', 'integration']
 ---

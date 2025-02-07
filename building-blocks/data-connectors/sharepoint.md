@@ -1,6 +1,5 @@
 ---
 title: 'SharePoint Data Connector'
-sidebar_label: 'SharePoint Data Connector'
 description: 'SharePoint Data Connector Documentation'
 pagination_prev: null
 ---

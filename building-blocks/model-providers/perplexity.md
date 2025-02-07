@@ -1,7 +1,6 @@
 ---
 title: 'Perplexity Models'
 description: 'Instructions for using language models hosted on Perplexity with Spice.'
-sidebar_label: 'Perplexity'
 sidebar_position: 4
 ---
 

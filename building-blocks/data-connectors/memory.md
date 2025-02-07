@@ -1,6 +1,5 @@
 ---
 title: 'Memory Data Connector'
-sidebar_label: 'Memory Data Connector'
 description: 'Memory Data Connector Documentation'
 pagination_prev: null
 tags:

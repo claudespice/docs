@@ -1,7 +1,6 @@
 ---
 title: 'Azure OpenAI Models'
 description: 'Instructions for using Azure OpenAI models'
-sidebar_label: 'Azure OpenAI'
 sidebar_position: 2
 ---
 

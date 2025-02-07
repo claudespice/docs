@@ -1,6 +1,5 @@
 ---
 title: 'Dremio Data Connector'
-sidebar_label: 'Dremio Data Connector'
 description: 'Dremio Data Connector Documentation'
 ---
 

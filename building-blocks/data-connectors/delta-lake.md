@@ -1,6 +1,5 @@
 ---
 title: 'Delta Lake Data Connector'
-sidebar_label: 'Delta Lake Data Connector'
 description: 'Delta Lake Data Connector Documentation'
 pagination_prev: null
 tags:

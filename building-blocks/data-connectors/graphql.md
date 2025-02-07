@@ -1,6 +1,5 @@
 ---
 title: 'GraphQL Data Connector'
-sidebar_label: 'GraphQL Data Connector'
 description: 'GraphQL Data Connector Documentation'
 ---
 

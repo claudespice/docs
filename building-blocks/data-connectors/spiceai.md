@@ -1,6 +1,5 @@
 ---
 title: 'Spice.ai Data Connector'
-sidebar_label: 'Spice.ai Data Connector'
 description: 'Spice.ai Data Connector Documentation'
 pagination_next: null
 ---

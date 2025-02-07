@@ -1,6 +1,5 @@
 ---
 title: 'Flight SQL Data Connector'
-sidebar_label: 'Flight SQL Data Connector'
 description: 'Flight SQL Data Connector Documentation'
 ---
 
