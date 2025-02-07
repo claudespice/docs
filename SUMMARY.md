@@ -29,6 +29,36 @@
   * [Task History](features/observability/task-history.md)
   * [Zipkin](features/observability/zipkin.md)
 
+## Building Blocks
+
+* [Data Connectors](building-blocks/data-connectors)
+  * [abfs](building-blocks/data-connectors/abfs.md)
+  * [clickhouse](building-blocks/data-connectors/clickhouse.md)
+  * [databricks](building-blocks/data-connectors/databricks.md)
+  * [debezium](building-blocks/data-connectors/debezium.md)
+  * [delta-lake](building-blocks/data-connectors/delta-lake.md)
+  * [dremio](building-blocks/data-connectors/dremio.md)
+  * [duckdb](building-blocks/data-connectors/duckdb.md)
+  * [dynamodb](building-blocks/data-connectors/dynamodb.md)
+  * [file](building-blocks/data-connectors/file.md)
+  * [flightsql](building-blocks/data-connectors/flightsql.md)
+  * [ftp](building-blocks/data-connectors/ftp.md)
+  * [github](building-blocks/data-connectors/github.md)
+  * [graphql](building-blocks/data-connectors/graphql.md)
+  * [https](building-blocks/data-connectors/https.md)
+  * [localpod](building-blocks/data-connectors/localpod.md)
+  * [memory](building-blocks/data-connectors/memory.md)
+  * [mssql](building-blocks/data-connectors/mssql.md)
+  * [mysql](building-blocks/data-connectors/mysql.md)
+  * [odbc](building-blocks/data-connectors/odbc.md)
+  * [postgres](building-blocks/data-connectors/postgres.md)
+  * [README](building-blocks/data-connectors/README.md)
+  * [s3](building-blocks/data-connectors/s3.md)
+  * [sharepoint](building-blocks/data-connectors/sharepoint.md)
+  * [snowflake](building-blocks/data-connectors/snowflake.md)
+  * [spark](building-blocks/data-connectors/spark.md)
+  * [spiceai](building-blocks/data-connectors/spiceai.md)
+
 ## API
 
 * [SQL Query API](api/sql-query/README.md)
