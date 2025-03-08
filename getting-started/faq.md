@@ -1,6 +1,6 @@
 ---
-description: Frequently asked questions
 icon: circle-question
+description: Frequently asked questions
 ---
 
 # FAQ
@@ -17,13 +17,13 @@ icon: circle-question
 
 ### How much does Spice.ai Cloud cost?
 
-It's free to [get an API key](https://spice.ai) to use the [Community Edition](pricing/community-edition.md).
+It's free to [get an API key](https://spice.ai) to use the [Community Edition](broken-reference).
 
-Customers who need resource limits, service-level guarantees, or priority support we offer [high-value paid tiers](pricing/) based on usage.
+Customers who need resource limits, service-level guarantees, or priority support we offer [high-value paid tiers](../pricing/plans.md) based on usage.
 
 ### What level of support do you offer?
 
-We offer enterprise-grade support with an SLA [for Enterprise Plans](pricing/).
+We offer enterprise-grade support with an SLA [for Enterprise Plans](../pricing/plans.md).
 
 For standard plans we offer [best-effort community support](https://github.com/spicehq/cloud-docs/blob/trunk/broken-reference/README.md) in Discord.
 

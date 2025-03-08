@@ -10,8 +10,6 @@
   * [Add AI Model and chat with your data](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
   * [Next Steps](getting-started/get-started/next-steps.md)
 * [FAQ](getting-started/faq.md)
-* [Pricing](getting-started/pricing/README.md)
-  * [🆕 Community Edition](getting-started/pricing/community-edition.md)
 
 ## Features
 
@@ -31,7 +29,7 @@
 
 ## Building Blocks
 
-* [Data Connectors](building-blocks/data-connectors)
+* [Data Connectors](building-blocks/data-connectors/README.md)
   * [ABFS](building-blocks/data-connectors/abfs.md)
   * [ClickHouse](building-blocks/data-connectors/clickhouse.md)
   * [Databricks](building-blocks/data-connectors/databricks.md)
@@ -56,7 +54,7 @@
   * [Snowflake](building-blocks/data-connectors/snowflake.md)
   * [Spark](building-blocks/data-connectors/spark.md)
   * [SpiceAI](building-blocks/data-connectors/spiceai.md)
-* [Model Providers](building-blocks/model-providers)
+* [Model Providers](building-blocks/model-providers/README.md)
   * [Anthropic](building-blocks/model-providers/anthropic.md)
   * [Azure](building-blocks/model-providers/azure.md)
   * [Hugging Face](building-blocks/model-providers/huggingface.md)
@@ -90,6 +88,7 @@
 * [App Spicepod](portal/app-spicepod/README.md)
   * [Spicepod Configuration](portal/app-spicepod/spicepod-configuration.md)
   * [Deployments](portal/app-spicepod/deployments.md)
+  * [Spice Runtime Versions](portal/app-spicepod/spice-runtime-versions.md)
 * [Datasets](portal/datasets-and-views.md)
 * [Models](portal/models.md)
 * [Monitoring](portal/monitoring-and-request-logs.md)
@@ -383,6 +382,11 @@
     * [DESCRIBE](reference/sql-reference/sql-commands/describe.md)
     * [WITH](reference/sql-reference/sql-commands/with.md)
 * [Release Notes](reference/release-notes.md)
+
+## Pricing
+
+* [Paid Plans](pricing/plans.md)
+* [Community Plan](pricing/community.md)
 
 ## Support
 

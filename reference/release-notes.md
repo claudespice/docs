@@ -171,7 +171,7 @@ Navigation is also easier with the addition of the Command Bar. Simply use **Cmd
 
 Spice.ai is now generally available! [Read the announcement](https://blog.spice.ai/spice-ai-is-generally-available-d76c4289960c).
 
-General Availability launches a brand-new collaborative developer experience, v1 APIs and SDKs, over [100 open-source community](https://github.com/spiceai/datasets) and [EigenLayer](broken-reference) datasets, and a removal of the waitlist. Any developer can now sign-up and use Spice.ai with one of the new [pricing plans](../getting-started/pricing/), including the $99 developer plan and the complementary [Community Edition](../getting-started/pricing/community-edition.md).
+General Availability launches a brand-new collaborative developer experience, v1 APIs and SDKs, over [100 open-source community](https://github.com/spiceai/datasets) and [EigenLayer](broken-reference) datasets, and a removal of the waitlist. Any developer can now sign-up and use Spice.ai with one of the new [pricing plans](../pricing/plans.md), including the $99 developer plan and the complementary [Community Edition](broken-reference).
 
 **New In this Release**
 

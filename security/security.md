@@ -31,7 +31,7 @@ Spice AI, Inc. has achieved SOC 2 Type II compliance in accordance with American
 
 Spice AI, Inc. was audited by [Prescient Assurance](http://www.prescientassurance.com/) , a leader in security and compliance attestation for B2B, SAAS companies worldwide. Prescient Assurance is a registered public accounting in the US and Canada and provides risk management and assurance services which includes but is not limited to SOC 2, PCI, ISO, NIST, GDPR, CCPA, HIPAA, and CSA STAR. For more information about Prescient Assurance, you may reach out them at [info@prescientassurance.com](mailto:info@prescientassurance.com).
 
-A copy of the SOC 2 Audit Report is available to customers subscribed to the [Spice.ai Enterprise plan](../getting-started/pricing/) upon request.
+A copy of the SOC 2 Audit Report is available to customers subscribed to the [Spice.ai Enterprise plan](../pricing/plans.md) upon request.
 
 <figure><img src="../.gitbook/assets/SOC 2.png" alt="" width="188"><figcaption></figcaption></figure>
 
