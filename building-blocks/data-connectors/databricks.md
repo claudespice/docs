@@ -83,7 +83,7 @@ datasets:
 
 ### Databricks service principal
 
-Spice supports the M2M OAuth flow with service principal credentials by utilizing the `databricks_client_id` and `databricks_client_secret` parameters. The runtime will automatically refresh the token.
+Spice supports the M2M (Machine to Machine) OAuth flow with service principal credentials by utilizing the `databricks_client_id` and `databricks_client_secret` parameters. The runtime will automatically refresh the token.
 
 Ensure that you grant your service principal the "Data Reader" privilege preset for the catalog and "Can Attach" cluster permissions when using Spark Connect mode.
 
