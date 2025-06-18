@@ -1,12 +1,12 @@
 ---
-description: 'DynamoDB Data Connector Documentation'
 tags:
   - data-connectors
   - dynamodb
   - nosql
+description: DynamoDB Data Connector Documentation
 ---
 
-# DynamoDB Data Connector
+# DynamoDB
 
 Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. This connector enables using DynamoDB tables as data sources for federated SQL queries in Spice.
 
@@ -27,11 +27,11 @@ datasets:
 
 The `from` field should specify the DynamoDB table name:
 
-| `from`           | Description                                        |
-| ---------------- | ------------------------------------------------- |
-| `dynamodb:table` | Read data from a DynamoDB table named `table`     |
+| `from`           | Description                                   |
+| ---------------- | --------------------------------------------- |
+| `dynamodb:table` | Read data from a DynamoDB table named `table` |
 
-{% hint style="note" %}
+{% hint style="info" %}
 If an expected table is not found, verify the `dynamodb_aws_region` parameter. DynamoDB tables are region-specific.
 {% endhint %}
 
@@ -56,69 +56,66 @@ SELECT COUNT(*) FROM my_users;
 
 The DynamoDB data connector supports the following configuration parameters:
 
-| Parameter Name | Description |
-| -------------- | ----------- |
-| `dynamodb_aws_region` | Required. The AWS region containing the DynamoDB table |
-| `dynamodb_aws_access_key_id` | Optional. AWS access key ID for authentication. If not provided, credentials will be loaded from environment variables or IAM roles |
+| Parameter Name                   | Description                                                                                                                             |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `dynamodb_aws_region`            | Required. The AWS region containing the DynamoDB table                                                                                  |
+| `dynamodb_aws_access_key_id`     | Optional. AWS access key ID for authentication. If not provided, credentials will be loaded from environment variables or IAM roles     |
 | `dynamodb_aws_secret_access_key` | Optional. AWS secret access key for authentication. If not provided, credentials will be loaded from environment variables or IAM roles |
-| `dynamodb_aws_session_token` | Optional. AWS session token for authentication |
+| `dynamodb_aws_session_token`     | Optional. AWS session token for authentication                                                                                          |
 
 ### Credential Sources
 
 If AWS credentials are not explicitly provided in the configuration, the connector will automatically load credentials from the following sources in order:
 
 1. **Environment Variables**:
-   - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-   - `AWS_SESSION_TOKEN` (if using temporary credentials)
-
+   * `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+   * `AWS_SESSION_TOKEN` (if using temporary credentials)
 2. **Shared AWS Config/Credentials Files**:
-   - Config file: `~/.aws/config` (Linux/Mac) or `%UserProfile%\.aws\config` (Windows)
-   - Credentials file: `~/.aws/credentials` (Linux/Mac) or `%UserProfile%\.aws\credentials` (Windows)
-   - The `AWS_PROFILE` environment variable can be used to specify a named profile.
-   - Supports both static credentials and SSO sessions
-   - Example credentials file:
+   * Config file: `~/.aws/config` (Linux/Mac) or `%UserProfile%\.aws\config` (Windows)
+   * Credentials file: `~/.aws/credentials` (Linux/Mac) or `%UserProfile%\.aws\credentials` (Windows)
+   * The `AWS_PROFILE` environment variable can be used to specify a named profile.
+   * Supports both static credentials and SSO sessions
+   *   Example credentials file:
 
-     ```ini
-     # Static credentials
-     [default]
-     aws_access_key_id = YOUR_ACCESS_KEY
-     aws_secret_access_key = YOUR_SECRET_KEY
+       ```ini
+       # Static credentials
+       [default]
+       aws_access_key_id = YOUR_ACCESS_KEY
+       aws_secret_access_key = YOUR_SECRET_KEY
 
-     # SSO profile
-     [profile sso-profile]
-     sso_start_url = https://my-sso-portal.awsapps.com/start
-     sso_region = us-west-2
-     sso_account_id = 123456789012
-     sso_role_name = MyRole
-     region = us-west-2
-     ```
+       # SSO profile
+       [profile sso-profile]
+       sso_start_url = https://my-sso-portal.awsapps.com/start
+       sso_region = us-west-2
+       sso_account_id = 123456789012
+       sso_role_name = MyRole
+       region = us-west-2
+       ```
 
-   {% hint style="info" %}
-   To set up SSO authentication:
-   1. Run `aws configure sso` to configure a new SSO profile
-   2. Use the profile by setting `AWS_PROFILE=sso-profile`
-   3. Run `aws sso login` to start a new SSO session
-   {% endhint %}
+{% hint style="info" %}
+To set up SSO authentication:
+
+1. Run `aws configure sso` to configure a new SSO profile
+2. Use the profile by setting `AWS_PROFILE=sso-profile`
+3. Run `aws sso login` to start a new SSO session
+{% endhint %}
 
 3. **Web Identity Token Credentials**:
-   - Used primarily with OpenID Connect (OIDC) and OAuth
-   - Common in Kubernetes environments using IAM roles for service accounts (IRSA)
-
+   * Used primarily with OpenID Connect (OIDC) and OAuth
+   * Common in Kubernetes environments using IAM roles for service accounts (IRSA)
 4. **ECS Container Credentials**:
-   - Used when running in Amazon ECS containers
-   - Automatically uses the task's IAM role
-   - Retrieved from the ECS credential provider endpoint
-
+   * Used when running in Amazon ECS containers
+   * Automatically uses the task's IAM role
+   * Retrieved from the ECS credential provider endpoint
 5. **EC2 Instance Metadata Service (IMDSv2)**:
-   - Used when running on EC2 instances
-   - Automatically uses the instance's IAM role
-   - Retrieved securely using IMDSv2
+   * Used when running on EC2 instances
+   * Automatically uses the instance's IAM role
+   * Retrieved securely using IMDSv2
 
 The connector will try each source in order until valid credentials are found. If no valid credentials are found, an authentication error will be returned.
 
-{% hint style="note" %}
-**IAM Permissions**
-Regardless of the credential source, the IAM role or user must have appropriate DynamoDB permissions (e.g., `dynamodb:Scan`, `dynamodb:DescribeTable`) to access the table.
+{% hint style="info" %}
+**IAM Permissions** Regardless of the credential source, the IAM role or user must have appropriate DynamoDB permissions (e.g., `dynamodb:Scan`, `dynamodb:DescribeTable`) to access the table.
 {% endhint %}
 
 ## Required IAM Permissions
@@ -145,9 +142,9 @@ The IAM role or user needs the following permissions to access DynamoDB tables:
 
 ### Permission Details
 
-| Permission | Purpose |
-|------------|---------|
-| `dynamodb:Scan` | Required. Allows reading all items from the table |
+| Permission               | Purpose                                                         |
+| ------------------------ | --------------------------------------------------------------- |
+| `dynamodb:Scan`          | Required. Allows reading all items from the table               |
 | `dynamodb:DescribeTable` | Required. Allows fetching table metadata and schema information |
 
 ### Example IAM Policies
@@ -212,9 +209,9 @@ The IAM role or user needs the following permissions to access DynamoDB tables:
 {% hint style="warning" %}
 Security Considerations
 
-- Avoid using `dynamodb:*` permissions as it grants more access than necessary.
-- Consider using more restrictive policies in production environments.
-- When using IAM roles with EKS, ensure the [service account is properly configured with IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+* Avoid using `dynamodb:*` permissions as it grants more access than necessary.
+* Consider using more restrictive policies in production environments.
+* When using IAM roles with EKS, ensure the [service account is properly configured with IRSA](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 {% endhint %}
 
 ## Examples
@@ -275,19 +272,19 @@ WHERE address.city = 'San Francisco';
 {% hint style="warning" %}
 **Limitations**
 
-- The DynamoDB connector currently does not support filter push-down optimization. All filtering is performed after data is retrieved from DynamoDB.
-- Primary key optimizations are not yet implemented - retrieving items by their primary key will still scan the table.
-- The DynamoDB connector will scan the first 10 items to determine the schema of the table. This may miss columns that are not present in the first 10 items.
+* The DynamoDB connector currently does not support filter push-down optimization. All filtering is performed after data is retrieved from DynamoDB.
+* Primary key optimizations are not yet implemented - retrieving items by their primary key will still scan the table.
+* The DynamoDB connector will scan the first 10 items to determine the schema of the table. This may miss columns that are not present in the first 10 items.
 {% endhint %}
 
 ## Data Types
 
 The DynamoDB connector supports the following data types and mappings:
 
-- Basic scalar types (String, Number, Boolean)
-- Lists and Maps
-- Nested structures
-- Binary data
+* Basic scalar types (String, Number, Boolean)
+* Lists and Maps
+* Nested structures
+* Binary data
 
 Example schema from a users table:
 
@@ -311,4 +308,4 @@ describe users;
 
 ## Performance Considerations
 
-- Due to limited support for filter push-down, enable acceleration to prevent scanning the entire table on every query.
+* Due to limited support for filter push-down, enable acceleration to prevent scanning the entire table on every query.

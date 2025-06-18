@@ -1,5 +1,4 @@
 ---
-icon: circle-dollar
 description: Comparison of Spice.ai Cloud Platform Pricing Plans
 ---
 

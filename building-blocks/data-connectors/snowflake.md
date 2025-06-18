@@ -1,11 +1,10 @@
 ---
-description: 'Snowflake Data Connector Documentation'
+description: Snowflake Data Connector Documentation
 ---
 
-# Snowflake Data Connector
+# Snowflake
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 The Snowflake Data Connector enables federated SQL queries across datasets in the [Snowflake Cloud Data Warehouse](https://www.snowflake.com/).
 
@@ -19,8 +18,7 @@ datasets:
 ```
 
 {% hint style="info" %}
-**Hint**
-Unquoted table identifiers should be UPPERCASED in the `from` field. See [Identifier resolution](https://docs.snowflake.com/en/sql-reference/identifiers-syntax#label-identifier-casing).
+**Hint** Unquoted table identifiers should be UPPERCASED in the `from` field. See [Identifier resolution](https://docs.snowflake.com/en/sql-reference/identifiers-syntax#label-identifier-casing).
 {% endhint %}
 
 ## Configuration
@@ -64,6 +62,5 @@ datasets:
 **Limitations**
 
 1. Account identifier does not support the [Legacy account locator in a region format](https://docs.snowflake.com/en/user-guide/admin-account-identifier#format-2-legacy-account-locator-in-a-region). Use [Snowflake preferred name in organization format](https://docs.snowflake.com/en/user-guide/admin-account-identifier#format-1-preferred-account-name-in-your-organization).
-1. The connector supports password-based and [key-pair](https://docs.snowflake.com/en/user-guide/key-pair-auth) authentication.
-
+2. The connector supports password-based and [key-pair](https://docs.snowflake.com/en/user-guide/key-pair-auth) authentication.
 {% endhint %}

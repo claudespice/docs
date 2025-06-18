@@ -1,8 +1,8 @@
 ---
-description: 'SharePoint Data Connector Documentation'
+description: SharePoint Data Connector Documentation
 ---
 
-# SharePoint Data Connector
+# SharePoint
 
 The SharePoint Data Connector enables federated SQL queries on documents stored in SharePoint.
 
@@ -45,21 +45,20 @@ Returns
 ````
 
 {% hint style="warning" %}
-**Limitations**
-The sharepoint connector does not yet support creating a dataset from a single file (e.g. an Excel spreadsheet). Datasets must be created from a folder of documents (see [Document Support](/docs/components/data-connectors/index.md#document-support)).
+**Limitations** The sharepoint connector does not yet support creating a dataset from a single file (e.g. an Excel spreadsheet). Datasets must be created from a folder of documents (see [Document Support](../../docs/components/data-connectors/index.md#document-support)).
 {% endhint %}
 
 ## Configuration
 
 ### Parameters
 
-| Name                       | Required? | Description                                                                                                                                      |
-| -------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sharepoint_client_id`     | **Yes**   | The client ID of the Azure AD (Entra) application                                                                                                |
-| `sharepoint_tenant_id`     | **Yes**   | The tenant ID of the Azure AD (Entra) application.                                                                                               |
-| `sharepoint_client_secret` | Optional  | For service principal authentication. The client secret of the Azure AD (Entra) application.                                                     |
+| Name                       | Required? | Description                                                                                  |
+| -------------------------- | --------- | -------------------------------------------------------------------------------------------- |
+| `sharepoint_client_id`     | **Yes**   | The client ID of the Azure AD (Entra) application                                            |
+| `sharepoint_tenant_id`     | **Yes**   | The tenant ID of the Azure AD (Entra) application.                                           |
+| `sharepoint_client_secret` | Optional  | For service principal authentication. The client secret of the Azure AD (Entra) application. |
 
-{% hint style="note" %}
+{% hint style="info" %}
 Only one of `sharepoint_client_secret` or `sharepoint_bearer_token` is allowed.
 {% endhint %}
 
@@ -85,7 +84,7 @@ from: 'sharepoint:<drive_type>:<drive_id>/<subpath_type>:<subpath_value>'
 | `groupId`  | A SharePoint group's ID     | `from: sharepoint:groupId:b!Mh8opUGD80ec7zGXgX9r/...` |
 | `me`       | A user's OneDrive           | `from: sharepoint:me/...`                             |
 
-{% hint style="note" %}
+{% hint style="info" %}
 For the `me` drive type the user is identified based on `sharepoint_client_code` and cannot be used with `sharepoint_client_secret`
 {% endhint %}
 
@@ -109,7 +108,7 @@ To use the SharePoint connector with service principal authentication, you will 
 
 1. Create a new Azure AD application in the [Azure portal](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview).
 2. Under the application's `API permissions`, add the following permissions: `Sites.Read.All`, `Files.Read.All`, `User.Read`, `GroupMember.Read.All`
-   - For service principal authentication, Application permissions are required.
-   - For user authentication, only delegated permissions are required.
-4. Add `sharepoint_client_id` (from the `Application (Client) ID` field) and `sharepoint_tenant_id` to the connector configuration.
-5. Under the application's `Certificates & secrets`, create a new client secret. Use this for the `sharepoint_client_secret` parameter.
+   * For service principal authentication, Application permissions are required.
+   * For user authentication, only delegated permissions are required.
+3. Add `sharepoint_client_id` (from the `Application (Client) ID` field) and `sharepoint_tenant_id` to the connector configuration.
+4. Under the application's `Certificates & secrets`, create a new client secret. Use this for the `sharepoint_client_secret` parameter.

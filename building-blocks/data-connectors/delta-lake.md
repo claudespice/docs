@@ -1,12 +1,12 @@
 ---
-description: 'Delta Lake Data Connector Documentation'
 tags:
   - data-connectors
   - delta-lake
   - data-lake
+description: Delta Lake Data Connector Documentation
 ---
 
-# Delta Lake Data Connector
+# Delta Lake
 
 Delta Lake data connector connector enables SQL queries from [Delta Lake](https://delta.io/) tables.
 
@@ -23,7 +23,7 @@ datasets:
 
 ### `from`
 
-The `from` field for the Delta Lake connector takes the form of `delta_lake:path` where `path` is any supported path, either local or to a cloud storage location. See the [examples](#examples) section below.
+The `from` field for the Delta Lake connector takes the form of `delta_lake:path` where `path` is any supported path, either local or to a cloud storage location. See the [examples](delta-lake.md#examples) section below.
 
 ### `name`
 
@@ -72,12 +72,11 @@ Use the [secret replacement syntax](../secret-stores/index.md) to reference a se
 ### Azure Blob
 
 {% hint style="info" %}
-**Note**
-One of the following auth values must be provided for Azure Blob:
+**Note** One of the following auth values must be provided for Azure Blob:
 
-- `delta_lake_azure_storage_account_key`,
-- `delta_lake_azure_storage_client_id` and `azure_storage_client_secret`, or
-- `delta_lake_azure_storage_sas_key`.
+* `delta_lake_azure_storage_account_key`,
+* `delta_lake_azure_storage_client_id` and `azure_storage_client_secret`, or
+* `delta_lake_azure_storage_sas_key`.
 {% endhint %}
 
 | Parameter Name                           | Description                                                            |
@@ -166,10 +165,10 @@ The table below shows the Delta Lake data types supported, along with the type m
 
 ## Limitations
 
-- Delta Lake connector does not support reading Delta tables with the `V2Checkpoint` feature enabled. To use the Delta Lake connector with such tables, drop the `V2Checkpoint` feature by executing the following command:
+*   Delta Lake connector does not support reading Delta tables with the `V2Checkpoint` feature enabled. To use the Delta Lake connector with such tables, drop the `V2Checkpoint` feature by executing the following command:
 
-  ```sql
-  ALTER TABLE <table-name> DROP FEATURE v2Checkpoint [TRUNCATE HISTORY];
-  ```
+    ```sql
+    ALTER TABLE <table-name> DROP FEATURE v2Checkpoint [TRUNCATE HISTORY];
+    ```
 
-  For more details on dropping Delta table features, refer to the official documentation: [Drop Delta table features](https://docs.delta.io/latest/delta-drop-feature.html)
+    For more details on dropping Delta table features, refer to the official documentation: [Drop Delta table features](https://docs.delta.io/latest/delta-drop-feature.html)

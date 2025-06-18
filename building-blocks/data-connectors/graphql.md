@@ -1,8 +1,8 @@
 ---
-description: 'GraphQL Data Connector Documentation'
+description: GraphQL Data Connector Documentation
 ---
 
-# GraphQL Data Connector
+# GraphQL
 
 The [GraphQL](https://graphql.org/) Data Connector enables federated SQL queries on any GraphQL endpoint by specifying `graphql` as the selector in the `from` value for the dataset.
 
@@ -26,9 +26,8 @@ datasets:
 {% hint style="warning" %}
 **Limitations**
 
-- The GraphQL data connector does not support variables in the query.
-- Filter pushdown, with the exclusion of `LIMIT`, is not currently supported. Using a `LIMIT` will reduce the amount of data requested from the GraphQL server.
-
+* The GraphQL data connector does not support variables in the query.
+* Filter pushdown, with the exclusion of `LIMIT`, is not currently supported. Using a `LIMIT` will reduce the amount of data requested from the GraphQL server.
 {% endhint %}
 
 ## Configuration
@@ -45,14 +44,14 @@ The dataset name. This will be used as the table name within Spice.
 
 The GraphQL data connector can be configured by providing the following `params`. Use the [secret replacement syntax](../secret-stores/index.md) to load the password from a secret store, e.g. `${secrets:my_graphql_auth_token}`.
 
-| Parameter Name       | Description                                                                                                                                                                     |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unnest_depth`       | Depth level to automatically unnest objects to. By default, disabled if unspecified or `0`.                                                                                     |
-| `graphql_auth_token` | The authentication token to use to connect to the GraphQL server. Uses bearer authentication.                                                                                   |
-| `graphql_auth_user`  | The username to use for basic auth. E.g. `graphql_auth_user: my_user`                                                                                                           |
-| `graphql_auth_pass`  | The password to use for basic auth. E.g. `graphql_auth_pass: ${secrets:my_graphql_auth_pass}`                                                                                   |
-| `graphql_query`      | The username to use for basic auth. See [examples](#examples) for a sample GraphQL query                                                                                        |
-| `json_pointer`       | The [JSON pointer](https://datatracker.ietf.org/doc/html/rfc6901) into the response body. When `graphql_query` is [paginated](#pagination), the `json_pointer` can be inferred. |
+| Parameter Name       | Description                                                                                                                                                                               |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unnest_depth`       | Depth level to automatically unnest objects to. By default, disabled if unspecified or `0`.                                                                                               |
+| `graphql_auth_token` | The authentication token to use to connect to the GraphQL server. Uses bearer authentication.                                                                                             |
+| `graphql_auth_user`  | The username to use for basic auth. E.g. `graphql_auth_user: my_user`                                                                                                                     |
+| `graphql_auth_pass`  | The password to use for basic auth. E.g. `graphql_auth_pass: ${secrets:my_graphql_auth_pass}`                                                                                             |
+| `graphql_query`      | The username to use for basic auth. See [examples](graphql.md#examples) for a sample GraphQL query                                                                                        |
+| `json_pointer`       | The [JSON pointer](https://datatracker.ietf.org/doc/html/rfc6901) into the response body. When `graphql_query` is [paginated](graphql.md#pagination), the `json_pointer` can be inferred. |
 
 #### GraphQL Query Example
 
@@ -148,10 +147,9 @@ Tips for working with JSON data. For more information see [Datafusion Docs](http
 
 ### Accessing objects fields
 
-You can access the fields of the object using the square bracket notation.
-Arrays are indexed from 1.
+You can access the fields of the object using the square bracket notation. Arrays are indexed from 1.
 
-Example for the stargazers query from [pagination section](#pagination):
+Example for the stargazers query from [pagination section](graphql.md#pagination):
 
 ```bash
 sql> select node['login'] as login, node['name'] as name from stargazers limit 5;
@@ -168,8 +166,7 @@ sql> select node['login'] as login, node['name'] as name from stargazers limit 5
 
 ### Piping array into rows
 
-You can use Datafusion `unnest` function to pipe values from array into rows.
-We'll be using [countries GraphQL api](https://countries.trevorblades.com) as an example.
+You can use Datafusion `unnest` function to pipe values from array into rows. We'll be using [countries GraphQL api](https://countries.trevorblades.com) as an example.
 
 ```yaml
 from: graphql:https://countries.trevorblades.com
