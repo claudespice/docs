@@ -84,6 +84,7 @@
   * [Secrets](portal/apps/secrets.md)
   * [Connect GitHub](portal/apps/connect-github.md)
   * [Transfer](portal/apps/transfer.md)
+  * [Runtime](portal/apps/runtime.md)
 * [Public Apps](portal/public-apps.md)
 * [App Spicepod](portal/app-spicepod/README.md)
   * [Spicepod Configuration](portal/app-spicepod/spicepod-configuration.md)
