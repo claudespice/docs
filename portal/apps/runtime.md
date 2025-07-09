@@ -5,7 +5,7 @@ icon: gear
 
 # Runtime
 
-<figure><img src="../../.gitbook/assets/spice-cloud-region-settings.png" alt="App Region Settings"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2025-07-10 at 07.06.34@2x.png" alt=""><figcaption></figcaption></figure>
 
 Navigate to `Settings` -> `Runtime` to configure the runtime settings for your Spice application.
 
