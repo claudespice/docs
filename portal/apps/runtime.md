@@ -39,3 +39,13 @@ Compute settings define the resource allocation for your Spice application, bala
 * **Enterprise**: Dedicated Instances with multiple high-availability replicas
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-07-08 at 21.15.52.png" alt=""><figcaption></figcaption></figure>
+
+### Storage
+
+Provides a persistent storage for the runtime to save data acceleration files. Data remains intact across restarts and redeployments.
+
+* **Availability**: Storage is exclusive to Enterprise plan customers.
+* **Mount Path**: `/data`.
+* **Size**: Configured per request. Contact your account executive to set or update capacity.
+
+<figure><img src="../../.gitbook/assets/CleanShot 2025-08-11 at 19.42.22@2x.png" alt="app runtime storage settings"><figcaption></figcaption></figure>
