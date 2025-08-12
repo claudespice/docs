@@ -4,6 +4,205 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+## July 2025
+
+### Highlights
+
+* **App Settings**\
+  Users can configure region, tag, and storage preferences for their app directly in App Settings. For example, you can set primary region to "us-east-1" and assign up to 5 custom tags per app.
+* **Spicepod Editor**\
+  Editor now includes YAML safety checks, supports detached editing (even when repository is not connected), and allows defining volume template types for components and vectors.
+* **Database Schema**\
+  Apps and organizations now include fields for nameservers and storage options—edit directly from the app screen. [App schema reference](https://docs.spice.ai/app-schema)
+* **User Experience**\
+  Improved error messages, compact vector input handling, and more consistent display of app/component status.
+
+### Bug Fixes
+
+* Fixed crash handling for app config errors—users now see a specific error explaining the issue.
+* Editor’s YAML validation improved, warning users before saving malformed files.
+
+## June 2025
+
+### Highlights
+
+* **SQL Explorer Improvements**\
+  Supports up to 1,000 tasks viewed in Observability; queries timeout after 5 minutes if not completed.
+* **New Data Connectors**\
+  Access Iceberg and Glue data sources directly; step-by-step documentation provided. [Connector docs](https://docs.spice.ai/connectors)
+* **Databricks Integration**\
+  OAuth for Databricks is fully automatic; your tokens are handled behind the scenes for all catalog, SQL, and chat actions.
+* **Organization Flexibility**\
+  Invite members with any email connected to a GitHub account; set specific app limits (e.g., 5 apps per org for Community, 20 for Enterprise).
+* **Data & Secrets**\
+  All secret names must be uppercase—system now enforces this for new and updated secrets.
+
+### Bug Fixes
+
+* Query type detection for legacy SQL fixed for over 50 legacy formats.
+* Organization invitation email bug resolved (GitHub-linked addresses only).
+* Sticky UI headers now work in all supported browsers.
+
+## May 2025
+
+### Highlights
+
+* **Smart Resource Usage**\
+  Workspace owners can now set exact CPU and memory limits for each deployment. Minimum: 0.5 CPUs and 1GB RAM; Maximum: 16 CPUs and 128 GB RAM, configurable in settings. [Resource management guide](https://docs.spice.ai/resources)
+* **Code & Editor Improvements**\
+  The code editor supports copyable YAML examples, inline rendering of markdown/code blocks, and syntax highlighting for spicepod schemas.
+* **Models & AI Upgrades**\
+  Claude opus-4 and Sonnet-4 models are now available to all users. The model selector interface shows the version number and model status.
+* **Editor Experience**\
+  Live YAML validation and safety features have been implemented—invalid configurations are flagged instantly before saving.
+
+### Bug Fixes
+
+* Editor no longer drops indentation or list formatting when pasting code blocks.
+* Model names and token handling have been corrected for export and import.
+
+## April 2025
+
+### Highlights
+
+* **Benchmark Dashboards**\
+  Added new charts for benchmarking—AI inference results and model scores are visible, and you can filter scores by code branch. [Score filtering](https://docs.spice.ai/benchmarks#branch-filtering)
+* **Resource Management**\
+  Users can now set and adjust storage quotas up to 256 GB per workspace, and view usage directly from the app’s dashboard. Storage alerts notify you once you reach 90% of quota.
+* **AI Model Support**\
+  Added Grok-3 series and GPT-4.1 support for all users. Models are selectable in the Spicepod and chat interface as soon as they become available.
+* **Activity Analytics**\
+  Integration with Google Analytics allows users to track app activity (sessions, completions, and installations) directly in the usage dashboard. UTM parameters for app installs are automatically recorded.
+* **User Interface Experience**\
+  Simplified error messages and cleaned up UI for benchmark reports, progress views, and data display.
+
+### Bug Fixes
+
+* Benchmarks section now returns exact inferences count for up to 30 days of data.
+* Fixed occasional YAML validation errors in the Spicepod editor.
+
+## March 2025
+
+### Highlights
+
+* **System Performance**\
+  Concurrency limits raised to 100 parallel active queries per workspace. Workspace owners can now monitor live query queues. [Concurrency documentation](https://docs.spice.ai/query-limits)
+* **Custom Query Handling**\
+  Query arguments included in all GET requests are now passed transparently to downstream systems for more granular filtering and control.
+* **AI Chat Logs & History**\
+  Improved loading and navigation for chat logs; message skeletons, progress bars, and artifact previews added. Message history now supports up to 500 prior messages. [Chat features](https://docs.spice.ai/chat)
+* **Monitoring Enhancements**\
+  New app and model performance views allow users to see live status and recent activity for the apps and models they own.
+
+### Bug Fixes
+
+* Resolved autoscroll issues when reviewing long chat histories.
+* Fixed metric display errors for query queues when over 100 items were present.
+
+## February 2025
+
+### Highlights
+
+* **Benchmarking Insights**\
+  Benchmark results are now refreshed in real time; all SQL query results shown in dashboards reflect live system data. [Live dashboard](https://docs.spice.ai/dashboards)
+* **AI Chat & Playground**\
+  New session handling: users can revisit prior conversations and access a catalog explorer from Playground. Improvements to chat UI display make longer chat sessions and code completions easier to review. Markdown and progress rendering are now supported in chat.
+* **Spicepod Editor**\
+  Choose from multiple AI models and tools directly in the editor sidebar. YAML safety checks alert users about indentation or formatting issues before saving. [Editor help](https://docs.spice.ai/editor)
+
+### Bug Fixes
+
+* Fixed chat session loading delays for conversations over 50 messages.
+* Dashboard graphs now update within 10 seconds of new data becoming available.
+* Resolved error messages when switching between model and tool selections in the spicepod editor.
+
+## January 2025
+
+### Highlights
+
+* **Benchmarking Dashboards & Data Platform**\
+  Users can now visualize TPCH and TPCDS benchmark results directly within the dashboard. Sample scripts are available to help load these datasets into managed databases. [See our benchmarking guide](https://docs.spice.ai/benchmarks)
+* **Spicepod Experience Improvements**\
+  When deploying an app, the system automatically selects the latest available patch version for your spicepod (e.g., 1.0.3 will be chosen if your app currently uses 1.0.2). The Spicepod editor now provides clearer navigation and indicates which version is being deployed. [Spicepod documentation](https://docs.spice.ai/spicepods)
+* **Performance & User Interface**\
+  Member management, dataset, and model lists in the user interface are now more responsive and display item status in real time.
+
+### Bug Fixes
+
+* Benchmark cluster settings now correctly reflect requested resources.
+* Deployment flow issues resolved for navigating between editing and deploying a spicepod.
+* Improved error feedback when users enter invalid configuration values.
+
+## December 2024
+
+### Highlights
+
+* **Spicepod Configuration**\
+  Spicepods now display unique content identifiers (CIDs) for each version deployed, and retaining CID tracking improves history and rollback accuracy. The editor sidebar is more intuitive, supports flexible editing even if no repository is connected, and surfaces volume claim template types.
+* **Status & History**\
+  Deployment status, history, and new monitoring tab allow users to see all current and prior deployments and their identifiers.
+* **User Interface Updates**\
+  Improved empty state displays, clearer descriptions, and smarter menu layouts for public apps. Datasets, app code, and models now have more granular state visibility.
+* **Usage Management**\
+  Automated notifications inform users of approaching platform quotas. Basic free-tier automation now pauses apps after 30 days of inactivity.
+
+### Bug Fixes
+
+* Fixed anonymous viewer errors for public app pages.
+* Improved dataset and component sync across linked pages.
+* Fixed edge case in flavor selection and visibility for newly created spicepods.
+
+## November 2024
+
+### Highlights
+
+* **Dashboard Expansion**\
+  Added the Models Benchmarks dashboard, including reference scores for popular datasets. Refined UI for performance and alert dashboards, ensuring users see the correct score for each model and configuration on every run.
+* **Spicepod Management**\
+  You can now view the full list of your managed spicepods, with creation, update, and removal activity tracked in the app. Use the `/v1/activity` endpoint to see app activity logs by timestamp. [See Activity API docs](https://docs.spice.ai/activity-endpoint)
+* **User Experience Improvements**\
+  Streamlined editor: new saving, reset and validation logic. Deleted apps automatically remove their attached spicepods. Default datasets and version fallback logic improved for all new apps.
+
+### Bug Fixes
+
+* Improved dashboard data accuracy for benchmarks and metrics.
+* Fixed bug with SQL result filters that caused stale data to appear in model dashboards.
+* Activity and log endpoints now reliably return the most recent 1000 entries.
+
+## October 2024
+
+### Highlights
+
+* **Copilot & Spicepod Integration**\
+  The Copilot onboarding flow is now unified and leverages shared spicepod instances for organizational consistency. Deployment status and logs are directly viewable in the Copilot UI.
+* **Editor Enhancements**\
+  The code editor now highlights YAML formatting errors and enables editing even when a repository isn’t connected. Sample dataset previews and component mapping have been improved. Side panel includes quick access to all relevant settings.
+* **Model & Activity Tracking**\
+  The models view now shows the current version, tool status, and last update date. Only relevant models are visible; deprecated items are automatically hidden.
+
+### Bug Fixes
+
+* Fixed chat history scroll and response display for long sessions.
+* Editor bugs related to line numbering, case handling, and switching between specs have been resolved.
+* Fixed edge cases in deployment status and activity notifications.
+
+## September 2024
+
+### Highlights
+
+* **Operator Scale Set**\
+  Spicepods now support explicit scale configuration: users can specify up to 50 concurrent instances per spicepod. [Scaling reference](https://docs.spice.ai/scaling)
+* **User Flows**\
+  All setup flows are now handled from a streamlined single location, with improved deployment selection and history.
+* **Observability Dashboards**\
+  Model and dataset metrics are now presented with sortable columns and trendline charts for the last 60 days. Task history and dataset refresh logic have been made transparent. [Dashboards](https://docs.spice.ai/dashboards)
+
+### Bug Fixes
+
+* Fixed activity endpoint latency for organizations with more than 25 datasets.
+* Improved logging to prevent duplicate error messages in UI.
+* Fixed model filtering and sorting in deployment lists.
+
 ### August 2024
 
 ### What's New

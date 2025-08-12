@@ -31,11 +31,11 @@ Use the **Components sidebar** on the right to select from available **Data Conn
 
 ### \[Optional] Execute a SQL query using cURL
 
-Go app **Settings** and copy one of the app API Keys.
+6. Go app **Settings** and copy one of the app API Keys.
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 12.25.51@2x.png" alt=""><figcaption><p>Getting an API Key from the app Settings.</p></figcaption></figure>
 
-Replace `[API-KEY]` in the sample below with your API Key and execute from a terminal.
+7. Replace `[API-KEY]` in the sample below with your API Key and execute from a terminal.
 
 {% tabs %}
 {% tab title="cURL" %}

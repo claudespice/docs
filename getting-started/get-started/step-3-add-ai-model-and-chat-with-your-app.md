@@ -16,7 +16,7 @@ An [OpenAI API Platform](https://platform.openai.com/) account and API key is re
 3. Enter the **Model name.**
 4. Enter the **Model ID**, (e.g. `gpt-4o`).
 5. Set the **OpenAI API Key** secret
-   * API keys and other secrets are securely stored and encrypted.
+   1. API keys and other secrets are securely stored and encrypted.
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 11.52.06 (1).gif" alt=""><figcaption></figcaption></figure>
 
@@ -56,7 +56,7 @@ models:
 
 ### \[Optional] Call chat completions API using cURL
 
-Replace `[API-KEY]` in the sample below with the app API Key and execute in a terminal.
+10. Replace `[API-KEY]` in the sample below with the app API Key and execute in a terminal.
 
 {% tabs %}
 {% tab title="cURL" %}
