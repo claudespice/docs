@@ -9,13 +9,11 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **App Settings**\
-  Users can configure region, tag, and storage preferences for their app directly in App Settings. For example, you can set primary region to "us-east-1" and assign up to 5 custom tags per app.
+  Region and storage information is now available in App Settings.
 * **Spicepod Editor**\
-  Editor now includes YAML safety checks, supports detached editing (even when repository is not connected), and allows defining volume template types for components and vectors.
-* **Database Schema**\
-  Apps and organizations now include fields for nameservers and storage options—edit directly from the app screen. [App schema reference](https://docs.spice.ai/app-schema)
+  Editor now includes additional YAML safety checks and supports detached editing (even when repository is not connected).
 * **User Experience**\
-  Improved error messages, compact vector input handling, and more consistent display of app/component status.
+  Improved error messages, compact S3 Vectors engine input handling, and more consistent display of app/component status.
 
 ### Bug Fixes
 
@@ -26,14 +24,14 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 ### Highlights
 
-* **SQL Explorer Improvements**\
-  Supports up to 1,000 tasks viewed in Observability; queries timeout after 5 minutes if not completed.
 * **New Data Connectors**\
   Access Iceberg and Glue data sources directly; step-by-step documentation provided. [Connector docs](https://docs.spice.ai/connectors)
 * **Databricks Integration**\
   OAuth for Databricks is fully automatic; your tokens are handled behind the scenes for all catalog, SQL, and chat actions.
 * **Organization Flexibility**\
   Invite members with any email connected to a GitHub account; set specific app limits (e.g., 5 apps per org for Community, 20 for Enterprise).
+* **Observability**\
+  Supports up to 1,000 tasks viewed in Observability; queries timeout after 5 minutes if not completed.
 * **Data & Secrets**\
   All secret names must be uppercase—system now enforces this for new and updated secrets.
 
