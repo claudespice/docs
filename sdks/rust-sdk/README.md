@@ -30,7 +30,7 @@ use spiceai::ClientBuilder;
 
 #[tokio::main]
 async fn main() {
-  let mut client = ClientBuilder::new()
+  let client = ClientBuilder::new()
     .api_key("API_KEY")
     .use_spiceai_cloud()
     .build()
@@ -70,7 +70,7 @@ use spiceai::ClientBuilder;
 
 #[tokio::main]
 async fn main() {
-  let mut client = ClientBuilder::new()
+  let client = ClientBuilder::new()
     .build()
     .await
     .unwrap();
