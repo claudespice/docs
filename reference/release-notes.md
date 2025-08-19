@@ -25,15 +25,15 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **New Data Connectors**\
-  Access Iceberg and Glue data sources directly; step-by-step documentation provided. [Connector docs](https://docs.spice.ai/connectors)
+  Access [Iceberg](https://spiceai.org/docs/components/data-connectors/iceberg) and [Glue](https://spiceai.org/docs/components/data-connectors/glue) data sources directly; step-by-step documentation provided.
 * **Databricks Integration**\
-  OAuth for Databricks is fully automatic; your tokens are handled behind the scenes for all catalog, SQL, and chat actions.
+  OAuth for [Databricks](../integrations/databricks.md) is fully automatic; your tokens are handled behind the scenes for all catalog, SQL, and chat actions.
 * **Organization Flexibility**\
   Invite members with any email connected to a GitHub account; set specific app limits (e.g., 5 apps per org for Community, 20 for Enterprise).
 * **Observability**\
-  Supports up to 1,000 tasks viewed in Observability; queries timeout after 5 minutes if not completed.
+  Supports up to 1,000 tasks in [Observability](../features/observability/).
 * **Data & Secrets**\
-  All secret names must be uppercase—system now enforces this for new and updated secrets.
+  [All secret](../portal/apps/secrets.md) names must be uppercase—system now enforces this for new and updated secrets.
 
 ### Bug Fixes
 
@@ -46,11 +46,11 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **Smart Resource Usage**\
-  Workspace owners can now set exact CPU and memory limits for each deployment. Minimum: 0.5 CPUs and 1GB RAM; Maximum: 16 CPUs and 128 GB RAM, configurable in settings. [Resource management guide](https://docs.spice.ai/resources)
+  Workspace owners can now set exact CPU and memory limits for each deployment. Minimum: 0.5 CPUs and 1GB RAM; Maximum: 16 CPUs and 128 GB RAM, configurable in settings.
 * **Code & Editor Improvements**\
   The code editor supports copyable YAML examples, inline rendering of markdown/code blocks, and syntax highlighting for spicepod schemas.
 * **Models & AI Upgrades**\
-  Claude opus-4 and Sonnet-4 models are now available to all users. The model selector interface shows the version number and model status.
+  [Claude opus-4 and Sonnet-4 ](https://spiceai.org/docs/components/models/anthropic)models are now available to all users. The model selector interface shows the version number and model status.
 * **Editor Experience**\
   Live YAML validation and safety features have been implemented—invalid configurations are flagged instantly before saving.
 
@@ -63,14 +63,12 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 ### Highlights
 
-* **Benchmark Dashboards**\
-  Added new charts for benchmarking—AI inference results and model scores are visible, and you can filter scores by code branch. [Score filtering](https://docs.spice.ai/benchmarks#branch-filtering)
 * **Resource Management**\
   Users can now set and adjust storage quotas up to 256 GB per workspace, and view usage directly from the app’s dashboard. Storage alerts notify you once you reach 90% of quota.
 * **AI Model Support**\
-  Added Grok-3 series and GPT-4.1 support for all users. Models are selectable in the Spicepod and chat interface as soon as they become available.
+  Added [Grok-3 series](https://spiceai.org/docs/components/models/xai) and [GPT-4.1](https://spiceai.org/docs/components/models/openai) support for all users. Models are selectable in the Spicepod and chat interface as soon as they become available.
 * **Activity Analytics**\
-  Integration with Google Analytics allows users to track app activity (sessions, completions, and installations) directly in the usage dashboard. UTM parameters for app installs are automatically recorded.
+  [Integration with Google Analytics](broken-reference) allows users to track app activity (sessions, completions, and installations) directly in the usage dashboard. UTM parameters for app installs are automatically recorded.
 * **User Interface Experience**\
   Simplified error messages and cleaned up UI for benchmark reports, progress views, and data display.
 
@@ -84,13 +82,13 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **System Performance**\
-  Concurrency limits raised to 100 parallel active queries per workspace. Workspace owners can now monitor live query queues. [Concurrency documentation](https://docs.spice.ai/query-limits)
+  Concurrency limits raised to 100 parallel active queries per workspace. Workspace owners can now monitor live query queues.&#x20;
 * **Custom Query Handling**\
-  Query arguments included in all GET requests are now passed transparently to downstream systems for more granular filtering and control.
+  [Query arguments](sql-reference/) included in all GET requests are now passed transparently to downstream systems for more granular filtering and control.
 * **AI Chat Logs & History**\
-  Improved loading and navigation for chat logs; message skeletons, progress bars, and artifact previews added. Message history now supports up to 500 prior messages. [Chat features](https://docs.spice.ai/chat)
+  Improved loading and navigation for chat logs; message skeletons, progress bars, and artifact previews added. Message history now supports up to 500 prior messages.
 * **Monitoring Enhancements**\
-  New app and model performance views allow users to see live status and recent activity for the apps and models they own.
+  [New app and model performance views](../portal/monitoring-and-request-logs.md) allow users to see live status and recent activity for the apps and models they own.
 
 ### Bug Fixes
 
@@ -101,54 +99,46 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 ### Highlights
 
-* **Benchmarking Insights**\
-  Benchmark results are now refreshed in real time; all SQL query results shown in dashboards reflect live system data. [Live dashboard](https://docs.spice.ai/dashboards)
 * **AI Chat & Playground**\
-  New session handling: users can revisit prior conversations and access a catalog explorer from Playground. Improvements to chat UI display make longer chat sessions and code completions easier to review. Markdown and progress rendering are now supported in chat.
+  New session handling: users can revisit prior conversations and access a catalog explorer from [Playground](../portal/playground/ai-chat.md). Improvements to chat UI display make longer chat sessions and code completions easier to review. Markdown and progress rendering are now supported in chat.
 * **Spicepod Editor**\
-  Choose from multiple AI models and tools directly in the editor sidebar. YAML safety checks alert users about indentation or formatting issues before saving. [Editor help](https://docs.spice.ai/editor)
+  Choose from multiple AI models and tools directly in the editor sidebar. YAML safety checks alert users about indentation or formatting issues before saving.
 
 ### Bug Fixes
 
 * Fixed chat session loading delays for conversations over 50 messages.
 * Dashboard graphs now update within 10 seconds of new data becoming available.
-* Resolved error messages when switching between model and tool selections in the spicepod editor.
+* Resolved error messages when switching between model and tool selections in the Spicepod editor.
 
 ## January 2025
 
 ### Highlights
 
-* **Benchmarking Dashboards & Data Platform**\
-  Users can now visualize TPCH and TPCDS benchmark results directly within the dashboard. Sample scripts are available to help load these datasets into managed databases. [See our benchmarking guide](https://docs.spice.ai/benchmarks)
 * **Spicepod Experience Improvements**\
-  When deploying an app, the system automatically selects the latest available patch version for your spicepod (e.g., 1.0.3 will be chosen if your app currently uses 1.0.2). The Spicepod editor now provides clearer navigation and indicates which version is being deployed. [Spicepod documentation](https://docs.spice.ai/spicepods)
+  When deploying an app, the system automatically selects the latest available patch version for your Spicepod (e.g., 1.0.3 will be chosen if your app currently uses 1.0.2). The Spicepod editor now provides clearer navigation and indicates which version is being deployed.
 * **Performance & User Interface**\
   Member management, dataset, and model lists in the user interface are now more responsive and display item status in real time.
 
 ### Bug Fixes
 
-* Benchmark cluster settings now correctly reflect requested resources.
-* Deployment flow issues resolved for navigating between editing and deploying a spicepod.
+* Deployment flow issues resolved for navigating between editing and deploying a Spicepod.
 * Improved error feedback when users enter invalid configuration values.
 
 ## December 2024
 
 ### Highlights
 
-* **Spicepod Configuration**\
-  Spicepods now display unique content identifiers (CIDs) for each version deployed, and retaining CID tracking improves history and rollback accuracy. The editor sidebar is more intuitive, supports flexible editing even if no repository is connected, and surfaces volume claim template types.
+* **Spicepod.yaml Configuration**\
+  [Spicepods](../portal/app-spicepod/spicepod-configuration.md) now display unique content identifiers (CIDs) for each version deployed, and retaining CID tracking improves history and rollback accuracy. The editor sidebar is more intuitive, supports flexible editing even if no repository is connected, and surfaces volume claim template types.
 * **Status & History**\
   Deployment status, history, and new monitoring tab allow users to see all current and prior deployments and their identifiers.
 * **User Interface Updates**\
   Improved empty state displays, clearer descriptions, and smarter menu layouts for public apps. Datasets, app code, and models now have more granular state visibility.
-* **Usage Management**\
-  Automated notifications inform users of approaching platform quotas. Basic free-tier automation now pauses apps after 30 days of inactivity.
 
 ### Bug Fixes
 
 * Fixed anonymous viewer errors for public app pages.
-* Improved dataset and component sync across linked pages.
-* Fixed edge case in flavor selection and visibility for newly created spicepods.
+* Fixed edge case in flavor selection and visibility for newly created Spicepods.
 
 ## November 2024
 
@@ -157,7 +147,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **Dashboard Expansion**\
   Added the Models Benchmarks dashboard, including reference scores for popular datasets. Refined UI for performance and alert dashboards, ensuring users see the correct score for each model and configuration on every run.
 * **Spicepod Management**\
-  You can now view the full list of your managed spicepods, with creation, update, and removal activity tracked in the app. Use the `/v1/activity` endpoint to see app activity logs by timestamp. [See Activity API docs](https://docs.spice.ai/activity-endpoint)
+  You can now view the full list of your managed spicepods, with creation, update, and removal activity tracked in the app. Use the `/v1/activity` endpoint to see app activity logs by timestamp.&#x20;
 * **User Experience Improvements**\
   Streamlined editor: new saving, reset and validation logic. Deleted apps automatically remove their attached spicepods. Default datasets and version fallback logic improved for all new apps.
 
@@ -172,7 +162,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **Copilot & Spicepod Integration**\
-  The Copilot onboarding flow is now unified and leverages shared spicepod instances for organizational consistency. Deployment status and logs are directly viewable in the Copilot UI.
+  [The Copilot onboarding flow](../integrations/github-copilot.md) is now unified and leverages shared spicepod instances for organizational consistency. Deployment status and logs are directly viewable in the Copilot UI.
 * **Editor Enhancements**\
   The code editor now highlights YAML formatting errors and enables editing even when a repository isn’t connected. Sample dataset previews and component mapping have been improved. Side panel includes quick access to all relevant settings.
 * **Model & Activity Tracking**\
@@ -189,11 +179,11 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **Operator Scale Set**\
-  Spicepods now support explicit scale configuration: users can specify up to 50 concurrent instances per spicepod. [Scaling reference](https://docs.spice.ai/scaling)
+  Spicepods now support explicit scale configuration: users can specify up to 50 concurrent instances per spicepod.
 * **User Flows**\
   All setup flows are now handled from a streamlined single location, with improved deployment selection and history.
 * **Observability Dashboards**\
-  Model and dataset metrics are now presented with sortable columns and trendline charts for the last 60 days. Task history and dataset refresh logic have been made transparent. [Dashboards](https://docs.spice.ai/dashboards)
+  [Model and dataset metrics](https://spiceai.org/docs/features/observability) are now presented with sortable columns and trendline charts for the last 60 days. Task history and dataset refresh logic have been made transparent.
 
 ### Bug Fixes
 
