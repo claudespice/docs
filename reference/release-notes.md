@@ -84,7 +84,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **System Performance**\
   Concurrency limits raised to 100 parallel active queries per workspace. Workspace owners can now monitor live query queues.&#x20;
 * **Custom Query Handling**\
-  [Query arguments](sql-reference/) included in all GET requests are now passed transparently to downstream systems for more granular filtering and control.
+  [Query arguments](sql-reference.md) included in all GET requests are now passed transparently to downstream systems for more granular filtering and control.
 * **AI Chat Logs & History**\
   Improved loading and navigation for chat logs; message skeletons, progress bars, and artifact previews added. Message history now supports up to 500 prior messages.
 * **Monitoring Enhancements**\

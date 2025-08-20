@@ -1,9 +1,0 @@
-# SQL Commands
-
-| Command Name            | Description                                                                                                                                                                                                                            |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [SELECT](select.md)     | The SELECT statement is used to select data from a database. Spice supports querying using standard SELECT statements.                                                                                                                 |
-| [USE](use.md)           | The `USE` command enables you to specify the context to be used for the current query session.                                                                                                                                         |
-| [SHOW](show.md)         | The SHOW command can query for the existence of SQL tables with certain pattern matching.                                                                                                                                              |
-| [DESCRIBE](describe.md) | The DESCRIBE TABLE command is used to provide high-level information regarding the overall column properties of an existing dataset.                                                                                                   |
-| [WITH](with.md)         | The `WITH` clause defines a common table expression (CTE), which is a temporary named result set. The definition of a CTE includes its name, an optional list of column names, and a query expression (that is, a `SELECT` statement). |
