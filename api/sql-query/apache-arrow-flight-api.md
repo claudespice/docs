@@ -1,41 +1,41 @@
 ---
-description: Query web3 data with SQL via the Apache Arrow Flight API
+description: SQL Query Apache Arrow Flight API
 ---
 
 # Apache Arrow Flight API
 
-SQL query results are now available as [Apache Arrow](https://arrow.apache.org) data frames via a high-performance [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) endpoint.
+SQL query results can be served via a high-performance [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) endpoint. Arrow Flight uses the [gRPC](https://grpc.io) protocol for efficient data transfer.
 
-Arrow Flight is a data protocol built on the high-performance, open-source [gRPC](https://grpc.io) protocol.
+This setup enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README.md), [Rust](https://docs.rs/arrow-flight/latest/arrow_flight/), [Java](https://arrow.apache.org/docs/java/index.html), and [C#](https://github.com/apache/arrow/blob/main/csharp/README.md) and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
 
-This enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README.md), and [Rust](https://docs.rs/arrow-flight/latest/arrow_flight/), and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
+### SDKs
 
-We recommend using our SDKs to connect and query this endpoint. SDKs are available for [Python](../../sdks/python-sdk/), [Node.js](../../sdks/node.js-sdk/), and [Go](../../sdks/go.md) with more coming soon. In Python, the query results from the SDK can be easily converted to Pandas or NumPy format.
+It's recommended to use the Spice.ai SDKs to connect and query the Arrow Flight endpoint. SDKs are available for [Python](../../sdks/python-sdk/), [Node.js](../../sdks/node.js-sdk/), [Go](../../sdks/go.md), [Rust](../../sdks/rust-sdk/), [Java](../../sdks/java-sdk.md), and [Dotnet](../../sdks/dotnet-sdk.md).
+
+In Python, query results can be easily converted to Pandas or NumPy formats.
 
 You may also use Apache's `pyarrow` library directly.
 
 {% hint style="info" %}
-**Note on Apple M1 Macs** - [How do I know if I have an M1?](https://support.apple.com/en-us/HT211814)
+**Note on Apple Silicon Macs** - [How do I know if I have Apple Silicon?](https://support.apple.com/en-us/HT211814)
 
 `The spicepy/pyarrow` installation requires [miniforge](https://github.com/conda-forge/miniforge).
 
 See the [Python SDK page](../../sdks/python-sdk/#m1-macs) for installation steps.
 {% endhint %}
 
-#### Connecting to the endpoint
+### Connecting to the Endpoint
 
-* Use the gRPC + TLS URL: `grpc+tls://flight.spiceai.io`
-* For Firecache use the gRPC + TLS URL: `grpc+tls://firecache.spiceai.io`
-  * For documentation on the Spice Firecache see [Broken link](broken-reference "mention")
-* Use basic authentication
+* Endpoint URL: `grpc+tls://flight.spiceai.io`
+* Basic Authentication:
   * Username can be set to an empty string
   * Password should be set to the API key of your app
 
 #### Requirements
 
-* [Table](https://github.com/spicehq/cloud-docs/blob/trunk/api/sql-query-api/broken-reference/README.md) names must be fully-qualified. For example `eth.blocks`
+* [Table](https://github.com/spicehq/cloud-docs/blob/trunk/api/sql-query-api/broken-reference/README.md) names must be fully-qualified. For example `spiceai.quickstart`
 
-#### Samples
+### Samples
 
 Find code samples in Python in [Arrow Flight Samples](broken-reference).
 
