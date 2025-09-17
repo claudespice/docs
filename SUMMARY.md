@@ -68,7 +68,7 @@
 * [SQL Query API](api/sql-query/README.md)
   * [HTTP API](api/sql-query/http-api.md)
   * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
-* [Search API](api/search-api.md)
+* [Search API](api/search.md)
 * [LLM API](api/openai-api.md)
 * [Health API](api/health.md)
 
