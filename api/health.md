@@ -1,11 +1,13 @@
 ---
 description: Health HTTP API documentation
-icon: brackets-curly
+icon: heart-pulse
 ---
 
 # Health API
 
 The health API can be called to confirm the overall availability of the API service.
+
+
 
 ## Get API Health
 
@@ -20,3 +22,4 @@ ok
 ```
 {% endtab %}
 {% endtabs %}
+

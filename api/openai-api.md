@@ -1,8 +1,8 @@
 ---
-icon: brackets-curly
+icon: brain-circuit
 ---
 
-# OpenAI API
+# LLM API
 
 ## Chat Completions
 
@@ -12,96 +12,14 @@ The App requires a configured and deployed model to respond to chat completion r
 
 For more information about using chat completions, refer to the [OpenAI documentation](https://platform.openai.com/docs/api-reference/chat).
 
-### Chat Completion Examples
+{% openapi-operation spec="spiceai-platform-api" path="/v1/chat/completions" method="post" %}
+[OpenAPI spiceai-platform-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c89c6bd89b0927536006e57e1e8b60a228d4516831a94430f33c5b3c0bf155f4.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250917%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250917T031031Z&X-Amz-Expires=172800&X-Amz-Signature=51a8b47cc90feeb914a0b9e183ade83a0526f9c58f4a1ab1ff0b1029f50e513b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
-{% tabs %}
-{% tab title="curl" %}
-{% code overflow="wrap" lineNumbers="true" %}
-```bash
-curl https://data.spiceai.io/v1/chat/completions -H "Content-Type: application/json" -d '{"model": "my_model","messages": [{"role": "system","content": "I am just like any other OpenAI server!"},{"role": "user","content": "Thats cool!"}]}' -H "Authorization: Bearer {APP_TOKEN}"
-```
-{% endcode %}
+{% openapi-operation spec="spiceai-platform-api" path="/v1/nsql" method="post" %}
+[OpenAPI spiceai-platform-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c89c6bd89b0927536006e57e1e8b60a228d4516831a94430f33c5b3c0bf155f4.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250917%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250917T031031Z&X-Amz-Expires=172800&X-Amz-Signature=51a8b47cc90feeb914a0b9e183ade83a0526f9c58f4a1ab1ff0b1029f50e513b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
 
-Example completion response:
-
-{% code overflow="wrap" lineNumbers="true" %}
-```json
-{
-  "id": "chatcmpl",
-  "choices": [
-    {
-      "index": 0,
-      "message": {
-        "content": "Thank you! Is there anything specific you'd like to know or talk about?",
-        "refusal": null,
-        "tool_calls": null,
-        "role": "assistant",
-        "function_call": null
-      },
-      "finish_reason": "stop",
-      "logprobs": null
-    }
-  ],
-  "created": 1734572480,
-  "model": "my_model",
-  "service_tier": null,
-  "system_fingerprint": null,
-  "object": "chat.completion",
-  "usage": {
-    "prompt_tokens": 25,
-    "completion_tokens": 16,
-    "total_tokens": 41,
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 0
-    },
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": 0,
-      "audio_tokens": 0,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": 0
-    }
-  }
-}
-```
-{% endcode %}
-{% endtab %}
-
-{% tab title="Python" %}
-This example requires the `openai` Python package.
-
-```
-pip install openai
-```
-
-Create and run the example Python script to run a completion:
-
-{% code overflow="wrap" lineNumbers="true" %}
-```python
-from openai import OpenAI
-
-client = OpenAI(api_key="31393036|b0dd04f6892e4a38b3e829b0cea973b1", base_url="https://data.spiceai.io/v1")
-
-response = client.chat.completions.create(
-    model="my_model",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "What is the capital of France?"}
-    ],
-)
-
-print(response.choices[0].message.content)
-```
-{% endcode %}
-
-Running this example outputs a model response:
-
-{% code lineNumbers="true" %}
-```bash
-╰─± python test.py
-The capital of France is Paris.
-```
-{% endcode %}
-{% endtab %}
-{% endtabs %}
-
+{% openapi-operation spec="spiceai-platform-api" path="/v1/models" method="get" %}
+[OpenAPI spiceai-platform-api](https://gitbook-x-prod-openapi.4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/raw/c89c6bd89b0927536006e57e1e8b60a228d4516831a94430f33c5b3c0bf155f4.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20250917%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250917T031031Z&X-Amz-Expires=172800&X-Amz-Signature=51a8b47cc90feeb914a0b9e183ade83a0526f9c58f4a1ab1ff0b1029f50e513b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+{% endopenapi-operation %}
