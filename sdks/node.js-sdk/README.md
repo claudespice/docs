@@ -17,7 +17,7 @@ It uses [Apache Apache Flight](https://arrow.apache.org/docs/format/Flight.html)
 {% tabs %}
 {% tab title="npm" %}
 ```sh
-npm install @spiceai/spice --save
+npm install @spiceai/spice@latest --save
 ```
 {% endtab %}
 
@@ -38,8 +38,8 @@ You can then submit queries using the `query` function.
 import { SpiceClient } from "@spiceai/spice";
 
 const spiceClient = new SpiceClient("API_KEY");
-const table = await spiceClient.query(
-  'SELECT number, "timestamp", gas_used FROM eth.recent_blocks LIMIT 10'
+const table = await spiceClient.sql(
+  'SHOW TABLES;'
 );
 console.table(table.toArray());
 ```
@@ -48,6 +48,31 @@ console.table(table.toArray());
 
 * `apiKey` (string, required): API key to authenticate with the endpoint.
 * `url` (string, optional): URL of the endpoint to use (default: flight.spiceai.io:443)
+
+#### **`sqlJson(query: string)` - Execute SQL queries with JSON results**
+
+The `sqlJson()` method executes SQL queries and returns results in a JSON format with schema information.
+
+```js
+const result = await spiceClient.sqlJson('SELECT name, age FROM users LIMIT 5');
+
+console.log(`Returned ${result.row_count} rows`);
+console.log('Schema:', result.schema);
+console.log('Data:', result.data);
+console.log(`Query took ${result.execution_time_ms}ms`);
+
+// Access individual rows
+result.data.forEach((row) => {
+  console.log(`${row.name} is ${row.age} years old`);
+});
+```
+
+The response includes:
+
+* `row_count`: Number of rows returned
+* `schema`: Schema information with field names and types
+* `data`: Array of row objects
+* `execution_time_ms`: Query execution time in milliseconds
 
 ### Usage with local Spice runtime
 
@@ -62,11 +87,11 @@ const main = async () => {
 
   // or use custom connection params:
   // const spiceClient = new SpiceClient({
-  //   http_url: 'http://my_spice_http_host',
-  //   flight_url: 'my_spice_flight_host',
+  //   httpUrl: 'http://my_spice_http_host',
+  //   flightUrl: 'my_spice_flight_host',
   // });
 
-  const table = await spiceClient.query(
+  const table = await spiceClient.sql(
     'SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;'
   );
   console.table(table.toArray());
