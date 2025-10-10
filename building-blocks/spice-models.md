@@ -13,7 +13,7 @@ Spice Models enable the training and use of ML models natively on the Spice plat
 
 The platform currently supports time-series forecasting models, with other categories of models planned.
 
-Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](broken-reference), [user managed datasets](../portal/external-data-sources.md), and [custom datasets and views](../portal/datasets-and-views.md). Additionally, [Spice Firecache](spice-firecache.md) can be leveraged to train and infer up to 10x faster.
+Hosted models have first-class access to co-located data for training and inferencing including: [Spice managed datasets](broken-reference), [user managed datasets](../portal/external-data-sources.md), and [custom datasets and views](../portal/datasets-and-views.md). Additionally, [Spice Firecache](../features/federated-sql-query.md) can be leveraged to train and infer up to 10x faster.
 
 ### Defining a Model
 

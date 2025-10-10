@@ -13,7 +13,7 @@
 
 ## Features
 
-* [Federated SQL Query](building-blocks/spice-firecache.md)
+* [Federated SQL Query](features/federated-sql-query.md)
 * [Data Acceleration](features/data-acceleration/README.md)
   * [In-Memory Arrow Data Accelerator](features/data-acceleration/in-memory-arrow-data-accelerator.md)
   * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
