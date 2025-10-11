@@ -5,8 +5,9 @@ name: docs
 models:
   - from: openai:gpt-4.1
     name: cloud_docs_writer
+    description: Cloud documentation writer that adapts open source documentation to Spice Cloud context, creates new cloud-specific documentation, and maintains consistency across all cloud documentation
     params:
-      openai_api_key: ${secrets:SPICE_OPENAI_API_KEY}
+      openai_api_key: ${secrets:OPENAI_API_KEY}
       tools: auto
       openai_usage_tier: tier5
       responses_api: enabled
@@ -87,12 +88,55 @@ models:
 
         If any requirement conflicts, prioritize factual accuracy and security.
 
+  - from: openai:gpt-4.1
+    name: cloud_release_notes
+    description: Generate monthly release notes for Spice Cloud documentation, focusing on user-impacting features, improvements, and bug fixes
+    params:
+      openai_api_key: ${secrets:OPENAI_API_KEY}
+      tools: auto, document_similarity
+      openai_usage_tier: tier5
+      responses_api: enabled
+      system_prompt: |
+        You are an AI release note generator for public-facing documentation.
+
+        Mission
+        - Generate user-focused monthly release notes for GitBook documentation
+        - Filter out internal technical details and focus on customer-impacting changes
+        - Provide specific details with proper citations and links
+
+        Content Filters (EXCLUDE these from output)
+        - Internal systems: InfluxDB, Vercel, Kubernetes, Runners, Redpanda, Microsoft Teams, ETL processes, Cloud monorepo, Nginx, proxies, CNAMEs, PVCs
+        - Frontend frameworks: Next.js, TailwindCSS, SSR
+        - Internal tests or testing frameworks
+        - Admin features, internal network policies, internal security
+        - Internal tools: Timmy, SpiceQA
+
+        Generate monthly release notes in the following format:
+
+        # [Month] [Year]
+
+        ## Highlights
+        - **[Theme or Area]**: Brief, user-focused description of new features or enhancements. Be specific with details (e.g., exact limits, performance improvements).
+        - **[Theme or Area]**: Another important feature or update explanation.
+        - (Add as many themed highlights as needed, grouping related updates for readability)
+
+        ## Bug Fixes
+        - Clear, concise description of an important bug fix and its user impact
+        - Another fix or improvement relevant to customers
+        - (Continue as needed for all user-impacting fixes)
+
+        Guidelines
+        - Always provide references, citations, and links (documentation, blogs, GitHub)
+        - Be specific with numbers, limits, and technical details
+        - Focus on user benefits and practical impact
+        - Use active voice and clear language
+
 datasets:
   - from: spice.ai/spiceai/docs/datasets/spice.spiceai.docs
     name: spiceai_docs
     description: Spice.ai Open Source Documentation - comprehensive technical documentation for the self-hosted Spice.ai runtime, data connectors, SQL reference, and core concepts
     params:
-      spiceai_api_key: ${secrets:SPICE_API_KEY}
+      spiceai_api_key: ${secrets:SPICEAI_API_KEY}
     metadata:
       instructions: |
         Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
@@ -131,9 +175,9 @@ datasets:
       keywords: Spice Cloud, managed platform, SaaS, enterprise, portal, cloud datasets, cloud models, organizations, monitoring, public apps, API
       reference_base_url: https://docs.spice.ai/<docs_path>
     params:
-      github_client_id: ${secrets:GITHUB_CLIENT_ID}
-      github_private_key: ${secrets:GITHUB_PRIVATE_KEY}
-      github_installation_id: ${secrets:GITHUB_INSTALLATION_ID}
+      github_client_id: ${secrets:GITHUB_SPICEHQ_CLIENT_ID}
+      github_private_key: ${secrets:GITHUB_SPICEHQ_PRIVATE_KEY}
+      github_installation_id: ${secrets:GITHUB_SPICEHQ_INSTALLATION_ID}
       include: '**/*.md'
     time_column: updated_at
     time_format: timestamp
@@ -162,7 +206,7 @@ datasets:
     name: spiceai_cookbook
     description: Spice.ai Cookbook - real-world recipes, practical examples, and step-by-step guides demonstrating common use cases, integrations, data acceleration patterns, and AI/ML workflows
     params:
-      spiceai_api_key: ${secrets:SPICE_API_KEY}
+      spiceai_api_key: ${secrets:SPICEAI_API_KEY}
     metadata:
       instructions: |
         Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
@@ -185,8 +229,30 @@ datasets:
             row_id:
               - path
 
+  - from: github:github.com/spicehq/docs/pulls
+    name: spicehq_docs.pulls
+    description: Spice Cloud documentation pull requests - track changes, updates, and contributions to the docs repository
+    params:
+      github_client_id: ${secrets:GITHUB_SPICEHQ_CLIENT_ID}
+      github_private_key: ${secrets:GITHUB_SPICEHQ_PRIVATE_KEY}
+      github_installation_id: ${secrets:GITHUB_SPICEHQ_INSTALLATION_ID}
+      github_include_comments: all
+    metadata:
+      instructions: |
+        This dataset contains pull request data for the Spice Cloud documentation repository.
+        Use this to track documentation changes, review history, and understand recent updates.
+        Useful for generating release notes and understanding what documentation has been added or modified.
+      keywords: pull requests, PRs, documentation changes, contributions, release notes, changelog
+    time_column: updated_at
+    time_format: timestamp
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+
 embeddings:
   - from: openai
     name: openai_embeddings
     params:
-      openai_api_key: ${secrets:SPICE_OPENAI_API_KEY}
+      openai_api_key: ${secrets:OPENAI_API_KEY}
