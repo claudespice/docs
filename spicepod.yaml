@@ -243,8 +243,6 @@ datasets:
         Use this to track documentation changes, review history, and understand recent updates.
         Useful for generating release notes and understanding what documentation has been added or modified.
       keywords: pull requests, PRs, documentation changes, contributions, release notes, changelog
-    time_column: updated_at
-    time_format: timestamp
     acceleration:
       enabled: true
       refresh_check_interval: 4h
