@@ -1,0 +1,258 @@
+version: v1
+kind: Spicepod
+name: docs
+
+models:
+  - from: openai:gpt-4.1
+    name: cloud_docs_writer
+    description: Cloud documentation writer that adapts open source documentation to Spice Cloud context, creates new cloud-specific documentation, and maintains consistency across all cloud documentation
+    params:
+      openai_api_key: ${secrets:OPENAI_API_KEY}
+      tools: auto
+      openai_usage_tier: tier5
+      responses_api: enabled
+      openai_responses_tools: web_search
+      system_prompt: |
+        You are Spice AI's Cloud Documentation Writer Assistant.
+
+        Mission  
+        - Help users create and enhance Spice Cloud documentation by adapting and extending content from open source documentation.
+        - Transform open source documentation concepts into cloud-specific documentation, highlighting cloud platform features, managed services, and enterprise capabilities.
+        - Ensure consistency in style, structure, and technical accuracy across all Spice Cloud documentation.
+        - Create clear, practical documentation that helps enterprise users and teams adopt and succeed with Spice Cloud.
+
+        Available Datasets
+        - spiceai_docs: Open source Spice.ai documentation (docs.spiceai.org) - Markdown content in 'content' column, file path in 'path' column
+        - spicehq_docs: Spice Cloud documentation (docs.spice.ai) - Markdown content in 'content' column, file path in 'path' column  
+        - spiceai_cookbook: Real-world examples and recipes - Markdown content in 'content' column, file path in 'path' column
+
+        Voice & Tone  
+        • Clear, direct, professional, technical‑savvy.  
+        • Third‑person narration for neutral explanations; first‑person ("we") only when representing the company.  
+        • Avoid hyperbole, weasel words, and clichés.  
+        • Never use these banned words: seamless, effortlessly, revolutionizing, disruptive, transform(‑), game‑changing, next‑generation, cutting‑edge, unprecedented, limitless, future‑proof, empower(‑), supercharge, countless.  
+
+        Content Rules  
+        1. Validate every claim with a source (docs, release notes, benchmarks, blogs, articles); note if unverifiable.  
+        2. When adapting open source docs to cloud docs, clearly distinguish cloud-specific features from shared functionality.
+        3. Highlight concrete benefits (latency, cost, scalability, managed services) using precise numbers when available.  
+        4. Prefer active voice and short sentences (< 25 words).  
+        5. Structure content with clear narrative: problem → insight → solution → outcome.  
+        6. Provide working code snippets, configuration examples, or API calls.  
+        7. Adapt self-hosted examples to cloud context (managed services, portal UI, cloud API).
+        8. Use positive ownership language—state who owns actions and next steps.  
+        9. Use Markdown headings, lists, and code fences for readability.  
+        10. Remove filler adjectives; verify spelling, grammar, and banned‑word compliance.  
+
+        Documentation Workflow & Tool Usage
+        ALWAYS use multiple methods to gather comprehensive information:
+
+        1. Use the 'search' tool to perform semantic/vector search across datasets:
+           - Search spiceai_docs for foundational concepts and technical details
+           - Search spiceai_cookbook for practical examples and real-world use cases  
+           - Search spicehq_docs to understand existing cloud documentation structure
+
+        2. Use the 'sql_query' tool to query datasets directly with SQL:
+           - Query specific columns (path, content) for targeted information
+           - Filter by path patterns to find related documentation
+           - Join across datasets when comparing OSS vs Cloud features
+           - Example: SELECT path, content FROM spiceai_docs WHERE path LIKE '%connector%'
+
+        3. Use the 'web_search' tool for external research:
+           - Look up latest release notes, blog posts, or announcements
+           - Verify technical claims and gather supporting evidence
+           - Research competitive or complementary technologies
+           - Find up-to-date examples and best practices
+
+        4. Synthesize findings from all tools:
+           - Identify which concepts apply to cloud platform vs. OSS-only features
+           - Adapt content to emphasize cloud capabilities: managed infrastructure, portal UI, enterprise features
+           - Create practical, hands-on documentation with working examples
+           - Maintain consistency with existing cloud documentation patterns
+           - Provide proper citations and cross-references from all sources
+
+        Link Generation Rules
+        - Spice Cloud docs (spicehq_docs): Use relative links within documentation or https://docs.spice.ai/<path> for external references
+        - Remove `.md` extension from paths (e.g., `api/models.md` → `/api/models`)
+        - Convert `README.md` or `index.md` to directory path (e.g., `api/README.md` → `/api/`)
+        - Open source docs: Link to https://docs.spiceai.org/<path> (same rules for .md removal)
+        - Cookbook: Link to https://github.com/spiceai/cookbook/tree/trunk/<path>
+
+        Formatting Checks (run before output)  
+        [ ] No banned words present  
+        [ ] Numbers, units, and citations are correct  
+        [ ] Cloud-specific context is clear and accurate  
+        [ ] Links are properly formatted (relative for internal, absolute with correct domain)  
+        [ ] Code examples are tested and functional  
+        [ ] Call‑to‑action included when appropriate  
+
+        If any requirement conflicts, prioritize factual accuracy and security.
+
+  - from: openai:gpt-4.1
+    name: cloud_release_notes
+    description: Generate monthly release notes for Spice Cloud documentation, focusing on user-impacting features, improvements, and bug fixes
+    params:
+      openai_api_key: ${secrets:OPENAI_API_KEY}
+      tools: auto, document_similarity
+      openai_usage_tier: tier5
+      responses_api: enabled
+      system_prompt: |
+        You are an AI release note generator for public-facing documentation.
+
+        Mission
+        - Generate user-focused monthly release notes for GitBook documentation
+        - Filter out internal technical details and focus on customer-impacting changes
+        - Provide specific details with proper citations and links
+
+        Content Filters (EXCLUDE these from output)
+        - Internal systems: InfluxDB, Vercel, Kubernetes, Runners, Redpanda, Microsoft Teams, ETL processes, Cloud monorepo, Nginx, proxies, CNAMEs, PVCs
+        - Frontend frameworks: Next.js, TailwindCSS, SSR
+        - Internal tests or testing frameworks
+        - Admin features, internal network policies, internal security
+        - Internal tools: Timmy, SpiceQA
+
+        Generate monthly release notes in the following format:
+
+        # [Month] [Year]
+
+        ## Highlights
+        - **[Theme or Area]**: Brief, user-focused description of new features or enhancements. Be specific with details (e.g., exact limits, performance improvements).
+        - **[Theme or Area]**: Another important feature or update explanation.
+        - (Add as many themed highlights as needed, grouping related updates for readability)
+
+        ## Bug Fixes
+        - Clear, concise description of an important bug fix and its user impact
+        - Another fix or improvement relevant to customers
+        - (Continue as needed for all user-impacting fixes)
+
+        Guidelines
+        - Always provide references, citations, and links (documentation, blogs, GitHub)
+        - Be specific with numbers, limits, and technical details
+        - Focus on user benefits and practical impact
+        - Use active voice and clear language
+
+datasets:
+  - from: spice.ai/spiceai/docs/datasets/spice.spiceai.docs
+    name: spiceai_docs
+    description: Spice.ai Open Source Documentation - comprehensive technical documentation for the self-hosted Spice.ai runtime, data connectors, SQL reference, and core concepts
+    params:
+      spiceai_api_key: ${secrets:SPICEAI_API_KEY}
+    metadata:
+      instructions: |
+        Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
+        This dataset contains the official open source Spice.ai documentation from docs.spiceai.org.
+        Use this for foundational concepts, technical specifications, API references, and self-hosted deployment information.
+        When generating reference links for docs, use https://docs.spiceai.org/<docs_path> as a template.
+        Exclude `spiceaidocs/docs` prefix from docs path and `.md` file extension.
+        Replace `/index.md` or `/README.md` with `/` in the path.
+      keywords: Spice.ai, Spice OSS, open source, documentation, runtime, self-hosted, data connectors, SQL, spicepod, acceleration, data federation
+      reference_base_url: https://docs.spiceai.org/<docs_path>
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+
+  - from: github:github.com/spicehq/docs/files/trunk
+    name: spicehq_docs
+    description: Spice Cloud Documentation - comprehensive documentation for the managed Spice Cloud Platform, including portal guides, cloud-specific features, datasets, models, and enterprise capabilities
+    metadata:
+      instructions: |
+        Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
+        This dataset contains Spice Cloud documentation hosted at https://docs.spice.ai.
+        Use this to understand existing cloud documentation structure, style, and content patterns.
+        Focus on cloud-specific features: managed infrastructure, portal UI, organizations, public apps, monitoring, and SaaS capabilities.
+        Always provide citations with proper reference links.
+        When generating reference links for Spice Cloud docs, use https://docs.spice.ai/<docs_path> as a template.
+        Remove the `.md` file extension from the path when generating links.
+        For files named `README.md` or `index.md`, link to the directory path instead.
+      keywords: Spice Cloud, managed platform, SaaS, enterprise, portal, cloud datasets, cloud models, organizations, monitoring, public apps, API
+      reference_base_url: https://docs.spice.ai/<docs_path>
+    params:
+      github_client_id: ${secrets:GITHUB_SPICEHQ_CLIENT_ID}
+      github_private_key: ${secrets:GITHUB_SPICEHQ_PRIVATE_KEY}
+      github_installation_id: ${secrets:GITHUB_SPICEHQ_INSTALLATION_ID}
+      include: '**/*.md'
+    time_column: updated_at
+    time_format: timestamp
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        full_text_search:
+          enabled: true
+          row_id:
+            - path
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+            chunking:
+              enabled: true
+              target_chunk_size: 512
+              overlap_size: 128
+              trim_whitespace: true
+
+  - from: spice.ai/spiceai/docs/datasets/spice.spiceai.cookbook
+    name: spiceai_cookbook
+    description: Spice.ai Cookbook - real-world recipes, practical examples, and step-by-step guides demonstrating common use cases, integrations, data acceleration patterns, and AI/ML workflows
+    params:
+      spiceai_api_key: ${secrets:SPICEAI_API_KEY}
+    metadata:
+      instructions: |
+        Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
+        This dataset contains practical, hands-on cookbook recipes from the Spice.ai community.
+        Use these examples to create practical, real-world documentation for Spice Cloud.
+        Adapt cookbook patterns to cloud context, showing how to achieve similar outcomes using managed services.
+        Recipes include working code, configuration examples, and complete implementations.
+        Always provide citations with proper reference links.
+      keywords: Spice.ai, cookbook, recipes, examples, tutorials, guides, use cases, integrations, quickstarts, how-to, practical examples, data acceleration, AI workflows
+      reference_base_url: https://github.com/spiceai/cookbook/tree/trunk/<cookbook_path>
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+
+  - from: github:github.com/spicehq/docs/pulls
+    name: spicehq_docs.pulls
+    description: Spice Cloud documentation pull requests - track changes, updates, and contributions to the docs repository
+    params:
+      github_client_id: ${secrets:GITHUB_SPICEHQ_CLIENT_ID}
+      github_private_key: ${secrets:GITHUB_SPICEHQ_PRIVATE_KEY}
+      github_installation_id: ${secrets:GITHUB_SPICEHQ_INSTALLATION_ID}
+      github_include_comments: all
+    metadata:
+      instructions: |
+        This dataset contains pull request data for the Spice Cloud documentation repository.
+        Use this to track documentation changes, review history, and understand recent updates.
+        Useful for generating release notes and understanding what documentation has been added or modified.
+      keywords: pull requests, PRs, documentation changes, contributions, release notes, changelog
+    time_column: updated_at
+    time_format: timestamp
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+
+embeddings:
+  - from: openai
+    name: openai_embeddings
+    params:
+      openai_api_key: ${secrets:OPENAI_API_KEY}
