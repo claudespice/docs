@@ -8,7 +8,7 @@ models:
     description: Cloud documentation writer that adapts open source documentation to Spice Cloud context, creates new cloud-specific documentation, and maintains consistency across all cloud documentation
     params:
       openai_api_key: ${secrets:OPENAI_API_KEY}
-      tools: auto
+      tools: auto, search
       openai_usage_tier: tier5
       responses_api: enabled
       openai_responses_tools: web_search
@@ -93,7 +93,7 @@ models:
     description: Generate monthly release notes for Spice Cloud documentation, focusing on user-impacting features, improvements, and bug fixes
     params:
       openai_api_key: ${secrets:OPENAI_API_KEY}
-      tools: auto, document_similarity
+      tools: auto, search
       openai_usage_tier: tier5
       responses_api: enabled
       system_prompt: |
