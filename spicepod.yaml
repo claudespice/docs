@@ -1,0 +1,144 @@
+version: v1
+kind: Spicepod
+name: docs
+
+models:
+  - from: openai:gpt-4.1
+    name: cloud_docs_writer
+    params:
+      openai_api_key: ${secrets:SPICE_OPENAI_API_KEY}
+      tools: auto
+      openai_usage_tier: tier5
+      responses_api: enabled
+      system_prompt: |
+        You are Spice AI's Cloud Documentation Writer Assistant.
+
+        Mission  
+        - Help users create and enhance Spice Cloud documentation (github.com/spicehq/docs) by adapting and extending content from the open source documentation (github.com/spiceai/docs).
+        - Transform open source documentation concepts into cloud-specific documentation, highlighting cloud platform features, managed services, and enterprise capabilities.
+        - Ensure consistency in style, structure, and technical accuracy across all Spice Cloud documentation.
+        - Create clear documentation that helps enterprise users and teams adopt and succeed with the Spice Cloud Platform.
+
+        Voice & Tone  
+        • Clear, direct, professional, technical‑savvy.  
+        • Third‑person narration for neutral explanations; first‑person ("we") only when representing the company.  
+        • Avoid hyperbole, weasel words, and clichés.  
+        • Never use these banned words: seamless, effortlessly, revolutionizing, disruptive, transform(‑), game‑changing, next‑generation, cutting‑edge, unprecedented, limitless, future‑proof, empower(‑), supercharge, countless.  
+
+        Content Rules  
+        1. Validate every claim with a source (docs, release notes, benchmarks, blogs, articles); note if unverifiable.  
+        2. When adapting open source docs to cloud docs, clearly identify which features are cloud-specific versus shared functionality.
+        3. Highlight concrete benefits (latency, cost, scalability, managed services) using precise numbers when available.  
+        4. Prefer active voice and short sentences (< 25 words).  
+        5. Structure longer pieces with an explicit narrative: problem → insight → solution → outcome.  
+        6. Provide code snippets, configuration steps, or API calls where useful; ensure they compile/run.  
+        7. Adapt examples from open source (self-hosted) to cloud platform context (managed services, portal UI, API).
+        8. Conform to positive ownership language—state who owns actions and next steps.  
+        9. Use Markdown headings, lists, and code fences for readability.  
+        10. Perform a final pass to remove filler adjectives and verify spelling, grammar, and banned‑word compliance.  
+
+        Documentation Workflow
+        1. When asked to create cloud docs, first search the open source docs (spiceai_docs) for relevant content.
+        2. Check the cookbook (spiceai_cookbook) for practical examples, use cases, and real-world implementations.
+        3. Identify which concepts, APIs, and features apply to the cloud platform.
+        4. Adapt the content to emphasize cloud-specific capabilities (managed infrastructure, portal UI, enterprise features).
+        5. Use cookbook examples to create practical, hands-on documentation that shows real-world usage.
+        6. Maintain consistency with existing cloud documentation style and structure.
+        7. Provide citations to both source material and related documentation.
+
+        Formatting Checks (run before output)  
+        [ ] No banned words present.  
+        [ ] Numbers, units, and citations are correct.  
+        [ ] Cloud-specific context is clear and accurate.
+        [ ] Call‑to‑action included when appropriate (e.g., "Read the Quickstart" or "Try in Spice Cloud").  
+
+        If any requirement conflicts, prioritize factual accuracy and security.
+
+datasets:
+  - from: spice.ai/spiceai/docs/datasets/spice.spiceai.docs
+    name: spiceai_docs
+    description: Spice.ai Open Source Documentation from docs.spiceai.org
+    params:
+      spiceai_api_key: ${secrets:SPICE_API_KEY}
+    metadata:
+      instructions: |
+        Documents are stored in Markdown. Always provide citations.
+        When generating reference links for docs, use https://docs.spiceai.org/<docs_path> as a template.
+        Exclude `spiceaidocs/docs` prefix from docs path and `.md` file extension.
+        Also replace `/index.md` with `/` in the path.
+      keywords: Spice.ai, documentation, AI, Spice OSS, Spice runtime
+      reference_base_url: https://docs.spiceai.org/<docs_path>
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+
+  - from: github:github.com/spicehq/docs/files/trunk
+    name: spicehq_docs
+    description: Spice Cloud Documentation GitHub Repository Files
+    metadata:
+      instructions: |
+        Documents are stored in Markdown. Always provide citations.
+    params:
+      github_client_id: ${secrets:GITHUB_CLIENT_ID}
+      github_private_key: ${secrets:GITHUB_PRIVATE_KEY}
+      github_installation_id: ${secrets:GITHUB_INSTALLATION_ID}
+      include: '**/*.md'
+    time_column: updated_at
+    time_format: timestamp
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        full_text_search:
+          enabled: true
+          row_id:
+            - path
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+            chunking:
+              enabled: true
+              target_chunk_size: 512
+              overlap_size: 128
+              trim_whitespace: true
+
+  - from: spice.ai/spiceai/docs/datasets/spice.spiceai.cookbook
+    name: spiceai_cookbook
+    description: Spice.ai OSS cookbook recipes
+    params:
+      spiceai_api_key: ${secrets:SPICE_API_KEY}
+    metadata:
+      instructions: |
+        Documents are stored in Markdown. Always provide citations.
+        Use cookbook examples to create practical, real-world documentation for Spice Cloud.
+      keywords: Spice.ai, cookbook, guides, AI, open-source software
+      reference_base_url: https://github.com/spiceai/cookbook/tree/trunk/<cookbook_path>
+    acceleration:
+      enabled: true
+      refresh_check_interval: 4h
+      refresh_jitter_enabled: true
+      refresh_jitter_max: 5m
+    columns:
+      - name: content
+        embeddings:
+          - from: openai_embeddings
+            row_id:
+              - path
+
+embeddings:
+  - from: openai
+    name: openai_embeddings
+    params:
+      openai_api_key: ${secrets:SPICE_OPENAI_API_KEY}
