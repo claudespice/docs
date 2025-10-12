@@ -179,8 +179,6 @@ datasets:
       github_private_key: ${secrets:GITHUB_SPICEHQ_PRIVATE_KEY}
       github_installation_id: ${secrets:GITHUB_SPICEHQ_INSTALLATION_ID}
       include: '**/*.md'
-    time_column: updated_at
-    time_format: timestamp
     acceleration:
       enabled: true
       refresh_check_interval: 4h
