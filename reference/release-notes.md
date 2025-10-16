@@ -4,6 +4,71 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+## October 2025
+
+### Highlights
+
+* **Iceberg Table Write Support (Preview)** – Write directly to Iceberg tables using standard SQL `INSERT INTO` commands, no Spark required.
+* **Acceleration Snapshots** – Faster startup with cached acceleration states from S3.
+* **Partitioned** [**S3 Vector Indexes**](../building-blocks/data-connectors/s3.md) – Improved scalability and query performance for large datasets.
+* **AI SQL Function (Preview)** – Query LLMs directly in [SQL](../portal/playground/sql-query-editor.md) with `ai()` for summarization, classification, or translation.
+* **Remote CLI Execution** – Run `spice sql`, `spice search`, and `spice chat` against remote endpoints.
+* **Spice.js SDK v3.0.3** – Updated SDK for Node.js and browsers with simplified query APIs and better compatibility.
+
+### Bug Fixes
+
+* Improved reliability for Iceberg writes and acceleration snapshots.
+* Fixed partition pruning and empty partition handling in queries.
+* Enhanced [vector search](../use-cases/enterprise-search.md#vector-similarity-search-across-disparate-and-legacy-data-systems) stability and default limits (now up to 1,000 results).
+* Improved AI [SQL query](../portal/playground/sql-query-editor.md) consistency and async handling.
+* General performance and startup time optimizations across data connectors and runtime.
+
+## September 2025
+
+### Highlights
+
+* [**Hybrid Search (RRF)**](../use-cases/enterprise-search.md)**:** Combine [`vector_search`](../features/search-and-retrieval.md#vector-search) and `text_search` using the new Reciprocal Rank Fusion (UDTF) for more relevant results; supports per-query rank weights, recency boosting, and configurable decay (`k` = 60.0).
+* **Acceleration Metrics:** Added detailed Prometheus metrics for dataset refresh and ingestion lag:\
+  `dataset_acceleration_max_timestamp_before_refresh_ms`,\
+  `dataset_acceleration_max_timestamp_after_refresh_ms`,\
+  `dataset_acceleration_refresh_lag_ms`,\
+  `dataset_acceleration_ingestion_lag_ms`.
+* **Search Defaults & Indexing:** Default result limit increased to **1,000** for both Full-Text and Vector Search; persistent on-disk FTS indexes improve reliability and restart time.
+* **DataFusion v49 Upgrade:** Faster planning for queries with many columns, dynamic filters & TopK pushdown, compressed spill files, and more.&#x20;
+* **Embeddings Improvements:** Support for EmbeddingGemma (Google's embedding model for text and documents) and embedding request cashing.&#x20;
+* **Runtime Reliability:** Improved AI model diagnostics, clearer error messages, and stronger hybrid-query stability.
+
+### Bug Fixes
+
+* **Full-Text Search:** Fixed JOIN-level filter columns, corrected metadata projections, stabilized persistent indexes.
+* **Vector Search:** Fixed embedding-column removal and improved concurrency handling.
+* **Connectors:** Enhanced SQL warehouse error handling and async-query reliability.
+* **Model Integrations:** Corrected regex validation; improved health-check accuracy and error clarity.
+* **Query Engine:** Fixed RRF edge cases with disjoint results, removed duplicate fused entries, and improved case-sensitive column handling.
+
+## August 2025
+
+### Highlights
+
+* **Amazon Bedrock Integration:** Added support for Nova-compatible models via the new Bedrock LLM provider. Configure directly in `Spicepod.yaml` using the `bedrock:` prefix and AWS credentials.
+*   **AWS Redshift Support:** Connect Redshift clusters using the [PostgreSQL ](../building-blocks/data-connectors/postgres.md)data connector (`from: postgres:<schema.table>`).
+
+    Full support for Redshift’s columnar storage and PostgreSQL-compatible types.
+* **Hadoop Catalog for Iceberg:** Added support for Hadoop-based Iceberg catalogs on local (`file://`) or S3 (`s3://`, `s3a://`) storage.
+*   **New** [**Data Connectors**](../building-blocks/data-connectors/)**:** Kafka Connector for real-time stream ingestion (`from: kafka:<topic>`).
+
+    MongoDB Connector for querying NoSQL collections (`from: mongodb:<dataset>`).
+* **DataFusion v48 Upgrade:** Performance improvements with DataFusion v48 — 50% smaller expression memory footprint and 10–20% faster query planning. Optimized string and window functions; up to 5.6× faster aggregate queries.
+* **Model2Vec Embeddings:** Introduced optimized embeddings engine — 500× faster inference, 15× smaller model size.
+
+### Bug Fixes
+
+* Fixed [Amazon S3 Vectors](../building-blocks/data-connectors/s3.md) API compatibility issue when projecting embedding columns.
+* Improved AWS authentication and retry logic for Bedrock providers.
+* Fixed Databricks OpenAI token compatibility.
+* Enhanced Parquet Reader to support files missing page indexes (`parquet_page_index: auto`).
+* Improved error messages and stability across data connectors and model integrations
+
 ## July 2025
 
 ### Highlights
