@@ -30,5 +30,5 @@ Once [signed in with GitHub](../get-started/portal-login.md), you will be redire
 Continue to [Step. 3 to add a dataset and query it](../get-started/step-2-add-dataset-and-query-data.md).
 
 {% hint style="info" %}
-Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).
+Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Slack](https://spiceai.org/slack).
 {% endhint %}

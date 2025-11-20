@@ -20,7 +20,7 @@ Spice is currently in beta and it's free to [get an API key](https://spice.ai), 
 
 We plan to always have a free tier and offer free APIs, like the [Gas Fees API](api/ethereum/gas-fees.md).
 
-For customers who need higher request or query limits, service guarantees, or priority support we  offer high-value paid tiers based on usage.
+For customers who need higher request or query limits, service guarantees, or priority support we offer high-value paid tiers based on usage.
 
 ### What level of support do you offer?
 
@@ -36,7 +36,7 @@ We currently use an [Apache Calcite](https://calcite.apache.org/) based query en
 
 ### Can you add \<table> / dataset or index a specific on-chain contract?
 
-Most likely, yes! Hit us up on Discord and we can work with you to add new views/tables or index new contracts. The ability to create private custom tables is on our roadmap.
+Most likely, yes! Hit us up on Slack and we can work with you to add new views/tables or index new contracts. The ability to create private custom tables is on our roadmap.
 
 ### Do you support WebSockets or other streaming?
 

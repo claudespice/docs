@@ -10,8 +10,6 @@ The **Spice.ai Cloud Platform** is an AI application and agent cloud; an AI-back
 {% hint style="info" %}
 This documentation pertains to the **Spice.ai Cloud Platform**.
 
-
-
 For documentation on the self-hostable **Spice.ai OSS Project**, please visit [**docs.spiceai.org**](https://docs.spiceai.org).\
 ![](<.gitbook/assets/CleanShot 2024-12-19 at 11.45.07@2x.png>)
 {% endhint %}
@@ -26,12 +24,12 @@ With the **Spice.ai Cloud Platform**, powered by **Spice.ai OSS**, you can:
 
 **Use-Cases**
 
-* **Fast, virtualized data views**: Build specialized “small data” warehouses to serve fast, virtualized views across large datasets for applications, APIs, dashboards, and analytics.
-* **Performance and reliability**: Manage replicas of hot data, cache SQL queries and AI results, and load-balance AI services to improve resiliency and scalability.
-* **Production-grade AI workflows**: Use Spice.ai Cloud as a data and AI proxy for secure, monitored, and compliant production environments, complete with advanced observability and performance management.
+- **Fast, virtualized data views**: Build specialized “small data” warehouses to serve fast, virtualized views across large datasets for applications, APIs, dashboards, and analytics.
+- **Performance and reliability**: Manage replicas of hot data, cache SQL queries and AI results, and load-balance AI services to improve resiliency and scalability.
+- **Production-grade AI workflows**: Use Spice.ai Cloud as a data and AI proxy for secure, monitored, and compliant production environments, complete with advanced observability and performance management.
 
 Take it for a spin by starting with the [getting started guide](getting-started/get-started/).
 
 {% hint style="info" %}
-Feel free to ask any questions or queries to the team in [<mark style="color:purple;">Discord</mark>](https://discord.gg/kZnTfneP5u).
+Feel free to ask any questions or queries to the team in [<mark style="color:orange;">Slack</mark>](https://spiceai.org/slack).
 {% endhint %}

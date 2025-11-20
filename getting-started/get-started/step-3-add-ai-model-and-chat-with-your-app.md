@@ -29,28 +29,27 @@ name: my-first-app
 kind: Spicepod
 version: v1beta1
 
-datasets:   
+datasets:
   - from: s3://spiceai-demo-datasets/taxi_trips/2024/
     name: samples.taxi_trips
     description: Taxi trips dataset from Spice.ai demo datasets.
     params:
       file_format: parquet
-    
-models:   
+
+models:
   - from: openai:gpt-4o
     name: gpt-4o
     params:
       endpoint: https://api.openai.com/v1
       openai_api_key: ${secrets:OPENAI_API_KEY}
       tools: auto
-    
 ```
 
 7. Click **Save** in the code toolbar and then **Deploy** in the popup card that appears in the bottom right to deploy the changes.
 8. Navigate to **Playground** and select **AI Chat** in the sidebar.
 9. Ask a question about the NYC Taxi Trips dataset in the chat. For example:
-   * "What datasets are available?"
-   * "What is the average fare amount of a taxi trip?"
+   - "What datasets are available?"
+   - "What is the average fare amount of a taxi trip?"
 
 <figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 12.22.38@2x.png" alt=""><figcaption><p>Asking questions of the NYC Taxi Trips dataset in the AI Chat Playground.</p></figcaption></figure>
 
@@ -60,6 +59,7 @@ models:
 
 {% tabs %}
 {% tab title="cURL" %}
+
 ```sh
 curl --request POST \
       --url 'https://data.spiceai.io/v1/chat/completions' \
@@ -67,6 +67,7 @@ curl --request POST \
       --header 'X-API-KEY: 31393037|8f2f6125e7b8487f80964041c123d3c3' \
       --data '{ "messages": [{ "role": "user", "content": "Hello!" }], "model": "gpt-4o" }'
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -77,5 +78,5 @@ curl --request POST \
 Continue to [Next Steps](next-steps.md) to explore use-cases to do more with the Spice.ai Cloud Platform.
 
 {% hint style="info" %}
-Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).
+Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Slack](https://spiceai.org/slack).
 {% endhint %}
