@@ -39,6 +39,7 @@ Use the **Components sidebar** on the right to select from available **Data Conn
 
 {% tabs %}
 {% tab title="cURL" %}
+
 ```sh
 curl --request POST \
   --url 'https://data.spiceai.io/v1/sql' \
@@ -46,6 +47,7 @@ curl --request POST \
   --header 'X-API-KEY: [API-KEY]' \
   --data 'select * from spice.samples.taxi_trips limit 3'
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -56,5 +58,5 @@ curl --request POST \
 Continue to [Step 4 to add an AI Model and chat with the dataset](step-3-add-ai-model-and-chat-with-your-app.md).
 
 {% hint style="info" %}
-Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Discord](https://discord.gg/kZnTfneP5u).
+Need help? Ask a question, raise issues, and provide feedback to the Spice AI team on [Slack](https://spiceai.org/slack).
 {% endhint %}

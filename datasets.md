@@ -5,7 +5,7 @@ description: All data and datasets currently available in Spice
 # Datasets
 
 {% hint style="success" %}
-New datasets are added every week, so this list is just the start. Get in touch on Discord to suggest more. **We're just getting started!**
+New datasets are added every week, so this list is just the start. Get in touch on Slack to suggest more. **We're just getting started!**
 {% endhint %}
 
 ### Datasets for SQL Query
@@ -120,22 +120,21 @@ For historical price exchange data to tick level granularity, try the [time-seri
 
 ### Time-series Datasets
 
-* [Ethereum blocks](https://docs.spice.ai/api/ethereum/blocks)
-* [Ethereum gas fees](https://docs.spice.ai/api/ethereum/gas-fees)
+- [Ethereum blocks](https://docs.spice.ai/api/ethereum/blocks)
+- [Ethereum gas fees](https://docs.spice.ai/api/ethereum/gas-fees)
 
 #### [Spot and historical Prices](api/prices.md)
 
-* Binance
-  * Spot/latest prices for all pairs traded on Binance.
-  * Historical OHLC prices at 1-min granularity for all pairs.
-* Coinbase
-  * Spot/latest prices for all pairs traded on Coinbase.
-  * Historical OHLC prices at 1-min granularity for all pairs.
-* Gemini
-  * Spot/latest prices for all pairs traded on Gemini.
-  * Partial historical OHLC prices at 1-min granularity for all pairs.
+- Binance
+  - Spot/latest prices for all pairs traded on Binance.
+  - Historical OHLC prices at 1-min granularity for all pairs.
+- Coinbase
+  - Spot/latest prices for all pairs traded on Coinbase.
+  - Historical OHLC prices at 1-min granularity for all pairs.
+- Gemini
+  - Spot/latest prices for all pairs traded on Gemini.
+  - Partial historical OHLC prices at 1-min granularity for all pairs.
 
 ### JSON RPC Methods
 
-* See [JSON RPC Methods](datasets.md#time-series-datasets-1)
-
+- See [JSON RPC Methods](datasets.md#time-series-datasets-1)
