@@ -137,6 +137,7 @@ datasets:
     description: Spice.ai Open Source Documentation - comprehensive technical documentation for the self-hosted Spice.ai runtime, data connectors, SQL reference, and core concepts
     params:
       spiceai_api_key: ${secrets:SPICEAI_API_KEY}
+      spiceai_endpoint: https://us-east-1-prod-aws-flight.spiceai.io
     metadata:
       instructions: |
         Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
@@ -205,6 +206,7 @@ datasets:
     description: Spice.ai Cookbook - real-world recipes, practical examples, and step-by-step guides demonstrating common use cases, integrations, data acceleration patterns, and AI/ML workflows
     params:
       spiceai_api_key: ${secrets:SPICEAI_API_KEY}
+      spiceai_endpoint: https://us-east-1-prod-aws-flight.spiceai.io
     metadata:
       instructions: |
         Documents are stored in Markdown in the 'content' column. The 'path' column contains the file path.
