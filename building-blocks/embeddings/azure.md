@@ -1,12 +1,8 @@
 ---
-title: 'Azure OpenAI Embedding Models'
-sidebar_label: 'Azure OpenAI'
-sidebar_position: 2
-tags:
-  - embeddings
-  - azure
-  - openai
+description: 'Azure OpenAI embedding models for use in Spice'
 ---
+
+# Azure OpenAI Embedding Models
 
 To use an embedding model hosted on Azure OpenAI, specify the `azure` path in the `from` field and the following parameters from the [Azure OpenAI Model Deployment](https://ai.azure.com/resource/deployments) page:
 
@@ -34,5 +30,3 @@ embeddings:
 ```
 
 Refer to the [Azure OpenAI Service models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) for more details on available models and configurations.
-
-Follow the [Azure OpenAI Models Cookbook](https://github.com/spiceai/cookbook/tree/trunk/azure_openai) to try Azure OpenAI models for vector-based search and chat functionalities with structured (taxi trips) and unstructured (GitHub files) data.

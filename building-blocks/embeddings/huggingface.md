@@ -1,8 +1,8 @@
 ---
-title: 'HuggingFace Text Embedding Models'
-sidebar_label: 'HuggingFace'
-sidebar_position: 3
+description: 'HuggingFace Text Embedding Models'
 ---
+
+# HuggingFace Text Embedding Models
 
 To use an embedding model from HuggingFace with Spice, specify the `huggingface` path in the `from` field of your configuration. The model and its related files will be automatically downloaded, loaded, and served locally by Spice.
 
@@ -24,9 +24,9 @@ embeddings:
 Supported models include:
 
 - All models tagged as [text-embeddings-inference](https://huggingface.co/models?other=text-embeddings-inference) on Huggingface
-- Any Huggingface repository with the correct files to be loaded as a [local embedding model](/docs/components/embeddings/local.md).
+- Any Huggingface repository with the correct files to be loaded as a [local embedding model](local.md).
 
-With the same semantics as [language models](/docs/components/models/huggingface#access-tokens), `spice` can run private HuggingFace embedding models:
+With the same semantics as [language models](/docs/building-blocks/model-providers/huggingface.md#access-tokens), `spice` can run private HuggingFace embedding models:
 
 ```yaml
 embeddings:

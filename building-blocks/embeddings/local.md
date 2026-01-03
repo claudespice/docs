@@ -1,8 +1,8 @@
 ---
-title: 'Local Filesystem Embedding Models'
-sidebar_label: 'Local'
-sidebar_position: 3
+description: 'Local filesystem embedding models help use models that are not hosted on remote services.'
 ---
+
+# Local Filesystem Embedding Models
 
 Embedding models can be run with files stored locally. This method is useful for using models that are not hosted on remote services.
 

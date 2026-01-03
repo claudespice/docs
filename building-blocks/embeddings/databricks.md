@@ -1,9 +1,8 @@
 ---
-title: 'Databricks Model Provider'
 description: 'Instructions for using Databricks Mosaic AI Models'
-sidebar_label: 'Databricks'
-sidebar_position: 8
 ---
+
+# Databricks Embedding Models
 
 To use an embedding model deployed to [Databricks Mosaic AI Model Serving](https://docs.databricks.com/aws/en/machine-learning/model-serving/), specify the model endpoint name prefixed with `databricks:` in the `from` field and include the required parameters in the `params` section.
 

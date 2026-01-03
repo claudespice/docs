@@ -1,9 +1,8 @@
 ---
-title: 'Model2Vec Embedding Models'
-sidebar_label: 'Model2Vec'
-sidebar_position: 4
 description: Model2Vec embedding models help generate efficient static word embeddings from sentence transformer models for use in Spice, supporting local and Hugging Face sources with options for private models and performance tuning.
 ---
+
+# Model2Vec Embedding Models
 
 [Model2Vec](https://huggingface.co/blog/Pringled/model2vec) is a technique that distills embeddings from sentence transformer models into static word embeddings, providing efficient embedding generation, in parallel, without performing external API calls. This can result in sentence transformer models up to 500x faster and 15x smaller.
 
