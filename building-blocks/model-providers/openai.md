@@ -1,9 +1,8 @@
 ---
-title: 'OpenAI (or Compatible) Language Models'
 description: 'Instructions for using language models hosted on OpenAI or compatible services with Spice.'
-sidebar_label: 'OpenAI'
-sidebar_position: 1
 ---
+
+# OpenAI Language Models
 
 To use a language model hosted on OpenAI (or compatible), specify the `openai` path in the `from` field.
 
@@ -82,7 +81,7 @@ The model name. This will be used as the model ID within Spice and Spice's endpo
 [tools]: ../../features/large-language-models/tools.md
 [structured outputs]: https://platform.openai.com/docs/guides/structured-outputs
 
-See [Large Language Models](../../features/large-language-models) for additional configuration options.
+See [Large Language Models](../../features/large-language-models/index.md) for additional configuration options.
 
 - [Tools](../../features/large-language-models/tools.md)
 - [Memory](../../features/large-language-models/memory.md)
@@ -95,7 +94,7 @@ Spice supports several OpenAI compatible providers. Specify the appropriate endp
 
 ### Azure OpenAI
 
-Follow [Azure AI Models](./azure) instructions.
+Follow [Azure AI Models](./azure.md) instructions.
 
 ### Groq
 
@@ -122,8 +121,6 @@ models:
       endpoint: https://my_nim_host.com/v1
       openai_api_key: ${ secrets:SPICE_NIM_API_KEY }
 ```
-
-View the Spice cookbook for an example of setting up NVidia NIM with Spice [here](https://github.com/spiceai/cookbook/tree/trunk/nvidia-nim/ec2).
 
 ### Parasail
 

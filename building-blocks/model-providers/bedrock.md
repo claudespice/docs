@@ -1,9 +1,8 @@
 ---
-title: 'Amazon Bedrock Models'
 description: 'How to use Amazon Bedrock models with Spice.'
-sidebar_label: 'Amazon Bedrock'
-sidebar_position: 9
 ---
+
+# Amazon Bedrock Models
 
 Spice supports large language models hosted on [Amazon Bedrock](https://aws.amazon.com/bedrock/). Specify the `bedrock:` prefix in the `from` field along with the model ID.
 
@@ -72,7 +71,7 @@ These parameters control model behavior and are passed in the request payload:
 | `topK`          | Number of highest probability tokens to consider.               |
 | `stopSequences` | Sequences that stop generation when encountered.                |
 
-See [Parameter Overrides](/docs/features/large-language-models/parameter_overrides) for details on setting default values.
+See [Parameter Overrides](../../features/large-language-models/parameter_overrides.md) for details on setting default values.
 
 ## Examples
 
@@ -143,12 +142,12 @@ If AWS credentials are not explicitly provided in the configuration, the connect
      region = us-west-2
      ```
 
-   :::tip
+   {% hint style="success" %}
    To set up SSO authentication:
    1. Run `aws configure sso` to configure a new SSO profile
    2. Use the profile by setting `AWS_PROFILE=sso-profile`
    3. Run `aws sso login --profile sso-profile` to start a new SSO session
-      :::
+   {% endhint %}
 
 3. **AWS STS Web Identity Token Credentials**:
    - Used primarily with OpenID Connect (OIDC) and OAuth
@@ -167,9 +166,9 @@ If AWS credentials are not explicitly provided in the configuration, the connect
 
 The connector will try each source in order until valid credentials are found. If no valid credentials are found, an authentication error will be returned.
 
-:::note[IAM Permissions]
-Regardless of the credential source, the IAM role or user must have appropriate bedrock permissions (e.g., `bedrock:InvokeModel`) to access the model. If the Spicepod connects to multiple different AWS services, the permissions should cover all of them.
-:::
+{% hint style="info" %}
+**IAM Permissions:** Regardless of the credential source, the IAM role or user must have appropriate bedrock permissions (e.g., `bedrock:InvokeModel`) to access the model. If the Spicepod connects to multiple different AWS services, the permissions should cover all of them.
+{% endhint %}
 
 ## Required IAM Permissions
 
@@ -195,7 +194,7 @@ The IAM role or user needs permissions to invoke Bedrock models:
 
 ## Related Resources
 
-- [Amazon Bedrock Embeddings](/docs/components/embeddings/bedrock) - Use Bedrock for text embeddings
-- [Parameter Overrides](/docs/features/large-language-models/parameter_overrides) - Set default model parameters
+- [Amazon Bedrock Embeddings](../embeddings/bedrock.md) - Use Bedrock for text embeddings
+- [Parameter Overrides](../../features/large-language-models/parameter_overrides.md) - Set default model parameters
 - [Amazon Bedrock User Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/) - AWS documentation
 - [Bedrock Model IDs](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html) - Available models and inference profiles

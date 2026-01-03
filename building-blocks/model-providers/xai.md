@@ -1,9 +1,8 @@
 ---
-title: 'xAI Models'
 description: 'Instructions for using xAI models'
-sidebar_label: 'xAI'
-sidebar_position: 7
 ---
+
+# xAI Models
 
 To use a language model hosted on xAI, specify `xai` path in the `from` field and the associated `xai_api_key` parameter:
 
@@ -23,6 +22,6 @@ models:
 
 Refer to the [xAI models documentation](https://docs.x.ai/docs/models) for more details on available models and configurations.
 
-:::note
+{% hint style="info" %}
 Although the xAI [documentation](https://docs.x.ai/docs/guides/structured-outputs) shows that xAI models can return structured outputs, this is not true.
-:::
+{% endhint %}
