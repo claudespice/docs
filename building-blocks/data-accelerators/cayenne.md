@@ -1,18 +1,12 @@
 ---
-title: 'Cayenne Data Accelerator'
-sidebar_label: 'Cayenne Data Accelerator'
 description: 'Cayenne Data Accelerator (Vortex) Documentation'
-sidebar_position: 1
-tags:
-  - cayenne
-  - vortex
-  - data-accelerators
-  - performance
 ---
 
-:::info Alpha
-The Cayenne Data Accelerator is in Alpha. Features and configuration may change. Available in Spice v1.9.0-rc.1 and later.
-:::
+# Cayenne Data Accelerator
+
+{% hint style="info" %}
+**Alpha:** The Cayenne Data Accelerator is in Alpha. Features and configuration may change. Available in Spice v1.9.0-rc.1 and later.
+{% endhint %}
 
 Cayenne is a Spice data acceleration engine designed for high-performance, scalable query on large-scale datasets. Built on [Vortex](https://github.com/vortex-data/vortex), a next-generation columnar file format, Cayenne combines columnar storage with in-process metadata management to provide fast query performance to scale to datasets beyond 1TB.
 
@@ -28,7 +22,7 @@ Cayenne uses Vortex as its storage format, providing significant performance adv
 
 Vortex is a Linux Foundation (LF AI & Data) project under Apache-2.0 license with neutral governance.
 
-While [DuckDB](/docs/components/data-accelerators/duckdb) excels for datasets up to approximately 1TB, Cayenne with Vortex is designed to scale beyond these limits.
+While [DuckDB](duckdb.md) excels for datasets up to approximately 1TB, Cayenne with Vortex is designed to scale beyond these limits.
 
 For detailed Vortex performance benchmarks, visit [bench.vortex.dev](https://bench.vortex.dev).
 
@@ -71,17 +65,15 @@ Consider the following limitations when using Cayenne acceleration:
 
 - **Alpha Status**: Cayenne is in active development. Configuration options may change between releases.
 - **File Mode Only**: Cayenne only supports `mode: file` and does not support in-memory (`mode: memory`) acceleration.
-- **No `on_conflict` Support**: Cayenne does not yet support the [`on_conflict`](/docs/reference/spicepod/datasets#accelerationon_conflict) configuration for handling duplicate keys during data refresh.
-- **Data Cleanup Requires `retention_sql`**: Data deletion and cleanup operations require configuring [`retention_sql`](/docs/reference/spicepod/datasets#accelerationretention_sql) to define retention policies. Manual `DELETE` statements can also be executed directly.
-- **No Snapshot Support**: Cayenne does not yet support [acceleration snapshots](/docs/features/data-acceleration/snapshots) for bootstrapping from object storage.
+- **No `on_conflict` Support**: Cayenne does not yet support the [`on_conflict`](../../reference/spicepod/datasets.md#accelerationon_conflict) configuration for handling duplicate keys during data refresh.
+- **Data Cleanup Requires `retention_sql`**: Data deletion and cleanup operations require configuring [`retention_sql`](../../reference/spicepod/datasets.md#accelerationretention_sql) to define retention policies. Manual `DELETE` statements can also be executed directly.
+- **No Snapshot Support**: Cayenne does not yet support [acceleration snapshots](../../features/data-acceleration/snapshots.md) for bootstrapping from object storage.
 - **Data Types**: Some advanced data types may have limited support. Test your specific schema requirements.
 - **Index Support**: Index capabilities are still being developed. Check release notes for the latest supported features.
 
-:::warning[Alpha Software]
-
-As an Alpha feature, Cayenne should be thoroughly tested in development environments before production deployment. Monitor release notes for updates, breaking changes, and new capabilities.
-
-:::
+{% hint style="warning" %}
+**Alpha Software:** As an Alpha feature, Cayenne should be thoroughly tested in development environments before production deployment. Monitor release notes for updates, breaking changes, and new capabilities.
+{% endhint %}
 
 ## Resource Considerations
 

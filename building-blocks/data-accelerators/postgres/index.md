@@ -75,12 +75,12 @@ datasets:
         pg_pass: ${secrets:pg2_pass}
 ```
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - The Postgres accelerator does not support `Map` types.
 - The Postgres federated queries may result in unexpected result types due to the difference in DataFusion and Postgres size increase rules. Please explicitly specify the expected output type of aggregation functions when writing query involving Postgres table in Spice. For example, rewrite `SUM(int_col)` into `CAST (SUM(int_col) as BIGINT`.
-
-:::
+{% endhint %}
 
 ## Arrow to PostgreSQL Type Mapping
 
@@ -111,7 +111,3 @@ The table below lists the supported [Apache Arrow data types](https://arrow.apac
 | `Duration`                             | `BigInteger`            | `bigint`                      |
 | `List` / `LargeList` / `FixedSizeList` | `Array`                 | `array`                       |
 | `Struct`                               | `N/A`                   | `Composite` (Custom type)     |
-
-## Cookbook
-
-- A cookbook recipe to configure PostgreSQL as a data accelerator in Spice. [PostgreSQL Data Accelerator](https://github.com/spiceai/cookbook/tree/trunk/postgres/accelerator#readme)
