@@ -1,33 +1,37 @@
 ---
+title: 'Model Providers'
+sidebar_label: 'Model Providers'
 description: 'Overview of supported model providers for ML and LLMs in Spice.'
-icon: brain-circuit
+image: /img/og/models.png
 ---
-
-# Model Providers
 
 Spice supports various model providers for traditional machine learning (ML) models and large language models (LLMs).
 
 | Name                       | Description                                  | Status            | ML Format(s) | LLM Format(s)\*                 |
 | -------------------------- | -------------------------------------------- | ----------------- | ------------ | ------------------------------- |
-| [`openai`][openai]         | OpenAI (or compatible) LLM endpoint          | Release Candidate | -            | OpenAI-compatible HTTP endpoint |
+| [`openai`][openai]         | OpenAI (or compatible) LLM endpoint          | Stable            | -            | OpenAI-compatible HTTP endpoint |
+| [`bedrock`][bedrock]       | Amazon Bedrock                               | Alpha             | -            | OpenAI-compatible HTTP endpoint |
+| [`xai`][xai]               | Models hosted on xAI                         | Alpha             | -            | OpenAI-compatible HTTP endpoint |
 | [`file`][file]             | Local filesystem                             | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
 | [`huggingface`][hf]        | Models hosted on HuggingFace                 | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
-| [`spice.ai`][spice]        | Models hosted on the Spice.ai Cloud Platform | Alpha             | ONNX         | OpenAI-compatible HTTP endpoint |
+| [`spice.ai`][spice]        | Models hosted on the Spice.ai Cloud Platform | Release Candidate | ONNX         | OpenAI-compatible HTTP endpoint |
 | [`azure`][azure]           | Azure OpenAI                                 | Alpha             | -            | OpenAI-compatible HTTP endpoint |
 | [`anthropic`][ant]         | Models hosted on Anthropic                   | Alpha             | -            | OpenAI-compatible HTTP endpoint |
-| [`xai`][xai]               | Models hosted on xAI                         | Alpha             | -            | OpenAI-compatible HTTP endpoint |
 | [`databricks`][databricks] | Models deployed to Databricks Mosaic AI      | Alpha             | -            | OpenAI-compatible HTTP endpoint |
 
+[openai]: ./openai.md
+[bedrock]: ./bedrock.md
 [file]: /components/embeddings/local.md
 [hf]: ./huggingface.md
 [spice]: ./spiceai.md
-[openai]: ./openai.md
 [azure]: ./azure.md
 [ant]: ./anthropic.md
 [xai]: ./xai.md
 [databricks]: ./databricks.md
 
-- LLM Format(s) may require additional files (e.g. `tokenizer_config.json`).
+Spice also tests and evaluates common models and grades their ability to integrate with Spice. See the [Models Grade Report](/docs/reference/models.md).
+
+\*LLM Format(s) may require additional files (e.g., `tokenizer_config.json`).
 
 The model type is inferred based on the model source and files. For more detail, refer to the `model` [reference specification](/docs/reference/spicepod/models.md).
 
@@ -36,7 +40,7 @@ The model type is inferred based on the model source and files. For more detail,
 Spice supports a variety of features for large language models (LLMs):
 
 - **Custom Tools**: Provide models with tools to interact with the Spice runtime. See [Tools](/docs/features/large-language-models/tools).
-- **System Prompts**: Customize system prompts and override defaults for [`v1/chat/completion`](/docs/api/HTTP/post-chat-completions). See [Parameter Overrides](/docs/features/large-language-models/parameter_overrides).
+- **System Prompts**: Declaratively define system prompts and default values for [`v1/chat/completion`](/docs/api/HTTP/post-chat-completions) parameters. See [Parameter Overrides](/docs/features/large-language-models/parameter_overrides.md). Use Jinja-templating to parameterise system prompts per request see [Parameterized prompts](docs/features/large-language-models/parameterized_prompts.md).
 - **Memory**: Provide LLMs with memory persistence tools to store and retrieve information across conversations. See [Memory](/docs/features/large-language-models/memory).
 - **Vector Search**: Perform advanced vector-based searches using embeddings. See [Vector Search](/docs/features/search/vector-search).
 - **Evals**: Evaluate, track, compare, and improve language model performance for specific tasks. See [Evals](/docs/features/large-language-models/evals).
@@ -44,9 +48,42 @@ Spice supports a variety of features for large language models (LLMs):
 
 For more details, refer to the [Large Language Models documentation](/docs/features/large-language-models).
 
+## Model Provider Prefix
+
+The model provider prefix identifies the source or provider of a model in Spice configuration files. This prefix is specified before the model identifier in the `from` field of a model definition, and is used in specifying model [default parameter overrides](#example-setting-default-parameter-overrides). It helps the runtime determine how to load and interact with the model.
+
+The following provider prefixes are supported:
+
+| Prefix       | Description                           |
+| ------------ | ------------------------------------- |
+| `openai`     | OpenAI or OpenAI-compatible endpoints |
+| `azure`      | Azure OpenAI                          |
+| `xai`        | xAI                                   |
+| `anthropic`  | Anthropic                             |
+| `perplexity` | Perplexity                            |
+| `hf`         | Hugging Face                          |
+| `file`       | Local filesystem                      |
+| `spiceai`    | Spice.ai Cloud Platform               |
+| `databricks` | Databricks Mosaic AI                  |
+| `bedrock`    | Amazon Bedrock                        |
+
+**Example usage in `spicepod.yaml`:**
+
+```yaml
+models:
+  - from: openai:gpt-4o
+    name: openai-model
+
+  - from: hf:meta-llama/Llama-3-8B-Instruct
+    name: llama3-hf
+
+  - from: file://absolute/path/to/model.gguf
+    name: local-model
+```
+
 ## Model Examples
 
-The following examples demonstrate how to configure and use various models or model features with Spice. Each example provides a specific use case to help you understand the configuration options available.
+The following examples demonstrate how to configure and use various models or model features with Spice. Each example provides a specific use case to help understand the configuration options available.
 
 ### Example: Configuring an OpenAI Model
 
@@ -88,7 +125,7 @@ To enable memory tools for a model, define a `store` memory dataset and specify 
 datasets:
   - from: memory:store
     name: llm_memory
-    mode: read_write
+    access: read_write
 
 models:
   - name: memory-enabled-model
@@ -99,7 +136,7 @@ models:
 
 ### Example: Setting Default Parameter Overrides
 
-To set default overrides for parameters, use the `openai_` prefix followed by the parameter name. For more details, see the [Parameter Overrides documentation](/docs/features/large-language-models/parameter_overrides.md).
+To set default overrides for parameters, use the [model provider prefix](#model-provider-prefix) followed by the parameter name. For more details, see the [Parameter Overrides documentation](/docs/features/large-language-models/parameter_overrides.md).
 
 ```yaml
 models:
@@ -162,7 +199,7 @@ Next, create a chat model that includes memory and tools to access the accelerat
 datasets:
   - from: memory:store
     name: llm_memory
-    mode: read_write
+    access: read_write
 
 models:
   - name: github-issues-analyzer
@@ -189,7 +226,7 @@ datasets:
 
   - from: memory:store
     name: llm_memory
-    mode: read_write
+    access: read_write
 
 models:
   - name: github-issues-analyzer
@@ -202,9 +239,8 @@ models:
 Finally, use Spice to ask the chat model about the general themes of new issues in the last 14 days. The following `curl` command demonstrates how to make this request using the OpenAI-compatible API.
 
 ```bash
-curl -X POST https://data.spiceai.io/v1/chat/completions \
+curl -X POST http://localhost:8090/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H 'X-API-KEY: <spiceai_api_key>' \
   -d '{
     "model": "github-issues-analyzer",
     "messages": [
@@ -215,3 +251,7 @@ curl -X POST https://data.spiceai.io/v1/chat/completions \
 ```
 
 Refer to the [Create Chat Completion API documentation](/docs/api/HTTP/post-chat-completions.api.mdx) for more details on making chat completion requests.
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
