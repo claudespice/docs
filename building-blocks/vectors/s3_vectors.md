@@ -1,10 +1,8 @@
 ---
-title: 'Amazon S3 Vectors Engine'
-sidebar_label: 'Amazon S3 Vectors'
 description: 'Amazon S3 Vectors Engine Documentation'
-sidebar_position: 1
-pagination_next: null
 ---
+
+# Amazon S3 Vectors Engine
 
 > 🎓 Learn how it works with the [Amazon S3 Vectors with Spice](https://spiceai.org/blog/amazon-s3-vectors-with-spice) engineering blog post.
 
@@ -46,13 +44,12 @@ embeddings:
 | `s3_vectors_index_poll_interval`             | The interval to poll for index updates to avoid excessive API calls. Minimum 5 seconds. Default is to poll on every scan. | `5m`                                                            |
 | `client_timeout`                   | Timeout for S3 operations. Default: `30s`.                                                                                                                                  | `30s`, `9 century`, `1m`                                                             |
 
-
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - `s3_vectors_index` and `s3_vectors_arn` specify a single index for the dataset and therefore should not be used with a dataset containing more than one embedding column.
 - S3 Vectors uses approximate nearest neighbor (ANN) algorithms for performance, providing probabilistically closest results.
-
-  :::
+{% endhint %}
 
 ## Overview
 
@@ -198,6 +195,7 @@ LIMIT 5;
 ```
 
 ## Index Partitioning
+
 S3 Vectors indexes can be partitioned using an arbitrary logical expression. This allows Spice to compose many actual vector indexes as one logical vector index, enabling elastic scalability for vector storage.
 
 To partition your S3 vector indexes:
@@ -212,14 +210,14 @@ vectors:
 
 This example uses a `bucket` user-defined function (UDF) to hash the `PULocationID` column and split the associated vectors into one of 50 partitioned indexes. The runtime will use the `s3_vectors_index` parameter as a prefix and generate partition-specific names.
 
-:::warning[Limitations]
+{% hint style="warning" %}
+**Limitations**
 
 - `partition_by` must have only 1 expression.
 - Expression must reference exactly one column from the dataset.
 - Expression must produce a scalar value
 - Expression cannot contain a subquery
-
-:::
+{% endhint %}
 
 ## Authentication
 
@@ -251,12 +249,12 @@ If AWS credentials are not explicitly provided in the configuration, the connect
      region = us-west-2
      ```
 
-   :::tip
+   {% hint style="success" %}
    To set up SSO authentication:
    1. Run `aws configure sso` to configure a new SSO profile
    2. Use the profile by setting `AWS_PROFILE=sso-profile`
    3. Run `aws sso login --profile sso-profile` to start a new SSO session
-   :::
+   {% endhint %}
 
 3. **AWS STS Web Identity Token Credentials**:
    - Used primarily with OpenID Connect (OIDC) and OAuth
@@ -275,9 +273,9 @@ If AWS credentials are not explicitly provided in the configuration, the connect
 
 The connector will try each source in order until valid credentials are found. If no valid credentials are found, an authentication error will be returned.
 
-:::note[IAM Permissions]
-Regardless of the credential source, the IAM role or user must have appropriate S3 Vectors permissions (e.g., `s3vectors:QueryVectors`, `s3vectors:GetVectors`) to access the vectors. If the Spicepod connects to multiple different AWS services, the permissions should cover all of them.
-:::
+{% hint style="info" %}
+**IAM Permissions:** Regardless of the credential source, the IAM role or user must have appropriate S3 Vectors permissions (e.g., `s3vectors:QueryVectors`, `s3vectors:GetVectors`) to access the vectors. If the Spicepod connects to multiple different AWS services, the permissions should cover all of them.
+{% endhint %}
 
 ## Required IAM Permissions
 
@@ -297,7 +295,7 @@ The IAM role or user needs the following minimum permissions to access S3 Vector
                 "s3vectors:ListVectors"
             ],
             "Resource": [
-                "arn:aws:s3vectors:aws-region:123456789012:bucket/amzn-s3-demo-vector-bucket/index/*",
+                "arn:aws:s3vectors:aws-region:123456789012:bucket/amzn-s3-demo-vector-bucket/index/*"
             ]
         },
         {
@@ -336,7 +334,7 @@ The IAM role or user needs the following minimum permissions to access S3 Vector
 
 ### `metrics`
 
-Spice supports the following [S3 Vector engine metrics](/docs/features/observability/component_metrics):
+Spice supports the following [S3 Vector engine metrics](../../features/observability/component_metrics.md):
 
 | Metric Name | Type | Description |
 | ----------- | ---- | ----------- |
@@ -388,10 +386,6 @@ Spice supports the following [S3 Vector engine metrics](/docs/features/observabi
 | `s3_vectors_query_vectors_errors` | counter | Number of errors returned from query_vectors operation. |
 | `s3_vectors_query_vectors_latency` | histogram | Total duration of query_vectors operation, in milliseconds. |
 | `s3_vectors_query_vectors_requests` | counter | Number of requests to query_vectors operation. |
-
-## Cookbook
-
-- A cookbook recipe to configure a dataset with an S3 vectors engine in Spice. [S3 Vectors engine](https://github.com/spiceai/cookbook/tree/trunk/vectors/s3#readme)
 
 ## References
 

@@ -1,10 +1,8 @@
 ---
-title: 'Views'
-sidebar_label: 'Views'
 description: 'Documentation for defining Views in Spice'
-image: /img/og/views.png
-sidebar_position: 7
 ---
+
+# Views
 
 Views in Spice are virtual tables defined by SQL queries. They help simplify complex queries and promote reuse across different applications by encapsulating query logic in a single, reusable entity.
 
@@ -37,7 +35,7 @@ views:
 
 - `name`: The view's identifier, used for referencing in queries.
 - `sql`: The SQL query defining the view, supporting joins, subqueries, and aggregations.
-- `acceleration`: Views can be [locally accelerated](/docs/features/data-acceleration).
+- `acceleration`: Views can be [locally accelerated](../../features/data-acceleration/index.md).
 
 ## Limitations and Considerations
 
