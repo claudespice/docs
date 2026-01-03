@@ -42,6 +42,12 @@ SELECT COUNT(*) FROM cool_dataset;
 +----------+
 ```
 
+The dataset name cannot be a reserved keyword or any of the following keywords that are reserved by ClickHouse:
+
+- `PREWHERE`
+- `SETTINGS`
+- `FORMAT`
+
 ### `params`
 
 The ClickHouse data connector can be configured by providing the following `params`:
@@ -54,10 +60,26 @@ The ClickHouse data connector can be configured by providing the following `para
 | `clickhouse_db`                | The name of the database to connect to.                                                                                                                                                                                                                                                                                                     |
 | `clickhouse_user`              | The username to connect with.                                                                                                                                                                                                                                                                                                               |
 | `clickhouse_pass`              | The password to connect with.                                                                                                                                                                                                                                                                                                               |
-| `clickhouse_secure`            | Optional. Specifies the SSL/TLS behavior for the connection, supported values:<br /> <ul><li>`true`: (default) This mode requires an SSL connection. If a secure connection cannot be established, server will not connect.</li><li>`false`: This mode will not attempt to use an SSL connection, even if the server supports it.</li></ul> |
+| `clickhouse_secure`            | Optional. Specifies the SSL/TLS behavior for the connection, supported values: `true` (default) - requires an SSL connection, `false` - does not use SSL. |
 | `connection_timeout`           | Optional. Specifies the connection timeout in milliseconds.                                                                                                                                                                                                                                                                                 |
 
 ## Examples
+
+### Connecting to localhost
+
+```yaml
+datasets:
+  - from: clickhouse:my.dataset
+    name: my_dataset
+    params:
+      clickhouse_host: localhost
+      clickhouse_tcp_port: 9000
+      clickhouse_db: my_database
+      clickhouse_user: my_user
+      clickhouse_pass: ${secrets:my_clickhouse_pass}
+      connection_timeout: 10000
+      clickhouse_secure: false
+```
 
 ### Specifying a connection timeout
 
@@ -66,7 +88,7 @@ datasets:
   - from: clickhouse:my.dataset
     name: my_dataset
     params:
-      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@host/my_database
+      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@localhost:9000/my_database
       connection_timeout: 10000
       clickhouse_secure: true
 ```
@@ -78,5 +100,5 @@ datasets:
   - from: clickhouse:my.dataset
     name: my_dataset
     params:
-      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@host/my_database?connection_timeout=10000&secure=true
+      clickhouse_connection_string: tcp://my_user:${secrets:my_clickhouse_pass}@localhost:9000/my_database?connection_timeout=10000&secure=true
 ```

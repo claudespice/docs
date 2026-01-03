@@ -1,10 +1,8 @@
 ---
-description: Flight SQL Data Connector Documentation
+description: 'Flight SQL Data Connector Documentation'
 ---
 
-# FlightSQL
-
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+# FlightSQL Data Connector
 
 Connect to any Flight SQL compatible server (e.g. Influx 3.0, CnosDB, other Spice runtimes!) as a connector for federated SQL queries.
 

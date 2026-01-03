@@ -2,9 +2,7 @@
 description: Snowflake Data Connector Documentation
 ---
 
-# Snowflake
-
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+# Snowflake Data Connector
 
 The Snowflake Data Connector enables federated SQL queries across datasets in the [Snowflake Cloud Data Warehouse](https://www.snowflake.com/).
 
