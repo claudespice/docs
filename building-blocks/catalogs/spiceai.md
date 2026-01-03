@@ -164,6 +164,3 @@ The following parameters are supported for configuring the connection to the Spi
 |---------------|------------|
 | `spiceai_api_key` | Authorization API key from the Spice.ai Cloud Platform, used to login to the specified organization and app. |
 
-## Cookbook
-
-- A cookbook recipe to configure Spice Cloud as a catalog connector in Spice. [Spice Cloud Catalog Connector](https://github.com/spiceai/cookbook/tree/trunk/catalogs/spiceai#readme)

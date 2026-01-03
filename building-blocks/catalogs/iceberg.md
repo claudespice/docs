@@ -1,20 +1,12 @@
 ---
-title: 'Iceberg Catalog Connector'
-sidebar_label: 'Iceberg'
 description: 'Connect to an Iceberg catalog provider.'
-sidebar_position: 4
-pagination_prev: null
-pagination_next: null
-tags:
-  - catalogs
-  - iceberg
-  - data-connectors
-  - write
 ---
+
+# Iceberg Catalog Connector
 
 The Iceberg Catalog Connector helps connect Spice to an [Apache Iceberg](https://iceberg.apache.org/) catalog, making Iceberg tables and schemas available for federated SQL queries. Every Iceberg table must be registered in a catalog, which manages table metadata and access. Using a catalog connector is the recommended approach for working with multiple Iceberg datasets, as it helps organize tables and schemas efficiently and mirrors the structure of the source catalog provider.
 
-For connecting to a single Iceberg table, see the [Iceberg Data Connector documentation](/docs/components/data-connectors/iceberg.md). For AWS Glue-based catalogs, see the [AWS Glue Catalog Connector documentation](/docs/components/catalogs/glue.md).
+For connecting to a single Iceberg table, see the [Iceberg Data Connector documentation](../data-connectors/iceberg.md). For AWS Glue-based catalogs, see the [AWS Glue Catalog Connector documentation](glue.md).
 
 Iceberg catalogs can be of several types:
 
@@ -22,9 +14,9 @@ Iceberg catalogs can be of several types:
 - **AWS Glue Catalog**: Integrates with AWS Glue as a catalog provider, supporting Iceberg tables stored in S3. This is the preferred method for AWS environments.
 - **Hadoop-style Catalogs**: Use file-based storage (e.g., `file://`, `s3://`, `s3a://`) to manage table metadata. This approach is typically used for local development or legacy deployments.
 
-:::warning[Hadoop-style Catalogs]
+{% hint style="warning" %}
 For production and cloud environments, REST and AWS Glue catalogs are recommended. Hadoop-style catalogs are supported but less common and not recommended for most new deployments.
-:::
+{% endhint %}
 
 ## Configuration
 
@@ -48,7 +40,7 @@ catalogs:
       iceberg_s3_role_session_name: my-session # Optional. Session name to use when assuming the IAM role.
       iceberg_s3_connect_timeout: 60 # Optional. Connection timeout for the S3-compatible endpoint (default: 60).
 
-  # AWS Glue Catalog (see also the [AWS Glue Catalog Connector documentation](/docs/components/catalogs/glue.md))
+  # AWS Glue Catalog (see also the [AWS Glue Catalog Connector documentation](glue.md))
   - from: iceberg:https://glue.us-east-1.amazonaws.com/iceberg/v1/catalogs/123456789012/namespaces
     name: glue
     params:
@@ -59,7 +51,7 @@ catalogs:
 
 The `from` field specifies the catalog provider. For Iceberg, use `iceberg:<namespace_path>`, where `namespace_path` is the URL to the Iceberg namespace in the catalog provider. The format is `http[s]://<iceberg_catalog_host>/v1/{prefix}/namespaces/<namespace_name>`.
 
-For AWS Glue catalogs, the URL format is `https://glue.<region>.amazonaws.com/iceberg/v1/catalogs/<account_id>/namespaces`, where `<account_id>` is the AWS account ID. While possible to connect to Iceberg tables hosted by Glue using this generic connector, it is recommended to instead use the [AWS Glue Catalog Connector](/docs/components/catalogs/glue.md) for connecting to Iceberg tables managed by Glue for a better experience.
+For AWS Glue catalogs, the URL format is `https://glue.<region>.amazonaws.com/iceberg/v1/catalogs/<account_id>/namespaces`, where `<account_id>` is the AWS account ID. While possible to connect to Iceberg tables hosted by Glue using this generic connector, it is recommended to instead use the [AWS Glue Catalog Connector](glue.md) for connecting to Iceberg tables managed by Glue for a better experience.
 
 The selected namespace must have sub-namespaces where the tables are stored.
 
@@ -93,7 +85,7 @@ A valid `from` value would be `iceberg:https://iceberg-catalog-host.com/v1/names
 
 For loading a multi-part namespace, separate the namespace parts with the `%1F` character. For example, `/v1/namespaces/unity%1Fvery%1Fnested` would load the `foobar` table from the `unity/very/nested/namespace` namespace as `<name>.namespace.foobar`.
 
-To connect to a single Iceberg table directly, see the [Iceberg Data Connector documentation](/docs/components/data-connectors/iceberg.md).
+To connect to a single Iceberg table directly, see the [Iceberg Data Connector documentation](../data-connectors/iceberg.md).
 
 ## `name`
 
@@ -174,12 +166,12 @@ If AWS credentials are not explicitly provided in the configuration, the connect
      region = us-west-2
      ```
 
-   :::tip
+   {% hint style="success" %}
    To set up SSO authentication:
    1. Run `aws configure sso` to configure a new SSO profile
    2. Use the profile by setting `AWS_PROFILE=sso-profile`
    3. Run `aws sso login --profile sso-profile` to start a new SSO session
-   :::
+   {% endhint %}
 
 3. **AWS STS Web Identity Token Credentials**:
    - Used primarily with OpenID Connect (OIDC) and OAuth
@@ -198,9 +190,9 @@ If AWS credentials are not explicitly provided in the configuration, the connect
 
 The connector will try each source in order until valid credentials are found. If no valid credentials are found, an authentication error will be returned.
 
-:::note[IAM Permissions]
+{% hint style="info" %}
 Regardless of the credential source, the IAM role or user must have appropriate S3/Glue permissions (e.g., `s3:ListBucket`, `s3:GetObject`) to access the tables. If the Spicepod connects to multiple different AWS services, the permissions should cover all of them.
-:::
+{% endhint %}
 
 ## Required IAM Permissions
 
@@ -229,7 +221,7 @@ The IAM role or user needs the following permissions to access Iceberg tables in
           "glue:GetTable",
           "glue:GetTables"
         ],
-        Resource: "*"
+        "Resource": "*"
       }
     ]
 }
@@ -246,7 +238,3 @@ The IAM role or user needs the following permissions to access Iceberg tables in
 | `glue:GetDatabase` | Required. Retrieve metadata about the specified database. |
 | `glue:GetTable` | Required. Retrieve metadata about the specified table. |
 | `glue:GetTables` | Required. List the tables available in the current database. |
-
-## Cookbook
-
-- A cookbook recipe to configure Iceberg as a catalog connector in Spice. [Iceberg Catalog Connector](https://github.com/spiceai/cookbook/tree/trunk/catalogs/iceberg#readme)
