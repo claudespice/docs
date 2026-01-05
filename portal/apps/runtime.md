@@ -5,7 +5,7 @@ icon: gear
 
 # Runtime
 
-<figure><img src="../../.gitbook/assets/CleanShot 2025-07-10 at 07.06.34@2x.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 07.10.14@2x.png" alt=""><figcaption></figcaption></figure>
 
 Navigate to `Settings` -> `Runtime` to configure the runtime settings for your Spice application.
 
@@ -13,7 +13,7 @@ Navigate to `Settings` -> `Runtime` to configure the runtime settings for your S
 
 The runtime version determines the Spice.ai Open Source version for your Spice application. Each new deployment automatically adopts the latest stable version of the Spice runtime to ensure access to the most recent features and optimizations.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-07-08 at 21.07.03.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 07.10.46@2x.png" alt=""><figcaption></figcaption></figure>
 
 ### Runtime Region
 
@@ -22,11 +22,10 @@ The runtime region specifies the geographic location of the data center hosting 
 * **Availability**: Region selection is exclusive to Enterprise plan customers.
 * **Supported Regions**:
   * **North America**:
-    * **US East (Pittsburgh)** - `us-east-2` (Teraswitch, Current)
+    * **US East (N. Virginia)** - `us-east-1` (AWS)
     * **US West (Oregon)** - `us-west-2` (AWS)
-    * **US East (N. Virginia)** - `us-east` (Azure)
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-07-08 at 21.14.08.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 07.10.28@2x.png" alt=""><figcaption></figcaption></figure>
 
 ### Compute
 

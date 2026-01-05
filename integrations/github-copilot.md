@@ -64,7 +64,7 @@ Scroll down, and click **Install it for free**.
 
 To chat with the **Spice.ai for GitHub Copilot** extension, prefix the message with `@spiceai`
 
-<figure><img src="../.gitbook/assets/copilot_chat_again (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/copilot_chat_again (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 If `@spiceai` does not appear in the popup <mark style="color:red;">(2)</mark>, ensure that all the [installation](github-copilot.md) steps have been followed.&#x20;

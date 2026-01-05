@@ -7,21 +7,16 @@ icon: circle-2
 
 Once [signed in with GitHub](../get-started/portal-login.md), you will be redirected to the **new application page.** Set a name, add a model provider, and optionally select one of ready to use datasets.
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 09.52.03@2x.png" alt=""><figcaption><p>Create your first Spice.ai Cloud application.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 06.58.47@2x.png" alt="Create your first Spice.ai Cloud application."><figcaption><p>Create your first Spice.ai Cloud application.</p></figcaption></figure>
 
 1. Enter a name for the application.
-2. Optionally choose a model provider, such as OpenAI, and provide an API key.
-3. Optionally select one or more of the available datasets. Datasets can also be added later.
-4. Click **Create application**.
-   1. It will take up to 30 seconds to create and provision a dedicated Spice.ai instance for the application.
+2. Select region.
+3.  Click **Create application**.
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 10.04.29@2x.png" alt=""><figcaption><p>Setting an application name, selecting a optional model and optional datasets.</p></figcaption></figure>
+    It will take up to 30 seconds to create and provision a dedicated Spice.ai instance for the application.
+4. Once the application instance is deployed and ready, you will be redirected to the [Playground](../../portal/playground/).
 
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 10.06.30@2x.png" alt=""><figcaption><p>A new Spice.ai instance will be created.</p></figcaption></figure>
-
-5. Once the application instance is deployed and ready, you will be redirected to the [Playground](../../portal/playground/).
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-19 at 10.15.09@2x.png" alt=""><figcaption><p>SQL Query in the Playground.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 07.04.33@2x.png" alt=""><figcaption><p>SQL Query in the Playground.</p></figcaption></figure>
 
 6. Executing the `show tables` SQL query will show the default datasets available for the app.
 
