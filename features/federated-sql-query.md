@@ -5,7 +5,7 @@ icon: arrow-progress
 
 # Federated SQL Query
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Spice.ai Federation and Acceleration .png" alt=""><figcaption></figcaption></figure>
 
 Spice supports federated queries, enabling you to join and combine data from multiple sources, including databases (PostgreSQL, MySQL), data warehouses (Databricks, Snowflake, BigQuery), and data lakes (S3, MinIO). For a full list of supported sources, see [Data Connectors](https://docs.spiceai.org/components/data-connectors).
 
@@ -15,7 +15,7 @@ Spice supports federated queries, enabling you to join and combine data from mul
 
 The Playground SQL Explorer is the fastest way to get started with federated queries, debugging queries, and iterating quickly. The SQL Query Editor be accessed by clicking on the **SQL Explorer** tab after selecting **Playground** in the app navigation bar.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-10-24 at 5.53.08 PM.png" alt=""><figcaption><p>The Playground SQL Query Editor.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CleanShot 2026-01-09 at 00.43.27@2x.png" alt=""><figcaption><p>The Playground SQL Query Editor.</p></figcaption></figure>
 
 See [sql-query-editor.md](../portal/playground/sql-query-editor.md "mention") for further documentation on using the SQL Query Editor.
 
