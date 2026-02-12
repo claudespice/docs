@@ -507,28 +507,13 @@ for name, value in secrets.items():
 
 ## Terraform
 
+Use the `spiceai_secret` resource to manage secrets. See [Terraform Provider](terraform.md#spiceai_secret) for full documentation.
+
 ```hcl
-resource "spiceai_secret" "database_url" {
+resource "spiceai_secret" "database_password" {
   app_id = spiceai_app.example.id
-  name   = "DATABASE_URL"
-  value  = var.database_url
-}
-
-resource "spiceai_secret" "openai_key" {
-  app_id = spiceai_app.example.id
-  name   = "OPENAI_API_KEY"
-  value  = var.openai_api_key
-}
-
-resource "spiceai_secret" "aws_credentials" {
-  for_each = {
-    AWS_ACCESS_KEY_ID     = var.aws_access_key_id
-    AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
-  }
-
-  app_id = spiceai_app.example.id
-  name   = each.key
-  value  = each.value
+  name   = "DATABASE_PASSWORD"
+  value  = var.database_password
 }
 ```
 

@@ -429,15 +429,14 @@ The organization owner cannot be removed:
 
 ## Terraform
 
-```hcl
-resource "spiceai_member" "alice" {
-  username = "alice"
-  roles    = ["member"]
-}
+Use the `spiceai_member` resource to manage members. See [Terraform Provider](terraform.md#spiceai_member) for full documentation.
 
-resource "spiceai_member" "bob" {
-  username = "bob"
-  roles    = ["member", "billing"]
+```hcl
+resource "spiceai_member" "team" {
+  for_each = toset(["alice", "bob", "charlie"])
+
+  username = each.key
+  roles    = ["member"]
 }
 ```
 

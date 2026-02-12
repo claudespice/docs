@@ -570,44 +570,28 @@ Deleting an app will stop all running deployments and delete associated resource
 
 ## Terraform
 
+Use the `spiceai_app` resource to manage apps. See [Terraform Provider](terraform.md#spiceai_app) for full documentation.
+
 ```hcl
-data "spiceai_regions" "available" {}
-
 resource "spiceai_app" "example" {
-  name        = "my-terraform-app"
-  description = "Managed by Terraform"
-  visibility  = "private"
-  cname       = data.spiceai_regions.available.regions[0].cname
+  name       = "my-app"
+  cname      = "us-east-2.spice.cloud"
+  visibility = "private"
 
-  spicepod = jsonencode({
-    version = "v1"
-    kind    = "Spicepod"
-    name    = "my-terraform-app"
-    datasets = [
-      {
-        name = "my_dataset"
-        from = "s3://bucket/path"
-        acceleration = { enabled = true }
-      }
-    ]
-  })
+  spicepod = <<-YAML
+    version: v1beta1
+    kind: Spicepod
+    name: my-app
+    datasets:
+      - name: taxi_trips
+        from: s3://spiceai-demo-datasets/taxi_trips/2024/
+        params:
+          file_format: parquet
+  YAML
 
+  image_tag = "latest"
   replicas  = 2
-  image_tag = "1.5.0-models"
-  region    = "us-east-2"
-
-  tags = {
-    environment = "production"
-    team        = "analytics"
-  }
 }
-```
-
-**Import an existing app:**
-
-```bash
-terraform import spiceai_app.example 12345
-terraform import spiceai_app.example my-existing-app
 ```
 
 See also:

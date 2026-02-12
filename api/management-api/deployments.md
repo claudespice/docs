@@ -490,30 +490,15 @@ Before creating a deployment, ensure:
 
 ### Terraform
 
+Use the `spiceai_deployment` resource to manage deployments. See [Terraform Provider](terraform.md#spiceai_deployment) for full documentation.
+
 ```hcl
-resource "spiceai_app" "example" {
-  name      = "my-app"
-  cname     = "us-east-2.spice.cloud"
-  replicas  = 2
-  image_tag = "1.5.0-models"
-
-  spicepod = jsonencode({
-    version = "v1"
-    kind    = "Spicepod"
-    name    = "my-app"
-  })
-}
-
 resource "spiceai_deployment" "example" {
-  app_id = spiceai_app.example.id
-
-  # Optional overrides
+  app_id    = spiceai_app.example.id
+  image_tag = "v0.18.0"
   replicas  = 3
-  image_tag = "1.5.0-models"
 }
 ```
-
-Terraform automatically creates a deployment when the app configuration changes. The provider polls the deployment status until it succeeds or fails.
 
 See also:
 

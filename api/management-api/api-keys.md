@@ -400,13 +400,11 @@ Track API key usage through:
 
 ## Terraform
 
-```hcl
-resource "spiceai_app_api_key" "primary" {
-  app_id = spiceai_app.example.id
-}
+API keys are available as an attribute on the `spiceai_app` resource. See [Terraform Provider](terraform.md#spiceai_app) for full documentation.
 
-output "api_key" {
-  value     = spiceai_app_api_key.primary.api_key
+```hcl
+output "app_api_key" {
+  value     = spiceai_app.example.api_key
   sensitive = true
 }
 ```
