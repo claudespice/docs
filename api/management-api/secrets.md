@@ -505,7 +505,35 @@ for name, value in secrets.items():
         print(f"✗ Failed to create {name}: {response.json()}")
 ```
 
+## Terraform
+
+```hcl
+resource "spiceai_secret" "database_url" {
+  app_id = spiceai_app.example.id
+  name   = "DATABASE_URL"
+  value  = var.database_url
+}
+
+resource "spiceai_secret" "openai_key" {
+  app_id = spiceai_app.example.id
+  name   = "OPENAI_API_KEY"
+  value  = var.openai_api_key
+}
+
+resource "spiceai_secret" "aws_credentials" {
+  for_each = {
+    AWS_ACCESS_KEY_ID     = var.aws_access_key_id
+    AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
+  }
+
+  app_id = spiceai_app.example.id
+  name   = each.key
+  value  = each.value
+}
+```
+
 See also:
+
 - [Apps API](apps.md) - Use secrets in your spicepod configuration
 - [Portal Secrets](../../portal/apps/secrets.md) - Manage secrets in the portal
 - [Environment Variables](https://docs.spiceai.org/reference/spicepod/environment-variables) - Spicepod syntax

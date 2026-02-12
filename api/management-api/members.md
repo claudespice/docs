@@ -243,7 +243,7 @@ if (response.ok) {
 
 Removes a member from the organization (soft delete). Member access is revoked immediately.
 
-**Required scope:** `members:write`
+**Required scope:** `members:delete`
 
 ### Path Parameters
 
@@ -427,7 +427,22 @@ The organization owner cannot be removed:
 - Transfer ownership through the portal first (if needed)
 - Or create a new organization with a different owner
 
+## Terraform
+
+```hcl
+resource "spiceai_member" "alice" {
+  username = "alice"
+  roles    = ["member"]
+}
+
+resource "spiceai_member" "bob" {
+  username = "bob"
+  roles    = ["member", "billing"]
+}
+```
+
 See also:
+
 - [Organizations](../../portal/organizations.md) - Manage organizations in the portal
 - [Apps API](apps.md) - Create apps for your team
 - [Personal Access Tokens](../../portal/profile/personal-access-tokens.md) - Create tokens for team members

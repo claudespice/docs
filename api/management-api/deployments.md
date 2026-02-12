@@ -488,7 +488,35 @@ Before creating a deployment, ensure:
     exit 1
 ```
 
+### Terraform
+
+```hcl
+resource "spiceai_app" "example" {
+  name      = "my-app"
+  cname     = "us-east-2.spice.cloud"
+  replicas  = 2
+  image_tag = "1.5.0-models"
+
+  spicepod = jsonencode({
+    version = "v1"
+    kind    = "Spicepod"
+    name    = "my-app"
+  })
+}
+
+resource "spiceai_deployment" "example" {
+  app_id = spiceai_app.example.id
+
+  # Optional overrides
+  replicas  = 3
+  image_tag = "1.5.0-models"
+}
+```
+
+Terraform automatically creates a deployment when the app configuration changes. The provider polls the deployment status until it succeeds or fails.
+
 See also:
+
 - [Apps API](apps.md) - Configure your app before deploying
 - [Secrets API](secrets.md) - Manage secrets used by your app
 - [Portal Deployments](../../portal/app-spicepod/deployments.md) - View deployments in the portal

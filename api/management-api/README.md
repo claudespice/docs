@@ -94,8 +94,11 @@ Access to API resources is controlled through scopes. PATs and OAuth clients mus
 | `deployments:write` | Create new deployments                                        |
 | `secrets:read`      | List and view secrets (values are masked)                     |
 | `secrets:write`     | Create, update, and delete secrets                            |
+| `config:read`       | Read app configuration                                        |
+| `config:write`      | Update app configuration                                      |
 | `members:read`      | View organization members                                     |
-| `members:write`     | Add and manage organization members                           |
+| `members:write`     | Add and update organization members                           |
+| `members:delete`    | Remove organization members                                   |
 
 **Scope Hierarchy:**
 - Write scopes (`apps:write`) imply read access (`apps:read`)
@@ -185,6 +188,127 @@ Official SDKs are available for popular languages:
 - [Secrets](secrets.md) - Manage app secrets
 - [API Keys](api-keys.md) - Manage app API keys
 - [Members](members.md) - Manage organization members
+- [Container Images](container-images.md) - List available runtime versions
+
+## Terraform Provider
+
+The Management API supports infrastructure-as-code workflows through the [Terraform provider](https://registry.terraform.io/providers/spiceai/spiceai/latest).
+
+### Provider Configuration
+
+```hcl
+terraform {
+  required_providers {
+    spiceai = {
+      source  = "spiceai/spiceai"
+      version = "~> 1.0"
+    }
+  }
+}
+
+provider "spiceai" {
+  # Uses SPICEAI_CLIENT_ID and SPICEAI_CLIENT_SECRET env vars
+}
+```
+
+### Manage an App with Terraform
+
+```hcl
+# Get available regions to find cname
+data "spiceai_regions" "available" {}
+
+resource "spiceai_app" "example" {
+  name        = "my-terraform-app"
+  description = "Managed by Terraform"
+  visibility  = "private"
+  cname       = data.spiceai_regions.available.regions[0].cname
+
+  # Spicepod configuration (YAML or JSON)
+  spicepod = jsonencode({
+    version = "v1"
+    kind    = "Spicepod"
+    name    = "my-terraform-app"
+    datasets = [
+      {
+        name = "my_dataset"
+        from = "s3://bucket/path"
+        acceleration = {
+          enabled = true
+        }
+      }
+    ]
+  })
+
+  # Runtime configuration
+  replicas  = 2
+  image_tag = "1.5.0-models"
+  region    = "us-east-2"
+}
+
+resource "spiceai_deployment" "example" {
+  app_id = spiceai_app.example.id
+
+  # Optional overrides
+  replicas  = 3
+  image_tag = "1.5.0-models"
+}
+```
+
+### Manage Secrets and API Keys
+
+```hcl
+resource "spiceai_secret" "database_url" {
+  app_id = spiceai_app.example.id
+  name   = "DATABASE_URL"
+  value  = var.database_url
+}
+
+resource "spiceai_secret" "api_key" {
+  app_id = spiceai_app.example.id
+  name   = "OPENAI_API_KEY"
+  value  = var.openai_api_key
+}
+
+resource "spiceai_app_api_key" "primary" {
+  app_id = spiceai_app.example.id
+}
+```
+
+### Manage Members
+
+```hcl
+resource "spiceai_member" "engineer" {
+  username = "alice"
+  roles    = ["member"]
+}
+```
+
+### Resource Mapping
+
+| Terraform Resource    | API Endpoints                              |
+| --------------------- | ------------------------------------------ |
+| `spiceai_app`         | `POST/GET/PUT/DELETE /v1/apps/{appId}`     |
+| `spiceai_deployment`  | `POST/GET /v1/apps/{appId}/deployments`    |
+| `spiceai_app_api_key` | `GET/POST /v1/apps/{appId}/api-keys`       |
+| `spiceai_secret`      | `GET/POST/DELETE /v1/apps/{appId}/secrets` |
+| `spiceai_member`      | `GET/POST/PATCH/DELETE /v1/members`        |
+
+### Import Existing Resources
+
+```bash
+# Import existing app by ID
+terraform import spiceai_app.example 12345
+
+# Import by name
+terraform import spiceai_app.example my-existing-app
+```
+
+### State Refresh
+
+The provider refreshes state by calling:
+
+1. `GET /v1/apps/{appId}` - Current app configuration
+2. `GET /v1/apps/{appId}/deployments?limit=1&status=succeeded` - Latest successful deployment
 
 ## Examples
 
@@ -203,7 +327,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-east-2",
+    "cname": "us-east-2.spice.cloud",
     "description": "My Spice app",
     "visibility": "private"
   }'

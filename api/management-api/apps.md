@@ -28,7 +28,7 @@ Returns a list of apps for the authenticated organization.
       "description": "My Spice app",
       "visibility": "private",
       "created_at": "2024-01-15T10:00:00.000Z",
-      "cname": "us-east-2",
+      "cname": "us-east-2.spice.cloud",
       "api_key": "abc123...",
       "tags": {
         "environment": "production",
@@ -90,7 +90,7 @@ Creates a new app in the authenticated organization.
 ```json
 {
   "name": "my-app",
-  "cname": "us-east-2",
+  "cname": "us-east-2.spice.cloud",
   "description": "My Spice app",
   "visibility": "private",
   "tags": {
@@ -208,7 +208,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-east-2",
+    "cname": "us-east-2.spice.cloud",
     "description": "My production app",
     "visibility": "private",
     "tags": {
@@ -231,7 +231,7 @@ response = requests.post(
     },
     json={
         "name": "my-app",
-        "cname": "us-east-2",
+        "cname": "us-east-2.spice.cloud",
         "description": "My production app"
     }
 )
@@ -251,7 +251,7 @@ const response = await fetch('https://api.spice.ai/v1/apps', {
   },
   body: JSON.stringify({
     name: 'my-app',
-    cname: 'us-east-2',
+    cname: 'us-east-2.spice.cloud',
     description: 'My production app'
   })
 });
@@ -568,7 +568,50 @@ Deleting an app will stop all running deployments and delete associated resource
 - Monitor resource usage before increasing replicas
 - Use appropriate replica counts for your plan tier
 
+## Terraform
+
+```hcl
+data "spiceai_regions" "available" {}
+
+resource "spiceai_app" "example" {
+  name        = "my-terraform-app"
+  description = "Managed by Terraform"
+  visibility  = "private"
+  cname       = data.spiceai_regions.available.regions[0].cname
+
+  spicepod = jsonencode({
+    version = "v1"
+    kind    = "Spicepod"
+    name    = "my-terraform-app"
+    datasets = [
+      {
+        name = "my_dataset"
+        from = "s3://bucket/path"
+        acceleration = { enabled = true }
+      }
+    ]
+  })
+
+  replicas  = 2
+  image_tag = "1.5.0-models"
+  region    = "us-east-2"
+
+  tags = {
+    environment = "production"
+    team        = "analytics"
+  }
+}
+```
+
+**Import an existing app:**
+
+```bash
+terraform import spiceai_app.example 12345
+terraform import spiceai_app.example my-existing-app
+```
+
 See also:
+
 - [Deployments API](deployments.md) - Deploy your app
 - [Secrets API](secrets.md) - Manage app secrets
 - [API Keys](api-keys.md) - Manage app API keys

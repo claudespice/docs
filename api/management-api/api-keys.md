@@ -398,7 +398,21 @@ Track API key usage through:
 - **Runtime Logs** - Check authentication events in runtime logs
 - **Metrics** - Monitor request rates and error rates by key
 
+## Terraform
+
+```hcl
+resource "spiceai_app_api_key" "primary" {
+  app_id = spiceai_app.example.id
+}
+
+output "api_key" {
+  value     = spiceai_app_api_key.primary.api_key
+  sensitive = true
+}
+```
+
 See also:
+
 - [Apps API](apps.md) - Manage your apps
 - [Portal API Keys](../../portal/apps/api-keys.md) - View keys in the portal
 - [SQL Query API](../sql-query/) - Query your data
