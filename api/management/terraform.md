@@ -1,6 +1,5 @@
 ---
 description: Manage Spice.ai resources with Terraform
-hidden: true
 icon: cube
 ---
 
