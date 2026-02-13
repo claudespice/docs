@@ -1,5 +1,6 @@
 ---
 description: Manage Spice.ai resources with Terraform
+hidden: true
 icon: cube
 ---
 
@@ -34,7 +35,7 @@ provider "spiceai" {
 
 ### Authentication
 
-The provider authenticates using [OAuth 2.0 Client Credentials](README.md#2-oauth-20-client-credentials). Set credentials via environment variables:
+The provider authenticates using [OAuth 2.0 Client Credentials](./#2-oauth-20-client-credentials). Set credentials via environment variables:
 
 ```bash
 export SPICEAI_CLIENT_ID="your-client-id"
@@ -90,26 +91,26 @@ resource "spiceai_app" "full" {
 
 **Arguments:**
 
-| Argument              | Type   | Required | Description                                       |
-| --------------------- | ------ | -------- | ------------------------------------------------- |
-| `name`                | string | **Yes**  | App name (min 4 chars, alphanumeric and hyphens)  |
-| `cname`               | string | **Yes**  | Region identifier (from `spiceai_regions`)        |
-| `description`         | string | No       | App description                                   |
-| `visibility`          | string | No       | `public` or `private` (default: `private`)        |
-| `spicepod`            | string | No       | Spicepod configuration (YAML or JSON string)      |
-| `image_tag`           | string | No       | Spice runtime version tag                         |
-| `replicas`            | number | No       | Number of replicas (1-10)                         |
-| `region`              | string | No       | AWS region code                                   |
-| `production_branch`   | string | No       | Git branch for production deployments             |
-| `node_group`          | string | No       | Kubernetes node group                             |
-| `storage_claim_size_gb` | number | No     | Persistent volume size in GB                      |
+| Argument                | Type   | Required | Description                                      |
+| ----------------------- | ------ | -------- | ------------------------------------------------ |
+| `name`                  | string | **Yes**  | App name (min 4 chars, alphanumeric and hyphens) |
+| `cname`                 | string | **Yes**  | Region identifier (from `spiceai_regions`)       |
+| `description`           | string | No       | App description                                  |
+| `visibility`            | string | No       | `public` or `private` (default: `private`)       |
+| `spicepod`              | string | No       | Spicepod configuration (YAML or JSON string)     |
+| `image_tag`             | string | No       | Spice runtime version tag                        |
+| `replicas`              | number | No       | Number of replicas (1-10)                        |
+| `region`                | string | No       | AWS region code                                  |
+| `production_branch`     | string | No       | Git branch for production deployments            |
+| `node_group`            | string | No       | Kubernetes node group                            |
+| `storage_claim_size_gb` | number | No       | Persistent volume size in GB                     |
 
 **Attributes:**
 
-| Attribute  | Description              |
-| ---------- | ------------------------ |
-| `id`       | App ID                   |
-| `api_key`  | Primary API key          |
+| Attribute | Description     |
+| --------- | --------------- |
+| `id`      | App ID          |
+| `api_key` | Primary API key |
 
 You can use JSON instead of YAML for the spicepod:
 
@@ -171,21 +172,21 @@ resource "spiceai_deployment" "production" {
 
 **Arguments:**
 
-| Argument         | Type    | Required | Description                              |
-| ---------------- | ------- | -------- | ---------------------------------------- |
-| `app_id`         | string  | **Yes**  | The app ID to deploy                     |
-| `image_tag`      | string  | No       | Override the Spice runtime image tag     |
-| `replicas`       | number  | No       | Override the number of replicas (1-10)   |
-| `debug`          | boolean | No       | Enable debug mode                        |
-| `branch`         | string  | No       | Git branch name (for tracking)           |
-| `commit_sha`     | string  | No       | Git commit SHA (for tracking)            |
-| `commit_message` | string  | No       | Git commit message (for tracking)        |
+| Argument         | Type    | Required | Description                            |
+| ---------------- | ------- | -------- | -------------------------------------- |
+| `app_id`         | string  | **Yes**  | The app ID to deploy                   |
+| `image_tag`      | string  | No       | Override the Spice runtime image tag   |
+| `replicas`       | number  | No       | Override the number of replicas (1-10) |
+| `debug`          | boolean | No       | Enable debug mode                      |
+| `branch`         | string  | No       | Git branch name (for tracking)         |
+| `commit_sha`     | string  | No       | Git commit SHA (for tracking)          |
+| `commit_message` | string  | No       | Git commit message (for tracking)      |
 
 **Attributes:**
 
-| Attribute | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| `id`      | Deployment ID                                                |
+| Attribute | Description                                                        |
+| --------- | ------------------------------------------------------------------ |
+| `id`      | Deployment ID                                                      |
 | `status`  | Deployment status (`queued`, `in_progress`, `succeeded`, `failed`) |
 
 Use `triggers` to automatically create a new deployment when the app configuration changes:
@@ -228,17 +229,17 @@ resource "spiceai_secret" "aws_secret_key" {
 
 **Arguments:**
 
-| Argument | Type   | Required | Description            |
-| -------- | ------ | -------- | ---------------------- |
-| `app_id` | string | **Yes**  | The app ID             |
-| `name`   | string | **Yes**  | Secret name            |
+| Argument | Type   | Required | Description              |
+| -------- | ------ | -------- | ------------------------ |
+| `app_id` | string | **Yes**  | The app ID               |
+| `name`   | string | **Yes**  | Secret name              |
 | `value`  | string | **Yes**  | Secret value (sensitive) |
 
 **Attributes:**
 
-| Attribute | Description       |
-| --------- | ----------------- |
-| `id`      | Secret ID         |
+| Attribute | Description |
+| --------- | ----------- |
+| `id`      | Secret ID   |
 
 {% hint style="info" %}
 After importing a secret, you must set the `value` attribute in your configuration since secret values are not returned by the API (they are masked).
@@ -270,16 +271,16 @@ resource "spiceai_member" "team" {
 
 **Arguments:**
 
-| Argument   | Type     | Required | Description                              |
-| ---------- | -------- | -------- | ---------------------------------------- |
-| `username` | string   | **Yes**  | GitHub username                          |
-| `roles`    | string[] | No       | Roles to assign (default: `["member"]`)  |
+| Argument   | Type      | Required | Description                             |
+| ---------- | --------- | -------- | --------------------------------------- |
+| `username` | string    | **Yes**  | GitHub username                         |
+| `roles`    | string\[] | No       | Roles to assign (default: `["member"]`) |
 
 **Attributes:**
 
-| Attribute | Description   |
-| --------- | ------------- |
-| `user_id` | User ID       |
+| Attribute | Description |
+| --------- | ----------- |
+| `user_id` | User ID     |
 
 {% hint style="warning" %}
 Organization owners cannot be managed via Terraform. Attempting to modify or delete an owner will result in an error.
@@ -539,21 +540,21 @@ output "deployment_status" {
 
 ## Resource Mapping
 
-| Terraform Resource      | API Endpoints                              |
-| ----------------------- | ------------------------------------------ |
-| `spiceai_app`           | `POST/GET/PUT/DELETE /v1/apps/{appId}`     |
-| `spiceai_deployment`    | `POST/GET /v1/apps/{appId}/deployments`    |
-| `spiceai_secret`        | `GET/POST/DELETE /v1/apps/{appId}/secrets` |
-| `spiceai_member`        | `GET/POST/PATCH/DELETE /v1/members`        |
-| `spiceai_regions`       | `GET /v1/regions`                          |
-| `spiceai_container_images` | `GET /v1/container-images`              |
-| `spiceai_app` (data)    | `GET /v1/apps/{appId}`                     |
-| `spiceai_apps` (data)   | `GET /v1/apps`                             |
-| `spiceai_members` (data) | `GET /v1/members`                         |
-| `spiceai_secrets` (data) | `GET /v1/apps/{appId}/secrets`            |
+| Terraform Resource         | API Endpoints                              |
+| -------------------------- | ------------------------------------------ |
+| `spiceai_app`              | `POST/GET/PUT/DELETE /v1/apps/{appId}`     |
+| `spiceai_deployment`       | `POST/GET /v1/apps/{appId}/deployments`    |
+| `spiceai_secret`           | `GET/POST/DELETE /v1/apps/{appId}/secrets` |
+| `spiceai_member`           | `GET/POST/PATCH/DELETE /v1/members`        |
+| `spiceai_regions`          | `GET /v1/regions`                          |
+| `spiceai_container_images` | `GET /v1/container-images`                 |
+| `spiceai_app` (data)       | `GET /v1/apps/{appId}`                     |
+| `spiceai_apps` (data)      | `GET /v1/apps`                             |
+| `spiceai_members` (data)   | `GET /v1/members`                          |
+| `spiceai_secrets` (data)   | `GET /v1/apps/{appId}/secrets`             |
 
 See also:
 
-- [Terraform Provider Registry](https://registry.terraform.io/providers/spiceai/spiceai/latest)
-- [Provider Source](https://github.com/spicehq/terraform-provider-spiceai)
-- [Management API Overview](README.md)
+* [Terraform Provider Registry](https://registry.terraform.io/providers/spiceai/spiceai/latest)
+* [Provider Source](https://github.com/spicehq/terraform-provider-spiceai)
+* [Management API Overview](./)

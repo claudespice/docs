@@ -65,6 +65,11 @@
 
 ## API
 
+* [SQL Query API](api/sql-query/README.md)
+  * [HTTP API](api/sql-query/http-api.md)
+  * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
+* [Search API](api/search.md)
+* [LLM API](api/openai-api.md)
 * [Management API](api/management-api/README.md)
   * [Health](api/management-api/health.md)
   * [Regions](api/management-api/regions.md)
@@ -75,11 +80,6 @@
   * [Members](api/management-api/members.md)
   * [Container Images](api/management-api/container-images.md)
   * [Terraform Provider](api/management-api/terraform.md)
-* [SQL Query API](api/sql-query/README.md)
-  * [HTTP API](api/sql-query/http-api.md)
-  * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
-* [Search API](api/search.md)
-* [LLM API](api/openai-api.md)
 * [Health API](api/health.md)
 
 ## Portal
