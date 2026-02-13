@@ -65,6 +65,16 @@
 
 ## API
 
+* [Management API](api/management-api/README.md)
+  * [Health](api/management-api/health.md)
+  * [Regions](api/management-api/regions.md)
+  * [Apps](api/management-api/apps.md)
+  * [Deployments](api/management-api/deployments.md)
+  * [Secrets](api/management-api/secrets.md)
+  * [API Keys](api/management-api/api-keys.md)
+  * [Members](api/management-api/members.md)
+  * [Container Images](api/management-api/container-images.md)
+  * [Terraform Provider](api/management-api/terraform.md)
 * [SQL Query API](api/sql-query/README.md)
   * [HTTP API](api/sql-query/http-api.md)
   * [Apache Arrow Flight API](api/sql-query/apache-arrow-flight-api.md)
