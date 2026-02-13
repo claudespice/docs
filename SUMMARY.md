@@ -131,6 +131,7 @@
 
 ## Integrations
 
+* [Agent Skills](integrations/agent-skills.md)
 * [GitHub Copilot](integrations/github-copilot.md)
 * [Grafana](integrations/grafana.md)
 * [Databricks](integrations/databricks.md)
