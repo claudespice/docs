@@ -56,7 +56,7 @@ resource "spiceai_app" "basic" {
   name        = "my-basic-app"
   description = "A basic Spice.ai app"
   visibility  = "private"
-  cname       = "us-east-2.spice.cloud"
+  cname       = "us-west-2-prod-aws-data"
 }
 
 # App with spicepod and runtime configuration
@@ -64,7 +64,7 @@ resource "spiceai_app" "full" {
   name        = "my-full-app"
   description = "A fully configured Spice.ai app"
   visibility  = "private"
-  cname       = "us-east-2.spice.cloud"
+  cname       = "us-west-2-prod-aws-data"
 
   spicepod = <<-YAML
     version: v1beta1
@@ -117,7 +117,7 @@ You can use JSON instead of YAML for the spicepod:
 resource "spiceai_app" "json_config" {
   name       = "my-json-app"
   visibility = "public"
-  cname      = "us-west-2.spice.cloud"
+  cname      = "us-west-2-prod-aws-data"
 
   spicepod = jsonencode({
     version = "v1beta1"
@@ -138,7 +138,7 @@ Or use a template file:
 ```hcl
 resource "spiceai_app" "templated" {
   name  = "my-app"
-  cname = "us-east-2.spice.cloud"
+  cname = "us-west-2-prod-aws-data"
 
   spicepod = templatefile("${path.module}/spicepod.yaml.tftpl", {
     app_name = "my-app"

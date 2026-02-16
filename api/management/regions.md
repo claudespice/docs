@@ -23,21 +23,21 @@ Returns a list of available regions where apps can be deployed.
 {
   "regions": [
     {
-      "name": "US East (Ohio)",
-      "region": "us-east-2",
-      "cname": "us-east-2.spice.cloud",
+      "name": "US East (N. Virginia)",
+      "region": "us-east-1",
       "provider": "aws",
-      "providerName": "AWS"
+      "providerName": "AWS",
+      "cname": "us-east-1-prod-aws-data"
     },
     {
       "name": "US West (Oregon)",
       "region": "us-west-2",
-      "cname": "us-west-2.spice.cloud",
       "provider": "aws",
-      "providerName": "AWS"
+      "providerName": "AWS",
+      "cname": "us-west-2-prod-aws-data"
     }
   ],
-  "default": "us-east-2"
+  "default": "us-west-2"
 }
 ```
 
@@ -85,28 +85,21 @@ curl -H "Authorization: Bearer <token>" \
 {
   "regions": [
     {
-      "name": "US East (Ohio)",
-      "region": "us-east-2",
-      "cname": "us-east-2.spice.cloud",
+      "name": "US East (N. Virginia)",
+      "region": "us-east-1",
       "provider": "aws",
-      "providerName": "AWS"
+      "providerName": "AWS",
+      "cname": "us-east-1-prod-aws-data"
     },
     {
       "name": "US West (Oregon)",
       "region": "us-west-2",
-      "cname": "us-west-2.spice.cloud",
       "provider": "aws",
-      "providerName": "AWS"
-    },
-    {
-      "name": "Europe (Frankfurt)",
-      "region": "eu-central-1",
-      "cname": "eu-central-1.spice.cloud",
-      "provider": "aws",
-      "providerName": "AWS"
+      "providerName": "AWS",
+      "cname": "us-west-2-prod-aws-data"
     }
   ],
-  "default": "us-east-2"
+  "default": "us-west-2"
 }
 ```
 
@@ -148,7 +141,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-east-2.spice.cloud"
+    "cname": "us-west-2-prod-aws-data"
   }'
 ```
 
