@@ -7,7 +7,7 @@ icon: cube
 
 The [Spice.ai Terraform Provider](https://registry.terraform.io/providers/spiceai/spiceai/latest) enables infrastructure-as-code management of your Spice.ai Cloud resources.
 
-## Provider Configuration
+## Quick Start
 
 ```hcl
 terraform {
@@ -19,22 +19,23 @@ terraform {
   }
 }
 
-provider "spiceai" {
-  # OAuth client credentials for authentication.
-  # Can also be set via environment variables:
-  #   SPICEAI_CLIENT_ID
-  #   SPICEAI_CLIENT_SECRET
-  client_id     = var.spiceai_client_id
-  client_secret = var.spiceai_client_secret
+provider "spiceai" {}
 
-  # Optional: Custom API endpoint (defaults to https://api.spice.ai)
-  # api_endpoint = "https://api.spice.ai"
+resource "spiceai_app" "app" {
+  name  = "my-spicecloud-app"
+  cname = "us-west-2-prod-aws-data"
+}
+
+resource "spiceai_deployment" "deploy" {
+  app_id = spiceai_app.app.id
 }
 ```
 
-### Authentication
+## Authentication
 
-The provider authenticates using [OAuth 2.0 Client Credentials](./#2-oauth-20-client-credentials). Set credentials via environment variables:
+The provider authenticates using [OAuth 2.0 Client Credentials](./#id-2.-oauth-2.0-client-credentials). Create an OAuth client in the [Spice.ai Portal](https://spice.ai) under **Settings** → **OAuth Clients**.
+
+Set credentials via environment variables (recommended):
 
 ```bash
 export SPICEAI_CLIENT_ID="your-client-id"
@@ -42,7 +43,23 @@ export SPICEAI_CLIENT_SECRET="your-client-secret"
 terraform plan
 ```
 
-Create OAuth clients in the [Spice.ai Portal](https://spice.ai) under **Settings** → **OAuth Clients**.
+Or configure directly in the provider block:
+
+```hcl
+provider "spiceai" {
+  client_id     = var.spiceai_client_id
+  client_secret = var.spiceai_client_secret
+}
+```
+
+### Environment Variables
+
+| Variable                 | Description                                                  |
+| ------------------------ | ------------------------------------------------------------ |
+| `SPICEAI_CLIENT_ID`      | OAuth client ID                                              |
+| `SPICEAI_CLIENT_SECRET`  | OAuth client secret                                          |
+| `SPICEAI_API_ENDPOINT`   | API endpoint (default: `https://api.spice.ai`)               |
+| `SPICEAI_OAUTH_ENDPOINT` | OAuth token endpoint (default: `https://spice.ai/api/oauth/token`) |
 
 ## Resources
 
@@ -51,33 +68,21 @@ Create OAuth clients in the [Spice.ai Portal](https://spice.ai) under **Settings
 Manages a Spice.ai application.
 
 ```hcl
-# Basic app
-resource "spiceai_app" "basic" {
-  name        = "my-basic-app"
-  description = "A basic Spice.ai app"
-  visibility  = "private"
+resource "spiceai_app" "app" {
+  name        = "my-spicecloud-app"
   cname       = "us-west-2-prod-aws-data"
-}
-
-# App with spicepod and runtime configuration
-resource "spiceai_app" "full" {
-  name        = "my-full-app"
-  description = "A fully configured Spice.ai app"
+  description = "Managed by Terraform"
   visibility  = "private"
-  cname       = "us-west-2-prod-aws-data"
 
   spicepod = <<-YAML
-    version: v1beta1
+    version: v1
     kind: Spicepod
-    name: my-full-app
+    name: my-spicecloud-app
     datasets:
       - name: taxi_trips
         from: s3://spiceai-demo-datasets/taxi_trips/2024/
         params:
           file_format: parquet
-    models:
-      - name: my_model
-        from: openai:gpt-4
   YAML
 
   image_tag             = "latest"
@@ -88,54 +93,60 @@ resource "spiceai_app" "full" {
 }
 ```
 
-**Arguments:**
+**Required arguments:**
 
-| Argument                | Type   | Required | Description                                      |
-| ----------------------- | ------ | -------- | ------------------------------------------------ |
-| `name`                  | string | **Yes**  | App name (min 4 chars, alphanumeric and hyphens) |
-| `cname`                 | string | **Yes**  | Region identifier (from `spiceai_regions`)       |
-| `description`           | string | No       | App description                                  |
-| `visibility`            | string | No       | `public` or `private` (default: `private`)       |
-| `spicepod`              | string | No       | Spicepod configuration (YAML or JSON string)     |
-| `image_tag`             | string | No       | Spice runtime version tag                        |
-| `replicas`              | number | No       | Number of replicas (1-10)                        |
-| `region`                | string | No       | AWS region code                                  |
-| `production_branch`     | string | No       | Git branch for production deployments            |
-| `node_group`            | string | No       | Kubernetes node group                            |
-| `storage_claim_size_gb` | number | No       | Persistent volume size in GB                     |
+| Argument | Type   | Description                                                |
+| -------- | ------ | ---------------------------------------------------------- |
+| `name`   | string | App name (min 4 chars, alphanumeric and hyphens). Forces replacement on change. |
+| `cname`  | string | Region identifier. Get values from the `spiceai_regions` data source. Forces replacement on change. |
 
-**Attributes:**
+**Optional arguments:**
 
-| Attribute | Description     |
-| --------- | --------------- |
-| `id`      | App ID          |
-| `api_key` | Primary API key |
+| Argument                | Type        | Description                                                 |
+| ----------------------- | ----------- | ----------------------------------------------------------- |
+| `description`           | string      | App description                                             |
+| `visibility`            | string      | `public` or `private` (default: `private`)                  |
+| `spicepod`              | string      | Spicepod configuration (YAML or JSON string)                |
+| `image_tag`             | string      | Spice runtime image tag (e.g., `latest`, `v0.18.0`)         |
+| `image`                 | string      | Image name for the spiced container                         |
+| `registry`              | string      | Registry for the spiced image                               |
+| `replicas`              | number      | Number of replicas (0–10)                                   |
+| `region`                | string      | Deployment region                                           |
+| `node_group`            | string      | Node group for deployment                                   |
+| `storage_claim_size_gb` | number      | Persistent volume size in GB                                |
+| `production_branch`     | string      | Git branch for production deployments                       |
+| `update_channel`        | string      | Update channel: `stable`, `nightly`, `internal`, `internal-sandbox` |
+| `tags`                  | map(string) | Key-value tags for the app                                  |
 
-You can use JSON instead of YAML for the spicepod:
+**Read-only attributes:**
+
+| Attribute    | Description                                    |
+| ------------ | ---------------------------------------------- |
+| `id`         | App ID                                         |
+| `api_key`    | Primary API key (sensitive)                    |
+| `cluster_id` | Kubernetes cluster identifier                  |
+| `created_at` | Timestamp when the app was created             |
+
+The `spicepod` can also be provided as JSON or loaded from a template file:
 
 ```hcl
+# Using JSON
 resource "spiceai_app" "json_config" {
-  name       = "my-json-app"
-  visibility = "public"
-  cname      = "us-west-2-prod-aws-data"
+  name  = "my-json-app"
+  cname = "us-west-2-prod-aws-data"
 
   spicepod = jsonencode({
-    version = "v1beta1"
+    version = "v1"
     kind    = "Spicepod"
     name    = "my-json-app"
-    datasets = [
-      {
-        name = "my_dataset"
-        from = "postgres://mydb/table"
-      }
-    ]
+    datasets = [{
+      name = "my_dataset"
+      from = "postgres://mydb/table"
+    }]
   })
 }
-```
 
-Or use a template file:
-
-```hcl
+# Using a template file
 resource "spiceai_app" "templated" {
   name  = "my-app"
   cname = "us-west-2-prod-aws-data"
@@ -148,100 +159,104 @@ resource "spiceai_app" "templated" {
 
 ### spiceai\_deployment
 
-Creates a deployment for a Spice.ai app.
+Creates a deployment for a Spice.ai app. Deployments are immutable — any changes create a new deployment.
 
 ```hcl
 # Basic deployment using app defaults
-resource "spiceai_deployment" "basic" {
-  app_id = spiceai_app.full.id
+resource "spiceai_deployment" "deploy" {
+  app_id = spiceai_app.app.id
 }
 
-# Deployment with overrides and git tracking
+# Deployment with overrides
 resource "spiceai_deployment" "production" {
-  app_id = spiceai_app.full.id
+  app_id = spiceai_app.app.id
 
   image_tag      = "v0.18.0"
-  replicas       = 5
+  replicas       = 3
   debug          = false
-  branch         = "release/v1.0"
+  branch         = "main"
   commit_sha     = "abc123def456789"
-  commit_message = "Production release v1.0"
+  commit_message = "Production release"
 }
 ```
 
-**Arguments:**
+**Required arguments:**
 
-| Argument         | Type    | Required | Description                            |
-| ---------------- | ------- | -------- | -------------------------------------- |
-| `app_id`         | string  | **Yes**  | The app ID to deploy                   |
-| `image_tag`      | string  | No       | Override the Spice runtime image tag   |
-| `replicas`       | number  | No       | Override the number of replicas (1-10) |
-| `debug`          | boolean | No       | Enable debug mode                      |
-| `branch`         | string  | No       | Git branch name (for tracking)         |
-| `commit_sha`     | string  | No       | Git commit SHA (for tracking)          |
-| `commit_message` | string  | No       | Git commit message (for tracking)      |
+| Argument | Type   | Description                 |
+| -------- | ------ | --------------------------- |
+| `app_id` | string | The app ID to deploy        |
 
-**Attributes:**
+**Optional arguments:**
 
-| Attribute | Description                                                        |
-| --------- | ------------------------------------------------------------------ |
-| `id`      | Deployment ID                                                      |
-| `status`  | Deployment status (`queued`, `in_progress`, `succeeded`, `failed`) |
+| Argument         | Type        | Description                                               |
+| ---------------- | ----------- | --------------------------------------------------------- |
+| `image_tag`      | string      | Override the Spice runtime image tag                      |
+| `replicas`       | number      | Override the number of replicas (0–10)                    |
+| `debug`          | boolean     | Enable debug mode                                         |
+| `branch`         | string      | Git branch name                                           |
+| `commit_sha`     | string      | Git commit SHA                                            |
+| `commit_message` | string      | Git commit message                                        |
+| `triggers`       | map(string) | Map of values that force a new deployment when changed    |
 
-Use `triggers` to automatically create a new deployment when the app configuration changes:
+**Read-only attributes:**
+
+| Attribute       | Description                                                            |
+| --------------- | ---------------------------------------------------------------------- |
+| `id`            | Deployment ID                                                          |
+| `status`        | Status: `queued`, `in_progress`, `succeeded`, `failed`, `created`      |
+| `created_at`    | Timestamp when the deployment was created                              |
+| `started_at`    | Timestamp when the deployment started running                          |
+| `finished_at`   | Timestamp when the deployment finished                                 |
+| `error_message` | Error message if deployment failed                                     |
+
+Use `triggers` to automatically redeploy when app configuration changes:
 
 ```hcl
 resource "spiceai_deployment" "auto" {
-  app_id = spiceai_app.full.id
+  app_id = spiceai_app.app.id
 
   triggers = {
-    spicepod  = spiceai_app.full.spicepod
-    image_tag = spiceai_app.full.image_tag
-    replicas  = spiceai_app.full.replicas
+    spicepod  = spiceai_app.app.spicepod
+    image_tag = spiceai_app.app.image_tag
+    replicas  = spiceai_app.app.replicas
   }
 }
 ```
 
+{% hint style="info" %}
+Deployments are append-only. Removing a deployment resource from your configuration only removes it from Terraform state — it will not stop the running instance.
+{% endhint %}
+
 ### spiceai\_secret
 
-Manages secrets for a Spice.ai app.
+Manages secrets for a Spice.ai app. Secret values are encrypted at rest.
 
 ```hcl
 resource "spiceai_secret" "database_password" {
-  app_id = spiceai_app.full.id
+  app_id = spiceai_app.app.id
   name   = "DATABASE_PASSWORD"
   value  = var.database_password
 }
-
-resource "spiceai_secret" "aws_access_key" {
-  app_id = spiceai_app.full.id
-  name   = "AWS_ACCESS_KEY_ID"
-  value  = var.aws_access_key_id
-}
-
-resource "spiceai_secret" "aws_secret_key" {
-  app_id = spiceai_app.full.id
-  name   = "AWS_SECRET_ACCESS_KEY"
-  value  = var.aws_secret_access_key
-}
 ```
 
-**Arguments:**
+**Required arguments:**
 
-| Argument | Type   | Required | Description              |
-| -------- | ------ | -------- | ------------------------ |
-| `app_id` | string | **Yes**  | The app ID               |
-| `name`   | string | **Yes**  | Secret name              |
-| `value`  | string | **Yes**  | Secret value (sensitive) |
+| Argument | Type   | Description                         |
+| -------- | ------ | ----------------------------------- |
+| `app_id` | number | The app ID                          |
+| `name`   | string | Secret name. Forces replacement on change. |
+| `value`  | string | Secret value (sensitive)            |
 
-**Attributes:**
+**Read-only attributes:**
 
-| Attribute | Description |
-| --------- | ----------- |
-| `id`      | Secret ID   |
+| Attribute    | Description                             |
+| ------------ | --------------------------------------- |
+| `id`         | Secret ID                               |
+| `created_at` | Timestamp when the secret was created   |
+| `updated_at` | Timestamp when the secret was updated   |
 
 {% hint style="info" %}
-After importing a secret, you must set the `value` attribute in your configuration since secret values are not returned by the API (they are masked).
+After importing a secret, you must set the `value` attribute in your configuration since secret values are not returned by the API.
 {% endhint %}
 
 ### spiceai\_member
@@ -258,28 +273,28 @@ resource "spiceai_member" "admin" {
   username = "janedoe"
   roles    = ["admin", "member"]
 }
-
-# Add multiple team members
-resource "spiceai_member" "team" {
-  for_each = toset(["alice", "bob", "charlie"])
-
-  username = each.key
-  roles    = ["member"]
-}
 ```
 
-**Arguments:**
+**Required arguments:**
 
-| Argument   | Type      | Required | Description                             |
-| ---------- | --------- | -------- | --------------------------------------- |
-| `username` | string    | **Yes**  | GitHub username                         |
-| `roles`    | string\[] | No       | Roles to assign (default: `["member"]`) |
+| Argument   | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| `username` | string | Username of the user. Forces replacement on change. |
 
-**Attributes:**
+**Optional arguments:**
 
-| Attribute | Description |
-| --------- | ----------- |
-| `user_id` | User ID     |
+| Argument | Type      | Description                                    |
+| -------- | --------- | ---------------------------------------------- |
+| `roles`  | list(string) | Roles to assign (`admin`, `member`)         |
+
+**Read-only attributes:**
+
+| Attribute    | Description                                    |
+| ------------ | ---------------------------------------------- |
+| `id`         | Member ID (same as `user_id`)                  |
+| `user_id`    | User ID                                        |
+| `is_owner`   | Whether the member is the organization owner   |
+| `created_at` | Timestamp when the member was added            |
 
 {% hint style="warning" %}
 Organization owners cannot be managed via Terraform. Attempting to modify or delete an owner will result in an error.
@@ -294,14 +309,21 @@ Lists available deployment regions.
 ```hcl
 data "spiceai_regions" "available" {}
 
-output "region_names" {
-  value = data.spiceai_regions.available.regions[*].region
-}
-
-output "default_region" {
-  value = data.spiceai_regions.available.default
+# Use in app resource
+resource "spiceai_app" "app" {
+  name  = "my-spicecloud-app"
+  cname = data.spiceai_regions.available.regions[0].cname
 }
 ```
+
+| Argument | Type   | Description                                      |
+| -------- | ------ | ------------------------------------------------ |
+| `env`    | string | Optional. Filter by environment: `prod` or `dev` |
+
+| Attribute | Description                  |
+| --------- | ---------------------------- |
+| `default` | Default region identifier    |
+| `regions` | List of region objects with `cname`, `region`, `name`, `provider`, `provider_name`, `is_default`, `disabled` |
 
 ### spiceai\_container\_images
 
@@ -312,14 +334,45 @@ data "spiceai_container_images" "stable" {
   channel = "stable"
 }
 
-output "available_tags" {
-  value = data.spiceai_container_images.stable.images[*].tag
-}
-
-output "default_tag" {
-  value = data.spiceai_container_images.stable.default
+resource "spiceai_app" "app" {
+  name      = "my-spicecloud-app"
+  cname     = "us-west-2-prod-aws-data"
+  image_tag = data.spiceai_container_images.stable.default
 }
 ```
+
+| Argument  | Type   | Description                                                    |
+| --------- | ------ | -------------------------------------------------------------- |
+| `channel` | string | Optional. Release channel: `stable` or `enterprise` (default: `stable`) |
+
+| Attribute | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| `default` | Default image tag                                                 |
+| `images`  | List of image objects with `tag`, `name`, `channel`               |
+
+### spiceai\_api\_keys
+
+Retrieves the API keys for an app. Each app has two API keys to support key rotation.
+
+```hcl
+data "spiceai_api_keys" "keys" {
+  app_id = spiceai_app.app.id
+}
+
+output "primary_api_key" {
+  value     = data.spiceai_api_keys.keys.api_key
+  sensitive = true
+}
+```
+
+| Argument | Type   | Description     |
+| -------- | ------ | --------------- |
+| `app_id` | string | **Required.** The app ID |
+
+| Attribute   | Description                       |
+| ----------- | --------------------------------- |
+| `api_key`   | Primary API key (sensitive)       |
+| `api_key_2` | Secondary API key (sensitive)     |
 
 ### spiceai\_app
 
@@ -333,11 +386,6 @@ data "spiceai_app" "existing" {
 output "app_name" {
   value = data.spiceai_app.existing.name
 }
-
-output "app_api_key" {
-  value     = data.spiceai_app.existing.api_key
-  sensitive = true
-}
 ```
 
 ### spiceai\_apps
@@ -349,22 +397,6 @@ data "spiceai_apps" "all" {}
 
 output "app_names" {
   value = [for app in data.spiceai_apps.all.apps : app.name]
-}
-
-# Filter apps by visibility
-output "private_apps" {
-  value = [for app in data.spiceai_apps.all.apps : app.name if app.visibility == "private"]
-}
-
-# Map of apps to their configurations
-output "apps_config" {
-  value = {
-    for app in data.spiceai_apps.all.apps : app.name => {
-      replicas  = app.replicas
-      image_tag = app.image_tag
-      region    = app.region
-    }
-  }
 }
 ```
 
@@ -378,10 +410,6 @@ data "spiceai_members" "all" {}
 output "member_usernames" {
   value = [for m in data.spiceai_members.all.members : m.username]
 }
-
-output "organization_owner" {
-  value = [for m in data.spiceai_members.all.members : m.username if m.is_owner][0]
-}
 ```
 
 ### spiceai\_secrets
@@ -390,15 +418,11 @@ Lists secrets for an app (values are masked).
 
 ```hcl
 data "spiceai_secrets" "app_secrets" {
-  app_id = spiceai_app.full.id
+  app_id = spiceai_app.app.id
 }
 
 output "secret_names" {
   value = [for s in data.spiceai_secrets.app_secrets.secrets : s.name]
-}
-
-output "has_database_password" {
-  value = contains([for s in data.spiceai_secrets.app_secrets.secrets : s.name], "DATABASE_PASSWORD")
 }
 ```
 
@@ -414,18 +438,13 @@ terraform import spiceai_app.example 12345
 terraform import spiceai_deployment.example 12345/67890
 
 # Import a secret (app_id/secret_name)
-terraform import spiceai_secret.database_password 123/DATABASE_PASSWORD
+terraform import spiceai_secret.example 123/DATABASE_PASSWORD
 
 # Import a member by user ID
-terraform import spiceai_member.developer 123
-
-# Import a member when using for_each
-terraform import 'spiceai_member.team["alice"]' 789
+terraform import spiceai_member.example 123
 ```
 
 ## Complete Example
-
-A full working example that creates an app with secrets, deploys it, and manages team members:
 
 ```hcl
 terraform {
@@ -454,7 +473,7 @@ resource "spiceai_app" "production" {
   cname       = data.spiceai_regions.available.regions[0].cname
 
   spicepod = <<-YAML
-    version: v1beta1
+    version: v1
     kind: Spicepod
     name: my-production-app
     datasets:
@@ -476,18 +495,7 @@ resource "spiceai_secret" "database_password" {
   value  = var.database_password
 }
 
-resource "spiceai_secret" "aws_credentials" {
-  for_each = {
-    AWS_ACCESS_KEY_ID     = var.aws_access_key_id
-    AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
-  }
-
-  app_id = spiceai_app.production.id
-  name   = each.key
-  value  = each.value
-}
-
-# Deploy
+# Deploy with auto-trigger on config changes
 resource "spiceai_deployment" "production" {
   app_id = spiceai_app.production.id
 
@@ -512,16 +520,6 @@ variable "database_password" {
   sensitive = true
 }
 
-variable "aws_access_key_id" {
-  type      = string
-  sensitive = true
-}
-
-variable "aws_secret_access_key" {
-  type      = string
-  sensitive = true
-}
-
 # Outputs
 output "app_id" {
   value = spiceai_app.production.id
@@ -537,23 +535,8 @@ output "deployment_status" {
 }
 ```
 
-## Resource Mapping
-
-| Terraform Resource         | API Endpoints                              |
-| -------------------------- | ------------------------------------------ |
-| `spiceai_app`              | `POST/GET/PUT/DELETE /v1/apps/{appId}`     |
-| `spiceai_deployment`       | `POST/GET /v1/apps/{appId}/deployments`    |
-| `spiceai_secret`           | `GET/POST/DELETE /v1/apps/{appId}/secrets` |
-| `spiceai_member`           | `GET/POST/PATCH/DELETE /v1/members`        |
-| `spiceai_regions`          | `GET /v1/regions`                          |
-| `spiceai_container_images` | `GET /v1/container-images`                 |
-| `spiceai_app` (data)       | `GET /v1/apps/{appId}`                     |
-| `spiceai_apps` (data)      | `GET /v1/apps`                             |
-| `spiceai_members` (data)   | `GET /v1/members`                          |
-| `spiceai_secrets` (data)   | `GET /v1/apps/{appId}/secrets`             |
-
 See also:
 
-* [Terraform Provider Registry](https://registry.terraform.io/providers/spiceai/spiceai/latest)
-* [Provider Source](https://github.com/spicehq/terraform-provider-spiceai)
+* [Terraform Provider on Registry](https://registry.terraform.io/providers/spiceai/spiceai/latest)
+* [Provider Source on GitHub](https://github.com/spiceai/terraform-provider-spiceai)
 * [Management API Overview](./)
