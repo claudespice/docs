@@ -211,7 +211,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-east-2.spice.cloud",
+    "cname": "us-west-2-prod-aws-data",
     "description": "My Spice app",
     "visibility": "private"
   }'

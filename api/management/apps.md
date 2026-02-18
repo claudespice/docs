@@ -28,7 +28,7 @@ Returns a list of apps for the authenticated organization.
       "description": "My Spice app",
       "visibility": "private",
       "created_at": "2024-01-15T10:00:00.000Z",
-      "cname": "us-east-2.spice.cloud",
+      "cname": "us-west-2-prod-aws-data",
       "api_key": "abc123...",
       "tags": {
         "environment": "production",
@@ -90,7 +90,7 @@ Creates a new app in the authenticated organization.
 ```json
 {
   "name": "my-app",
-  "cname": "us-east-2.spice.cloud",
+  "cname": "us-west-2-prod-aws-data",
   "description": "My Spice app",
   "visibility": "private",
   "tags": {
@@ -208,7 +208,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-east-2.spice.cloud",
+    "cname": "us-west-2-prod-aws-data",
     "description": "My production app",
     "visibility": "private",
     "tags": {
@@ -231,7 +231,7 @@ response = requests.post(
     },
     json={
         "name": "my-app",
-        "cname": "us-east-2.spice.cloud",
+        "cname": "us-west-2-prod-aws-data",
         "description": "My production app"
     }
 )
@@ -251,7 +251,7 @@ const response = await fetch('https://api.spice.ai/v1/apps', {
   },
   body: JSON.stringify({
     name: 'my-app',
-    cname: 'us-east-2.spice.cloud',
+    cname: 'us-west-2-prod-aws-data',
     description: 'My production app'
   })
 });
@@ -575,7 +575,7 @@ Use the `spiceai_app` resource to manage apps. See [Terraform Provider](terrafor
 ```hcl
 resource "spiceai_app" "example" {
   name       = "my-app"
-  cname      = "us-east-2.spice.cloud"
+  cname      = "us-west-2-prod-aws-data"
   visibility = "private"
 
   spicepod = <<-YAML
