@@ -6,11 +6,11 @@ description: SQL Query Apache Arrow Flight API
 
 SQL query results can be served via a high-performance [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) endpoint. Arrow Flight uses the [gRPC](https://grpc.io) protocol for efficient data transfer.
 
-This setup enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README.md), [Rust](https://docs.rs/arrow-flight/latest/arrow_flight/), [Java](https://arrow.apache.org/docs/java/index.html), and [C#](https://github.com/apache/arrow/blob/main/csharp/README.md) and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
+This setup enables high-speed access to your data in [Python](https://arrow.apache.org/docs/python/index.html), [Go](https://pkg.go.dev/github.com/apache/arrow/go/v8), [C++](https://arrow.apache.org/docs/cpp/index.html), [C#](https://github.com/apache/arrow/blob/master/csharp/README), [Rust](https://docs.rs/arrow-flight/latest/arrow_flight/), [Java](https://arrow.apache.org/docs/java/index.html), and [C#](https://github.com/apache/arrow/blob/main/csharp/README) and makes it easy to use libraries like [Pandas](https://arrow.apache.org/docs/python/pandas.html) and [NumPy](https://arrow.apache.org/docs/python/numpy.html?highlight=numpy).
 
 ### SDKs
 
-It's recommended to use the Spice.ai SDKs to connect and query the Arrow Flight endpoint. SDKs are available for [Python](../../sdks/python-sdk/), [Node.js](../../sdks/node.js-sdk/), [Go](../../sdks/go), [Rust](../../sdks/rust-sdk/), [Java](../../sdks/java-sdk), and [Dotnet](../../sdks/dotnet-sdk).
+It's recommended to use the Spice.ai SDKs to connect and query the Arrow Flight endpoint. SDKs are available for [Python](/cloud/sdks/python-sdk), [Node.js](/cloud/sdks/node.js-sdk), [Go](/cloud/sdks/go), [Rust](/cloud/sdks/rust-sdk), [Java](/cloud/sdks/java-sdk), and [Dotnet](/cloud/sdks/dotnet-sdk).
 
 In Python, query results can be easily converted to Pandas or NumPy formats.
 
@@ -21,7 +21,7 @@ You may also use Apache's `pyarrow` library directly.
 
 `The spicepy/pyarrow` installation requires [miniforge](https://github.com/conda-forge/miniforge).
 
-See the [Python SDK page](../../sdks/python-sdk/#m1-macs) for installation steps.
+See the [Python SDK page](/cloud/sdks/python-sdk#m1-macs) for installation steps.
 </Info>
 
 ### Connecting to the Endpoint
@@ -33,11 +33,11 @@ See the [Python SDK page](../../sdks/python-sdk/#m1-macs) for installation steps
 
 #### Requirements
 
-* [Table](https://github.com/spicehq/cloud-docs/blob/trunk/api/sql-query-api/broken-reference/README.md) names must be fully-qualified. For example `spiceai.quickstart`
+* [Table](https://github.com/spicehq/cloud-docs/blob/trunk/api/sql-query-api/broken-reference/README) names must be fully-qualified. For example `spiceai.quickstart`
 
 ### Samples
 
-Find code samples in Python in [Arrow Flight Samples](/broken/pages/5qm4BZtfFlkx9Sp2qtGi).
+Find code samples in Python in Arrow Flight Samples.
 
 ### Troubleshooting
 

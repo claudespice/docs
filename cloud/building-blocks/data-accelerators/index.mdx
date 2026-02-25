@@ -28,10 +28,10 @@ Supported Data Accelerators include:
 | Name       | Description                     | Status               | Engine Modes     |
 | ---------- | ------------------------------- | -------------------- | ---------------- |
 | `arrow`    | In-Memory Arrow Records         | Stable               | `memory`         |
-| `cayenne`  | [Cayenne](cayenne)           | Alpha (v1.9.0-rc.1+) | `file`           |
-| `duckdb`   | Embedded [DuckDB](duckdb)    | Stable               | `memory`, `file` |
-| `postgres` | Attached [PostgreSQL](postgres/index) | Release Candidate    | N/A              |
-| `sqlite`   | Embedded [SQLite](sqlite)    | Release Candidate    | `memory`, `file` |
+| `cayenne`  | [Cayenne](/cloud/building-blocks/data-accelerators/cayenne)           | Alpha (v1.9.0-rc.1+) | `file`           |
+| `duckdb`   | Embedded [DuckDB](/cloud/building-blocks/data-accelerators/duckdb)    | Stable               | `memory`, `file` |
+| `postgres` | Attached [PostgreSQL](/cloud/building-blocks/data-accelerators/postgres/index) | Release Candidate    | N/A              |
+| `sqlite`   | Embedded [SQLite](/cloud/building-blocks/data-accelerators/sqlite)    | Release Candidate    | `memory`, `file` |
 
 ## Data Types
 
@@ -42,5 +42,5 @@ Data Accelerators may not support all possible Apache Arrow data types. For comp
 
 When accelerating a dataset using `mode: memory` (the default), some or all of the dataset is loaded into memory. Ensure sufficient memory is available, including overhead for queries and the runtime, especially with concurrent queries.
 
-In-memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](./duckdb) and [`sqlite`](./sqlite) accelerators by specifying `mode: file`.
+In-memory limitations can be mitigated by storing acceleration data on disk, which is supported by [`duckdb`](/cloud/building-blocks/data-accelerators/duckdb) and [`sqlite`](/cloud/building-blocks/data-accelerators/sqlite) accelerators by specifying `mode: file`.
 </Warning>

@@ -41,7 +41,7 @@ const spiceClient = new SpiceClient('API_KEY');
 **query**(queryText: string, onData: (partialData: [Table](https://arrow.apache.org/docs/js/classes/Arrow_dom.Table.html)) => void) => [Table](https://arrow.apache.org/docs/js/classes/Arrow_dom.Table.html)
 
 * `queryText`: (string, required): The SQL query to execute
-* `onData`: (callback, optional): The callback function that is used for handling [streaming](streaming) data.
+* `onData`: (callback, optional): The callback function that is used for handling [streaming](/cloud/sdks/node.js-sdk/streaming) data.
 
 `query` returns an Apache Arrow [Table](https://arrow.apache.org/docs/js/classes/Arrow_dom.Table.html).
 

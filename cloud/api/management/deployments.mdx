@@ -393,7 +393,7 @@ try {
 
 ## Deployment Workflow
 
-1. **Configure App** - Update the app's spicepod configuration using the [Apps API](apps)
+1. **Configure App** - Update the app's spicepod configuration using the [Apps API](/cloud/api/management/apps)
 2. **Create Deployment** - POST to `/v1/apps/{appId}/deployments`
 3. **Monitor Status** - Poll GET `/v1/apps/{appId}/deployments` until status is `succeeded` or `failed`
 4. **Check Logs** - If deployment fails, check `error_message` for details
@@ -490,7 +490,7 @@ Before creating a deployment, ensure:
 
 ### Terraform
 
-Use the `spiceai_deployment` resource to manage deployments. See [Terraform Provider](terraform#spiceai_deployment) for full documentation.
+Use the `spiceai_deployment` resource to manage deployments. See [Terraform Provider](/cloud/api/management/terraform#spiceai_deployment) for full documentation.
 
 ```hcl
 resource "spiceai_deployment" "example" {
@@ -502,6 +502,6 @@ resource "spiceai_deployment" "example" {
 
 See also:
 
-- [Apps API](apps) - Configure your app before deploying
-- [Secrets API](secrets) - Manage secrets used by your app
-- [Portal Deployments](../../portal/app-spicepod/deployments) - View deployments in the portal
+- [Apps API](/cloud/api/management/apps) - Configure your app before deploying
+- [Secrets API](/cloud/api/management/secrets) - Manage secrets used by your app
+- [Portal Deployments](/cloud/portal/app-spicepod/deployments) - View deployments in the portal

@@ -50,8 +50,8 @@ The GraphQL data connector can be configured by providing the following `params`
 | `graphql_auth_token` | The authentication token to use to connect to the GraphQL server. Uses bearer authentication.                                                                                             |
 | `graphql_auth_user`  | The username to use for basic auth. E.g. `graphql_auth_user: my_user`                                                                                                                     |
 | `graphql_auth_pass`  | The password to use for basic auth. E.g. `graphql_auth_pass: ${secrets:my_graphql_auth_pass}`                                                                                             |
-| `graphql_query`      | The username to use for basic auth. See [examples](graphql#examples) for a sample GraphQL query                                                                                        |
-| `json_pointer`       | The [JSON pointer](https://datatracker.ietf.org/doc/html/rfc6901) into the response body. When `graphql_query` is [paginated](graphql#pagination), the `json_pointer` can be inferred. |
+| `graphql_query`      | The username to use for basic auth. See [examples](/cloud/building-blocks/data-connectors/graphql#examples) for a sample GraphQL query                                                                                        |
+| `json_pointer`       | The [JSON pointer](https://datatracker.ietf.org/doc/html/rfc6901) into the response body. When `graphql_query` is [paginated](/cloud/building-blocks/data-connectors/graphql#pagination), the `json_pointer` can be inferred. |
 
 #### GraphQL Query Example
 
@@ -149,7 +149,7 @@ Tips for working with JSON data. For more information see [Datafusion Docs](http
 
 You can access the fields of the object using the square bracket notation. Arrays are indexed from 1.
 
-Example for the stargazers query from [pagination section](graphql#pagination):
+Example for the stargazers query from [pagination section](/cloud/building-blocks/data-connectors/graphql#pagination):
 
 ```bash
 sql> select node['login'] as login, node['name'] as name from stargazers limit 5;

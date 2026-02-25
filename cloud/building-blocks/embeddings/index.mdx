@@ -12,13 +12,13 @@ Spice supports a variety of embedding model sources and formats:
 
 | Name                       | Description                             | Status            | ML Format(s) | LLM Format(s)\*                 |
 | -------------------------- | --------------------------------------- | ----------------- | ------------ | ------------------------------- |
-| [`file`](local)         | Local filesystem                        | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
-| [`huggingface`](huggingface) | Models hosted on HuggingFace       | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
-| [`openai`](openai)      | OpenAI (or compatible) LLM endpoint     | Release Candidate | -            | OpenAI-compatible HTTP endpoint |
-| [`azure`](azure)        | Azure OpenAI                            | Alpha             | -            | OpenAI-compatible HTTP endpoint |
-| [`databricks`](databricks) | Models deployed to Databricks Mosaic AI | Alpha          | -            | OpenAI-compatible HTTP endpoint |
-| [`bedrock`](bedrock)    | Models deployed on Amazon Bedrock       | Alpha             | -            | OpenAI-compatible HTTP endpoint |
-| [`model2vec`](model2vec) | Model2Vec static word embeddings       | Alpha             | -            | Model2Vec format                |
+| [`file`](/cloud/building-blocks/embeddings/local)         | Local filesystem                        | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
+| [`huggingface`](/cloud/building-blocks/embeddings/huggingface) | Models hosted on HuggingFace       | Release Candidate | ONNX         | GGUF, GGML, SafeTensor          |
+| [`openai`](/cloud/building-blocks/embeddings/openai)      | OpenAI (or compatible) LLM endpoint     | Release Candidate | -            | OpenAI-compatible HTTP endpoint |
+| [`azure`](/cloud/building-blocks/embeddings/azure)        | Azure OpenAI                            | Alpha             | -            | OpenAI-compatible HTTP endpoint |
+| [`databricks`](/cloud/building-blocks/embeddings/databricks) | Models deployed to Databricks Mosaic AI | Alpha          | -            | OpenAI-compatible HTTP endpoint |
+| [`bedrock`](/cloud/building-blocks/embeddings/bedrock)    | Models deployed on Amazon Bedrock       | Alpha             | -            | OpenAI-compatible HTTP endpoint |
+| [`model2vec`](/cloud/building-blocks/embeddings/model2vec) | Model2Vec static word embeddings       | Alpha             | -            | Model2Vec format                |
 
 ## Overview
 
@@ -111,14 +111,14 @@ embeddings:
 
 ### Accelerated Embeddings
 
-To speed up queries, embeddings can be precomputed and stored in a [data accelerator](../data-accelerators/index). Enable this by adding:
+To speed up queries, embeddings can be precomputed and stored in a [data accelerator](/cloud/building-blocks/data-accelerators/index). Enable this by adding:
 
 ```yaml
 acceleration:
   enabled: true
 ```
 
-to the dataset configuration. All other data accelerator configurations are optional, but can be applied as per their respective [documentation](../data-accelerators/index).
+to the dataset configuration. All other data accelerator configurations are optional, but can be applied as per their respective [documentation](/cloud/building-blocks/data-accelerators/index).
 
 **Full example:**
 
