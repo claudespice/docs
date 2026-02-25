@@ -6,7 +6,15 @@ description: ''
 
 In Spice, datasets are organized hierarchically with catalogs, schemas, and tables. A catalog, at the top level, contains multiple schemas. Each schema, in turn, contains multiple tables where the actual data is stored. By default a catalog named `spice` is created with all of the datasets defined in the `datasets` section of the Spicepod.
 
-<img src="/img/catalog-schema-table.png" />
+```
+Catalog (e.g. spice)
+├── Schema (e.g. public)
+│   ├── Table (e.g. foo)
+│   └── Table (e.g. bar)
+└── Schema (e.g. tpch)
+    ├── Table (e.g. orders)
+    └── Table (e.g. lineitem)
+```
 
 Creating schemas and tables within the `spice` catalog is configured by the `name` field in the dataset configuration. A name with a period (`.`) will create schema, i.e. a dataset defined with `name: foo.bar` would have a full path of `spice.foo.bar`. If the name does not contain a period, the dataset will be created in the `public` schema of the `spice` catalog. For example, a dataset defined with `name: foo` would have a full path of `spice.public.foo`. Attempting to create a dataset with a name that contains a catalog name will result in an error. Adding catalogs to Spice is done via Catalog Connectors.
 

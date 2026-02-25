@@ -1,0 +1,1909 @@
+{
+    "openapi": "3.1.0",
+    "servers": [
+        {
+            "url": "https://api.spice.ai"
+        }
+    ],
+    "info": {
+        "title": "Spice Cloud Control API",
+        "version": "v1"
+    },
+    "paths": {
+        "/v1/apps/{appId}/api-keys": {
+            "get": {
+                "summary": "Get API keys for app",
+                "description": "Returns the API keys for a specific app. API keys are used to authenticate requests to the Spice runtime.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "API keys for the app",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiKeys"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "API Keys"
+                ]
+            },
+            "post": {
+                "summary": "Regenerate API key",
+                "description": "Regenerates an API key for the specified app. This invalidates the previous key. Use key_number to specify which key to regenerate (0 for both, 1 for primary, 2 for secondary).",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "key_number": {
+                                        "type": "integer",
+                                        "enum": [
+                                            0,
+                                            1,
+                                            2
+                                        ],
+                                        "default": 1,
+                                        "description": "Which API key to regenerate (0 = both, 1 = primary, 2 = secondary)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "API key regenerated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiKeysRegenerated"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "API Keys"
+                ]
+            }
+        },
+        "/v1/apps/{appId}/deployments": {
+            "get": {
+                "summary": "List deployments",
+                "description": "Returns a list of deployments for the specified app, similar to SpicepodSet deployments.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "default": 20
+                        },
+                        "description": "Maximum number of deployments to return"
+                    },
+                    {
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "queued",
+                                "in_progress",
+                                "succeeded",
+                                "failed",
+                                "created"
+                            ]
+                        },
+                        "description": "Filter by deployment status"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of deployments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "deployments": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Deployment"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "Deployments"
+                ]
+            },
+            "post": {
+                "summary": "Create deployment",
+                "description": "Creates a new deployment for the specified app using the app's current spicepod configuration.\nRuntime image selection is controlled by update channels only.\n",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image_tag": {
+                                        "type": "string",
+                                        "description": "Override the spice.ai runtime image tag for this deployment"
+                                    },
+                                    "channel": {
+                                        "type": "string",
+                                        "enum": [
+                                            "stable",
+                                            "preview",
+                                            "nightly",
+                                            "internal"
+                                        ],
+                                        "description": "Update channel that resolves to runtime image defaults"
+                                    },
+                                    "replicas": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 10,
+                                        "description": "Override the number of replicas for this deployment"
+                                    },
+                                    "branch": {
+                                        "type": "string",
+                                        "description": "Git branch name"
+                                    },
+                                    "commit_sha": {
+                                        "type": "string",
+                                        "description": "Git commit SHA"
+                                    },
+                                    "commit_message": {
+                                        "type": "string",
+                                        "description": "Git commit message"
+                                    },
+                                    "debug": {
+                                        "type": "boolean",
+                                        "description": "Enable debug mode"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Deployment created and queued",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Deployment"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body or app has no spicepod configuration"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    },
+                    "409": {
+                        "description": "A deployment is already in progress for this app"
+                    },
+                    "422": {
+                        "description": "Referenced entity is in an unprocessable state (e.g. organization is not fully configured)"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "tags": [
+                    "Deployments"
+                ]
+            }
+        },
+        "/v1/apps/{appId}/metrics": {
+            "get": {
+                "summary": "Get app resource metrics",
+                "description": "Returns current resource metrics (CPU, memory, filesystem) per pod for an app.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Resource metrics per pod",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "ingestion": {
+                                            "type": "object",
+                                            "properties": {
+                                                "rows_ingested": {
+                                                    "type": "number"
+                                                },
+                                                "bytes_ingested": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        },
+                                        "metrics": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "cpu_usage_percent": {
+                                                        "type": "number"
+                                                    },
+                                                    "memory_usage_bytes": {
+                                                        "type": "number"
+                                                    },
+                                                    "filesystem_usage_bytes": {
+                                                        "type": "number"
+                                                    },
+                                                    "filesystem_available_bytes": {
+                                                        "type": "number"
+                                                    },
+                                                    "filesystem_capacity_bytes": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid app ID"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            }
+        },
+        "/v1/apps/{appId}": {
+            "get": {
+                "summary": "Get app details",
+                "description": "Returns details for a specific app, including its configuration.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "App details with configuration",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "visibility": {
+                                            "type": "string",
+                                            "enum": [
+                                                "public",
+                                                "private"
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "production_branch": {
+                                            "type": "string"
+                                        },
+                                        "api_key": {
+                                            "type": "string"
+                                        },
+                                        "tags": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "config": {
+                                            "type": "object",
+                                            "properties": {
+                                                "spicepod": {
+                                                    "type": "object"
+                                                },
+                                                "registry": {
+                                                    "type": "string",
+                                                    "description": "Registry for the spiced image"
+                                                },
+                                                "image": {
+                                                    "type": "string",
+                                                    "description": "Image name for the spiced container"
+                                                },
+                                                "image_tag": {
+                                                    "type": "string",
+                                                    "description": "Spice.ai runtime image tag"
+                                                },
+                                                "update_channel": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "stable",
+                                                        "preview",
+                                                        "nightly",
+                                                        "internal"
+                                                    ],
+                                                    "description": "Update channel for the spicepod"
+                                                },
+                                                "replicas": {
+                                                    "type": "integer"
+                                                },
+                                                "region": {
+                                                    "type": "string"
+                                                },
+                                                "node_group": {
+                                                    "type": "string"
+                                                },
+                                                "storage_claim_size_gb": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            },
+            "put": {
+                "summary": "Update app",
+                "description": "Updates an app's metadata and configuration. Use this to modify app settings, spicepod configuration, replicas, etc.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "visibility": {
+                                        "type": "string",
+                                        "enum": [
+                                            "public",
+                                            "private"
+                                        ]
+                                    },
+                                    "production_branch": {
+                                        "type": "string"
+                                    },
+                                    "tags": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Key-value tags for the app"
+                                    },
+                                    "spicepod": {
+                                        "oneOf": [
+                                            {
+                                                "type": "string",
+                                                "description": "YAML string of the spicepod configuration"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "description": "JSON object of the spicepod configuration"
+                                            }
+                                        ]
+                                    },
+                                    "image_tag": {
+                                        "type": "string",
+                                        "description": "Spice.ai runtime image tag"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "description": "Image name for the spiced container"
+                                    },
+                                    "registry": {
+                                        "type": "string",
+                                        "description": "Registry for the spiced image"
+                                    },
+                                    "update_channel": {
+                                        "type": "string",
+                                        "enum": [
+                                            "stable",
+                                            "preview",
+                                            "nightly",
+                                            "internal"
+                                        ],
+                                        "description": "Update channel for the spicepod"
+                                    },
+                                    "replicas": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 10
+                                    },
+                                    "node_group": {
+                                        "type": "string"
+                                    },
+                                    "region": {
+                                        "type": "string"
+                                    },
+                                    "storage_claim_size_gb": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "App updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppWithConfig"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            },
+            "delete": {
+                "summary": "Delete app",
+                "description": "Soft deletes an app (sets deleted_at timestamp) and tears down runtime resources.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app to delete"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "App deleted"
+                    },
+                    "400": {
+                        "description": "Invalid app ID"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    },
+                    "500": {
+                        "description": "Internal server error (DB failure looking up or soft-deleting the app)"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            }
+        },
+        "/v1/apps/{appId}/secrets/{secretName}": {
+            "get": {
+                "summary": "Get a secret by name",
+                "description": "Returns a specific secret by name. The value is masked.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    },
+                    {
+                        "in": "path",
+                        "name": "secretName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The name of the secret"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Secret details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secret"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App or secret not found"
+                    }
+                },
+                "tags": [
+                    "Secrets"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a secret",
+                "description": "Deletes a secret by name.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    },
+                    {
+                        "in": "path",
+                        "name": "secretName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The name of the secret"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Secret deleted successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App or secret not found"
+                    }
+                },
+                "tags": [
+                    "Secrets"
+                ]
+            }
+        },
+        "/v1/apps/{appId}/secrets": {
+            "get": {
+                "summary": "List app secrets",
+                "description": "Returns a list of secrets for the specified app. Secret values are masked.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of secrets",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "secrets": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Secret"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "Secrets"
+                ]
+            },
+            "post": {
+                "summary": "Create or update a secret",
+                "description": "Creates a new secret or updates an existing one with the same name.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The ID of the app"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+                                        "description": "Secret name (must start with letter or underscore)"
+                                    },
+                                    "value": {
+                                        "type": "string",
+                                        "description": "Secret value (will be encrypted)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Secret created or updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Secret"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "App not found"
+                    }
+                },
+                "tags": [
+                    "Secrets"
+                ]
+            }
+        },
+        "/v1/apps": {
+            "get": {
+                "summary": "List apps",
+                "description": "Returns a list of apps for the authenticated organization.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of apps",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "apps": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/App"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            },
+            "post": {
+                "summary": "Create app",
+                "description": "Creates a new app in the authenticated organization.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "cname"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "minLength": 4,
+                                        "pattern": "^[a-zA-Z0-9-]+$",
+                                        "description": "App name (letters, numbers, hyphens only)"
+                                    },
+                                    "cname": {
+                                        "type": "string",
+                                        "description": "Region identifier"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "App description"
+                                    },
+                                    "visibility": {
+                                        "type": "string",
+                                        "enum": [
+                                            "public",
+                                            "private"
+                                        ],
+                                        "default": "private"
+                                    },
+                                    "tags": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Key-value tags for the app"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "App created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AppWithConfig"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body or invalid region"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "409": {
+                        "description": "App with this name already exists"
+                    }
+                },
+                "tags": [
+                    "Apps"
+                ]
+            }
+        },
+        "/v1/container-images": {
+            "get": {
+                "summary": "List available Spice.ai container images",
+                "description": "Returns a list of available Spice.ai runtime container images that can be used\nfor app deployments. These are the image tags that can be specified in the\napp configuration or as deployment overrides.\n",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "channel",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "stable",
+                                "enterprise"
+                            ],
+                            "default": "stable"
+                        },
+                        "description": "The release channel to fetch container images from.\n- stable: Public OSS images from Docker Hub\n- enterprise: Enterprise images (requires enterprise subscription)\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of available container images",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "images": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "Full image name with tag (e.g., spiceai/spiceai:1.5.0-models)"
+                                                    },
+                                                    "tag": {
+                                                        "type": "string",
+                                                        "description": "Just the tag portion (e.g., 1.5.0-models)"
+                                                    },
+                                                    "channel": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "stable",
+                                                            "enterprise"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "default": {
+                                            "type": "string",
+                                            "description": "The recommended default image tag"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    }
+                },
+                "tags": [
+                    "Container Images"
+                ]
+            }
+        },
+        "/v1/docs": {
+            "get": {
+                "summary": "OpenAPI specification",
+                "description": "Returns the OpenAPI 3.0 specification for the Spice Cloud Management API",
+                "responses": {
+                    "200": {
+                        "description": "OpenAPI specification document",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Documentation"
+                ]
+            }
+        },
+        "/v1/health": {
+            "get": {
+                "summary": "Health check",
+                "description": "Returns the health status of the API",
+                "responses": {
+                    "200": {
+                        "description": "API is healthy",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "timestamp": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Health"
+                ]
+            }
+        },
+        "/v1/members/{memberId}": {
+            "get": {
+                "summary": "Get member details",
+                "description": "Returns details for a specific organization member.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "memberId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The user ID of the member"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Member details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "integer"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "is_owner": {
+                                            "type": "boolean"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "Member not found"
+                    }
+                },
+                "tags": [
+                    "Members"
+                ]
+            },
+            "patch": {
+                "summary": "Update member roles",
+                "description": "Updates the roles of a specific organization member.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "memberId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The user ID of the member"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "roles"
+                                ],
+                                "properties": {
+                                    "roles": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "New roles to assign to the member"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Member updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "integer"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope or cannot modify owner"
+                    },
+                    "404": {
+                        "description": "Member not found"
+                    }
+                },
+                "tags": [
+                    "Members"
+                ]
+            },
+            "delete": {
+                "summary": "Remove a member",
+                "description": "Removes a member from the organization (soft delete).",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "memberId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "The user ID of the member"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Member removed successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope or cannot remove owner"
+                    },
+                    "404": {
+                        "description": "Member not found"
+                    }
+                },
+                "tags": [
+                    "Members"
+                ]
+            }
+        },
+        "/v1/members": {
+            "get": {
+                "summary": "List organization members",
+                "description": "Returns a list of members in the authenticated organization.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of members",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "members": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "user_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "roles": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "is_owner": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    }
+                },
+                "tags": [
+                    "Members"
+                ]
+            },
+            "post": {
+                "summary": "Add a member to the organization",
+                "description": "Adds a new member to the organization with specified roles.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "username"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "description": "The username of the user to add"
+                                    },
+                                    "roles": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Roles to assign to the member",
+                                        "default": [
+                                            "member"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Member added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "integer"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request body"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "409": {
+                        "description": "User is already a member"
+                    }
+                },
+                "tags": [
+                    "Members"
+                ]
+            }
+        },
+        "/v1/regions": {
+            "get": {
+                "summary": "List available deployment regions",
+                "description": "Returns a list of available regions where apps can be deployed.\nRegions are filtered based on the environment (production vs development).\n",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "env",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "prod",
+                                "dev"
+                            ]
+                        },
+                        "description": "Filter by environment (defaults to prod in production)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of available regions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "regions": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "Human-readable region name"
+                                                    },
+                                                    "region": {
+                                                        "type": "string",
+                                                        "description": "Region identifier (e.g., us-east-2)"
+                                                    },
+                                                    "provider": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "teraswitch",
+                                                            "aws",
+                                                            "azure"
+                                                        ]
+                                                    },
+                                                    "providerName": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "Teraswitch",
+                                                            "AWS",
+                                                            "Azure"
+                                                        ]
+                                                    },
+                                                    "isDefault": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "disabled": {
+                                                        "type": "boolean"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "default": {
+                                            "type": "string",
+                                            "description": "The default region identifier"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Insufficient scope"
+                    }
+                },
+                "tags": [
+                    "Regions"
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "OAuth 2.0 access token obtained from the Spice.ai authentication service"
+            }
+        },
+        "schemas": {
+            "App": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the app"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the app"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Description of the app"
+                    },
+                    "visibility": {
+                        "type": "string",
+                        "enum": [
+                            "public",
+                            "private"
+                        ],
+                        "description": "Visibility setting for the app"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the app was created"
+                    },
+                    "cname": {
+                        "type": "string",
+                        "description": "Region identifier"
+                    },
+                    "cluster_id": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Cluster ID where the app is deployed"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Primary API key for the app"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "nullable": true,
+                        "description": "Key-value tags for the app"
+                    }
+                }
+            },
+            "AppWithConfig": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the app"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the app"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Description of the app"
+                    },
+                    "visibility": {
+                        "type": "string",
+                        "enum": [
+                            "public",
+                            "private"
+                        ],
+                        "description": "Visibility setting for the app"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the app was created"
+                    },
+                    "cname": {
+                        "type": "string",
+                        "description": "Region identifier"
+                    },
+                    "production_branch": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Production branch for the app"
+                    },
+                    "api_key": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Primary API key for the app"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "nullable": true,
+                        "description": "Key-value tags for the app"
+                    },
+                    "config": {
+                        "type": "object",
+                        "properties": {
+                            "spicepod": {
+                                "type": "object",
+                                "nullable": true,
+                                "description": "Spicepod configuration"
+                            },
+                            "registry": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "Container registry for the spiced image"
+                            },
+                            "image_tag": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "Spice.ai runtime image tag"
+                            },
+                            "update_channel": {
+                                "type": "string",
+                                "enum": [
+                                    "stable",
+                                    "preview",
+                                    "nightly",
+                                    "internal"
+                                ],
+                                "nullable": true,
+                                "description": "Update channel for the spicepod"
+                            },
+                            "replicas": {
+                                "type": "integer",
+                                "description": "Number of replicas"
+                            },
+                            "region": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "Cloud region code (e.g., us-east-1)"
+                            },
+                            "node_group": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "Node group for the app"
+                            },
+                            "storage_claim_size_gb": {
+                                "type": "number",
+                                "nullable": true,
+                                "description": "Storage claim size in GB"
+                            }
+                        }
+                    }
+                }
+            },
+            "Secret": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the secret"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the secret"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "Always masked with asterisks"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the secret was created"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the secret was last updated"
+                    }
+                }
+            },
+            "Deployment": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the deployment"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "queued",
+                            "in_progress",
+                            "succeeded",
+                            "failed",
+                            "created"
+                        ],
+                        "description": "Current status of the deployment"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp when the deployment was created"
+                    },
+                    "started_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "Timestamp when the deployment started"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "Timestamp when the deployment finished"
+                    },
+                    "image_tag": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Spice.ai runtime image tag used"
+                    },
+                    "replicas": {
+                        "type": "integer",
+                        "description": "Number of replicas"
+                    },
+                    "branch": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Git branch name"
+                    },
+                    "commit_sha": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Git commit SHA"
+                    },
+                    "commit_message": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Git commit message"
+                    },
+                    "error_message": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Error message if deployment failed"
+                    },
+                    "creation_source": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Source that triggered the deployment"
+                    },
+                    "created_by": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "User who created the deployment"
+                    }
+                }
+            },
+            "ApiKeys": {
+                "type": "object",
+                "properties": {
+                    "api_key": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Primary API key"
+                    },
+                    "api_key_2": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Secondary API key (for key rotation)"
+                    }
+                }
+            },
+            "ApiKeysRegenerated": {
+                "type": "object",
+                "properties": {
+                    "api_key": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Primary API key"
+                    },
+                    "api_key_2": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Secondary API key"
+                    },
+                    "regenerated_key": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1,
+                            2
+                        ],
+                        "description": "Which key was regenerated (0 = both)"
+                    }
+                }
+            }
+        }
+    },
+    "tags": []
+}
