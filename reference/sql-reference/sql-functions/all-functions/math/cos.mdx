@@ -1,0 +1,26 @@
+---
+description: Computes the cosine of a value in radians.
+---
+
+# COS
+
+### Syntax
+
+#### COS(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number in radians. This must be `DOUBLE`, `INTEGER`, or `FLOAT`.
+
+**Examples**
+
+```sql
+SELECT COS(0)
+-- 1.0
+```
+```sql
+SELECT COS(1.0)
+-- 0.5403023058681398
+```
+```sql
+SELECT COS(-1)
+-- 0.5403023058681398
+```

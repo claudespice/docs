@@ -1,0 +1,30 @@
+---
+description: Reports the type (in string format) of the input expression.
+---
+
+# TYPEOF
+
+### Syntax
+
+#### TYPEOF(_input_ any) → varchar
+
+* input: An expression for which the type is returned.
+
+**Examples**
+
+```sql
+SELECT TYPEOF(TRUE)
+-- BIT
+```
+```sql
+SELECT TYPEOF(100)
+-- INT
+```
+```sql
+SELECT TYPEOF(98.76)
+-- DECIMAL
+```
+```sql
+SELECT TYPEOF('2021-09-14')
+-- VARCHAR
+```

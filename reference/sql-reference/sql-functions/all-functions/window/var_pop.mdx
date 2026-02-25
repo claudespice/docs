@@ -1,0 +1,52 @@
+---
+description: Returns the population variance of non-NULL records.
+---
+
+# VAR\_POP
+
+### Syntax
+
+#### VAR\_POP(_numeric\_expression_ int64) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_POP(pop) 
+FROM eth.recent_blocks
+-- 1.5167869917122573E8
+```
+#### VAR\_POP(_numeric\_expression_ double) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_POP(gas_used) 
+FROM eth.recent_blocks
+-- 181.26187022731304
+```
+#### VAR\_POP(_numeric\_expression_ float) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_POP(gas_used) 
+FROM eth.recent_blocks
+-- 181.26187022731304
+```
+#### VAR\_POP(_numeric\_expression_ int32) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_POP(pop) 
+FROM eth.recent_blocks
+-- 1.5167869917122573E8
+```

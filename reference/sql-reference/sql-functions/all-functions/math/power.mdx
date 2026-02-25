@@ -1,0 +1,34 @@
+---
+description: Returns the result of raising the input value to the specified power.
+---
+
+# POWER
+
+### Syntax
+
+#### POWER(_numeric\_expression_ double, _power_ double) → double
+
+* numeric\_expression: The input expression.
+* power: The power to raise the numeric\_expression to.
+
+**Examples**
+
+```sql
+SELECT POWER(5, 2)
+-- 25.0
+```
+```sql
+SELECT POWER(0.1, 2)
+-- 0.010000000000000002
+```
+```sql
+SELECT POWER(-2, 2)
+-- 4.0
+```
+```sql
+SELECT POWER(10, -2)
+-- 0.01
+```
+### Usage Notes
+
+This function always returns a `DOUBLE` even if the parameters are both integers.

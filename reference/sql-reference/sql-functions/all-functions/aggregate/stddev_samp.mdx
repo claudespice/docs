@@ -1,0 +1,55 @@
+---
+description: >-
+  Returns the sample standard deviation (square root of sample variance) of
+  non-NULL values in a column with a numeric data type. If all records inside a
+  group are NULL, returns NULL.
+---
+
+# STDDEV\_SAMP
+
+### Syntax
+
+#### STDDEV\_SAMP(_numeric\_expression_ double) → double
+
+* numeric\_expression: The set of records to calculate the sample standard deviation for.
+
+**Examples**
+
+```sql
+SELECT STDDEV_SAMP(gas_used) 
+FROM eth.recent_blocks
+-- 2.259665033869644
+```
+#### STDDEV\_SAMP(_numeric\_expression_ float) → double
+
+* numeric\_expression: The set of records to calculate the sample standard deviation for.
+
+**Examples**
+
+```sql
+SELECT STDDEV_SAMP(gas_used) 
+FROM eth.recent_blocks
+-- 2.259665033869644
+```
+#### STDDEV\_SAMP(_numeric\_expression_ int32) → double
+
+* numeric\_expression: The set of records to calculate the sample standard deviation for.
+
+**Examples**
+
+```sql
+SELECT STDDEV_SAMP(transaction_count) 
+FROM eth.recent_blocks
+-- 1.3670214641762426
+```
+#### STDDEV\_SAMP(_numeric\_expression_ int64) → double
+
+* numeric\_expression: The set of records to calculate the sample standard deviation for.
+
+**Examples**
+
+```sql
+SELECT STDDEV_SAMP(transaction_count) 
+FROM eth.recent_blocks
+-- 1.3670214641762426
+```

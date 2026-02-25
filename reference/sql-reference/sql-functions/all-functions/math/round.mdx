@@ -1,0 +1,123 @@
+---
+description: >-
+  Returns the rounded value for the inputted value. If no scale is specified,
+  the closest whole number is returned.
+---
+
+# ROUND
+
+### Syntax
+
+#### ROUND(_numeric\_expression_ decimal(0,0), _scale_ int32) → decimal(0,0)
+
+* numeric\_expression: Numeric value to round.
+* scale: The decimal place to round.
+
+**Examples**
+
+```sql
+SELECT ROUND(-24.35, -1)
+-- -24.4
+```
+```sql
+SELECT ROUND(24.35, 1)
+-- 24.4
+```
+#### ROUND(_numeric\_expression_ int32, _scale_ int32) → int32
+
+* numeric\_expression: Numeric value to round.
+* scale: The decimal place to round.
+
+**Examples**
+
+```sql
+SELECT ROUND(24, 0)
+-- 0
+```
+```sql
+SELECT ROUND(-24, -1)
+-- -20
+```
+#### ROUND(_numeric\_expression_ int32) → int32
+
+* numeric\_expression: Numeric value to round.
+
+**Examples**
+
+```sql
+SELECT ROUND(24)
+-- 24
+```
+#### ROUND(_numeric\_expression_ double) → double
+
+* numeric\_expression: Numeric value to round.
+
+**Examples**
+
+```sql
+SELECT ROUND(24.35)
+-- 24
+```
+#### ROUND(_inputHolder_ decimal(0,0)) → decimal(0,0)
+
+* inputHolder: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```
+#### ROUND(_in_ float) → float
+
+* in: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```
+#### ROUND(_in_ int64) → int64
+
+* in: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```
+#### ROUND(_input1_ int64, _input2_ int32) → int64
+
+* input1: sample parameter description
+* input2: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```
+#### ROUND(_input1_ double, _input2_ int32) → double
+
+* input1: sample parameter description
+* input2: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```
+#### ROUND(_numeric\_expression_ float, _input2_ int32) → float
+
+* numeric\_expression: sample parameter description
+* input2: sample parameter description
+
+**Examples**
+
+```sql
+sample call 1
+-- sample return 1
+```

@@ -1,0 +1,26 @@
+---
+description: Compares two dates or timestamps and returns the difference in days.
+---
+
+# DATEDIFF
+
+### Syntax
+
+#### DATEDIFF(_endDate_ string, _startDate_ string) → integer
+
+* endDate: A `DATE` or `TIMESTAMP` expression.
+* startDate: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT DATEDIFF('2021-02-28', '2021-01-01')
+-- 58
+```
+```sql
+SELECT DATEDIFF('2005-04-09 12:05:55', '2003-02-01 11:43:22')
+-- 798
+```
+### Usage Notes
+
+If `endDate` is before `startDate` the result is negative.

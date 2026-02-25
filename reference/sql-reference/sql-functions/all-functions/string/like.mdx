@@ -1,0 +1,76 @@
+---
+description: >-
+  Tests whether an expression matches one or more patterns. Comparisons are
+  case-sensitive.
+---
+
+# LIKE
+
+### Syntax
+
+#### _expression_ \[ NOT ] LIKE _pattern_ → boolean
+
+* expression: The expression to compare.
+* NOT: A keyword that inverts the return value.
+* pattern: The pattern that is compared to the expression.
+
+**Examples**
+
+```sql
+SELECT 'pancake' LIKE '%cake'
+-- True
+```
+```sql
+SELECT 'pancake' NOT LIKE '%cake'
+-- False
+```
+#### _expression_ \[ NOT ] LIKE _pattern_ ESCAPE _escape\_character_ → boolean
+
+* expression: The expression to compare.
+* NOT: A keyword that inverts the return value.
+* pattern: The pattern that is compared to the expression.
+* escape\_character: Putting _escape\_character_ before a wildcard in _pattern_ makes LIKE treat the wildcard as a regular character when it appears in _expression_.
+
+**Examples**
+
+```sql
+SELECT '50%_Off' LIKE '%50!%%' ESCAPE '!'
+-- True
+```
+```sql
+SELECT '%SalesData%/Users/Jane' NOT LIKE '/%SalesData/%//Users/%' ESCAPE '/'
+-- False
+```
+#### _expression_ \[ NOT ] LIKE { ANY | SOME | ALL } ( \[ _pattern_ \[, …] ] ) → boolean
+
+* expression: A `STRING` expression.
+* NOT: A keyword that inverts the return value.
+* ANY or SOME or ALL: Keywords indicating whether the expression must match at least one pattern or must match all patterns.
+* pattern: One or more `STRING` expressions.
+
+**Examples**
+
+```sql
+SELECT 'Spark' LIKE ALL ('_park', '%ark')
+-- True
+```
+```sql
+SELECT 'Spark' NOT LIKE ALL ('_park', '%ark')
+-- False
+```
+```sql
+SELECT 'Spark' LIKE SOME ('meow', 'woof')
+-- False
+```
+```sql
+SELECT 'Spark' NOT LIKE SOME ('meow', 'woof')
+-- True
+```
+```sql
+SELECT 'Spark' LIKE ANY ('_park', '_mart')
+-- True
+```
+```sql
+SELECT 'Spark' NOT LIKE ANY ('_park', '_mart')
+-- False
+```

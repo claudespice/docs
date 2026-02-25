@@ -1,0 +1,18 @@
+---
+description: Returns all keys from a map expression.
+---
+
+# MAP\_KEYS
+
+### Syntax
+
+#### MAP\_KEYS(_input_ map) → array of strings
+
+* input: A map expression for which to return an array of keys.
+
+**Examples**
+
+```sql
+SELECT MAP_KEYS(properties)
+-- ['Cover', 'Publication Year', 'Color']
+```

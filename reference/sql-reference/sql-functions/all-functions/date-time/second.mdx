@@ -1,0 +1,29 @@
+---
+description: Extracts the second number (from 0 to 59) for a given date or timestamp.
+---
+
+# SECOND
+
+### Syntax
+
+#### EXTRACT(SECOND FROM _date\_timestamp\_expression_ string) → bigint
+
+* timestamp\_expression: A `TIME`, `TIMESTAMP`, or `DATE` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(SECOND FROM TIMESTAMP '2019-08-12 01:10:30.123456')
+-- 1
+```
+```sql
+SELECT EXTRACT(SECOND FROM TIME '01:10:30.123456')
+-- 1
+```
+```sql
+SELECT EXTRACT(SECOND FROM CAST('2019-08-12 01:10:30' AS TIMESTAMP))
+-- 1
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

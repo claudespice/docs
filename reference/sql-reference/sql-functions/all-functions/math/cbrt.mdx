@@ -1,0 +1,26 @@
+---
+description: Computes the cube root of a numeric expression.
+---
+
+# CBRT
+
+### Syntax
+
+#### CBRT(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number (`DOUBLE`, `FLOAT`, `INTEGER`) used to compute the cube root.
+
+**Examples**
+
+```sql
+SELECT CBRT(8)
+-- 2.0
+```
+```sql
+SELECT CBRT(120)
+-- 4.932424148660941
+```
+```sql
+SELECT CBRT(99.5)
+-- 4.633839922986558
+```

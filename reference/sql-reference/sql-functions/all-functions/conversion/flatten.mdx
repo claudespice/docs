@@ -1,0 +1,23 @@
+---
+description: >-
+  Explodes compound values into multiple rows. This function takes a LIST column
+  and produces a lateral view (that is, an inline view that contains correlation
+  referring to other tables that precede it
+---
+
+# FLATTEN
+
+### Syntax
+
+#### FLATTEN(_expression_ list) → list
+
+* expression: The expression that will be unpacked into rows. The expression must be of data type `LIST`.
+
+**Examples**
+
+```sql
+SELECT FLATTEN(CONVERT_FROM ('["Ford", "BMW", "Fiat"]', 'json'))
+-- Ford
+-- BMW
+-- Fiat
+```

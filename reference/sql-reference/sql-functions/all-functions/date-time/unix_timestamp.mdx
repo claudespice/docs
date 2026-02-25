@@ -1,0 +1,37 @@
+---
+description: Returns the Unix epoch time representation of an ISO 8601 timestamp.
+---
+
+# UNIX\_TIMESTAMP
+
+### Syntax
+
+#### UNIX\_TIMESTAMP() → int64
+
+**Examples**
+
+```sql
+SELECT UNIX_TIMESTAMP()
+-- 1624928208
+```
+#### UNIX\_TIMESTAMP(_date\_timestamp\_expression_ varchar) → int64
+
+* date\_timestamp\_expression: The timestamp to convert to Unix timestamp. The expected format is ‘YYYY-MM-DD HH:MM:SS’ where HH can be a value 1-24.
+
+**Examples**
+
+```sql
+SELECT UNIX_TIMESTAMP('2021-12-22 13:44:11')
+-- 1640180651
+```
+#### UNIX\_TIMESTAMP(_date\_timestamp\_expression_ varchar, _format_ varchar) → int64
+
+* date\_timestamp\_expression: The timestamp to convert to Unix timestamp.
+* format: Specify the format of the time, date, or timestamp parameter. For example, ‘YY-MM-DD’ or ‘HH:MM:SS’.
+
+**Examples**
+
+```sql
+SELECT UNIX_TIMESTAMP('21-12-22', 'YY-MM-DD')
+-- 1640131200
+```

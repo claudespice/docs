@@ -1,0 +1,97 @@
+---
+description: >-
+  Returns the logarithm of the numeric input expression. If no base is
+  specified, the natural log (ln) will be calculated.
+---
+
+# LOG
+
+### Syntax
+
+#### LOG(_base\_expression_ FLOAT, _expression_ FLOAT) → DOUBLE
+
+* base\_expression: The base to use.
+* expression: The value to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(20.5, 1.5)
+-- 0.1342410830900514
+```
+#### LOG(_base\_expression_ DOUBLE, _expression_ DOUBLE) → DOUBLE
+
+* base\_expression: The base to use.
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(20.5, 1.5)
+-- 0.1342410830900514
+```
+#### LOG(_expression_ int64) → DOUBLE
+
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(10)
+-- 2.302585092994046
+```
+#### LOG(_base\_expression_ int64, _expression_ int64) → DOUBLE
+
+* base\_expression: The base to use.
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(10, 2)
+-- 0.30102999566398114
+```
+#### LOG(_expression_ int32) → DOUBLE
+
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(10)
+-- 2.302585092994046
+```
+#### LOG(_base\_expression_ int32, _expression_ int32) → DOUBLE
+
+* base\_expression: The base to use.
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(10, 2)
+-- 0.30102999566398114
+```
+#### LOG(_expression_ float) → DOUBLE
+
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(12.5)
+-- 2.5257286443082556
+```
+#### LOG(_expression_ double) → DOUBLE
+
+* expression: The value for which you want to calculate the log.
+
+**Examples**
+
+```sql
+SELECT LOG(12.5)
+-- 2.5257286443082556
+```
+### Usage Notes
+
+If base\_expression is 1. If base\_expression expression is less than 0, NaN will be returned. If the expression input is 0, `-Infinity` is returned. If the expression input is less than 0, NaN will be returned.

@@ -1,0 +1,25 @@
+---
+description: >-
+  Returns the left-most substring. The function name must be enclosed in double
+  quotes ("LEFT").
+---
+
+# LEFT
+
+### Syntax
+
+#### LEFT(_expression_ varchar, _length_ int64) → varchar
+
+* expression: String input parameter
+* length: Number of characters on the left to return.
+
+**Examples**
+
+```sql
+SELECT "LEFT"('Spice - SQL Engine', -13)
+-- Spice
+```
+```sql
+SELECT "LEFT"('Spice - SQL Engine', 5)
+-- Spice
+```

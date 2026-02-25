@@ -1,0 +1,20 @@
+---
+description: Splits a given string at a specified character and returns the requested part.
+---
+
+# SPLIT\_PART
+
+### Syntax
+
+#### SPLIT\_PART(_expression_ varchar, _delimiter_ varchar, _part\_number_ int32) → varchar
+
+* expression: Input expression.
+* delimiter: String representing the delimiter to split the input expression by.
+* part\_number: Requested part of the split. Must be an integer greater than zero.
+
+**Examples**
+
+```sql
+SELECT SPLIT_PART('127.0.0.1', '.', 1)
+-- 127
+```

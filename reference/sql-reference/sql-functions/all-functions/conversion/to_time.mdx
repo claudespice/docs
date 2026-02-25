@@ -1,0 +1,71 @@
+---
+description: Converts the input expressions to the corresponding time.
+---
+
+# TO\_TIME
+
+### Syntax
+
+#### TO\_TIME(_numeric\_expression_ int32) → time
+
+* numeric\_expression: A Unix epoch timestamp.
+
+**Examples**
+
+```sql
+SELECT TO_TIME(1665131223)
+-- 08:27:03
+```
+#### TO\_TIME(_numeric\_expression_ int64) → time
+
+* numeric\_expression: A Unix epoch timestamp.
+
+**Examples**
+
+```sql
+SELECT TO_TIME(1665131223)
+-- 08:27:03
+```
+#### TO\_TIME(_string\_expression_ varchar, _format_ varchar, _replaceErrorWithNull_ int32) → time
+
+* string\_expression: The string from which to extract the time.
+* format: String to specify format of the time.
+* replaceErrorWithNull: If 0, the function will fail when given malformed input. If 1, the function will return NULL when given malformed input.
+
+**Examples**
+
+```sql
+SELECT TO_TIME('09:15:00.23232', 'HH:MI:SS', 1)
+-- NULL
+```
+#### TO\_TIME(_string\_expression_ varchar, _format_ varchar) → time
+
+* string\_expression: The string from which to extract the time.
+* format: String to specify format of the time.
+
+**Examples**
+
+```sql
+SELECT TO_TIME('09:15:00', 'HH:MI:SS')
+-- 09:15:00
+```
+#### TO\_TIME(_numeric\_expression_ double) → time
+
+* numeric\_expression: A Unix epoch timestamp.
+
+**Examples**
+
+```sql
+SELECT TO_TIME(1665131223.69)
+-- 08:27:03
+```
+#### TO\_TIME(_numeric\_expression_ float) → time
+
+* numeric\_expression: A Unix epoch timestamp.
+
+**Examples**
+
+```sql
+SELECT TO_TIME(1665131223.69)
+-- 08:27:03
+```

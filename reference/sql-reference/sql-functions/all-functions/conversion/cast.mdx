@@ -1,0 +1,29 @@
+---
+description: >-
+  Converts a value of one data type to another data type. This function behaves
+  similarly to the TO_<data_type> (i.e. TO_TIMESTAMP) functions.
+---
+
+# CAST
+
+### Syntax
+
+#### CAST(_expression_ Any type, _data\_type_ Any type) → Type specified as data\_type parameter
+
+* expression: The expression that you want to convert.
+* data\_type: The name of the data type that you want to convert the input expression to.
+
+**Examples**
+
+```sql
+SELECT CAST(3.14150 AS INTEGER)
+-- 3
+```
+```sql
+SELECT CAST(.167 AS INTEGER)
+-- 0
+```
+```sql
+SELECT CAST('2021-04-03' AS DATE)
+-- 2021-04-03
+```

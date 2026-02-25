@@ -1,0 +1,26 @@
+---
+description: Computes the absolute value of a numeric expression.
+---
+
+# ABS
+
+### Syntax
+
+#### ABS(_numeric\_expression_ NUMERIC) → NUMERIC
+
+* numeric\_expression: `BINARY`, `DECIMAL`, `DOUBLE`, `FLOAT`, `INTEGER`
+
+**Examples**
+
+```sql
+SELECT ABS(0.0)
+-- 0.0
+```
+```sql
+SELECT ABS(-2)
+-- 2
+```
+```sql
+SELECT ABS(NULL)
+-- None
+```

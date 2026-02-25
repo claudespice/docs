@@ -1,0 +1,39 @@
+---
+description: >-
+  Tests whether the input expression is false. If it is, returns a value of
+  true.
+---
+
+# ISFALSE
+
+### Syntax
+
+#### ISFALSE(_boolean\_expression_ boolean) → boolean
+
+* boolean\_expression: The input expression, which must be of type `BOOLEAN`.
+
+**Examples**
+
+```sql
+CREATE TABLE $scratch.test_table 
+  (
+    test_column BOOLEAN
+  )
+
+-- true, Table created
+```
+```sql
+INSERT INTO $scratch.test_table 
+VALUES  (true), 
+        (false)
+
+-- Fragment, Records, Path, Metadata, Partition, FileSize, IcebergMetadata, fileschema, PartitionData
+-- 0_0, 1, s3://<s3-bucket-path>, , 0, <file-size>, <iceberg-metadata>, <file-schema>, null
+```
+```sql
+SELECT ISFALSE(test_column)
+FROM $scratch.test_table
+
+-- false 
+-- true 
+```

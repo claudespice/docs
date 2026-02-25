@@ -1,0 +1,29 @@
+---
+description: Extracts the quarter number (from 1 to 4) for a given date or timestamp.
+---
+
+# QUARTER
+
+### Syntax
+
+#### EXTRACT(QUARTER FROM _date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(QUARTER FROM TIMESTAMP '2019-08-12 01:00:00.123456')
+-- 3
+```
+```sql
+SELECT EXTRACT(QUARTER FROM DATE '2019-08-12')
+-- 3
+```
+```sql
+SELECT EXTRACT(QUARTER FROM CAST('2019-08-12 01:00:00' AS TIMESTAMP))
+-- 3
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

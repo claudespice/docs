@@ -1,0 +1,21 @@
+---
+description: Converts the hexadecimal number into the bytes represented by a number.
+---
+
+# UNHEX
+
+### Syntax
+
+#### UNHEX(_expression_ varchar) → varbinary
+
+* expression: A string containing only hexadecimal digits.
+
+**Examples**
+
+```sql
+SELECT UNHEX('4472656D696F')
+-- RHJlbWlv
+```
+### Usage Notes
+
+The returned value is a binary string. If the expression contains non-hex characters, the result is `NULL`.

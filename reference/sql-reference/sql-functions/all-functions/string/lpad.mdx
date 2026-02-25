@@ -1,0 +1,40 @@
+---
+description: >-
+  Left pads a string with spaces or specified characters to reach the number of
+  characters specified as a parameter.
+---
+
+# LPAD
+
+### Syntax
+
+#### LPAD(_base\_expression_ varchar, _length_ int64) → varchar
+
+* base\_expression: The expression to pad.
+* length: The number of characters to return.
+
+**Examples**
+
+```sql
+SELECT LPAD('parameter', 11)
+--    parameter
+```
+```sql
+SELECT LPAD('engineering', 6)
+-- engine
+```
+#### LPAD(_base\_expression_ varchar, _length_ int64, _pad\_expression_ varchar) → varchar
+
+* base\_expression: The expression to pad.
+* length: The number of characters to return.
+* pad\_expression: Characters to pad the base\_expression with.
+
+**Examples**
+
+```sql
+SELECT LPAD('parameter', 11, '-')
+-- --parameter
+```
+### Usage Notes
+
+If pad\_expression is not specified, then the base\_expresion will be padded with spaces. If the length of parameter is less than the length of the base\_expression, the base\_expression will be truncated to the length. If the length parameter + the length of the base\_expression is less than the length of the base\_expression + the length of the pad\_expression, only the subset of the characters from the pad\_expression required to fill the length will be appended to the base\_expression.

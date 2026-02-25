@@ -1,0 +1,107 @@
+---
+description: >-
+  Uses HyperLogLog to return an approximation of the distinct cardinality of the
+  input.
+---
+
+# HLL
+
+### Syntax
+
+#### HLL(_expression_ boolean) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL(TRUE)
+-- sample return
+```
+
+#### HLL(_expression_ float) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL(67.90)
+-- sample return
+```
+#### HLL(_expression_ varbinary) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+#### HLL(_expression_ date) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL('2021-06-15')
+-- sample return
+```
+#### HLL(_expression_ interval\_year) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+#### HLL(_expression_ interval\_day) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+#### HLL(_expression_ int64) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL(2021)
+-- sample return
+```
+#### HLL(_expression_ double) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL(45.7)
+-- sample return
+```
+#### HLL(_expression_ time) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+#### HLL(_expression_ int32) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL(2021)
+-- sample return 1
+```
+#### HLL(_expression_ varchar) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL('spice')
+-- sample return 1
+```
+#### HLL(_expression_ timestamp) → varbinary
+
+* expression: Expression for which you want to know the number of distinct values.
+
+**Examples**
+
+```sql
+SELECT HLL('2021-06-17 11:50:59')
+-- sample return 1
+```

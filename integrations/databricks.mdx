@@ -1,0 +1,58 @@
+---
+icon: plug
+---
+
+# Databricks
+
+<Info>
+Databricks OAuth connections require Spice.ai v1.4.0 or higher.
+</Info>
+
+### Create Databricks App Connection
+
+To connect Spice Cloud to your Databricks workspace, create a new App connection in your workspace settings with the following configuration:
+
+* **Application Name**: `Spice Cloud Platform`
+* **Redirect URLs**: `https://spice.ai/api/integrations/databricks/callback` 
+* **Access scopes**: `All Apis`
+* **Client secret generation:** `disabled`
+
+<Frame caption="Add new Databricks OAuth connection">
+  <img src="/images/databricks-add-connection.png" alt="" />
+</Frame>
+
+After creating the connection, copy the generated OAuth client ID:
+
+<Frame caption="Copy Databricks Client ID">
+  <img src="/images/databricks-connection-client-id.png" alt="" />
+</Frame>
+
+### Configure Databricks Connection in Spice Cloud
+
+Navigate to the code editor and select the Databricks connector. Choose either SQL Warehouse or Delta Lake mode, then select the OAuth authorization option. Click **Connect Databricks Workspace** to proceed.
+
+<Frame caption="Databricks connector in code editor">
+  <img src="/images/spicepod-editor (1).png" alt="" />
+</Frame>
+
+Enter the workspace URL and OAuth Client ID generated from the Databricks OAuth app, then click **Connect**.
+
+<Frame caption="Set Databricks workspace URL and Client ID">
+  <img src="/images/new-databricks-connection (1).png" alt="" />
+</Frame>
+
+After successful authentication in Databricks, you will be redirected back to the Spice app:
+
+<Info>
+Note: Databricks authentication credentials are only stored client-side in your browser and never in Spice Cloud.
+</Info>
+
+<Frame caption="Successful connection">
+  <img src="/images/connection-success.png" alt="" />
+</Frame>
+
+Once connected, Databricks datasets, catalogs, and models can use the connection:
+
+<Frame caption="Code editor with Databricks catalog, dataset and model">
+  <img src="/images/spicepod-editor-dataset (1).png" alt="" />
+</Frame>

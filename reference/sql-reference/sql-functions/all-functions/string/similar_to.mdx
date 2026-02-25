@@ -1,0 +1,34 @@
+---
+description: Tests whether the entire expression matches a pattern.
+---
+
+# SIMILAR\_TO
+
+### Syntax
+
+#### _expression_ SIMILAR TO _pattern_ → boolean
+
+* expression: The expression to compare.
+* pattern: The pattern that is compared to the expression.
+
+**Examples**
+
+```sql
+SELECT 'shortcakes' SIMILAR TO '%cake_'
+-- True
+```
+#### _expression_ SIMILAR TO _pattern_ ESCAPE _escape\_character_ → boolean
+
+* expression: The expression to compare.
+* pattern: The pattern that is compared to the expression.
+* escape: Putting an _escape\_character_ before a wildcard in the _pattern_ makes SIMILAR TO treat the wildcard as a regular character when it appears in the _expression_.
+
+**Examples**
+
+```sql
+SELECT '100%' SIMILAR TO '100!%' ESCAPE '!'
+-- True
+```
+### Usage Notes
+
+Succeeds only if the pattern matches the entire expression.

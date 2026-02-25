@@ -1,0 +1,55 @@
+---
+description: Returns the square root of the non-negative numeric expression.
+---
+
+# SQRT
+
+### Syntax
+
+#### SQRT(_numeric\_expression_ double) → double
+
+* numeric\_expression: Numeric expression to calculate the square root for.
+
+**Examples**
+
+```sql
+SELECT SQRT(25.25)
+-- 5.024937810560445
+```
+```sql
+SELECT SQRT(-25.25)
+-- NaN
+```
+#### SQRT(_numeric\_expression_ int64) → int64
+
+* numeric\_expression: Numeric expression to calculate the square root for.
+
+**Examples**
+
+```sql
+SELECT SQRT(25)
+-- 5
+```
+#### SQRT(_numeric\_expression_ int32) → int32
+
+* numeric\_expression: Numeric expression to calculate the square root for.
+
+**Examples**
+
+```sql
+SELECT SQRT(25)
+-- 5
+```
+#### SQRT(_numeric\_expression_ float) → float
+
+* numeric\_expression: Numeric expression to calculate the square root for.
+
+**Examples**
+
+```sql
+SELECT SQRT(25.25)
+-- 5.024937810560445
+```
+### Usage Notes
+
+If the input is a non-negative value, `NaN` will be returned.

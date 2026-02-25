@@ -1,0 +1,20 @@
+---
+description: >-
+  Returns a consistent hash value based on the input string. This function
+  returns NULL for non-string types.
+---
+
+# MASK\_HASH
+
+### Syntax
+
+#### MASK\_HASH(_expression_ varchar) → varchar
+
+* expression: The string to hash.
+
+**Examples**
+
+```sql
+SELECT MASK_HASH('abcd-ABCD-1234')
+-- 770d599256e3902a0aacc9750cd1ca7f34be182632ba3dca3d2eb6f31dcc3d59
+```

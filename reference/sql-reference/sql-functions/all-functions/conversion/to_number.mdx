@@ -1,0 +1,23 @@
+---
+description: Converts a string into a number (double) in the specified format.
+---
+
+# TO\_NUMBER
+
+### Syntax
+
+#### TO\_NUMBER(_expression_ varchar, _format_ varchar) → double
+
+* expression: String to convert to a number.
+* format: Format for number conversion.
+
+**Examples**
+
+```sql
+SELECT TO_NUMBER('12374.0023', '#####.###')
+-- 12374.002
+```
+```sql
+SELECT TO_NUMBER('12374', '#####')
+-- 12374.0
+```

@@ -1,0 +1,26 @@
+---
+description: Computes the hyperbolic cosine of a value in radians.
+---
+
+# COSH
+
+### Syntax
+
+#### COSH(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number in radians. This must be `DOUBLE`, `INTEGER`, or `FLOAT`.
+
+**Examples**
+
+```sql
+SELECT COSH(0)
+-- 1.0
+```
+```sql
+SELECT COSH(1.0)
+-- 1.543080634815244
+```
+```sql
+SELECT COSH(-1)
+-- 1.543080634815244
+```

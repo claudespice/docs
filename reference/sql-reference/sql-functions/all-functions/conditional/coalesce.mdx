@@ -1,0 +1,27 @@
+---
+description: >-
+  Evaluates the arguments in order and returns the value of the first expression
+  that does not contain NULL.
+---
+
+# COALESCE
+
+### Syntax
+
+#### COALESCE(expression1, expression2, \[ …, expressionN ]) → same as input type
+
+* expression: A combination of symbols and operators that the database evaluates to obtain a single data value. Expressions can be a single constant, variable, column, or scalar function.
+
+**Examples**
+
+```sql
+SELECT COALESCE(address1, address2, city, state, zipCode)
+FROM customers
+
+-- 123 Main Street
+```
+### Usage Notes
+
+All arguments in the `SELECT` statement must have the same data type. Requires a minimum of two arguments, but there is no set maximum limit.
+
+

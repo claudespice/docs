@@ -1,0 +1,26 @@
+---
+description: Computes the cotangent of a value in radians.
+---
+
+# COT
+
+### Syntax
+
+#### COT(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number in radians. This must be `DOUBLE`, `INTEGER`, or `FLOAT`.
+
+**Examples**
+
+```sql
+SELECT COT(0)
+-- 1.0
+```
+```sql
+SELECT COT(1.0)
+-- 0.5403023058681398
+```
+```sql
+SELECT COT(-1)
+-- 0.5403023058681398
+```

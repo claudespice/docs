@@ -1,0 +1,29 @@
+---
+description: Extracts the hour number (from 0 to 23) for a given time or timestamp.
+---
+
+# HOUR
+
+### Syntax
+
+#### EXTRACT(HOUR FROM _date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `TIME`, `TIMESTAMP`, or `DATE` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(HOUR FROM TIMESTAMP '2019-08-12 01:10:30.123456')
+-- 1
+```
+```sql
+SELECT EXTRACT(HOUR FROM TIME '01:10:30.123456')
+-- 1
+```
+```sql
+SELECT EXTRACT(HOUR FROM CAST('2019-08-12 01:10:30' AS TIMESTAMP))
+-- 1
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

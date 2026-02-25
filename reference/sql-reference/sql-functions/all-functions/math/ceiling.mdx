@@ -1,0 +1,32 @@
+---
+description: >-
+  Returns the nearest equal or larger value of the input expression. Can also be
+  called using CEIL().
+---
+
+# CEILING
+
+### Syntax
+
+#### CEILING(_numeric\_expression_ NUMERIC) → INTEGER
+
+* numeric\_expression: The number (`DOUBLE`, `FLOAT`, `INTEGER`) to compute the ceiling.
+
+**Examples**
+
+```sql
+SELECT CEILING(3.1459)
+-- 4
+```
+```sql
+SELECT CEIL(37.775420706711)
+-- 38
+```
+```sql
+SELECT CEIL(-37.775420706711)
+-- -37
+```
+```sql
+SELECT CEIL(0)
+-- 0
+```

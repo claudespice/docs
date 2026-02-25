@@ -1,0 +1,28 @@
+---
+description: >-
+  Tests whether an expression column matches a pattern column. Comparisons are
+  case-sensitive.
+---
+
+# COL\_LIKE
+
+### Syntax
+
+#### COL\_LIKE(_expression\_col_ varchar, _pattern\_col_ varchar) → boolean
+
+* expression\_col: A column containing an expression to compare.
+* pattern\_col: A column containing the pattern to compare to the expression.
+
+**Examples**
+
+```sql
+CREATE TABLE $scratch.names (name varchar, pat varchar)
+AS VALUES ('john', '%oh%'), ('jacob', '%aco%'), ('bill', '%ob%');
+
+SELECT name 
+FROM $scratch.names 
+WHERE col_like (name, pat);
+
+-- john
+-- jacob
+```

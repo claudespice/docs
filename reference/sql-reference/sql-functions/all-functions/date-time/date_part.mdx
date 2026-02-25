@@ -1,0 +1,23 @@
+---
+description: Return subfields such as year or hour from date or timestamp values.
+---
+
+# DATE\_PART
+
+### Syntax
+
+#### DATE\_PART(_field_ string, _source_ date or timestamp) → integer
+
+* field: Must be one of the following: YEAR, QUARTER, MONTH, WEEK, DAY, HOUR, MINUTE, SECOND.
+* source: The value from which to extract the subfield.
+
+**Examples**
+
+```sql
+SELECT DATE_PART('year', TIMESTAMP '2021-04-01 15:27:32')
+-- 2021
+```
+```sql
+SELECT DATE_PART('month', DATE '2021-04-01')
+-- 4
+```

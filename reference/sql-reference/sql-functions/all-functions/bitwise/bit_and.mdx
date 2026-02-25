@@ -1,0 +1,36 @@
+---
+description: Returns the bitwise AND of non-NULL input values.
+---
+
+# BIT\_AND
+
+### Syntax
+
+#### BIT\_AND(_expression_ int) → int
+
+* expression: An expression that evaluates to a data type that can be cast as an integer.
+
+**Examples**
+
+```sql
+SELECT BIT_AND(transaction_count)
+  FROM eth.recent_blocks 
+
+-- EXPR$0
+-- 0
+```
+```sql
+SELECT total_gas_used, 
+  BIT_AND(transaction_count)
+FROM eth.recent_blocks 
+GROUP BY total_gas_used
+
+-- total_gas_used, EXPR$1
+-- 21.5, 0
+-- 19.1, 0
+```
+### Usage Notes
+
+If no rows match, returns a value with all bits set to 1. `NULL` values have no effect on the result unless all results are `NULL`, which is treated as no match.
+
+

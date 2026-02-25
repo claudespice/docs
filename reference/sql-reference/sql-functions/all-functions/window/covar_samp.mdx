@@ -1,0 +1,39 @@
+---
+description: Returns the sample covariance for non-NULL pairs across all input values.
+---
+
+# COVAR\_SAMP
+
+### Syntax
+
+#### COVAR\_SAMP(_expression1_ numeric, _expression2_ numeric) → double
+
+* expression1: An expression that evaluates to a numeric type. This parameter is the dependent value.
+* expression2: An expression that evaluates to a numeric type. This parameter is the independent value.
+
+**Examples**
+
+```sql
+SELECT COVAR_SAMP(transaction_count, gas_used)
+FROM eth.recent_blocks
+
+-- 31.70536780565699
+```
+```sql
+SELECT COVAR_SAMP(DISTINCT transaction_count, gas_used)
+FROM eth.recent_blocks
+
+-- 31.7053678056971
+```
+```sql
+SELECT COVAR_SAMP(transaction_count, gas_used)
+  OVER (PARTITION BY transaction_count)
+FROM eth.recent_blocks
+
+-- 2.442515362986122e-15
+```
+### Usage Notes
+
+This function supports the use of `ALL` and `DISTINCT`:
+
+`SELECT COVAR_SAMP( [ { ALL | DISTINCT } ] expression1, expression2)`

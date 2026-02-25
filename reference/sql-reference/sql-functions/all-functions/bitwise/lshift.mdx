@@ -1,0 +1,38 @@
+---
+description: Shifts the bits of the numeric expression to the left.
+---
+
+# LSHIFT
+
+### Syntax
+
+#### LSHIFT(_expression1_ int32, _expression2_ int32) → int32
+
+* expression1: Integer to shift.
+* expression2: The number of bits to shift by.
+
+**Examples**
+
+```sql
+SELECT LSHIFT(1, 120)
+-- 16777216
+```
+```sql
+SELECT LSHIFT(16, 1)
+-- 32
+```
+#### LSHIFT(_expression1_ int64, _expression2_ int64) → int64
+
+* expression1: Integer to shift.
+* expression2: The number of bits to shift by.
+
+**Examples**
+
+```sql
+SELECT LSHIFT(1, 120)
+-- 16777216
+```
+```sql
+SELECT LSHIFT(16, 1)
+-- 32
+```

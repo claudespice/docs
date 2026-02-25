@@ -1,0 +1,30 @@
+---
+description: Gets length of bits of the input expression.
+---
+
+# BIT\_LENGTH
+
+### Syntax
+
+#### BIT\_LENGTH(_expression_ BINARY, VARCHAR) → BINARY
+
+* expression: A binary or varchar expression
+
+**Examples**
+
+```sql
+SELECT BIT_LENGTH(1010)
+-- 32
+```
+```sql
+SELECT BIT_LENGTH('SPICE')
+-- 48
+```
+```sql
+SELECT BIT_LENGTH('abc')
+-- 24
+```
+```sql
+SELECT BIT_LENGTH(NULL)
+-- None
+```

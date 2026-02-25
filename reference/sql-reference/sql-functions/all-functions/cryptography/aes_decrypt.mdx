@@ -1,0 +1,19 @@
+---
+description: Decrypts a string produced by AES encryption.
+---
+
+# AES\_DECRYPT
+
+### Syntax
+
+#### AES\_DECRYPT(_ciphertext_ varchar, _key_ varchar) → varchar
+
+* ciphertext: The string to be decrypted.
+* key: The key to use to decrypt the ciphertext.
+
+**Examples**
+
+```sql
+SELECT AES_DECRYPT(UNBASE64('Fad52k2P1Y6rMZ0DBcg8SQ=='), 'mypassword')
+-- Spice
+```

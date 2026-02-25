@@ -1,0 +1,31 @@
+---
+description: Returns the input expression with all the characters converted to lowercase.
+---
+
+# LCASE
+
+### Syntax
+
+#### LCASE(_expression_ varchar) → varchar
+
+* expression: String to convert to lowercase.
+
+**Examples**
+
+```sql
+SELECT LCASE('A GUIDE to data Lakehouses')
+-- a guide to data lakehouses
+```
+```sql
+SELECT Category, LCASE(Category) 
+  FROM eth.recent_blocks 
+  LIMIT 3
+
+-- Category, EXPR$1
+-- WEAPON LAWS, weapon laws
+-- WEAPON LAWS, weapon laws
+-- WARRANTS, warrants
+```
+### Usage Notes
+
+`LCASE` is a synonym for [`LOWER`](lower).

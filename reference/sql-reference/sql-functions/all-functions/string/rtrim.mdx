@@ -1,0 +1,27 @@
+---
+description: Removes trailing spaces or characters from a string.
+---
+
+# RTRIM
+
+### Syntax
+
+#### RTRIM(_expression_ varchar, _trim\_expression_ varchar) → varchar
+
+* expression: The expression to be trimmed.
+* trim\_expression: Trailing characters to trim. If this parameter is not specified, then spaces will be trimmed from the input expression.
+
+**Examples**
+
+```sql
+SELECT RTRIM('pancake', 'cake')
+-- pan
+```
+```sql
+SELECT RTRIM('pancake pan', 'abnp')
+-- pancake
+```
+```sql
+SELECT RTRIM('spice   ')
+-- spice
+```

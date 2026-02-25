@@ -1,0 +1,36 @@
+---
+description: Returns the bitwise OR of non-NULL input values.
+---
+
+# BIT\_OR
+
+### Syntax
+
+#### BIT\_OR(_expression_ int) → int
+
+* expression: An expression that evaluates to a data type that can be cast as an integer.
+
+**Examples**
+
+```sql
+SELECT BIT_OR(transaction_count)
+  FROM eth.recent_blocks
+
+-- EXPR$0
+-- 255
+```
+
+```sql
+SELECT gas_used, 
+  BIT_OR(transaction_count)
+FROM eth.recent_blocks
+GROUP BY gas_used
+
+-- total_amount, EXPR$1
+-- 29.0, 7
+-- 5.5, 15
+```
+
+### Usage Notes
+
+If no rows match, returns a value with all bits set to 0. NULL values have no effect on the result unless all results are NULL, which is treated as no match.

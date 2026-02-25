@@ -1,0 +1,44 @@
+---
+description: >-
+  Returns the portion of the string from the specified base expression starting
+  at the specified characters.
+---
+
+# SUBSTRING
+
+### Syntax
+
+#### SUBSTRING(_string\_expression_ varchar, _offset_ int64) → varchar
+
+* string\_expression: Base expression to extract substring from.
+* offset: The offset from which the substring starts.
+
+**Examples**
+
+```sql
+SELECT SUBSTRING('spice user 1 2 3', 12)
+-- 1 2 3
+```
+#### SUBSTRING(_string\_expression_ varchar, _offset_ int64, _length_ int64) → varchar
+
+* string\_expression: Base expression to extract substring from.
+* offset: The offset from which the substring starts.
+* length: The length limit of the substring.
+
+**Examples**
+
+```sql
+SELECT SUBSTRING('base expression', 6, 4)
+-- expr
+```
+#### SUBSTRING(_string\_expression_ varchar, _pattern_ varchar) → varchar
+
+* string\_expression: Base expression to extract substring from.
+* pattern: The offset from which the substring starts.
+
+**Examples**
+
+```sql
+SELECT SUBSTRING('spice user 123', '[0-9]+')
+-- 123
+```

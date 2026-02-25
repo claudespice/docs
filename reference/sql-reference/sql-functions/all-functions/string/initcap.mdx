@@ -1,0 +1,24 @@
+---
+description: >-
+  Returns the input string with the first letter of each word in uppercase and
+  the subsequent letters in the word are in lowercase).
+---
+
+# INITCAP
+
+### Syntax
+
+#### INITCAP(_expression_ varchar) → varchar
+
+* expression: Input string.
+
+**Examples**
+
+```sql
+SELECT INITCAP('a guide to data lakehouses')
+-- A Guide To Data Lakehouses
+```
+```sql
+SELECT INITCAP('a guide to data lakeHouses')
+-- A Guide To Data Lakehouses
+```

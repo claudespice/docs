@@ -1,0 +1,51 @@
+---
+description: Returns the sign of the input expression.
+---
+
+# SIGN
+
+### Syntax
+
+#### SIGN(_numeric\_expression_ double) → int
+
+* numeric\_expression: Input expression.
+
+**Examples**
+
+```sql
+SELECT SIGN(10.3)
+-- 1
+```
+#### SIGN(_numeric\_expression_ int32) → int32
+
+* numeric\_expression: Input expression.
+
+**Examples**
+
+```sql
+SELECT SIGN(-5)
+-- -1
+```
+#### SIGN(_numeric\_expression_ int64) → int64
+
+* numeric\_expression: Input expression.
+
+**Examples**
+
+```sql
+SELECT SIGN(24)
+-- 1
+```
+#### SIGN(_numeric\_expression_ float) → int
+
+* numeric\_expression: Input expression.
+
+**Examples**
+
+```sql
+SELECT SIGN(0.0)
+-- 0
+```
+### Usage Notes
+
+1 is returned if the input expression is positive. -1 is returned if the input expression is negative. 0 is returned if the input expression is 0.

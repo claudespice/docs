@@ -1,0 +1,31 @@
+---
+description: Returns the day of month of the date or timestamp.
+---
+
+# DAY
+
+### Syntax
+
+#### DAY(_date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT "DAY"('2003-02-01 11:43:22')
+-- 1
+```
+```sql
+SELECT "Date", "DAY"("Date") 
+FROM eth.recent_blocks  
+LIMIT 3
+
+-- Date, EXPR$1
+-- 2016-01-29, 29
+-- 2016-01-29, 29
+-- 2016-04-25, 25
+```
+### Usage Notes
+
+The function name is a Spice keyword and must be enclosed in double quotes (`"DAY"`). This function is identical to the function [`DAYOFMONTH`](dayofmonth).

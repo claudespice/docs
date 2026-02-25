@@ -1,0 +1,26 @@
+---
+description: Computes the arcsine (inverse sine) of a value in radians.
+---
+
+# ASIN
+
+### Syntax
+
+#### ASIN(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number in radians. This must be `DOUBLE`, `INTEGER`, or `FLOAT`.
+
+**Examples**
+
+```sql
+SELECT ASIN(0)
+-- 0.0
+```
+```sql
+SELECT ASIN(1)
+-- 1.5707963267948966
+```
+```sql
+SELECT ASIN(-1)
+-- -1.5707963267948966
+```

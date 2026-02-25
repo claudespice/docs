@@ -1,0 +1,28 @@
+---
+description: >-
+  Returns the position of the first occurrence of a substring within another
+  string
+---
+
+# POSITION
+
+### Syntax
+
+#### POSITION(_substr_ string IN _expression_ string) → integer
+
+* substr: The substring to search for in the expression.
+* expression: The input expression to search.
+
+**Examples**
+
+```sql
+SELECT POSITION('an' in 'banana')
+-- 2
+```
+```sql
+SELECT POSITION('no' in 'banana')
+-- 0
+```
+### Usage Notes
+
+Searches for the first occurrence of the first argument in the second argument and if found, returns the position the of the first argument in the second argument. The first character in a string is position 1. Returns 0 if the substring is not found in the expression.

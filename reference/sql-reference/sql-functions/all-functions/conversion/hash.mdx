@@ -1,0 +1,30 @@
+---
+description: >-
+  Returns a hash value of the arguments. HASH does not return NULL, even for
+  NULL inputs.
+---
+
+# HASH
+
+### Syntax
+
+#### HASH(_expression_ any) → numeric
+
+* expression: Can be a general expression of any Spice supported data type.
+
+**Examples**
+
+```sql
+SELECT HASH(host_id)
+FROM eth.recent_blocks 
+LIMIT 5
+
+-- 1110609030
+-- 1283762365
+-- -1745730253
+-- 0
+-- 0
+```
+### Usage Notes
+
+HASH is a proprietary function that can accept different input expressions of arbitrary Spice supported data types and returns a signed value. It is not a cryptographic hash function and should not be used as such.

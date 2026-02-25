@@ -1,0 +1,19 @@
+---
+description: Encrypts a string using AES encryption.
+---
+
+# AES\_ENCRYPT
+
+### Syntax
+
+#### AES\_ENCRYPT(_plaintext_ varchar, _key_ varchar) → varchar
+
+* plaintext: The string to be encrypted.
+* key: The key to use to encrypt the plaintext.
+
+**Examples**
+
+```sql
+SELECT BASE64(AES_ENCRYPT('Spice', 'mypassword'))
+-- Fad52k2P1Y6rMZ0DBcg8SQ==
+```

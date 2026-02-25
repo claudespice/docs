@@ -1,0 +1,18 @@
+---
+description: Decodes a Base64-encoded string.
+---
+
+# UNBASE64
+
+### Syntax
+
+#### UNBASE64(_expression_ varchar) → varbinary
+
+* expression: A Base64-encoded string.
+
+**Examples**
+
+```sql
+SELECT CAST(UNBASE64('RHJlbWlv') AS VARCHAR)
+-- Spice
+```

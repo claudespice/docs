@@ -1,0 +1,33 @@
+# LOCATE
+
+Searches for the first occurrence of the first argument in the second argument and if found, returns the position the of the first argument in the second argument. The first character in a string is position 1. Returns 0 if the substring isn’t found in the expression.
+
+### Syntax
+
+#### LOCATE(_substring_ varchar, _expression_ varchar, _start_ int32) → int32
+
+* substring: Substring to search for in the expression.
+* expression: The input expression to search.
+* start: Position to start the search from.
+
+**Examples**
+
+```sql
+SELECT LOCATE('an','banana', 3)
+-- 4
+```
+```sql
+SELECT LOCATE('no','banana')
+-- 0
+```
+#### LOCATE(_substring_ varchar, _expression_ varchar) → int32
+
+* substring: Substring to search for in the expression.
+* expression: The input expression to search.
+
+**Examples**
+
+```sql
+SELECT LOCATE('an','banana')
+-- 2
+```

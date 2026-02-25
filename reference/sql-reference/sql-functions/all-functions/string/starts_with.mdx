@@ -1,0 +1,27 @@
+---
+description: >-
+  Returns whether a string starts with another string. The comparison is
+  case-sensitive.
+---
+
+# STARTS\_WITH
+
+### Syntax
+
+#### STARTS\_WITH(_expression1_ string, _expression2_ string) → bit
+
+* expression1: The input expression to search.
+* expression2: The string to search for in the specified expression.
+
+**Examples**
+
+```sql
+SELECT IncidntNum, Category, Descript 
+FROM  eth.recent_blocks 
+  WHERE STARTS_WITH(Category, 'OTHER')
+  LIMIT 2
+
+-- IncidntNum, Category, Descript
+-- 160003130, OTHER OFFENSES, PAROLE VIOLATION
+-- 160073014, OTHER OFFENSES, RESISTING ARREST
+```

@@ -1,0 +1,27 @@
+---
+description: Removes leading spaces or characters from a string.
+---
+
+# LTRIM
+
+### Syntax
+
+#### LTRIM(_expression_ varchar, _trim\_expression_ varchar) → varchar
+
+* expression: The expression to be trimmed.
+* trim\_expression: Leading characters to trim. If this parameter is not specified, then spaces will be trimmed from the input expression.
+
+**Examples**
+
+```sql
+SELECT LTRIM('pancake', 'pan')
+-- cake
+```
+```sql
+SELECT LTRIM('pancake', 'abnp')
+-- cake
+```
+```sql
+SELECT LTRIM('   spice')
+-- spice
+```

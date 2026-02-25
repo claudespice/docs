@@ -1,0 +1,32 @@
+---
+description: >-
+  Returns the row number for the current row based on the ORDER BY clause within
+  each partition. Rows containing identical values receive different row
+  numbers.
+---
+
+# ROW\_NUMBER
+
+### Syntax
+
+#### ROW\_NUMBER() OVER ( \[PARTITION BY partition\_expression] \[ORDER BY order\_expression]) → bigint
+
+* partition\_expression: An optional expression that groups rows into partitions.
+* order\_expression: An optional expression that specifies the order of the rows within each partition.
+
+**Examples**
+
+```sql
+SELECT "Category", 
+  "Descript", 
+  "DayOfWeek",
+  ROW_NUMBER() 
+    OVER (
+      PARTITION BY "Category" 
+      ORDER BY "DayOfWeek")
+FROM eth.recent_blocks 
+
+-- Category, Descript, DayOfWeek, EXPR$3
+-- ARSON, ARSON, Friday, 1 
+-- ARSON, ARSON, Friday, 2
+```

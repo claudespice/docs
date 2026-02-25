@@ -1,0 +1,29 @@
+---
+description: Each call returns a random generated number between 0 and 1 for each row.
+---
+
+# RANDOM
+
+### Syntax
+
+#### RANDOM() → double
+
+**Examples**
+
+```sql
+SELECT RANDOM()
+-- 0.24943567857336457
+```
+#### RANDOM(_seed_ int32) → double
+
+* seed: Seed value.
+
+**Examples**
+
+```sql
+SELECT RANDOM(4000)
+-- 0.18633151868393985
+```
+### Usage Notes
+
+If a seed value is specified, `RANDOM` generates a unique number for each row. If the same seed is used to call `RANDOM` on the same row multiple times, the same generated number will be returned each time.

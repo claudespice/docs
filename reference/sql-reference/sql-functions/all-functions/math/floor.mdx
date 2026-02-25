@@ -1,0 +1,28 @@
+---
+description: >-
+  Returns the value from the specifed expression rounded to the nearest equal or
+  smaller integer.
+---
+
+# FLOOR
+
+### Syntax
+
+#### FLOOR(_numeric\_expression_ NUMERIC) → INTEGER
+
+* numeric\_expression: The number (`DOUBLE`, `FLOAT`, `INTEGER`) used to compute the floor.
+
+**Examples**
+
+```sql
+SELECT FLOOR(0)
+-- 0
+```
+```sql
+SELECT FLOOR(45.76)
+-- 45
+```
+```sql
+SELECT FLOOR(-1.3)
+-- -2
+```

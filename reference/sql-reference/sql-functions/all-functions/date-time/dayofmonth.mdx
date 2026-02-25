@@ -1,0 +1,27 @@
+---
+description: Returns the day of month of the date or timestamp.
+---
+
+# DAYOFMONTH
+
+### Syntax
+
+#### DAYOFMONTH(_date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+DAYOFMONTH example
+
+```sql
+SELECT DAYOFMONTH(DATE '2021-02-28')
+-- 28
+```
+```sql
+SELECT DAYOFMONTH(TIMESTAMP '2021-02-28 11:43:22')
+-- 28
+```
+### Usage Notes
+
+This function is identical to the function [`DAY`](day).

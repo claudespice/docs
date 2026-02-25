@@ -1,0 +1,24 @@
+---
+description: Concatenates two or more strings. NULL values are ignored.
+---
+
+# CONCAT
+
+### Syntax
+
+#### CONCAT(_expression1_ string, _expression2_ string, _expressionN_ string) → string
+
+* expression1: First string expression.
+* expression2: Second string expression.
+* expressionN: Nth string expression.
+
+**Examples**
+
+```sql
+SELECT CONCAT('CON', 'CAT')
+-- CONCAT
+```
+```sql
+SELECT CONCAT('con', 'cat', NULL)
+-- concat
+```

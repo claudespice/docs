@@ -1,0 +1,28 @@
+---
+description: Returns the week of year of the date or timestamp.
+---
+
+# WEEKOFYEAR
+
+### Syntax
+
+#### WEEKOFYEAR(_date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT WEEKOFYEAR('2003-02-01 11:43:22')
+-- 5
+```
+```sql
+SELECT "Date", WEEKOFYEAR("Date") 
+FROM eth.recent_blocks 
+LIMIT 3
+
+-- Date, EXPR$1
+-- 2016-01-29, 4
+-- 2016-01-29, 4
+-- 2016-04-25, 17
+```

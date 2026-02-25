@@ -1,0 +1,32 @@
+---
+description: Returns whether a list contains a given value.
+---
+
+# ARRAY\_CONTAINS
+
+### Syntax
+
+#### ARRAY\_CONTAINS(_list_ LIST, _value_ any) → boolean
+
+* list: The list to search.
+* value: An expression of a type that is comparable with the LIST.
+
+**Examples**
+
+```sql
+SELECT ARRAY_CONTAINS(CONVERT_FROM('["apple", "pear", "banana"]', 'json'), NULL)
+-- null
+```
+```sql
+SELECT ARRAY_CONTAINS(CONVERT_FROM('["apple", "pear", "banana"]', 'json'), 'pear')
+-- true
+```
+```sql
+SELECT ARRAY_CONTAINS(CONVERT_FROM('["apple", "pear", "banana"]', 'json'), 'grape')
+-- false
+```
+### Usage Notes
+
+If _value_ is `NULL`, the result is `NULL`. If `NULL` is in _list_ and _value_ is not in _list_, the result is `NULL`. If _value_ is present in the _list_, the result is `TRUE`. Otherwise, the result is `FALSE`.
+
+

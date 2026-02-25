@@ -1,0 +1,21 @@
+---
+description: Computes the SHA-1 hash value of a string.
+---
+
+# SHA
+
+### Syntax
+
+#### SHA(_expr_ varchar) → varchar
+
+* expression: The string to hash.
+
+**Examples**
+
+```sql
+SELECT SHA('Spice')
+-- dda3f1ef53d1e82a4845ef5b2893b9d9c04bd3b1
+```
+### Usage Notes
+
+This function is an alias for [`SHA1`](sha1)`.`

@@ -1,0 +1,29 @@
+---
+description: Extracts the year for a given date or timestamp.
+---
+
+# YEAR
+
+### Syntax
+
+#### EXTRACT(YEAR FROM _date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(YEAR FROM TIMESTAMP '2019-08-12 01:00:00.123456')
+-- 2019
+```
+```sql
+SELECT EXTRACT(YEAR FROM DATE '2019-08-12')
+-- 2019
+```
+```sql
+SELECT EXTRACT(YEAR FROM CAST('2019-08-12 01:00:00' AS TIMESTAMP))
+-- 2019
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

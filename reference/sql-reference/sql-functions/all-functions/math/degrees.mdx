@@ -1,0 +1,26 @@
+---
+description: Converts radians to degrees.
+---
+
+# DEGREES
+
+### Syntax
+
+#### DEGREES(_numeric\_expression_ NUMERIC) → FLOAT
+
+* numeric\_expression: The number of radians. This must be `DOUBLE`, `INTEGER`, or `FLOAT`.
+
+**Examples**
+
+```sql
+SELECT DEGREES(PI())
+-- 180.0
+```
+```sql
+SELECT DEGREES(0)
+-- 0.0
+```
+```sql
+SELECT DEGREES(1)
+-- 57.29577951308232
+```

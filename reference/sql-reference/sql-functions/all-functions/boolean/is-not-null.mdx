@@ -1,0 +1,40 @@
+---
+description: >-
+  Determines if an expression is NULL or not NULL. Alias for the function
+  ISNULL/ISNOTNULL.
+---
+
+# IS \[NOT] NULL
+
+### Syntax
+
+#### IS \[NOT] NULL(_expression_ any) → boolean
+
+* expression: Expression of any Spice supported data type to evaluate.
+
+**Examples**
+
+```sql
+SELECT ISNULL('SPICE')
+-- False
+```
+```sql
+SELECT 'SPICE' IS NULL
+-- False
+```
+#### IS \[NOT] NULL(_expression_ any) → boolean
+
+* expression: Expression of any Spice supported data type to evaluate.
+
+**Examples**
+
+```sql
+SELECT ISNOTNULL('SPICE')
+-- True
+```
+ISNOTNULL operator returns true if \<expression> is not NULL, and false otherwise.
+
+```sql
+SELECT 'SPICE' IS NOT NULL
+-- False
+```

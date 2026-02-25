@@ -1,0 +1,39 @@
+---
+description: Returns the population covariance for non-NULL pairs across all input values.
+---
+
+# COVAR\_POP
+
+### Syntax
+
+#### COVAR\_POP(_expression1_ numeric, _expression2_ numeric) → double
+
+* expression1: An expression that evaluates to a numeric type. This parameter is the dependent value.
+* expression2: An expression that evaluates to a numeric type. This parameter is the independent value.
+
+**Examples**
+
+```sql
+SELECT COVAR_POP(transaction_count, gas_used)
+FROM eth.recent_blocks
+
+-- 31.70536771189994
+```
+```sql
+SELECT COVAR_POP(DISTINCT transaction_count, gas_used)
+FROM eth.recent_blocks
+
+-- 302.592806814443e
+```
+```sql
+SELECT COVAR_POP(transaction_count, gas_used)
+  OVER (PARTITION BY transaction_count)
+FROM eth.recent_blocks
+
+-- 1.5543122344752192e-15
+```
+### Usage Note
+
+This function supports the use of `ALL` and `DISTINCT`:
+
+`SELECT COVAR_POP( [ { ALL | DISTINCT } ] expression1, expression2)`

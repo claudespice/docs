@@ -1,0 +1,48 @@
+---
+description: Converts a binary string from the given data type to a Spice type.
+---
+
+# CONVERT\_FROM
+
+### Syntax
+
+#### CONVERT\_FROM(_binary\_value_ value\_to\_convert, _data\_type_ name\_of\_type) → varies
+
+* binary\_value: The binary string to convert to a Spice data type.
+* data\_type: The data type of the specified binary string.
+
+**Examples**
+
+```sql
+SELECT CONVERT_FROM('["apple", "strawberry", "banana"]', 'json')
+-- ['apple', 'strawberry', 'banana']
+```
+```sql
+SELECT CONVERT_FROM('{"name":"Gnarly", "age":7, "car":null}', 'json')
+-- {"name:"Gnarly","age":7}
+```
+### Usage Notes
+
+You can convert from binary values that are in these data formats:
+
+* BIGINT\_BE
+* BIGINT\_HADOOPV
+* BIGINT
+* BOOLEAN\_BYTE
+* DATE\_EPOCH\_BE
+* DATE\_EPOCH
+* DOUBLE\_BE
+* DOUBLE
+* FLOAT\_BE
+* FLOAT
+* INT\_BE
+* INT\_HADOOPV
+* INT
+* JSON
+* TIME\_EPOCH\_BE
+* TIME\_EPOCH
+* TIMESTAMP\_EPOCH\_BE
+* TIMESTAMP\_EPOCH
+* TIMESTAMP\_IMPALA\_LOCALTIMEZONE
+* TIMESTAMP\_IMPALA
+* UTF8

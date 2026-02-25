@@ -1,0 +1,22 @@
+---
+description: Returns the day of the week (from 1 to 7) of the date or timestamp.
+---
+
+# DAYOFWEEK
+
+### Syntax
+
+#### DAYOFWEEK(_date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT DAYOFWEEK(DATE '2021-02-28')
+-- 1
+```
+```sql
+SELECT DAYOFWEEK(TIMESTAMP '2021-02-27 11:43:22')
+-- 7
+```

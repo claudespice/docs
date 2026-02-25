@@ -1,0 +1,19 @@
+---
+description: Builds a string by repeating the input for the specified number of times
+---
+
+# REPEAT
+
+### Syntax
+
+#### REPEAT(_expression_ varchar, _nTimes_ int32) → varchar
+
+* expression: The input string from which the output string is built.
+* nTimes: The number of times the input expression should be repeated.
+
+**Examples**
+
+```sql
+SELECT REPEAT('abc', 3)
+-- abcabcabc
+```

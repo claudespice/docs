@@ -1,0 +1,22 @@
+---
+description: Returns whether the current user is a member of the specified role.
+---
+
+# IS\_MEMBER
+
+### Syntax
+
+#### IS\_MEMBER(_expression_ varchar) → boolean
+
+* expression: String expression identifying a role in Spice.
+
+**Examples**
+
+```sql
+SELECT IS_MEMBER ('public')
+-- True
+```
+```sql
+SELECT IS_MEMBER ('non-role')
+-- False
+```

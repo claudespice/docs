@@ -1,0 +1,31 @@
+---
+description: Returns the input expression with all the characters converted to uppercase.
+---
+
+# UPPER
+
+### Syntax
+
+#### UPPER(_expression_ varchar) → varchar
+
+* expression: String to convert to uppercase.
+
+**Examples**
+
+```sql
+SELECT UPPER('a guide to data lakehouses')
+-- A GUIDE TO DATA LAKEHOUSES
+```
+```sql
+SELECT DayOfWeek, UCASE(DayOfWeek) 
+  FROM eth.recent_blocks 
+  LIMIT 3
+
+-- DayOfWeek, EXPR$1
+-- Friday, FRIDAY
+-- Friday, FRIDAY
+-- Monday, MONDAY
+```
+### Usage Notes
+
+`UPPER` is a synonym for [`UCASE`](ucase).

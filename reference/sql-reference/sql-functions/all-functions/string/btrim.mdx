@@ -1,0 +1,35 @@
+---
+description: Trims leading and trailing characters from a string.
+---
+
+# BTRIM
+
+### Syntax
+
+#### BTRIM(_expression_ string, _trim\_text_ string) → string
+
+* expression: String expression to be trimmed.
+* trim\_text: Leading and trailing characters to trim from the input expression. If this parameter is not specified, then spaces will be trimmed from the input expression.
+
+**Examples**
+
+```sql
+SELECT BTRIM('spice ')
+-- spice
+```
+```sql
+SELECT BTRIM('~/~/~/spice~', '~')
+-- /~/~/spice
+```
+```sql
+SELECT BTRIM('---spice-', '-')
+-- spice
+```
+```sql
+SELECT BTRIM('stringvalue','string')
+-- value
+```
+```sql
+SELECT BTRIM('pancake pan','abnp')
+-- cake
+```

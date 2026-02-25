@@ -1,0 +1,29 @@
+---
+description: Extracts the minute number (from 0 to 59) for a given time or timestamp.
+---
+
+# MINUTE
+
+### Syntax
+
+#### EXTRACT(MINUTE FROM _date\_timestamp\_expression_ string) → bigint
+
+* timestamp\_expression: A `TIME`, `TIMESTAMP`, or `DATE` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(MINUTE FROM TIMESTAMP '2019-08-12 01:10:30.123456')
+-- 10
+```
+```sql
+SELECT EXTRACT(MINUTE FROM TIME '01:10:30.123456')
+-- 10
+```
+```sql
+SELECT EXTRACT(MINUTE FROM CAST('2019-08-12 01:10:30' AS TIMESTAMP))
+-- 10
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

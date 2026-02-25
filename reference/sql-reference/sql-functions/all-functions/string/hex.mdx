@@ -1,0 +1,24 @@
+---
+description: Returns the hexadecimal encoding of an expression.
+---
+
+# HEX
+
+### Syntax
+
+#### HEX(_expression_ any primitive) → varchar
+
+* expression: The expression to encode.
+
+**Examples**
+
+```sql
+SELECT HEX('Spice')
+-- EXPR$0
+-- 4472656D696F
+```
+```sql
+SELECT HEX(2023)
+-- EXPR$0
+-- 7E7
+```

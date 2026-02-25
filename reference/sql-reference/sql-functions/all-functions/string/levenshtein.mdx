@@ -1,0 +1,19 @@
+---
+description: Computes the Levenshtein distance between two input expressions.
+---
+
+# LEVENSHTEIN
+
+### Syntax
+
+#### LEVENSHTEIN(_expression1_ varchar, _expression2_ varchar) → int
+
+* expression1: The first string expression.
+* expression2: The second string expression.
+
+**Examples**
+
+```sql
+SELECT LEVENSHTEIN('spice', 'iceberg')
+-- 6
+```

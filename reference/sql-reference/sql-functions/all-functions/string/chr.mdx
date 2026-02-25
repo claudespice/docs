@@ -1,0 +1,25 @@
+---
+description: >-
+  Converts a Unicode code point into the character that matches the input
+  Unicode character. If an invalid code point is specified, an empty string is
+  returned.
+---
+
+# CHR
+
+### Syntax
+
+#### CHR(_integer\_expression_ int32) → varchar
+
+* integer\_expression: Unicode code point to convert to character.
+
+**Examples**
+
+```sql
+SELECT CHR(72)
+-- H
+```
+```sql
+SELECT CHR(33)
+-- None
+```

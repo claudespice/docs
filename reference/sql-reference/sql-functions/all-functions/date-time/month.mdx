@@ -1,0 +1,29 @@
+---
+description: Extracts the month number (from 1 to 12) for a given date or timestamp.
+---
+
+# MONTH
+
+### Syntax
+
+#### EXTRACT(MONTH FROM _date\_timestamp\_expression_ string) → bigint
+
+* date\_timestamp\_expression: A `DATE` or `TIMESTAMP` expression.
+
+**Examples**
+
+```sql
+SELECT EXTRACT(MONTH FROM TIMESTAMP '2019-08-12 01:00:00.123456')
+-- 8
+```
+```sql
+SELECT EXTRACT(MONTH FROM DATE '2019-08-12')
+-- 8
+```
+```sql
+SELECT EXTRACT(MONTH FROM CAST('2019-08-12 01:00:00' AS TIMESTAMP))
+-- 8
+```
+### Usage Notes
+
+This function uses the [`EXTRACT`](extract) function. When using the [`CAST`](../conversion/cast) function, timestamps containing milliseconds are not allowed.

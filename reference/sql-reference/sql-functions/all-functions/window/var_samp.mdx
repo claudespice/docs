@@ -1,0 +1,55 @@
+---
+description: Returns the sample variance of non-NULL records.
+---
+
+# VAR\_SAMP
+
+### Syntax
+
+#### VAR\_SAMP(_numeric\_expression_ int64) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_SAMP(transaction_count) 
+FROM eth.recent_blocks
+-- 1.868747683518558
+```
+#### VAR\_SAMP(_numeric\_expression_ float) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_SAMP(gas_used) 
+FROM eth.recent_blocks
+-- 5.106086065187043
+```
+#### VAR\_SAMP(_numeric\_expression_ double) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_SAMP(gas_used) 
+FROM eth.recent_blocks
+-- 5.106086065187043
+```
+#### VAR\_SAMP(_numeric\_expression_ int32) → double
+
+* numeric\_expression: The set of records to calculate variance for.
+
+**Examples**
+
+```sql
+SELECT VAR_SAMP(transaction_count) 
+FROM eth.recent_blocks
+-- 1.868747683518558
+```
+### Usage Notes
+
+For single input records, VAR\_SAMP will return NULL.
