@@ -26,7 +26,7 @@ datasets:
 
 ### `from`
 
-The `from` field takes the form `mongodb:{table_name}` where `table_name` is the table identifer in the MongoDB server to read from.
+The `from` field takes the form `mongodb:\{table_name\}` where `table_name` is the table identifer in the MongoDB server to read from.
 
 ```yaml
 datasets:
@@ -64,7 +64,7 @@ SELECT COUNT(*) FROM cool_dataset;
 
 ### `params`
 
-The MongoDB data connector can be configured by providing the following `params`. Use the secret replacement syntax to load the secret from a secret store, e.g. `${secrets:my_mongodb_conn_string}`.
+The MongoDB data connector can be configured by providing the following `params`. Use the secret replacement syntax to load the secret from a secret store, e.g. `$\{secrets:my_mongodb_conn_string\}`.
 
 | Parameter Name                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

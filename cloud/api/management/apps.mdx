@@ -262,7 +262,7 @@ console.log(`Created app ${app.name} with ID ${app.id}`);
 
 ## Get App
 
-`GET` `https://api.spice.ai/v1/apps/{appId}`
+`GET` `https://api.spice.ai/v1/apps/\{appId\}`
 
 Returns details for a specific app, including its configuration.
 
@@ -336,7 +336,7 @@ curl -H "Authorization: Bearer <token>"
 
 ## Update App
 
-`PUT` `https://api.spice.ai/v1/apps/{appId}`
+`PUT` `https://api.spice.ai/v1/apps/\{appId\}`
 
 Updates an app's metadata and configuration. All fields are optional.
 
@@ -500,7 +500,7 @@ curl -X PUT https://api.spice.ai/v1/apps/123
 
 ## Delete App
 
-`DELETE` `https://api.spice.ai/v1/apps/{appId}`
+`DELETE` `https://api.spice.ai/v1/apps/\{appId\}`
 
 Soft deletes an app (sets `deleted_at` timestamp). The app will be stopped and its resources released.
 

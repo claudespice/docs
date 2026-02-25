@@ -9,7 +9,7 @@ Deployments represent versions of your app that are deployed to the Spice runtim
 
 ## List Deployments
 
-`GET` `https://api.spice.ai/v1/apps/{appId}/deployments`
+`GET` `https://api.spice.ai/v1/apps/\{appId\}/deployments`
 
 Returns a list of deployments for the specified app, ordered by creation time (newest first).
 
@@ -145,7 +145,7 @@ for deployment in deployments:
 
 ## Create Deployment
 
-`POST` `https://api.spice.ai/v1/apps/{appId}/deployments`
+`POST` `https://api.spice.ai/v1/apps/\{appId\}/deployments`
 
 Creates a new deployment for the specified app using the app's current spicepod configuration. The deployment is queued and processed asynchronously.
 
@@ -394,8 +394,8 @@ try {
 ## Deployment Workflow
 
 1. **Configure App** - Update the app's spicepod configuration using the [Apps API](/cloud/api/management/apps)
-2. **Create Deployment** - POST to `/v1/apps/{appId}/deployments`
-3. **Monitor Status** - Poll GET `/v1/apps/{appId}/deployments` until status is `succeeded` or `failed`
+2. **Create Deployment** - POST to `/v1/apps/\{appId\}/deployments`
+3. **Monitor Status** - Poll GET `/v1/apps/\{appId\}/deployments` until status is `succeeded` or `failed`
 4. **Check Logs** - If deployment fails, check `error_message` for details
 
 ## Deployment Status Flow
@@ -421,7 +421,7 @@ Before creating a deployment, ensure:
 
 | Error                                 | Cause                           | Solution                                                |
 | ------------------------------------- | ------------------------------- | ------------------------------------------------------- |
-| "App has no spicepod configuration"   | App doesn't have a spicepod     | Update app with a spicepod using PUT `/v1/apps/{appId}` |
+| "App has no spicepod configuration"   | App doesn't have a spicepod     | Update app with a spicepod using PUT `/v1/apps/\{appId\}` |
 | "A deployment is already in progress" | Another deployment is running   | Wait for the current deployment to complete             |
 | "Spicepod is paused"                  | App has been paused             | Restore the app before deploying                        |
 | "Failed to pull container image"      | Invalid or inaccessible image   | Check the `image_tag` and `registry` configuration      |

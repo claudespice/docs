@@ -15,7 +15,7 @@ App API keys are used to authenticate requests to your Spice runtime endpoints (
 
 ## Get API Keys
 
-`GET` `https://api.spice.ai/v1/apps/{appId}/api-keys`
+`GET` `https://api.spice.ai/v1/apps/\{appId\}/api-keys`
 
 Returns the API keys for a specific app.
 
@@ -64,7 +64,7 @@ curl -H "Authorization: Bearer <token>"
 
 ## Regenerate API Key
 
-`POST` `https://api.spice.ai/v1/apps/{appId}/api-keys`
+`POST` `https://api.spice.ai/v1/apps/\{appId\}/api-keys`
 
 Regenerates an API key for the specified app. This invalidates the previous key.
 
