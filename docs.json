@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "aspen",
   "name": "Spice.ai Cloud Platform",
   "favicon": "/images/favicon.png",
   "colors": {
-    "primary": "#F97316",
-    "light": "#FB923C",
-    "dark": "#EA580C"
+    "primary": "#4B6BF5",
+    "light": "#6889F7",
+    "dark": "#3651D9"
   },
   "versions": ["Cloud"],
   "navbar": {
