@@ -841,6 +841,17 @@
             ]
           }
         ]
+      },
+      {
+        "version": "v1.11",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "v1.11/index"
+            ]
+          }
+        ]
       }
     ],
     "global": {
