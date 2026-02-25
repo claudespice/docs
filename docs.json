@@ -42,50 +42,50 @@
               {
                 "group": "Getting Started",
                 "pages": [
-                  "README",
+                  "cloud/README",
                   {
                     "group": "Quickstart",
                     "pages": [
-                      "getting-started/get-started/README",
-                      "getting-started/get-started/portal-login",
-                      "getting-started/getting-started/portal-login-1",
-                      "getting-started/get-started/step-2-add-dataset-and-query-data",
-                      "getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app",
-                      "getting-started/get-started/next-steps"
+                      "cloud/getting-started/get-started/README",
+                      "cloud/getting-started/get-started/portal-login",
+                      "cloud/getting-started/getting-started/portal-login-1",
+                      "cloud/getting-started/get-started/step-2-add-dataset-and-query-data",
+                      "cloud/getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app",
+                      "cloud/getting-started/get-started/next-steps"
                     ]
                   },
-                  "getting-started/faq",
-                  "best-practices",
-                  "limitations"
+                  "cloud/getting-started/faq",
+                  "cloud/best-practices",
+                  "cloud/limitations"
                 ]
               },
               {
                 "group": "Features",
                 "pages": [
-                  "features/federated-sql-query",
+                  "cloud/features/federated-sql-query",
                   {
                     "group": "Data Acceleration",
                     "pages": [
-                      "features/data-acceleration/README",
-                      "features/data-acceleration/in-memory-arrow-data-accelerator",
-                      "features/data-acceleration/duckdb-data-accelerator",
-                      "features/data-acceleration/postgresql-data-accelerator",
-                      "features/data-acceleration/sqlite-data-accelerator"
+                      "cloud/features/data-acceleration/README",
+                      "cloud/features/data-acceleration/in-memory-arrow-data-accelerator",
+                      "cloud/features/data-acceleration/duckdb-data-accelerator",
+                      "cloud/features/data-acceleration/postgresql-data-accelerator",
+                      "cloud/features/data-acceleration/sqlite-data-accelerator"
                     ]
                   },
-                  "features/search-and-retrieval",
-                  "features/ai-gateway",
-                  "features/semantic-models",
-                  "building-blocks/spice-models",
+                  "cloud/features/search-and-retrieval",
+                  "cloud/features/ai-gateway",
+                  "cloud/features/semantic-models",
+                  "cloud/building-blocks/spice-models",
                   {
                     "group": "Observability",
                     "pages": [
-                      "features/observability/README",
-                      "features/observability/task-history",
-                      "features/observability/zipkin"
+                      "cloud/features/observability/README",
+                      "cloud/features/observability/task-history",
+                      "cloud/features/observability/zipkin"
                     ]
                   },
-                  "datasets"
+                  "cloud/datasets"
                 ]
               },
               {
@@ -94,99 +94,99 @@
                   {
                     "group": "Data Connectors",
                     "pages": [
-                      "building-blocks/data-connectors/README",
-                      "building-blocks/data-connectors/abfs",
-                      "building-blocks/data-connectors/clickhouse",
-                      "building-blocks/data-connectors/databricks",
-                      "building-blocks/data-connectors/debezium",
-                      "building-blocks/data-connectors/delta-lake",
-                      "building-blocks/data-connectors/dremio",
-                      "building-blocks/data-connectors/duckdb",
-                      "building-blocks/data-connectors/dynamodb",
-                      "building-blocks/data-connectors/file",
-                      "building-blocks/data-connectors/flightsql",
-                      "building-blocks/data-connectors/ftp",
-                      "building-blocks/data-connectors/github",
-                      "building-blocks/data-connectors/glue",
-                      "building-blocks/data-connectors/graphql",
-                      "building-blocks/data-connectors/https",
-                      "building-blocks/data-connectors/iceberg",
-                      "building-blocks/data-connectors/imap",
-                      "building-blocks/data-connectors/kafka",
-                      "building-blocks/data-connectors/localpod",
-                      "building-blocks/data-connectors/memory",
-                      "building-blocks/data-connectors/mongodb",
-                      "building-blocks/data-connectors/mssql",
-                      "building-blocks/data-connectors/mysql",
-                      "building-blocks/data-connectors/odbc",
-                      "building-blocks/data-connectors/oracle",
-                      "building-blocks/data-connectors/postgres",
-                      "building-blocks/data-connectors/redshift",
-                      "building-blocks/data-connectors/s3",
-                      "building-blocks/data-connectors/sharepoint",
-                      "building-blocks/data-connectors/snowflake",
-                      "building-blocks/data-connectors/spark",
-                      "building-blocks/data-connectors/spiceai"
+                      "cloud/building-blocks/data-connectors/README",
+                      "cloud/building-blocks/data-connectors/abfs",
+                      "cloud/building-blocks/data-connectors/clickhouse",
+                      "cloud/building-blocks/data-connectors/databricks",
+                      "cloud/building-blocks/data-connectors/debezium",
+                      "cloud/building-blocks/data-connectors/delta-lake",
+                      "cloud/building-blocks/data-connectors/dremio",
+                      "cloud/building-blocks/data-connectors/duckdb",
+                      "cloud/building-blocks/data-connectors/dynamodb",
+                      "cloud/building-blocks/data-connectors/file",
+                      "cloud/building-blocks/data-connectors/flightsql",
+                      "cloud/building-blocks/data-connectors/ftp",
+                      "cloud/building-blocks/data-connectors/github",
+                      "cloud/building-blocks/data-connectors/glue",
+                      "cloud/building-blocks/data-connectors/graphql",
+                      "cloud/building-blocks/data-connectors/https",
+                      "cloud/building-blocks/data-connectors/iceberg",
+                      "cloud/building-blocks/data-connectors/imap",
+                      "cloud/building-blocks/data-connectors/kafka",
+                      "cloud/building-blocks/data-connectors/localpod",
+                      "cloud/building-blocks/data-connectors/memory",
+                      "cloud/building-blocks/data-connectors/mongodb",
+                      "cloud/building-blocks/data-connectors/mssql",
+                      "cloud/building-blocks/data-connectors/mysql",
+                      "cloud/building-blocks/data-connectors/odbc",
+                      "cloud/building-blocks/data-connectors/oracle",
+                      "cloud/building-blocks/data-connectors/postgres",
+                      "cloud/building-blocks/data-connectors/redshift",
+                      "cloud/building-blocks/data-connectors/s3",
+                      "cloud/building-blocks/data-connectors/sharepoint",
+                      "cloud/building-blocks/data-connectors/snowflake",
+                      "cloud/building-blocks/data-connectors/spark",
+                      "cloud/building-blocks/data-connectors/spiceai"
                     ]
                   },
                   {
                     "group": "Data Accelerators",
                     "pages": [
-                      "building-blocks/data-accelerators/index",
-                      "building-blocks/data-accelerators/arrow",
-                      "building-blocks/data-accelerators/duckdb",
-                      "building-blocks/data-accelerators/postgres/index",
-                      "building-blocks/data-accelerators/sqlite",
-                      "building-blocks/data-accelerators/cayenne"
+                      "cloud/building-blocks/data-accelerators/index",
+                      "cloud/building-blocks/data-accelerators/arrow",
+                      "cloud/building-blocks/data-accelerators/duckdb",
+                      "cloud/building-blocks/data-accelerators/postgres/index",
+                      "cloud/building-blocks/data-accelerators/sqlite",
+                      "cloud/building-blocks/data-accelerators/cayenne"
                     ]
                   },
                   {
                     "group": "Catalogs",
                     "pages": [
-                      "building-blocks/catalogs/index",
-                      "building-blocks/catalogs/databricks",
-                      "building-blocks/catalogs/glue",
-                      "building-blocks/catalogs/iceberg",
-                      "building-blocks/catalogs/spiceai",
-                      "building-blocks/catalogs/unity-catalog"
+                      "cloud/building-blocks/catalogs/index",
+                      "cloud/building-blocks/catalogs/databricks",
+                      "cloud/building-blocks/catalogs/glue",
+                      "cloud/building-blocks/catalogs/iceberg",
+                      "cloud/building-blocks/catalogs/spiceai",
+                      "cloud/building-blocks/catalogs/unity-catalog"
                     ]
                   },
                   {
                     "group": "Model Providers",
                     "pages": [
-                      "building-blocks/model-providers/README",
-                      "building-blocks/model-providers/anthropic",
-                      "building-blocks/model-providers/azure",
-                      "building-blocks/model-providers/bedrock",
-                      "building-blocks/model-providers/databricks",
-                      "building-blocks/model-providers/huggingface",
-                      "building-blocks/model-providers/openai",
-                      "building-blocks/model-providers/perplexity",
-                      "building-blocks/model-providers/spiceai",
-                      "building-blocks/model-providers/xai"
+                      "cloud/building-blocks/model-providers/README",
+                      "cloud/building-blocks/model-providers/anthropic",
+                      "cloud/building-blocks/model-providers/azure",
+                      "cloud/building-blocks/model-providers/bedrock",
+                      "cloud/building-blocks/model-providers/databricks",
+                      "cloud/building-blocks/model-providers/huggingface",
+                      "cloud/building-blocks/model-providers/openai",
+                      "cloud/building-blocks/model-providers/perplexity",
+                      "cloud/building-blocks/model-providers/spiceai",
+                      "cloud/building-blocks/model-providers/xai"
                     ]
                   },
                   {
                     "group": "Embeddings",
                     "pages": [
-                      "building-blocks/embeddings/index",
-                      "building-blocks/embeddings/azure",
-                      "building-blocks/embeddings/bedrock",
-                      "building-blocks/embeddings/databricks",
-                      "building-blocks/embeddings/huggingface",
-                      "building-blocks/embeddings/local",
-                      "building-blocks/embeddings/model2vec",
-                      "building-blocks/embeddings/openai"
+                      "cloud/building-blocks/embeddings/index",
+                      "cloud/building-blocks/embeddings/azure",
+                      "cloud/building-blocks/embeddings/bedrock",
+                      "cloud/building-blocks/embeddings/databricks",
+                      "cloud/building-blocks/embeddings/huggingface",
+                      "cloud/building-blocks/embeddings/local",
+                      "cloud/building-blocks/embeddings/model2vec",
+                      "cloud/building-blocks/embeddings/openai"
                     ]
                   },
                   {
                     "group": "Vector Search",
                     "pages": [
-                      "building-blocks/vectors/index",
-                      "building-blocks/vectors/s3_vectors"
+                      "cloud/building-blocks/vectors/index",
+                      "cloud/building-blocks/vectors/s3_vectors"
                     ]
                   },
-                  "building-blocks/views/index"
+                  "cloud/building-blocks/views/index"
                 ]
               },
               {
@@ -195,57 +195,57 @@
                   {
                     "group": "Playground",
                     "pages": [
-                      "portal/playground/README",
-                      "portal/playground/sql-query-editor",
-                      "portal/playground/nsql-query",
-                      "portal/playground/ai-chat",
-                      "portal/playground/search"
+                      "cloud/portal/playground/README",
+                      "cloud/portal/playground/sql-query-editor",
+                      "cloud/portal/playground/nsql-query",
+                      "cloud/portal/playground/ai-chat",
+                      "cloud/portal/playground/search"
                     ]
                   },
-                  "portal/organizations",
+                  "cloud/portal/organizations",
                   {
                     "group": "Apps",
                     "pages": [
-                      "portal/apps/README",
-                      "portal/apps/api-keys",
-                      "portal/apps/secrets",
-                      "portal/apps/connect-github",
-                      "portal/apps/transfer",
-                      "portal/apps/runtime"
+                      "cloud/portal/apps/README",
+                      "cloud/portal/apps/api-keys",
+                      "cloud/portal/apps/secrets",
+                      "cloud/portal/apps/connect-github",
+                      "cloud/portal/apps/transfer",
+                      "cloud/portal/apps/runtime"
                     ]
                   },
-                  "portal/public-apps",
+                  "cloud/portal/public-apps",
                   {
                     "group": "App Spicepod",
                     "pages": [
-                      "portal/app-spicepod/README",
-                      "portal/app-spicepod/spicepod-configuration",
-                      "portal/app-spicepod/deployments",
-                      "portal/app-spicepod/spice-runtime-versions"
+                      "cloud/portal/app-spicepod/README",
+                      "cloud/portal/app-spicepod/spicepod-configuration",
+                      "cloud/portal/app-spicepod/deployments",
+                      "cloud/portal/app-spicepod/spice-runtime-versions"
                     ]
                   },
-                  "portal/datasets-and-views",
-                  "portal/models",
-                  "portal/monitoring-and-request-logs",
-                  "portal/observability",
+                  "cloud/portal/datasets-and-views",
+                  "cloud/portal/models",
+                  "cloud/portal/monitoring-and-request-logs",
+                  "cloud/portal/observability",
                   {
                     "group": "Profile",
                     "pages": [
-                      "portal/profile/README",
-                      "portal/profile/personal-access-tokens"
+                      "cloud/portal/profile/README",
+                      "cloud/portal/profile/personal-access-tokens"
                     ]
                   },
-                  "portal/external-data-sources"
+                  "cloud/portal/external-data-sources"
                 ]
               },
               {
                 "group": "Use Cases",
                 "pages": [
-                  "use-cases/agentic-ai-apps",
-                  "use-cases/database-cdn",
-                  "use-cases/data-lakehouse",
-                  "use-cases/enterprise-search",
-                  "use-cases/enterprise-rag"
+                  "cloud/use-cases/agentic-ai-apps",
+                  "cloud/use-cases/database-cdn",
+                  "cloud/use-cases/data-lakehouse",
+                  "cloud/use-cases/enterprise-search",
+                  "cloud/use-cases/enterprise-rag"
                 ]
               },
               {
@@ -254,59 +254,59 @@
                   {
                     "group": "Python SDK",
                     "pages": [
-                      "sdks/python-sdk/README",
-                      "sdks/python-sdk/streaming"
+                      "cloud/sdks/python-sdk/README",
+                      "cloud/sdks/python-sdk/streaming"
                     ]
                   },
                   {
                     "group": "Node.js SDK",
                     "pages": [
-                      "sdks/node.js-sdk/README",
-                      "sdks/node.js-sdk/streaming",
-                      "sdks/node.js-sdk/api-reference"
+                      "cloud/sdks/node.js-sdk/README",
+                      "cloud/sdks/node.js-sdk/streaming",
+                      "cloud/sdks/node.js-sdk/api-reference"
                     ]
                   },
-                  "sdks/go",
-                  "sdks/rust-sdk/README",
-                  "sdks/dotnet-sdk",
-                  "sdks/java-sdk"
+                  "cloud/sdks/go",
+                  "cloud/sdks/rust-sdk/README",
+                  "cloud/sdks/dotnet-sdk",
+                  "cloud/sdks/java-sdk"
                 ]
               },
               {
                 "group": "Integrations",
                 "pages": [
-                  "integrations/github-copilot",
-                  "integrations/grafana",
-                  "integrations/databricks"
+                  "cloud/integrations/github-copilot",
+                  "cloud/integrations/grafana",
+                  "cloud/integrations/databricks"
                 ]
               },
               {
                 "group": "Pricing",
                 "pages": [
-                  "pricing/plans",
-                  "pricing/community"
+                  "cloud/pricing/plans",
+                  "cloud/pricing/community"
                 ]
               },
               {
                 "group": "Support",
                 "pages": [
-                  "support/support"
+                  "cloud/support/support"
                 ]
               },
               {
                 "group": "Security",
                 "pages": [
-                  "security/security",
-                  "security/report"
+                  "cloud/security/security",
+                  "cloud/security/report"
                 ]
               },
               {
                 "group": "Legal",
                 "pages": [
-                  "legal/privacy",
-                  "legal/terms",
-                  "legal/terms-of-service",
-                  "legal/eula"
+                  "cloud/legal/privacy",
+                  "cloud/legal/terms",
+                  "cloud/legal/terms-of-service",
+                  "cloud/legal/eula"
                 ]
               }
             ]
@@ -317,18 +317,18 @@
               {
                 "group": "Overview",
                 "pages": [
-                  "api/management/README",
-                  "api/sql-query/README"
+                  "cloud/api/management/README",
+                  "cloud/api/sql-query/README"
                 ]
               },
               {
                 "group": "Query APIs",
                 "pages": [
-                  "api/sql-query/http-api",
-                  "api/sql-query/apache-arrow-flight-api",
-                  "api/search",
-                  "api/openai-api",
-                  "api/health"
+                  "cloud/api/sql-query/http-api",
+                  "cloud/api/sql-query/apache-arrow-flight-api",
+                  "cloud/api/search",
+                  "cloud/api/openai-api",
+                  "cloud/api/health"
                 ]
               },
               {
@@ -457,7 +457,7 @@
               {
                 "group": "Infrastructure as Code",
                 "pages": [
-                  "api/management/terraform"
+                  "cloud/api/management/terraform"
                 ]
               }
             ]
@@ -468,338 +468,338 @@
               {
                 "group": "Core Concepts",
                 "pages": [
-                  "reference/core-concepts/README",
-                  "reference/core-concepts/duration-literals"
+                  "cloud/reference/core-concepts/README",
+                  "cloud/reference/core-concepts/duration-literals"
                 ]
               },
               {
                 "group": "SQL Reference",
                 "pages": [
-                  "reference/sql-reference",
+                  "cloud/reference/sql-reference",
                   {
                     "group": "Aggregate Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/README",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/approx_count_distinct",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/avg",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/bit_and",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/bit_or",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/corr",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/count",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/covar_pop",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/covar_samp",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/hll",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/listagg",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/max",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/min",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/ndv",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/stddev",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/stddev_pop",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/stddev_samp",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/sum",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/var_pop",
-                      "reference/sql-reference/sql-functions/all-functions/aggregate/var_samp"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/approx_count_distinct",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/avg",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/bit_and",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/bit_or",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/corr",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/count",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/covar_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/covar_samp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/hll",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/listagg",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/max",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/min",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/ndv",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/stddev",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/stddev_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/stddev_samp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/sum",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/var_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/aggregate/var_samp"
                     ]
                   },
                   {
                     "group": "Binary Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/binary/README",
-                      "reference/sql-reference/sql-functions/all-functions/binary/base64",
-                      "reference/sql-reference/sql-functions/all-functions/binary/bit_length",
-                      "reference/sql-reference/sql-functions/all-functions/binary/from_hex",
-                      "reference/sql-reference/sql-functions/all-functions/binary/hex",
-                      "reference/sql-reference/sql-functions/all-functions/binary/to_hex",
-                      "reference/sql-reference/sql-functions/all-functions/binary/unbase64",
-                      "reference/sql-reference/sql-functions/all-functions/binary/unhex"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/base64",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/bit_length",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/from_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/to_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/unbase64",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/binary/unhex"
                     ]
                   },
                   {
                     "group": "Bitwise Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/README",
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/bit_and",
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/bit_or",
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/lshift",
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/rshift",
-                      "reference/sql-reference/sql-functions/all-functions/bitwise/xor"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/bit_and",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/bit_or",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/lshift",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/rshift",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/bitwise/xor"
                     ]
                   },
                   {
                     "group": "Boolean Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/boolean/README",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/is-not-distinct-from",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/is-not-null",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/is_member",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/isfalse",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/isnumeric",
-                      "reference/sql-reference/sql-functions/all-functions/boolean/istrue"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/is-not-distinct-from",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/is-not-null",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/is_member",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/isfalse",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/isnumeric",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/boolean/istrue"
                     ]
                   },
                   {
                     "group": "Conditional Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/conditional/README",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/bool_and",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/bool_or",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/case",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/coalesce",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/greatest",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/least",
-                      "reference/sql-reference/sql-functions/all-functions/conditional/nullif"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/bool_and",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/bool_or",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/case",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/coalesce",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/greatest",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/least",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conditional/nullif"
                     ]
                   },
                   {
                     "group": "Conversion Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/conversion/README",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/binary_string",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/cast",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/convert_from",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/convert_replaceutf8",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/convert_timezone",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/convert_to",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/flatten",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/from_hex",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/hash",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/hex",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_char",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_date",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_hex",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_number",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_time",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/to_timestamp",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/toascii",
-                      "reference/sql-reference/sql-functions/all-functions/conversion/unhex"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/binary_string",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/cast",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/convert_from",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/convert_replaceutf8",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/convert_timezone",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/convert_to",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/flatten",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/from_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/hash",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_char",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_date",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_number",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_time",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/to_timestamp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/toascii",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/conversion/unhex"
                     ]
                   },
                   {
                     "group": "Cryptography Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/README",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/aes_decrypt",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/aes_encrypt",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/md5",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/sha",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/sha1",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/sha256",
-                      "reference/sql-reference/sql-functions/all-functions/cryptography/sha512"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/aes_decrypt",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/aes_encrypt",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/md5",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/sha",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/sha1",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/sha256",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/cryptography/sha512"
                     ]
                   },
                   {
                     "group": "Data Generation Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/data-generation/README",
-                      "reference/sql-reference/sql-functions/all-functions/data-generation/random"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/data-generation/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/data-generation/random"
                     ]
                   },
                   {
                     "group": "Datatype Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/datatype/README",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/is_bigint",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/is_date",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/is_int",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/is_varchar",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/size",
-                      "reference/sql-reference/sql-functions/all-functions/datatype/typeof"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/is_bigint",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/is_date",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/is_int",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/is_varchar",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/size",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/datatype/typeof"
                     ]
                   },
                   {
                     "group": "Date & Time Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/date-time/README",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/convert_timezone",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/current_date",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/current_date_utc",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/current_time",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/current_timestamp",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/date_add",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/date_diff",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/date_part",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/date_sub",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/date_trunc",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/datediff",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/day",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/dayofmonth",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/dayofweek",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/dayofyear",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/extract",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/hour",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/last_day",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/minute",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/month",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/months_between",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/next_day",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/quarter",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/second",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/timestampadd",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/timestampdiff",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/to_date",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/to_time",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/to_timestamp",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/unix_timestamp",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/week",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/weekofyear",
-                      "reference/sql-reference/sql-functions/all-functions/date-time/year"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/convert_timezone",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/current_date",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/current_date_utc",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/current_time",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/current_timestamp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/date_add",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/date_diff",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/date_part",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/date_sub",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/date_trunc",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/datediff",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/day",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/dayofmonth",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/dayofweek",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/dayofyear",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/extract",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/hour",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/last_day",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/minute",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/month",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/months_between",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/next_day",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/quarter",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/second",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/timestampadd",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/timestampdiff",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/to_date",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/to_time",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/to_timestamp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/unix_timestamp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/week",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/weekofyear",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/date-time/year"
                     ]
                   },
                   {
                     "group": "Math Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/math/README",
-                      "reference/sql-reference/sql-functions/all-functions/math/abs",
-                      "reference/sql-reference/sql-functions/all-functions/math/acos",
-                      "reference/sql-reference/sql-functions/all-functions/math/asin",
-                      "reference/sql-reference/sql-functions/all-functions/math/atan",
-                      "reference/sql-reference/sql-functions/all-functions/math/cbrt",
-                      "reference/sql-reference/sql-functions/all-functions/math/ceiling",
-                      "reference/sql-reference/sql-functions/all-functions/math/cos",
-                      "reference/sql-reference/sql-functions/all-functions/math/cosh",
-                      "reference/sql-reference/sql-functions/all-functions/math/cot",
-                      "reference/sql-reference/sql-functions/all-functions/math/degrees",
-                      "reference/sql-reference/sql-functions/all-functions/math/e",
-                      "reference/sql-reference/sql-functions/all-functions/math/exp",
-                      "reference/sql-reference/sql-functions/all-functions/math/floor",
-                      "reference/sql-reference/sql-functions/all-functions/math/log",
-                      "reference/sql-reference/sql-functions/all-functions/math/log10",
-                      "reference/sql-reference/sql-functions/all-functions/math/mod",
-                      "reference/sql-reference/sql-functions/all-functions/math/pi",
-                      "reference/sql-reference/sql-functions/all-functions/math/power",
-                      "reference/sql-reference/sql-functions/all-functions/math/radians",
-                      "reference/sql-reference/sql-functions/all-functions/math/round",
-                      "reference/sql-reference/sql-functions/all-functions/math/sign",
-                      "reference/sql-reference/sql-functions/all-functions/math/sin",
-                      "reference/sql-reference/sql-functions/all-functions/math/sinh",
-                      "reference/sql-reference/sql-functions/all-functions/math/sqrt",
-                      "reference/sql-reference/sql-functions/all-functions/math/stddev",
-                      "reference/sql-reference/sql-functions/all-functions/math/stddev_pop",
-                      "reference/sql-reference/sql-functions/all-functions/math/stddev_samp",
-                      "reference/sql-reference/sql-functions/all-functions/math/tan",
-                      "reference/sql-reference/sql-functions/all-functions/math/tanh",
-                      "reference/sql-reference/sql-functions/all-functions/math/truncate"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/abs",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/acos",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/asin",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/atan",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/cbrt",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/ceiling",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/cos",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/cosh",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/cot",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/degrees",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/e",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/exp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/floor",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/log",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/log10",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/mod",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/pi",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/power",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/radians",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/round",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/sign",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/sin",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/sinh",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/sqrt",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/stddev",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/stddev_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/stddev_samp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/tan",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/tanh",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/math/truncate"
                     ]
                   },
                   {
                     "group": "Percentile Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/percentile/README",
-                      "reference/sql-reference/sql-functions/all-functions/percentile/median",
-                      "reference/sql-reference/sql-functions/all-functions/percentile/percentile_cont",
-                      "reference/sql-reference/sql-functions/all-functions/percentile/percentile_disc"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/percentile/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/percentile/median",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/percentile/percentile_cont",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/percentile/percentile_disc"
                     ]
                   },
                   {
                     "group": "Regular Expression Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/README",
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_extract",
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_like",
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_matches",
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_replace",
-                      "reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_split"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_extract",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_like",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_matches",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_replace",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/regular-expressions/regexp_split"
                     ]
                   },
                   {
                     "group": "Semi-Structured Data Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/semistructured-data/README",
-                      "reference/sql-reference/sql-functions/all-functions/semistructured-data/array_contains",
-                      "reference/sql-reference/sql-functions/all-functions/semistructured-data/map_keys",
-                      "reference/sql-reference/sql-functions/all-functions/semistructured-data/map_values"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/semistructured-data/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/semistructured-data/array_contains",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/semistructured-data/map_keys",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/semistructured-data/map_values"
                     ]
                   },
                   {
                     "group": "String Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/string/README",
-                      "reference/sql-reference/sql-functions/all-functions/string/ascii",
-                      "reference/sql-reference/sql-functions/all-functions/string/base64",
-                      "reference/sql-reference/sql-functions/all-functions/string/btrim",
-                      "reference/sql-reference/sql-functions/all-functions/string/char_length",
-                      "reference/sql-reference/sql-functions/all-functions/string/character_length",
-                      "reference/sql-reference/sql-functions/all-functions/string/chr",
-                      "reference/sql-reference/sql-functions/all-functions/string/col_like",
-                      "reference/sql-reference/sql-functions/all-functions/string/concat",
-                      "reference/sql-reference/sql-functions/all-functions/string/concat_ws",
-                      "reference/sql-reference/sql-functions/all-functions/string/ends_with",
-                      "reference/sql-reference/sql-functions/all-functions/string/from_hex",
-                      "reference/sql-reference/sql-functions/all-functions/string/hex",
-                      "reference/sql-reference/sql-functions/all-functions/string/ilike",
-                      "reference/sql-reference/sql-functions/all-functions/string/initcap",
-                      "reference/sql-reference/sql-functions/all-functions/string/instr",
-                      "reference/sql-reference/sql-functions/all-functions/string/is_utf8",
-                      "reference/sql-reference/sql-functions/all-functions/string/lcase",
-                      "reference/sql-reference/sql-functions/all-functions/string/left",
-                      "reference/sql-reference/sql-functions/all-functions/string/length",
-                      "reference/sql-reference/sql-functions/all-functions/string/levenshtein",
-                      "reference/sql-reference/sql-functions/all-functions/string/like",
-                      "reference/sql-reference/sql-functions/all-functions/string/locate",
-                      "reference/sql-reference/sql-functions/all-functions/string/lower",
-                      "reference/sql-reference/sql-functions/all-functions/string/lpad",
-                      "reference/sql-reference/sql-functions/all-functions/string/ltrim",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask_first_n",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask_hash",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask_last_n",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask_show_first_n",
-                      "reference/sql-reference/sql-functions/all-functions/string/mask_show_last_n",
-                      "reference/sql-reference/sql-functions/all-functions/string/octet_length",
-                      "reference/sql-reference/sql-functions/all-functions/string/position",
-                      "reference/sql-reference/sql-functions/all-functions/string/quote",
-                      "reference/sql-reference/sql-functions/all-functions/string/regexp_extract",
-                      "reference/sql-reference/sql-functions/all-functions/string/regexp_like",
-                      "reference/sql-reference/sql-functions/all-functions/string/regexp_matches",
-                      "reference/sql-reference/sql-functions/all-functions/string/regexp_replace",
-                      "reference/sql-reference/sql-functions/all-functions/string/regexp_split",
-                      "reference/sql-reference/sql-functions/all-functions/string/repeat",
-                      "reference/sql-reference/sql-functions/all-functions/string/repeatstr",
-                      "reference/sql-reference/sql-functions/all-functions/string/replace",
-                      "reference/sql-reference/sql-functions/all-functions/string/reverse",
-                      "reference/sql-reference/sql-functions/all-functions/string/right",
-                      "reference/sql-reference/sql-functions/all-functions/string/rpad",
-                      "reference/sql-reference/sql-functions/all-functions/string/rtrim",
-                      "reference/sql-reference/sql-functions/all-functions/string/similar_to",
-                      "reference/sql-reference/sql-functions/all-functions/string/soundex",
-                      "reference/sql-reference/sql-functions/all-functions/string/split_part",
-                      "reference/sql-reference/sql-functions/all-functions/string/starts_with",
-                      "reference/sql-reference/sql-functions/all-functions/string/strpos",
-                      "reference/sql-reference/sql-functions/all-functions/string/substring",
-                      "reference/sql-reference/sql-functions/all-functions/string/substring_index",
-                      "reference/sql-reference/sql-functions/all-functions/string/to_hex",
-                      "reference/sql-reference/sql-functions/all-functions/string/toascii",
-                      "reference/sql-reference/sql-functions/all-functions/string/translate",
-                      "reference/sql-reference/sql-functions/all-functions/string/trim",
-                      "reference/sql-reference/sql-functions/all-functions/string/ucase",
-                      "reference/sql-reference/sql-functions/all-functions/string/unbase64",
-                      "reference/sql-reference/sql-functions/all-functions/string/unhex",
-                      "reference/sql-reference/sql-functions/all-functions/string/upper"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/ascii",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/base64",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/btrim",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/char_length",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/character_length",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/chr",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/col_like",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/concat",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/concat_ws",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/ends_with",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/from_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/ilike",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/initcap",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/instr",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/is_utf8",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/lcase",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/left",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/length",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/levenshtein",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/like",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/locate",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/lower",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/lpad",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/ltrim",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask_first_n",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask_hash",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask_last_n",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask_show_first_n",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/mask_show_last_n",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/octet_length",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/position",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/quote",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/regexp_extract",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/regexp_like",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/regexp_matches",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/regexp_replace",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/regexp_split",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/repeat",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/repeatstr",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/replace",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/reverse",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/right",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/rpad",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/rtrim",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/similar_to",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/soundex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/split_part",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/starts_with",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/strpos",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/substring",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/substring_index",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/to_hex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/toascii",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/translate",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/trim",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/ucase",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/unbase64",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/unhex",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/string/upper"
                     ]
                   },
                   {
                     "group": "Window Functions",
                     "pages": [
-                      "reference/sql-reference/sql-functions/all-functions/window/README",
-                      "reference/sql-reference/sql-functions/all-functions/window/count",
-                      "reference/sql-reference/sql-functions/all-functions/window/covar_pop",
-                      "reference/sql-reference/sql-functions/all-functions/window/covar_samp",
-                      "reference/sql-reference/sql-functions/all-functions/window/cume_dist",
-                      "reference/sql-reference/sql-functions/all-functions/window/dense_rank",
-                      "reference/sql-reference/sql-functions/all-functions/window/first_value",
-                      "reference/sql-reference/sql-functions/all-functions/window/hll",
-                      "reference/sql-reference/sql-functions/all-functions/window/lag",
-                      "reference/sql-reference/sql-functions/all-functions/window/lead",
-                      "reference/sql-reference/sql-functions/all-functions/window/max",
-                      "reference/sql-reference/sql-functions/all-functions/window/min",
-                      "reference/sql-reference/sql-functions/all-functions/window/ndv",
-                      "reference/sql-reference/sql-functions/all-functions/window/ntile",
-                      "reference/sql-reference/sql-functions/all-functions/window/percent_rank",
-                      "reference/sql-reference/sql-functions/all-functions/window/rank",
-                      "reference/sql-reference/sql-functions/all-functions/window/row_number",
-                      "reference/sql-reference/sql-functions/all-functions/window/sum",
-                      "reference/sql-reference/sql-functions/all-functions/window/var_pop",
-                      "reference/sql-reference/sql-functions/all-functions/window/var_samp"
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/README",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/count",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/covar_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/covar_samp",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/cume_dist",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/dense_rank",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/first_value",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/hll",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/lag",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/lead",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/max",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/min",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/ndv",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/ntile",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/percent_rank",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/rank",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/row_number",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/sum",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/var_pop",
+                      "cloud/reference/sql-reference/sql-functions/all-functions/window/var_samp"
                     ]
                   }
                 ]
@@ -807,35 +807,35 @@
               {
                 "group": "Samples & Examples",
                 "pages": [
-                  "reference/arrow-flight-samples",
+                  "cloud/reference/arrow-flight-samples",
                   {
                     "group": "Ethereum SQL Queries",
                     "pages": [
-                      "reference/samples-and-examples/example-ethereum-sql-queries/README",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/blocks",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/transactions",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/gas-and-fees",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/tokens",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/nfts",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/ens-domains",
-                      "reference/samples-and-examples/example-ethereum-sql-queries/logs"
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/README",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/blocks",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/transactions",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/gas-and-fees",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/tokens",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/nfts",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/ens-domains",
+                      "cloud/reference/samples-and-examples/example-ethereum-sql-queries/logs"
                     ]
                   },
                   {
                     "group": "Price Queries",
                     "pages": [
-                      "reference/samples-and-examples/example-price-queries/README",
-                      "reference/samples-and-examples/example-price-queries/assets",
-                      "reference/samples-and-examples/example-price-queries/prices"
+                      "cloud/reference/samples-and-examples/example-price-queries/README",
+                      "cloud/reference/samples-and-examples/example-price-queries/assets",
+                      "cloud/reference/samples-and-examples/example-price-queries/prices"
                     ]
                   },
-                  "reference/example-cross-chain-queries"
+                  "cloud/reference/example-cross-chain-queries"
                 ]
               },
               {
                 "group": "Release Notes",
                 "pages": [
-                  "reference/release-notes"
+                  "cloud/reference/release-notes"
                 ]
               }
             ]
