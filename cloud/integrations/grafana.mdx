@@ -18,7 +18,7 @@ Use the [FlightSQL Grafana Plugin installation instructions](https://grafana.com
 In the Grafana installation, navigate to `Administration` -> `Plugins and data` -> `Plugins`. Select "State: All" and search for "FlightSQL" in the Search box. Select "FlightSQL" in the list of plugins.
 
 <Frame caption="Navigating to plugins and data in Grafana, and searching for FlightSQL">
-  <img src="/images/grafana-datasource-2.png" alt="" />
+  <img src="/images/grafana-datasource-2.png" alt="Navigating to plugins and data in Grafana, and searching for FlightSQL" />
 </Frame>
 
 Click the "Install" button to install the plugin. Once installed, a new data source can be added.
@@ -28,7 +28,7 @@ Click the "Install" button to install the plugin. Once installed, a new data sou
 Click the "Add new data source" button from the FlightSQL plugin menu.
 
 <Frame caption="The FlightSQL plugin menu, once the plugin is installed.">
-  <img src="/images/grafana-datasource-3.png" alt="" />
+  <img src="/images/grafana-datasource-3.png" alt="The FlightSQL plugin menu, once the plugin is installed." />
 </Frame>
 
 In the data source menu, provide the following options:
@@ -40,7 +40,7 @@ In the data source menu, provide the following options:
 Once these options are set, click "Save & Test". Grafana should report "OK" if the configuration is correct.
 
 <Frame caption="Setting up a FlightSQL datasource to connect to Spice.ai Cloud Platform">
-  <img src="/images/image (42).png" alt="" />
+  <img src="/images/image (42).png" alt="Setting up a FlightSQL datasource to connect to Spice.ai Cloud Platform" />
 </Frame>
 
 ### Creating visualizations
@@ -48,17 +48,17 @@ Once these options are set, click "Save & Test". Grafana should report "OK" if t
 Create a visualization using the FlightSQL Spice.AI data source. Select the configured datasource from the list of datasources in the visualization creator.
 
 <Frame caption="Select the FlightSQL datasource for the visualization">
-  <img src="/images/image (43).png" alt="" />
+  <img src="/images/image (43).png" alt="Select the FlightSQL datasource for the visualization" />
 </Frame>
 
 Create your query using the SQL builder, or switch to a plain SQL editor by clicking the "Edit SQL" button. In this example, the query retrieves the latest query execution times from the configured App instance and displays them as a line graph.
 
 <Frame caption="A Grafana line graph displaying the most recent query execution times">
-  <img src="/images/image (44).png" alt="" />
+  <img src="/images/image (44).png" alt="A Grafana line graph displaying the most recent query execution times" />
 </Frame>
 
 Grafana may not automatically update the visualization when changes are made to the query. To force the visualization to update with new query changes, click the "Query Inspector" button, and click "Refresh".
 
 <Frame caption="Manually refreshing the visualization query in FlightSQL">
-  <img src="/images/image (45).png" alt="" />
+  <img src="/images/image (45).png" alt="Manually refreshing the visualization query in FlightSQL" />
 </Frame>

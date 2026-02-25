@@ -10,7 +10,7 @@ description: >-
 
 #### DATE\_DIFF(_date\_expression_ DATE, _days_ INTEGER) → DATE
 
-* date\_expression: The date, in the format ‘YYY-MM-DD’, to subtract days from. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYY-MM-DD', to subtract days from. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
 * days: A 32-bit integer of the number of days to be subtracted from the specified date.
 
 **Examples**
@@ -25,8 +25,8 @@ SELECT DATE_DIFF(DATE '2022-01-01', -5)
 ```
 #### DATE\_DIFF(_date\_expression_ DATE, _date\_expression_ DATE) → INTERVAL DAY
 
-* date\_expression: The date, in the format ‘YYY-MM-DD’, to subtract the second date from. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
-* date\_expression: The date, in the format ‘YYY-MM-DD’, to subtract from the first date. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYY-MM-DD', to subtract the second date from. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYY-MM-DD', to subtract from the first date. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
 
 **Examples**
 
@@ -40,8 +40,8 @@ SELECT DATE_DIFF(DATE '2022-01-01', DATE '2022-04-01')
 ```
 #### DATE\_DIFF(_timestamp\_expression_ TIMESTAMP, _timestamp\_expression_ TIMESTAMP) → INTERVAL DAY
 
-* timestamp\_expression: The timestamp, in the format ‘YYYY-MM-DD HH:MM:SS’, to subtract the second timestamp from. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
-* timestamp\_expression: The timestamp, in the format ‘YYYY-MM-DD HH:MM:SS’, to subtract from the first timestamp. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* timestamp\_expression: The timestamp, in the format 'YYYY-MM-DD HH:MM:SS', to subtract the second timestamp from. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* timestamp\_expression: The timestamp, in the format 'YYYY-MM-DD HH:MM:SS', to subtract from the first timestamp. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
 
 **Examples**
 
@@ -55,7 +55,7 @@ SELECT DATE_DIFF(TIMESTAMP '2022-01-01 01:00:00', TIMESTAMP '2022-04-01 12:35:23
 ```
 #### DATE\_DIFF(_time\_expression_ TIME, _time\_interval_ INTERVAL) → TIME
 
-* time\_expression: The time, in the format ‘HH:MM:SS’, from which to subtract a number of seconds, minutes, or hours. The value can be either a database column in TIME format, or literal value explicitly converted to TIME.
+* time\_expression: The time, in the format 'HH:MM:SS', from which to subtract a number of seconds, minutes, or hours. The value can be either a database column in TIME format, or literal value explicitly converted to TIME.
 * time\_interval: A CAST of a number to one of these intervals: SECOND, MINUTE, HOUR.
 
 **Examples**
@@ -70,7 +70,7 @@ SELECT DATE_DIFF(TIME '12:00:00', CAST(30 AS INTERVAL MINUTE))
 ```
 #### DATE\_DIFF(_date\_expression_ DATE, _time\_interval_ INTERVAL) → TIMESTAMP
 
-* date\_expression: The date, in the format ‘YYYY-MM-DD’, from which to subtract a number of days, months, or years. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYYY-MM-DD', from which to subtract a number of days, months, or years. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
 * time\_interval: A CAST of a number to one of these intervals: DAY, MONTH, YEAR.
 
 **Examples**
@@ -85,7 +85,7 @@ SELECT DATE_DIFF(DATE '2022-01-01', CAST(30 AS INTERVAL MONTH))
 ```
 #### DATE\_DIFF(_timestamp\_expression_ TIMESTAMP, _days_ INTEGER) → TIMESTAMP
 
-* timestamp\_expression: The timestamp, in the format ‘YYYY-MM-DD HH:MM:SS’, to subtract days from. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* timestamp\_expression: The timestamp, in the format 'YYYY-MM-DD HH:MM:SS', to subtract days from. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
 * days: A 32-bit integer of the number of days to be subtracted from the specified timestamp.
 
 **Examples**
@@ -100,7 +100,7 @@ SELECT DATE_DIFF(TIMESTAMP '2022-01-01 12:35:23', -5)
 ```
 #### DATE\_DIFF(_timestamp\_expression_ TIMESTAMP, _time\_interval_ INTERVAL) → TIMESTAMP
 
-* timestamp\_expression: The timestamp, in the format ‘YYYY-MM-DD HH:MM:SS’, from which to subtract a number of seconds, minutes, hours, days, months, or years. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* timestamp\_expression: The timestamp, in the format 'YYYY-MM-DD HH:MM:SS', from which to subtract a number of seconds, minutes, hours, days, months, or years. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
 * time\_interval: A CAST of a number to one of these intervals: SECOND, MINUTE, HOUR, DAY, MONTH, YEAR.
 
 **Examples**

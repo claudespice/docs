@@ -8,7 +8,7 @@ description: Returns the sum of two expressions of time as another expression of
 
 #### DATE\_ADD(_date\_expression_ string, _days_ integer) → date
 
-* date\_expression: A string-formatted date in the format ‘YYYY-MM-DD’.
+* date\_expression: A string-formatted date in the format 'YYYY-MM-DD'.
 * days: The number of days to be added to the specified date.
 
 **Examples**
@@ -23,7 +23,7 @@ SELECT DATE_ADD('2022-01-01', -2)
 ```
 #### DATE\_ADD(_date\_expression_ date, _days_ integer) → date
 
-* date\_expression: The date, in the format ‘YYY-MM-DD’, to add days to. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYY-MM-DD', to add days to. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
 * days: A 32-bit integer of the number of days to be added to the specified date.
 
 **Examples**
@@ -38,7 +38,7 @@ SELECT DATE_ADD(DATE '2022-01-01', -30)
 ```
 #### DATE\_ADD(_date\_expression_ string, _time\_interval_ interval) → timestamp
 
-* date\_expression: A string-formatted date in the format ‘YYYY-MM-DD’.
+* date\_expression: A string-formatted date in the format 'YYYY-MM-DD'.
 * time\_interval: A CAST of a number to one of these intervals: DAY, MONTH, YEAR.
 
 **Examples**
@@ -53,7 +53,7 @@ SELECT DATE_ADD('2022-01-01', CAST(-2 AS INTERVAL DAY))
 ```
 #### DATE\_ADD(_date\_expression_ date, _time\_interval_ interval) → timestamp
 
-* date\_expression: The date, in the format ‘YYY-MM-DD’, to add the time interval to. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
+* date\_expression: The date, in the format 'YYY-MM-DD', to add the time interval to. The value can be either a database column in DATE format, or literal value explicitly converted to DATE.
 * time\_interval: A CAST of a number to one of these intervals: DAY, MONTH, YEAR.
 
 **Examples**
@@ -64,7 +64,7 @@ SELECT DATE_ADD(DATE '2022-01-01', CAST(30 AS INTERVAL DAY))
 ```
 #### DATE\_ADD(_timestamp\_expression_ string, _time\_interval_ interval) → timestamp
 
-* timestamp\_expression: A string-formatted timestamp in the format ‘YYYY-MM-DD HH24:MI:SS’.
+* timestamp\_expression: A string-formatted timestamp in the format 'YYYY-MM-DD HH24:MI:SS'.
 * time\_interval: A CAST of a number to one of these intervals: SECOND, MINUTE, HOUR, DAY, MONTH, YEAR.
 
 **Examples**
@@ -79,7 +79,7 @@ SELECT DATE_ADD('2022-01-01 12:00:00', CAST(-30 AS INTERVAL DAY))
 ```
 #### DATE\_ADD(_timestamp\_expression_ timestamp, _time\_interval_ interval) → timestamp
 
-* timestamp\_expression: The timestamp, in the format ‘YYYY-MM-DD HH:MM:SS’, to add days to. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* timestamp\_expression: The timestamp, in the format 'YYYY-MM-DD HH:MM:SS', to add days to. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
 * time\_interval: A CAST of a number to one of these intervals: SECOND, MINUTE, HOUR, DAY, MONTH, YEAR.
 
 **Examples**
@@ -96,7 +96,7 @@ SELECT DATE_ADD(TIMESTAMP '2022-01-01 12:00:00', CAST(-30 AS INTERVAL DAY))
 ```
 #### DATE\_ADD(_time\_expression_ time, _time\_interval_ interval) → time
 
-* time\_expression: The time, in the format ‘HH:MM:SS’, to add the time interval to. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
+* time\_expression: The time, in the format 'HH:MM:SS', to add the time interval to. The value can be either a database column in TIMESTAMP format, or literal value explicitly converted to TIMESTAMP.
 * time\_interval: A CAST of a number to one of these intervals: SECOND, MINUTE, HOUR.
 
 **Examples**

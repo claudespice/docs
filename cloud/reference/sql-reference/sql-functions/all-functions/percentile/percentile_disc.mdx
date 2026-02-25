@@ -23,6 +23,6 @@ FROM eth.recent_blocks
 ```
 ### Usage Notes
 
-This function computes a specific percentile for sorted values in a column. For each percentile value, `PERCENTILE_DISC` sorts the values using the `ORDER BY` clause. The function then returns the value with the smallest [`CUME_DIST`](../window/cume\_dist) value given that is greater or equal to the percentile value. For example, `PERCENTILE_DISC (0.5)` computes the 50th percentile (the median) of an expression. The result is equal to a specific column value. This information was originally provided via [Microsoft’s Transact-SQL Reference Guide](https://bit.ly/3BHYHvM).
+This function computes a specific percentile for sorted values in a column. For each percentile value, `PERCENTILE_DISC` sorts the values using the `ORDER BY` clause. The function then returns the value with the smallest [`CUME_DIST`](../window/cume\_dist) value given that is greater or equal to the percentile value. For example, `PERCENTILE_DISC (0.5)` computes the 50th percentile (the median) of an expression. The result is equal to a specific column value. This information was originally provided via [Microsoft's Transact-SQL Reference Guide](https://bit.ly/3BHYHvM).
 
 This function is used with only numeric data types in Spice. `NULL` values in the data set are ignored. However, passing `NULL` as _fraction_ or as _order\_by\_expression_ will cause an error.

@@ -53,7 +53,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **Amazon Bedrock Integration:** Added support for Nova-compatible models via the new Bedrock LLM provider. Configure directly in `Spicepod.yaml` using the `bedrock:` prefix and AWS credentials.
 *   **AWS Redshift Support:** Connect Redshift clusters using the [PostgreSQL ](/cloud/building-blocks/data-connectors/postgres)data connector (`from: postgres:<schema.table>`).
 
-    Full support for Redshift’s columnar storage and PostgreSQL-compatible types.
+    Full support for Redshift's columnar storage and PostgreSQL-compatible types.
 * **Hadoop Catalog for Iceberg:** Added support for Hadoop-based Iceberg catalogs on local (`file://`) or S3 (`s3://`, `s3a://`) storage.
 *   **New** [**Data Connectors**](/cloud/building-blocks/data-connectors)**:** Kafka Connector for real-time stream ingestion (`from: kafka:<topic>`).
 
@@ -83,7 +83,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Bug Fixes
 
 * Fixed crash handling for app config errors—users now see a specific error explaining the issue.
-* Editor’s YAML validation improved, warning users before saving malformed files.
+* Editor's YAML validation improved, warning users before saving malformed files.
 
 ## June 2025
 
@@ -129,7 +129,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **Resource Management**
-  Users can now set and adjust storage quotas up to 256 GB per workspace, and view usage directly from the app’s dashboard. Storage alerts notify you once you reach 90% of quota.
+  Users can now set and adjust storage quotas up to 256 GB per workspace, and view usage directly from the app's dashboard. Storage alerts notify you once you reach 90% of quota.
 * **AI Model Support**
   Added [Grok-3 series](https://spiceai.org/docs/components/models/xai) and [GPT-4.1](https://spiceai.org/docs/components/models/openai) support for all users. Models are selectable in the Spicepod and chat interface as soon as they become available.
 * **Activity Analytics**
@@ -229,7 +229,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **Copilot & Spicepod Integration**
   [The Copilot onboarding flow](/cloud/integrations/github-copilot) is now unified and leverages shared spicepod instances for organizational consistency. Deployment status and logs are directly viewable in the Copilot UI.
 * **Editor Enhancements**
-  The code editor now highlights YAML formatting errors and enables editing even when a repository isn’t connected. Sample dataset previews and component mapping have been improved. Side panel includes quick access to all relevant settings.
+  The code editor now highlights YAML formatting errors and enables editing even when a repository isn't connected. Sample dataset previews and component mapping have been improved. Side panel includes quick access to all relevant settings.
 * **Model & Activity Tracking**
   The models view now shows the current version, tool status, and last update date. Only relevant models are visible; deprecated items are automatically hidden.
 
@@ -378,7 +378,7 @@ The February release focused on stability and performance improvements.
 The January release added support for the Ethereum [Holesky](https://github.com/eth-clients/holesky) testnet in preview. Holesky data can be explored in the portal Playground, queried by SQL and Firecache, and made available to applications by JSON-RPC API.  
 
 <Frame caption="Holesky Testnet APIs and datasets available in preview">
-  <img src="/images/image (37).png" alt="" />
+  <img src="/images/image (37).png" alt="Holesky Testnet APIs and datasets available in preview" />
 </Frame>
 
 **New in this release**
@@ -406,13 +406,13 @@ The November release focused on [External Data Sources](/cloud/portal/external-d
 You can now connect external data sources like PostgreSQL and MySQL to Spice.ai, which are then available to query with SQL including joining with any other Spice.ai dataset in the Spice.ai platform.
 
 <Frame caption="New Data Source dialog for connecting external data sources.">
-  <img src="/images/image (1) (1) (1).png" alt="" />
+  <img src="/images/image (1) (1) (1).png" alt="New Data Source dialog for connecting external data sources." />
 </Frame>
 
 Navigation is also easier with the addition of the Command Bar. Simply use **Cmd+K** on Mac or **Windows+K** in Windows to quickly navigate the portal by keyboard! Give it a try!
 
 <Frame caption="The new navigation command bar.">
-  <img src="/images/image (1) (1) (1) (1).png" alt="" />
+  <img src="/images/image (1) (1) (1) (1).png" alt="The new navigation command bar." />
 </Frame>
 
 **New In this Release**
@@ -526,19 +526,19 @@ Spice Firecache is in beta and initially available for Design Partners. Get in t
 
 The Spice platform completely manages the Spice Firecache data lifecycle, ensuring datasets are real-time updated on triggers like new blocks and with stale data being automatically evicted.
 
-See [federated-sql-query.md](/cloud/features/federated-sql-query) for full documentation on deploying datasets to the Spice Firecache.
+See [Federated Sql Query](/cloud/features/federated-sql-query) for full documentation on deploying datasets to the Spice Firecache.
 
 #### Custom Datasets
 
 Spice now supports the definition and creation of your own private Datasets and Views, which can then be queried with SQL, cached in Spice Firecache, and published publicly to be shared with others.
 
-See [datasets-and-views.md](/cloud/portal/datasets-and-views) for full documentation on creating private Datasets and Views.
+See [Datasets And Views](/cloud/portal/datasets-and-views) for full documentation on creating private Datasets and Views.
 
 #### Connecting Github Repos
 
 Connecting your Spice.xyz app to a GitHub repository allows you to create custom Datasets and Views, add datasets to Spice Firecache, author Spice Functions, and train AI Models.
 
-See [connect-github.md](/cloud/portal/apps/connect-github) for full documentation on connecting your Github Repo to a Spice App.
+See [Connect Github](/cloud/portal/apps/connect-github) for full documentation on connecting your Github Repo to a Spice App.
 
 **New In this Release**
 
@@ -590,7 +590,6 @@ Portal UX improvements include the ability to search the dataset reference for s
 [https://youtu.be/2qk8ZMZOJek](https://youtu.be/2qk8ZMZOJek)
 [Spice.xyz](http://spice.xyz) SQL explorer dataset reference improvements
 
-
 **New In this Release**
 
 1. \[Wallet Balances] Added wallet balance datasets for Ethereum and Goerli which track changes to wallet balances on every block.
@@ -613,14 +612,13 @@ The May release includes significant platform performance upgrades with the roll
 Ethereum and Polygon block latency (the time to process a block and make it available for query) is now **subsecond** for core data like blocks, transactions, and logs, and less than **2.5 seconds** for enriched data like NFTs, ENS, Uniswap, and Sushiswap. Query execution speed is now **1.5x-10x faster!**
 
 <Frame caption="Example Queries referenced in docs are now 1.5x-10x faster!">
-  <img src="/images/image (18).png" alt="" />
+  <img src="/images/image (18).png" alt="Example Queries referenced in docs are now 1.5x-10x faster!" />
 </Frame>
 
 Portal UX improvements include the ability to collapse the sidebar, resize the SQL query input and results pane, and expand to a fullscreen focus mode. SQL query errors are now highlighted with red underline swiggles along with a more readable error pane. Finally, results render faster and app switching is faster.
 
 [https://youtu.be/ZJNt3paE7hA](https://youtu.be/ZJNt3paE7hA)
 [Spice.xyz](http://spice.xyz) SQL explorer fullscreen mode
-
 
 **New In this Release**
 
@@ -652,13 +650,11 @@ DESCRIBE eth.chainlink.prices;
 
 Data for for [Curve](https://classic.curve.fi/whitepaper), [Balancer](https://balancer.fi/), [Aave](https://aave.com/), [Yearn](https://yearn.finance/), [DAI](https://makerdao.com/en/), [Tether USD](https://tether.to/en/about-us/) and 30 other top assets is available. See the full list of supported data feeds [here](https://docs.spice.xyz/reference/sql-query-tables/sql-query-tables/chainlink-tables/prices-tables). 
 
-
 **Aave V2 Dataset:** In addition to the Aave token prices data feed on the Chainlink network, we have released indexed Aave V2 data for loans, collaterals and prices. You can query for the latest updates to Aave loans and collateral by querying `eth.aave_v2.loan_updates` and `eth.aave_v2.collateral_updates`. 
 
 <Frame caption="Latest view of all Aave V2 loans query, sample output">
-  <img src="/images/Screen Shot 2023-05-09 at 9.49.27 AM.png" alt="" />
+  <img src="/images/Screen Shot 2023-05-09 at 9.49.27 AM.png" alt="Latest view of all Aave V2 loans query, sample output" />
 </Frame>
-
 
 **Ethereum Shanghai/Capella Upgrade and Withdrawals Datasets:** The [Ethereum Shanghai/Capella upgrade](https://blog.ethereum.org/2023/03/28/shapella-mainnet-announcement) is now full supported after its completion on April 12, 2023, 10:27:35pm UTC at epoch 194048.
 
@@ -678,7 +674,7 @@ from eth_withdrawn
 ```
 
 <Frame caption="Get ETH withdrawn after the Ethereum Shanghai upgrade, sample output">
-  <img src="/images/Screen Shot 2023-05-10 at 10.20.00 PM.png" alt="" />
+  <img src="/images/Screen Shot 2023-05-10 at 10.20.00 PM.png" alt="Get ETH withdrawn after the Ethereum Shanghai upgrade, sample output" />
 </Frame>
 
 Explore detailed sample SQL queries for DEX, Cross-Chain, Ethereum, Beacon, and Bitcoin in the Spice Docs.<br />
@@ -690,7 +686,7 @@ Available with realtime and historical data on [Spice.xyz](https://spice.xyz/), 
 For example, you can query from `goerli.beacon.validators` to retrieve recently updated validators, with their balance and status:
 
 <Frame caption="Recently updated validators, with their balance and status by querying from <code>goerli.beacon.validators</code>, sample output">
-  <img src="/images/Screen Shot 2023-05-09 at 8.33.15 PM.png" alt="" />
+  <img src="/images/Screen Shot 2023-05-09 at 8.33.15 PM.png" alt="Recently updated validators, with their balance and status by querying from goerli.beacon.validators, sample output" />
 </Frame>
 
 **Goerli Beacon API:** You can easily retrieve requests like "[get validator balances from state](https://docs.spice.xyz/api/goerli/beacon-http-api)" using the **`https://data.spiceai.io/goerli/beacon`** API, which is compatible with the read-only GET requests from the [Beacon Node API specification](https://ethereum.github.io/beacon-APIs/).
@@ -706,8 +702,6 @@ All Goerli testnet data APIs are available at **/goerli/v0.1** including the fol
 **Ethereum Beacon API:** The Ethereum API is now updated to support Beacon requests via the **`https://data.spiceai.io/eth/beacon`** API. This is compatible with the read-only GET requests from the [Beacon Node API specification](https://ethereum.github.io/beacon-APIs/). 
 
 See the full list of Beacon API requests [here](https://docs.spice.xyz/api/ethereum/beacon-http-api). 
-
-
 
 **New In this Release**
 
@@ -785,8 +779,6 @@ See the full list of Beacon API requests [here](https://docs.spice.xyz/api/ether
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### March 2023
 
 If you are waitlisted, you can now instantly enable your account by signing up for a preview plan at 50% off. This month's release also includes support for the Ethereum Beacon chain dataset and improved monitoring with request logs.
@@ -845,8 +837,6 @@ By leveraging beacon chain capabilities, developers can create scalable decentra
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### February 2023
 
 Spice released the NFT dataset with Metadata in preview, along with the Historic Prices API in preview, and the v0.3 update to the Node.js SDK [spice.js](https://www.npmjs.com/package/@spiceai/spice). 
@@ -885,10 +875,6 @@ You'll need [Node.js 16+](https://nodejs.org/) to get started. See the step-by-s
 * [Getting started with Spice AI](https://docs.spice.xyz/get-started)
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
-
-
-
-
 
 ### January 2023
 
@@ -939,8 +925,6 @@ Read the announcement post at [blog.spice.ai](https://blog.spice.ai/spice-xyz-ja
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### December 2022
 
 Spice supports querying Polygon data in addition to the existing Ethereum and BItcoin datasets.
@@ -963,8 +947,6 @@ Read more on the [Spice AI Blog](https://blog.spice.ai/build-multi-chain-with-sp
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### November 2022
 
 **DEX Liquidity & Events Dataset**
@@ -974,7 +956,7 @@ Spice now features DEX Liquidity and Events Dataset where users can access index
 Data is available both historically and in real time, providing unparalleled visibility on DEX liquidity pools.
 
 **ENS (Preview)**
-You can now preview the new dataset for Ethereum Name Service events, available by querying `eth.ens`. Within the dataset, you’ll find that each ENS event will have its own table as immutable data.
+You can now preview the new dataset for Ethereum Name Service events, available by querying `eth.ens`. Within the dataset, you'll find that each ENS event will have its own table as immutable data.
 
 This also includes the new `ens.domains` dataset, which is updated in real-time to have the latest `eth_address` whenever a transfer or name-registered event happens
 
@@ -992,8 +974,6 @@ Read more on the [Spice AI blog](https://blog.spice.ai/whats-new-b7f637897df8).
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### October 2022
 
 Spice now has prices dataset in preview. 
@@ -1010,15 +990,11 @@ Read more on the [Spice AI blog](https://blog.spice.ai/whats-new-b7f637897df8).
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### September 2022
 
 **Ethereum Traces Dataset**
 
 Spice launches the `eth.traces` dataset for both Ethereum and Polygon. The Ethereum internal transactions are available for query at `eth.traces` and are updated in real-time.
-
-
 
 **Polygon Support (Preview)**
 
@@ -1037,8 +1013,6 @@ Spice launches and tests Polygon support.
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### August 2022
 
 Key infrastructure improvements were made for Spice's query performance, security, and data availability.
@@ -1054,8 +1028,6 @@ Key infrastructure improvements were made for Spice's query performance, securit
 * [Getting started with Spice AI](https://docs.spice.xyz/get-started)
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
-
-
 
 ### July 2022
 
@@ -1078,8 +1050,6 @@ Read more on the [Spice AI blog](https://medium.com/spice-ai/).
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### June 2022
 
 This update includes a new [Javascript/Typescript SDK](/cloud/sdks/node.js-sdk) for Node.js, an improved [Python SDK](/cloud/sdks/python-sdk), and performance improvements for Ethereum tokens and NFT datasets.
@@ -1101,8 +1071,6 @@ Read more on the [Spice AI blog](https://medium.com/spice-ai/spice-xyz-june-upda
 * [Getting started with Spice AI](https://docs.spice.xyz/get-started)
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
-
-
 
 ### May 2022
 
@@ -1138,8 +1106,6 @@ WebSocket support is now available in private preview to Design Partners - get i
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### Apr 2022
 
 Spice is now hosted at [**spice.xyz**](https://spice.xyz)! And with this release Spice is now **100% data complete**! We also have new **combined documentation** at [docs.spice.xyz](https://docs.spice.xyz), new **NFT specific tables** like `nft_transfers` and `nft_airdrop_transfers`, significantly **improved erc721 detection**, and **higher data integrity**.
@@ -1168,8 +1134,6 @@ Spice is now hosted at [**spice.xyz**](https://spice.xyz)! And with this release
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### Mar 2022
 
 More improvements to performance and data completeness. Now 99.99% complete for Ethereum base types.
@@ -1192,8 +1156,6 @@ Significantly improved erc721 detection and now include new `nft` specific table
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
 
-
-
 ### Feb 2022
 
 Significant upgrades in performance and data completeness. Adds the ability to query Ethereum, Sushiswap, and Uniswap data with SQL. Adds an Apache Flight endpoint.
@@ -1211,8 +1173,6 @@ Significant upgrades in performance and data completeness. Adds the ability to q
 * [Getting started with Spice AI](https://docs.spice.xyz/get-started)
 * [Documentation](https://docs.spice.xyz/)
 * [FAQ](https://docs.spice.xyz/faq)
-
-
 
 ### Jan 2022
 

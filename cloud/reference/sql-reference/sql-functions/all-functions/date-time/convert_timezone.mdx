@@ -44,5 +44,5 @@ SELECT CONVERT_TIMEZONE('PST', '+02:00', '2021-04-01 15:27:32')
 ```
 ### Usage Notes
 
-* The `sourceTimezone` and `destinationTimezone` parameters may be `timezone_name` from `sys.timezone_names`, `timezone_abbrev` from `sys.timezone_abbrevs`, or a UTC time offset such as “+02:00”.
+* The `sourceTimezone` and `destinationTimezone` parameters may be `timezone_name` from `sys.timezone_names`, `timezone_abbrev` from `sys.timezone_abbrevs`, or a UTC time offset such as "+02:00".
 * If you specify a time zone name instead of time offset, you may get a different answer depending on when you call this function due to daylight saving time.

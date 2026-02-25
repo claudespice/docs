@@ -26,7 +26,7 @@
 
 A window function performs a calculation across a set of table rows that has some relationship to the current row. This is comparable to how an aggregate function can run a calculation. The difference is that a window function does not group rows into a single output row. With a window function, the rows retain their separate identities.
 
-A window function call uses the `OVER()` clause directly following the window function’s name and argument(s). The `OVER()` clause may use the following optional arguments:
+A window function call uses the `OVER()` clause directly following the window function's name and argument(s). The `OVER()` clause may use the following optional arguments:
 
 * `PARTITION BY`: Defines multiple window partitions.
 * `ORDER BY`: Orders rows within each partition.
@@ -78,5 +78,4 @@ The `OVER()` clause can be used with the following functions:
 <table><thead><tr><th width="210.33333333333331">Function</th><th width="235">Return Type</th><th>Description</th></tr></thead><tbody><tr><td>CUME_DIST()</td><td>Double</td><td>Calculates the cumulative distribution of the current row within the window partition.</td></tr><tr><td>DENSE_RANK()</td><td>BIGINT</td><td>Returns the rank of the current row within its partition and ordering. Rows that are equal have the same rank.</td></tr><tr><td>LAG()</td><td>Same as input</td><td>Returns the row before the current one in a partition. If there are no rows, returns null.</td></tr><tr><td>LEAD()</td><td>Same as input</td><td>Returns the row after the current one in a partition. If there are no rows, returns null.</td></tr><tr><td>NTILE([integer] ntile)</td><td>Integer</td><td>NTILE function equally splits the rows in each partition into N ranked parts. Has to be used with an <code>ORDER BY</code> clause.</td></tr><tr><td>PERCENT_RANK()</td><td>Double</td><td>Returns the percent rank of the current row in the partition based on the order by clause.</td></tr><tr><td>RANK()</td><td>BIGINT</td><td>Returns the rank of the current row within its partition and ordering. Rows that are equal have the same rank. However, the count of tied rows is added to the next rank, instead of being incremented by just one.</td></tr><tr><td>ROW_NUMBER()</td><td>BIGINT</td><td>Returns the row number for the current row based on the order by clause within each partition.</td></tr></tbody></table>
 
 For more information about Window Functions, see [SQL Window Functions](https://www.sqltutorial.org/sql-window-functions/).
-
 
