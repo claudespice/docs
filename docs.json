@@ -2,17 +2,48 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
   "name": "Spice.ai Cloud Platform",
+  "description": "Documentation for the Spice.ai Cloud Platform — AI-backend-as-a-service with high-speed SQL query, LLM inference, Vector Search, and RAG.",
+  "logo": {
+    "light": "/images/favicon.png",
+    "dark": "/images/favicon.png",
+    "href": "https://spice.ai"
+  },
   "favicon": "/images/favicon.png",
   "colors": {
     "primary": "#4B6BF5",
     "light": "#6889F7",
     "dark": "#3651D9"
   },
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "background": {
+    "decoration": "gradient",
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0D1117"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
   "navbar": {
     "links": [
       {
         "label": "Community",
         "href": "https://spiceai.org/slack"
+      },
+      {
+        "type": "github",
+        "href": "https://github.com/spiceai/spiceai"
       }
     ],
     "primary": {
@@ -21,14 +52,31 @@
       "href": "https://spice.ai"
     }
   },
+  "search": {
+    "prompt": "Search Spice.ai docs..."
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": "dark"
+  },
+  "interaction": {
+    "drilldown": true
+  },
   "contextual": {
     "options": [
       "copy",
       "view",
       "chatgpt",
       "claude",
-      "cursor"
+      "cursor",
+      "vscode"
     ]
+  },
+  "api": {
+    "openapi": "openapi/management-api.json"
   },
   "navigation": {
     "versions": [
@@ -880,9 +928,73 @@
       "x": "https://x.com/spice_ai",
       "slack": "https://spiceai.org/slack",
       "linkedin": "https://linkedin.com/company/spiceai"
-    }
+    },
+    "links": [
+      {
+        "header": "Product",
+        "items": [
+          { "label": "Spice.ai Cloud", "href": "https://spice.ai" },
+          { "label": "Spice.ai OSS", "href": "https://github.com/spiceai/spiceai" },
+          { "label": "Spicerack Hub", "href": "https://spicerack.org" },
+          { "label": "Pricing", "href": "/cloud/pricing/plans" }
+        ]
+      },
+      {
+        "header": "Resources",
+        "items": [
+          { "label": "OSS Documentation", "href": "https://docs.spiceai.org" },
+          { "label": "API Reference", "href": "/cloud/api/management/README" },
+          { "label": "SQL Reference", "href": "/cloud/reference/sql-reference" },
+          { "label": "Release Notes", "href": "/cloud/reference/release-notes" }
+        ]
+      },
+      {
+        "header": "Community",
+        "items": [
+          { "label": "Slack", "href": "https://spiceai.org/slack" },
+          { "label": "GitHub", "href": "https://github.com/spiceai/spiceai" },
+          { "label": "X / Twitter", "href": "https://x.com/spice_ai" },
+          { "label": "LinkedIn", "href": "https://linkedin.com/company/spiceai" }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          { "label": "Privacy Policy", "href": "/cloud/legal/privacy" },
+          { "label": "Terms of Service", "href": "/cloud/legal/terms-of-service" },
+          { "label": "EULA", "href": "/cloud/legal/eula" }
+        ]
+      }
+    ]
   },
   "seo": {
-    "indexHiddenPages": false
+    "indexing": "navigable",
+    "metatags": {
+      "og:site_name": "Spice.ai Cloud Platform Documentation",
+      "og:type": "website",
+      "og:locale": "en_US",
+      "twitter:site": "@spice_ai"
+    }
+  },
+  "redirects": [
+    { "source": "/getting-started/:slug*", "destination": "/cloud/getting-started/:slug*" },
+    { "source": "/features/:slug*", "destination": "/cloud/features/:slug*" },
+    { "source": "/building-blocks/:slug*", "destination": "/cloud/building-blocks/:slug*" },
+    { "source": "/portal/:slug*", "destination": "/cloud/portal/:slug*" },
+    { "source": "/api/:slug*", "destination": "/cloud/api/:slug*" },
+    { "source": "/reference/:slug*", "destination": "/cloud/reference/:slug*" },
+    { "source": "/sdks/:slug*", "destination": "/cloud/sdks/:slug*" },
+    { "source": "/integrations/:slug*", "destination": "/cloud/integrations/:slug*" },
+    { "source": "/security/:slug*", "destination": "/cloud/security/:slug*" },
+    { "source": "/pricing/:slug*", "destination": "/cloud/pricing/:slug*" },
+    { "source": "/use-cases/:slug*", "destination": "/cloud/use-cases/:slug*" },
+    { "source": "/legal/:slug*", "destination": "/cloud/legal/:slug*" }
+  ],
+  "errors": {
+    "404": {
+      "redirect": true,
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist. You'll be redirected to the homepage."
+    }
   }
 }
