@@ -23,6 +23,8 @@
 * [AI Gateway](features/ai-gateway.md)
 * [Semantic Models](features/semantic-models.md)
 * [ML Models](building-blocks/spice-models.md)
+* [Distributed Query](features/distributed-query.md)
+  * [Async Queries API](features/async-queries-api.md)
 * [Observability](features/observability/README.md)
   * [Task History](features/observability/task-history.md)
   * [Zipkin](features/observability/zipkin.md)
