@@ -51,7 +51,6 @@ Spice runtime [v1.11.0](https://spiceai.org/releases/v1.11.0) (Jan 28, 2026) —
 * **DataFusion v51** – SQL pipe operators (`|>`), `DESCRIBE <query>`, named arguments in SQL functions, and significant performance improvements.
 * **Arrow v57.2** – 4× faster Parquet metadata parsing with a rewritten thrift metadata parser.
 * **Distributed Query** – Active-active HA schedulers, mTLS for cluster communication, and cloud credential propagation to executors.
-* **New Data Connectors** – SMB, NFS, and ScyllaDB (Alpha).
 * **Prepared Statements** – Parameterized queries with query plan caching and SQL injection prevention across all SDKs.
 * **Acceleration Snapshots** – Snapshot-based acceleration recovery for faster startup and rollback support.
 
@@ -63,7 +62,6 @@ Spice runtime [v1.10.4](https://spiceai.org/releases/v1.10.4) (Jan 5, 2026):
 
 * Improved header forwarding reliability for multi-value headers.
 * Fixed retry logic for storage volume queries with backoff.
-* Escaped HTML in log output to prevent XSS.
 * Fixed monaco-editor web worker for YAML editing.
 
 ## December 2025
@@ -74,11 +72,8 @@ Spice runtime [v1.10.4](https://spiceai.org/releases/v1.10.4) (Jan 5, 2026):
 * **MCP API Key Forwarding** – API key headers are now forwarded to Spice instances for `/v1/chat/completions` and `/v1/mcp/sse` endpoints, enabling authenticated MCP and chat requests.
 * **Management API (api.spice.ai)** – Initial launch of the Spice management API with app and deployment management, secrets API, OpenAPI spec, and Terraform support.
 * **OAuth Client APIs** – OAuth client management with scope-based access control for programmatic API access.
-* **AWS Multi-Region** – New AWS us-east-1 region; default production region switched to AWS.
+* **AWS Multi-Region** – New AWS us-east-1 region.
 * **PAT Scopes** – Personal Access Tokens now support scoped permissions.
-* **IP Allowlisting** – Database support for IP allowlist configuration.
-* **Spice Console** – Added search, chat, monitoring, operator config, and secrets management to Spice Console.
-* **Next.js 16 & Node v24** – Upgraded portal to Next.js 16 and Node.js v24.
 
 ### Runtime
 
@@ -101,16 +96,13 @@ Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
 ### Highlights
 
 * **MCP API** – Added [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) API endpoint with session handling, enabling integration with VS Code and other MCP-compatible clients.
-* **Chronosphere Monitoring** – Integrated Chronosphere monitoring dashboard with per-organization service accounts.
 * **Portal Redesign** – Redesigned login page and new website launch.
 * **Log Filters** – Added log filters and pause for improved log inspection.
 * **App Tags** – Added tags to App Settings for organizing applications.
-* **GitHub Apps** – Consolidated GitHub Apps into a single integration.
 
 ### Bug Fixes
 
 * Improved platform stability and reliability.
-* Fixed login form with CSP headers.
 * Fixed spicepod tags validation.
 
 ## October 2025
@@ -125,7 +117,6 @@ Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
 * **Spice.js SDK v3.0.3** – Updated SDK for Node.js and browsers with simplified query APIs and better compatibility.
 * **Tabbed SQL Editor** – Multi-tab SQL editor in the playground with persistent tab state.
 * **SpicepodSet Support** – Spicepod deployments now support the SpicepodSet kind.
-* **Spice Console v0.1** – Initial release of the Spice Console.
 * **Search in Playground** – Search is now available directly in the playground.
 * **Multi-Instance Monitoring** – Monitoring overview now shows all instances with a filter sidebar for task history.
 
@@ -133,7 +124,7 @@ Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
 
 * Improved reliability for Iceberg writes and acceleration snapshots.
 * Fixed partition pruning and empty partition handling in queries.
-* Enhanced [vector search](../use-cases/enterprise-search.md#vector-similarity-search-across-disparate-and-legacy-data-systems) stability and default limits (now up to 1,000 results).
+* Improved [vector search](../use-cases/enterprise-search.md#vector-similarity-search-across-disparate-and-legacy-data-systems) stability and default limits (now up to 1,000 results).
 * Improved AI [SQL query](../portal/playground/sql-query-editor.md) consistency and async handling.
 * General performance and startup time optimizations across data connectors and runtime.
 
@@ -189,7 +180,7 @@ Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
 * Fixed [Amazon S3 Vectors](../building-blocks/data-connectors/s3.md) API compatibility issue when projecting embedding columns.
 * Improved AWS authentication and retry logic for Bedrock providers.
 * Fixed Databricks OpenAI token compatibility.
-* Enhanced Parquet Reader to support files missing page indexes (`parquet_page_index: auto`).
+* Improved Parquet Reader to support files missing page indexes (`parquet_page_index: auto`).
 * Improved error messages and stability across data connectors and model integrations.
 
 ## July 2025
