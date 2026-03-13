@@ -4,6 +4,86 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+## February 2026
+
+### Highlights
+
+* **SpicepodCluster Deployments** – Deploy Spice runtime clusters with CDC-driven lifecycle management, automatic health checks, and deployment-level observability annotations.
+* **Secrets Management API** – New `PUT /v1/secrets` API for managing runtime secrets, with automatic API key injection into spicepod deployments.
+* **Async Queries API** – New `/v1/queries` passthrough for submitting and retrieving asynchronous query results from Spice runtime clusters.
+
+### Runtime
+
+Spice runtime [v1.11.1](https://spiceai.org/releases/v1.11.1) (Feb 10, 2026):
+
+* Cayenne row-based deletion improvements and `constraints`/`on_conflict` support in Cayenne acceleration.
+* DynamoDB Streams rebootstrapping for improved reliability.
+* FlightSQL cookie middleware support.
+
+### Bug Fixes
+
+* Fixed startup panics when optional services are unavailable.
+* Improved health check reliability and error messaging when Spice instances are not ready.
+* Fixed async query proxying to preserve response bodies.
+
+## January 2026
+
+### Highlights
+
+* **Arrow v18 Upgrade** – Upgraded platform to Apache Arrow v18 with improved query performance and compatibility.
+* **API Enhancements** – Updated OpenAPI spec with new server URLs and improved multi-value header forwarding.
+
+### Runtime
+
+Spice runtime [v1.11.0](https://spiceai.org/releases/v1.11.0) (Jan 28, 2026) — a major release:
+
+* **Spice Cayenne (Beta)** – The Cayenne data accelerator reaches Beta with acceleration snapshots, key-based deletion vectors, and S3 Express One Zone support.
+* **DataFusion v51** – SQL pipe operators (`|>`), `DESCRIBE <query>`, named arguments in SQL functions, and significant performance improvements.
+* **Arrow v57.2** – 4× faster Parquet metadata parsing with a rewritten thrift metadata parser.
+* **Distributed Query** – Active-active HA schedulers, mTLS for cluster communication, and cloud credential propagation to executors.
+* **New Data Connectors** – SMB, NFS, and ScyllaDB (Alpha).
+* **Prepared Statements** – Parameterized queries with query plan caching and SQL injection prevention across all SDKs.
+* **Acceleration Snapshots** – Snapshot-based acceleration recovery for faster startup and rollback support.
+
+Spice runtime [v1.10.4](https://spiceai.org/releases/v1.10.4) (Jan 5, 2026):
+
+* Kafka/Debezium batch commit fixes and ABFSS URL support for Azure Data Lake Storage Gen2.
+
+### Bug Fixes
+
+* Improved header forwarding reliability for multi-value headers.
+* Fixed retry logic for storage volume queries with backoff.
+
+## December 2025
+
+### Highlights
+
+* **ADBC Support** – Improved Arrow Database Connectivity (ADBC) for broader client compatibility.
+* **MCP API Key Forwarding** – API key headers are now forwarded to Spice instances for `/v1/chat/completions` and `/v1/mcp/sse` endpoints, enabling authenticated MCP and chat requests.
+
+### Runtime
+
+Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
+
+* Improved startup reliability with async telemetry exporter initialization.
+* Fixed Azure BlobFS versioned container handling.
+* Fixed S3 custom endpoint query resolution.
+
+### Bug Fixes
+
+* Fixed chat completion handling in the platform.
+* Improved request validation to reject requests for deleted apps.
+
+## November 2025
+
+### Highlights
+
+* **MCP API** – Added [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) API endpoint with session handling, enabling integration with VS Code and other MCP-compatible clients.
+
+### Bug Fixes
+
+* Improved platform stability and reliability.
+
 ## October 2025
 
 ### Highlights
