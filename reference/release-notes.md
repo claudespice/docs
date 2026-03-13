@@ -4,6 +4,107 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+## February 2026
+
+### Highlights
+
+* **SpicepodCluster Deployments** – Deploy Spice runtime clusters with CDC-driven lifecycle management, automatic health checks, and deployment-level observability annotations.
+* **Secrets Management API** – New `PUT /v1/secrets` API for managing runtime secrets, with automatic API key injection into spicepod deployments.
+* **Async Queries API** – New `/v1/queries` passthrough for submitting and retrieving asynchronous query results from Spice runtime clusters.
+* **Private Cluster Management** – Configure private clusters with replica limits, CPU/memory resource management, and executor scaling.
+* **App Metrics API** – New `GET /v1/apps/{appId}/metrics` endpoint for CPU and memory usage metrics.
+* **Onboarding** – New interactive AI onboarding path with sample datasets, suggested prompts, and step-by-step guidance.
+* **SQL Playground** – Async/sync mode toggle for cluster spicepods.
+* **Runtime Dataset Status** – Dataset status from the runtime is now displayed in the Datasets list.
+
+### Runtime
+
+Spice runtime [v1.11.1](https://spiceai.org/releases/v1.11.1) (Feb 10, 2026):
+
+* Cayenne row-based deletion improvements and `constraints`/`on_conflict` support in Cayenne acceleration.
+* DynamoDB Streams rebootstrapping for improved reliability.
+* FlightSQL cookie middleware support.
+
+### Bug Fixes
+
+* Fixed startup panics when optional services are unavailable.
+* Improved health check reliability and error messaging when Spice instances are not ready.
+* Fixed async query proxying to preserve response bodies.
+* Fixed Spicepod status display and default SpicepodSet kind.
+* Improved API error handling with typed errors.
+
+## January 2026
+
+### Highlights
+
+* **Arrow v18 Upgrade** – Upgraded platform to Apache Arrow v18 with improved query performance and compatibility.
+* **API Enhancements** – Updated OpenAPI spec with new server URLs and improved multi-value header forwarding.
+* **Monitoring Dashboards** – Added HTTP and Flight services metrics dashboards; updated data egress, caching, and org usage monitoring charts.
+* **AI Onboarding** – OpenAI credits offered on new app creation; sample data option and suggested prompts in the AI chat playground.
+* **Provider Management** – Unified provider formats with category support for embeddings and catalogs.
+
+### Runtime
+
+Spice runtime [v1.11.0](https://spiceai.org/releases/v1.11.0) (Jan 28, 2026) — a major release:
+
+* **Spice Cayenne (Beta)** – The Cayenne data accelerator reaches Beta with acceleration snapshots, key-based deletion vectors, and S3 Express One Zone support.
+* **DataFusion v51** – SQL pipe operators (`|>`), `DESCRIBE <query>`, named arguments in SQL functions, and significant performance improvements.
+* **Arrow v57.2** – 4× faster Parquet metadata parsing with a rewritten thrift metadata parser.
+* **Distributed Query** – Active-active HA schedulers, mTLS for cluster communication, and cloud credential propagation to executors.
+* **Prepared Statements** – Parameterized queries with query plan caching and SQL injection prevention across all SDKs.
+* **Acceleration Snapshots** – Snapshot-based acceleration recovery for faster startup and rollback support.
+
+Spice runtime [v1.10.4](https://spiceai.org/releases/v1.10.4) (Jan 5, 2026):
+
+* Kafka/Debezium batch commit fixes and ABFSS URL support for Azure Data Lake Storage Gen2.
+
+### Bug Fixes
+
+* Improved header forwarding reliability for multi-value headers.
+* Fixed retry logic for storage volume queries with backoff.
+* Fixed monaco-editor web worker for YAML editing.
+
+## December 2025
+
+### Highlights
+
+* **ADBC Support** – Improved Arrow Database Connectivity (ADBC) for broader client compatibility.
+* **MCP API Key Forwarding** – API key headers are now forwarded to Spice instances for `/v1/chat/completions` and `/v1/mcp/sse` endpoints, enabling authenticated MCP and chat requests.
+* **Management API (api.spice.ai)** – Initial launch of the Spice management API with app and deployment management, secrets API, OpenAPI spec, and Terraform support.
+* **OAuth Client APIs** – OAuth client management with scope-based access control for programmatic API access.
+* **AWS Multi-Region** – New AWS us-east-1 region.
+* **PAT Scopes** – Personal Access Tokens now support scoped permissions.
+
+### Runtime
+
+Spice runtime [v1.10.3](https://spiceai.org/releases/v1.10.3) (Dec 29, 2025):
+
+* Improved startup reliability with async telemetry exporter initialization.
+* Fixed Azure BlobFS versioned container handling.
+* Fixed S3 custom endpoint query resolution.
+
+### Bug Fixes
+
+* Fixed chat completion handling in the platform.
+* Improved request validation to reject requests for deleted apps.
+* Fixed spicepod logs viewer to query correct region.
+* Fixed redirect loop on login.
+* Improved deployment handler speed.
+
+## November 2025
+
+### Highlights
+
+* **MCP API** – Added [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) API endpoint with session handling, enabling integration with VS Code and other MCP-compatible clients.
+* **Portal Redesign** – Redesigned login page and new website launch.
+* **Log Filters** – Added log filters and pause for improved log inspection.
+* **App Tags** – Added tags to App Settings for organizing applications.
+
+### Bug Fixes
+
+* Improved platform stability and reliability.
+* Fixed spicepod tags validation.
+
 ## October 2025
 
 ### Highlights
@@ -14,12 +115,16 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **AI SQL Function (Preview)** – Query LLMs directly in [SQL](../portal/playground/sql-query-editor.md) with `ai()` for summarization, classification, or translation.
 * **Remote CLI Execution** – Run `spice sql`, `spice search`, and `spice chat` against remote endpoints.
 * **Spice.js SDK v3.0.3** – Updated SDK for Node.js and browsers with simplified query APIs and better compatibility.
+* **Tabbed SQL Editor** – Multi-tab SQL editor in the playground with persistent tab state.
+* **SpicepodSet Support** – Spicepod deployments now support the SpicepodSet kind.
+* **Search in Playground** – Search is now available directly in the playground.
+* **Multi-Instance Monitoring** – Monitoring overview now shows all instances with a filter sidebar for task history.
 
 ### Bug Fixes
 
 * Improved reliability for Iceberg writes and acceleration snapshots.
 * Fixed partition pruning and empty partition handling in queries.
-* Enhanced [vector search](../use-cases/enterprise-search.md#vector-similarity-search-across-disparate-and-legacy-data-systems) stability and default limits (now up to 1,000 results).
+* Improved [vector search](../use-cases/enterprise-search.md#vector-similarity-search-across-disparate-and-legacy-data-systems) stability and default limits (now up to 1,000 results).
 * Improved AI [SQL query](../portal/playground/sql-query-editor.md) consistency and async handling.
 * General performance and startup time optimizations across data connectors and runtime.
 
@@ -37,6 +142,10 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 * **DataFusion v49 Upgrade:** Faster planning for queries with many columns, dynamic filters & TopK pushdown, compressed spill files, and more.&#x20;
 * **Embeddings Improvements:** Support for EmbeddingGemma (Google's embedding model for text and documents) and embedding request cashing.&#x20;
 * **Runtime Reliability:** Improved AI model diagnostics, clearer error messages, and stronger hybrid-query stability.
+* **Observability** – Global timezone switcher, rich explain plan previews with zoom, and SQL query preview in trace history.
+* **Deployment Tracking** – Deployment author and creation source are now shown in the spicepod deployments list.
+* **Audit Logging** – Added audit logging for Spicepod operations.
+* **GitHub Branches** – Show all GitHub branches with search in the branch selector.
 
 ### Bug Fixes
 
@@ -60,14 +169,19 @@ description: Monthly release notes for the Spice.ai Cloud Platform
     MongoDB Connector for querying NoSQL collections (`from: mongodb:<dataset>`).
 * **DataFusion v48 Upgrade:** Performance improvements with DataFusion v48 — 50% smaller expression memory footprint and 10–20% faster query planning. Optimized string and window functions; up to 5.6× faster aggregate queries.
 * **Model2Vec Embeddings:** Introduced optimized embeddings engine — 500× faster inference, 15× smaller model size.
+* **App Storage** – New storage API and UI for managing persistent volumes.
+* **App Secrets** – Edit app secrets from the portal with audit logging.
+* **GPT-5 Models** – Added GPT-5 model support.
+* **C# and Java SDK Samples** – Added C# and Java SDK samples to the playground.
+* **Spicepod YAML Validation** – The code editor now validates Spicepod YAML in real-time.
 
 ### Bug Fixes
 
 * Fixed [Amazon S3 Vectors](../building-blocks/data-connectors/s3.md) API compatibility issue when projecting embedding columns.
 * Improved AWS authentication and retry logic for Bedrock providers.
 * Fixed Databricks OpenAI token compatibility.
-* Enhanced Parquet Reader to support files missing page indexes (`parquet_page_index: auto`).
-* Improved error messages and stability across data connectors and model integrations
+* Improved Parquet Reader to support files missing page indexes (`parquet_page_index: auto`).
+* Improved error messages and stability across data connectors and model integrations.
 
 ## July 2025
 
