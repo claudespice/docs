@@ -59,9 +59,9 @@ Example: With this Iceberg catalog structure:
 
 ```shell
 .
-├── blockchain
-│   └── eth
-│       ├── blocks
+├── analytics
+│   └── sales
+│       ├── orders
 │       └── transactions
 ├── spice
 │   ├── tpch

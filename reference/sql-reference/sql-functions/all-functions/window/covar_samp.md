@@ -16,7 +16,7 @@ description: Returns the sample covariance for non-NULL pairs across all input v
 {% code title="Aggregate function example" %}
 ```sql
 SELECT COVAR_SAMP(transaction_count, gas_used)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 31.70536780565699
 ```
@@ -25,7 +25,7 @@ FROM eth.recent_blocks
 {% code title="Aggregate function example using optional DISTINCT clause" %}
 ```sql
 SELECT COVAR_SAMP(DISTINCT transaction_count, gas_used)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 31.7053678056971
 ```
@@ -35,7 +35,7 @@ FROM eth.recent_blocks
 ```sql
 SELECT COVAR_SAMP(transaction_count, gas_used)
   OVER (PARTITION BY transaction_count)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 2.442515362986122e-15
 ```

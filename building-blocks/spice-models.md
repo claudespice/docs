@@ -19,7 +19,7 @@ Hosted models have first-class access to co-located data for training and infere
 
 Models are defined using a [model manifest](/broken/pages/kBNlZsrTXSmL6zaiY8bm) YAML file. Model details such as data requirements, architecture, training parameters, and other important hyperparameters are defined in the `model.yaml.`
 
-Add a `model.yaml` file to the repository path `/models/[model_name]/model.yaml` of a [GitHub connected Spice app](../portal/apps/connect-github.md), replacing `[model_name]` with the desired model name. For example, the [Gas Fees Predictions demo model](https://github.com/lukekim/demo/blob/main/models/gas_fees-firecache/model.yaml) uses the path `/models/gas-fees/model.yaml`.
+Add a `model.yaml` file to the repository path `/models/[model_name]/model.yaml` of a [GitHub connected Spice app](../portal/apps/connect-github.md), replacing `[model_name]` with the desired model name.
 
 Refer to the [Models YAML specification](/broken/pages/kBNlZsrTXSmL6zaiY8bm) for all available configuration options.
 

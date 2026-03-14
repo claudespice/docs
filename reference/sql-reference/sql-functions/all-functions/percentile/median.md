@@ -15,7 +15,7 @@ description: Computes the median of a dataset.
 {% code title="MEDIAN example" %}
 ```sql
 SELECT MEDIAN(pop) 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 -- EXPR$0
 -- 2783.0
 ```

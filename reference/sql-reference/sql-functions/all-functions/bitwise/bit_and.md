@@ -15,7 +15,7 @@ description: Returns the bitwise AND of non-NULL input values.
 {% code title="BIT_AND example" %}
 ```sql
 SELECT BIT_AND(transaction_count)
-  FROM eth.recent_blocks 
+  FROM taxi_trips 
 
 -- EXPR$0
 -- 0
@@ -26,7 +26,7 @@ SELECT BIT_AND(transaction_count)
 ```sql
 SELECT total_gas_used, 
   BIT_AND(transaction_count)
-FROM eth.recent_blocks 
+FROM taxi_trips 
 GROUP BY total_gas_used
 
 -- total_gas_used, EXPR$1

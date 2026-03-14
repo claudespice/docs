@@ -23,7 +23,7 @@ description: >-
 ```sql
 SELECT transaction_count,
   "CORR"(gas_used, base_fee_per_gas)
-FROM eth.recent_blocks
+FROM taxi_trips
 GROUP BY transaction_count
 LIMIT 5
 

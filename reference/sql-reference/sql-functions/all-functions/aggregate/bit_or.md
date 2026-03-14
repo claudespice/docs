@@ -13,7 +13,7 @@ description: Returns the bitwise OR of non-NULL input values.
 **Examples**
 
 <pre class="language-sql" data-title="BIT_OR example"><code class="lang-sql"><strong>SELECT BIT_OR(transaction_count)
-</strong>  FROM eth.recent_blocks
+</strong>  FROM taxi_trips
 
 -- EXPR$0
 -- 255
@@ -21,7 +21,7 @@ description: Returns the bitwise OR of non-NULL input values.
 
 <pre class="language-sql" data-title="BIT_OR example"><code class="lang-sql"><strong>SELECT gas_used, 
 </strong>  BIT_OR(transaction_count)
-FROM eth.recent_blocks
+FROM taxi_trips
 GROUP BY gas_used
 
 -- total_amount, EXPR$1

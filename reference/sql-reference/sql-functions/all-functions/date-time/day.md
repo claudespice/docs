@@ -22,7 +22,7 @@ SELECT "DAY"('2003-02-01 11:43:22')
 {% code title="DAY example" %}
 ```sql
 SELECT "Date", "DAY"("Date") 
-FROM eth.recent_blocks  
+FROM taxi_trips  
 LIMIT 3
 
 -- Date, EXPR$1

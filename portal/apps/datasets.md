@@ -1,26 +1,22 @@
 ---
-description: Datasets and Views (Beta)
+description: Datasets and Views
 ---
 
 # Datasets and Views
 
-{% hint style="info" %}
-Self-managed Datasets and Views is in beta for Design Partners. Get in touch for more info.
-{% endhint %}
-
-The Spice.ai platform comes pre-loaded with a variety of web3 [datasets](../../datasets.md).
+The Spice.ai platform supports a variety of data sources.
 
 In addition, you can define and create your own private Datasets and Views, which can then be queried with SQL, cached in Spice Firecache, and published publicly to be shared with others.
 
 ### Defining a Dataset
 
-To define a dataset, first ensure your Spice app is connected to a [GitHub repository](link-github-repository-beta.md), then add a [dataset manifest](../../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
+To define a dataset, first ensure your Spice app is connected to a [GitHub repository](link-github-repository.md), then add a [dataset manifest](../../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
 
 For example:
 
 ```yaml
 # .spice/datasets/recent_blocks.yml
-name: eth.recent_blocks
+name: taxi_trips
 type: append
 firecache:
   enabled: true
@@ -40,7 +36,7 @@ Once the manifest file is committed to the GitHub repository, navigate to the **
 
 Click the dataset **Deploy** button. Because this dataset was Firecache enabled, the firecache status will now turn to **Ready.**
 
-<figure><img src="../../.gitbook/assets/image (1) (2) (1).png" alt=""><figcaption><p>Deployed dataset eth.recent_blocks is now firecache Ready.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (2) (1).png" alt=""><figcaption><p>Deployed dataset is now firecache Ready.</p></figcaption></figure>
 
 ### View Dataset details
 

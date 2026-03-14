@@ -18,7 +18,7 @@ description: >-
 {% code title="STARTS_WITH example" %}
 ```sql
 SELECT IncidntNum, Category, Descript 
-FROM  eth.recent_blocks 
+FROM  taxi_trips 
   WHERE STARTS_WITH(Category, 'OTHER')
   LIMIT 2
 

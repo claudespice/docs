@@ -18,7 +18,7 @@ description: >-
 {% code title="ENDS_WITH example" %}
 ```sql
 SELECT IncidntNum, Category, Descript 
-FROM  eth.recent_blocks 
+FROM  taxi_trips 
 WHERE ENDS_WITH(Category, 'LAWS')
 LIMIT 2
 

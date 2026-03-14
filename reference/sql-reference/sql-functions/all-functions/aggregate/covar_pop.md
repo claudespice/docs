@@ -16,7 +16,7 @@ description: Returns the population covariance for non-NULL pairs across all inp
 {% code title="Aggregate function example" %}
 ```sql
 SELECT COVAR_POP(transaction_count, gas_used)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 31.70536771189994
 ```
@@ -25,7 +25,7 @@ FROM eth.recent_blocks
 {% code title="Aggregate function example using optional DISTINCT clause" %}
 ```sql
 SELECT COVAR_POP(DISTINCT transaction_count, gas_used)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 302.592806814443e
 ```
@@ -35,7 +35,7 @@ FROM eth.recent_blocks
 ```sql
 SELECT COVAR_POP(transaction_count, gas_used)
   OVER (PARTITION BY transaction_count)
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- 1.5543122344752192e-15
 ```

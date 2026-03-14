@@ -12,7 +12,6 @@ The following packages are required and will be automatically installed by pip:
 
 * `pyarrow`
 * `pandas`
-* `web3`
 
 <details>
 
@@ -60,8 +59,7 @@ You can then submit queries using the query function.
 ```python
 import spicepy
 client = spicepy.Client('API_KEY')
-block_data = client.query('SELECT * FROM eth.recent_blocks LIMIT 10;').read_pandas()
-transaction_Data = client.query('SELECT * FROM eth.recent_transactions LIMIT 10;').read_pandas()
+data = client.query('SELECT * FROM taxi_trips LIMIT 10;').read_pandas()
 ```
 
 Querying data is done through a `Client` object that initializes the connection with the Spice.ai endpoint. `Client` has the following arguments:

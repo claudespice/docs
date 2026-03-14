@@ -25,7 +25,7 @@ SELECT REGEXP_LIKE('the data lakehouse', '.*?\Qlake\E.*?')
 {% code title="REGEXP_MATCHES example" %}
 ```sql
 SELECT Category, REGEXP_LIKE(Category, '.*?\Q-\E.*?') 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 5
 
 -- Category, EXPR$1

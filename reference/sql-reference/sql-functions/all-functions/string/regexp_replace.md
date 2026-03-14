@@ -27,7 +27,7 @@ SELECT REGEXP_REPLACE('8AM-4PM', '\Q-\E', ' to ')
 {% code title="REGEXP_REPLACE example" %}
 ```sql
 SELECT REGEXP_REPLACE(Address, '\QST\E', 'STREET') 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 3
 
 -- Raw data

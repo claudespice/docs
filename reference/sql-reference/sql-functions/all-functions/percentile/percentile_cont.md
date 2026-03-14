@@ -19,7 +19,7 @@ description: >-
 ```sql
 SELECT PERCENTILE_CONT(0.6) WITHIN GROUP ( ORDER BY pop ASC ),
 PERCENTILE_CONT(0.6) WITHIN GROUP ( ORDER BY pop DESC )
-FROM eth.recent_blocks 
+FROM taxi_trips 
 
 -- EXPR$0, EXPR$0
 -- 4519.2, 1806.0

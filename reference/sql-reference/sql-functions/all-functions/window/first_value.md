@@ -18,7 +18,7 @@ description: Returns the first value within an ordered group of a result set.
 ```sql
 SELECT city, state, pop, 
 FIRST_VALUE(pop) OVER (PARTITION BY state ORDER BY city)
-FROM  eth.recent_blocks 
+FROM  taxi_trips 
 
 -- city, state, pop, EXPR$3
 -- 98791, AK, 5345, 5345

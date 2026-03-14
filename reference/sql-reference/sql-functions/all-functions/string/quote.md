@@ -33,7 +33,7 @@ AS Escaped_String
 {% code title="QUOTE example that quotes from a column in sample data." %}
 ```sql
 SELECT *, QUOTE(gas_used) 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 3
 
 -- pickup_datetime, transaction_count, trip_distance_mi, gas_used, base_fee_per_gas, total_amount, EXPR$6

@@ -15,7 +15,7 @@ description: Returns the maximum value among the non-NULL input expressions.
 {% code title="Aggregate function example" %}
 ```sql
 SELECT MAX("total_gas_used") 
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- EXPR$0
 -- 685908.1
@@ -32,7 +32,7 @@ FROM eth.recent_blocks
 ```sql
 SELECT "transaction_count", 
   MAX("total_gas_used") OVER(PARTITION BY "transaction_count") "max_total_gas_used"
-FROM eth.recent_blocks
+FROM taxi_trips
 LIMIT 1
 
 -- block_number, max_gas_used
