@@ -98,6 +98,7 @@
   * [Publish](portal/apps/publish.md)
   * [Connect GitHub](portal/apps/connect-github.md)
   * [Transfer](portal/apps/transfer.md)
+  * [Delete](portal/apps/delete.md)
   * [Runtime](portal/apps/runtime.md)
 * [Public Apps](portal/public-apps.md)
 * [App Spicepod](portal/app-spicepod/README.md)

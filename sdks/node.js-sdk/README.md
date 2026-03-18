@@ -6,7 +6,7 @@ icon: node
 
 The Node.js SDK [spice.js](https://www.npmjs.com/package/@spiceai/spice) is the easiest way to use and query [Spice.ai](https://spice.ai) with Node.js.
 
-It uses [Apache Apache Flight](https://arrow.apache.org/docs/format/Flight.html) to efficiently stream data to the client and [Apache Arrow](https://arrow.apache.org/) Records as data frames which are then easily converted to JavaScript objects/arrays or JSON.
+It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) to efficiently stream data to the client and [Apache Arrow](https://arrow.apache.org/) Records as data frames which are then easily converted to JavaScript objects/arrays or JSON.
 
 ### Requirements
 
@@ -30,24 +30,34 @@ yarn add @spiceai/spice
 
 ### Usage
 
-Import `SpiceClient` and instantiate a new instance with an API Key.
+Import `SpiceClient` and instantiate a new instance with your configuration.
 
-You can then submit queries using the `query` function.
+You can then submit queries using the `sql` method.
 
 ```javascript
 import { SpiceClient } from "@spiceai/spice";
 
-const spiceClient = new SpiceClient("API_KEY");
-const table = await spiceClient.sql(
-  'SHOW TABLES;'
-);
+const spiceClient = new SpiceClient({
+  apiKey: 'API_KEY',
+  httpUrl: 'https://data.spiceai.io',
+  flightUrl: 'flight.spiceai.io:443',
+});
+const table = await spiceClient.sql('SHOW TABLES;');
 console.table(table.toArray());
 ```
 
-`SpiceClient` has the following arguments:
+Or using the shorthand with just an API key:
 
-* `apiKey` (string, required): API key to authenticate with the endpoint.
-* `url` (string, optional): URL of the endpoint to use (default: flight.spiceai.io:443)
+```javascript
+const spiceClient = new SpiceClient('API_KEY');
+```
+
+`SpiceClient` accepts a config object or a string API key:
+
+* `apiKey` (string, optional): API key to authenticate with the endpoint.
+* `flightUrl` (string, optional): URL of the Flight endpoint (default: `localhost:50051`).
+* `httpUrl` (string, optional): URL of the HTTP endpoint (default: `http://localhost:8090`).
+* `logging` (boolean, optional): Enable or disable logging output (default: `true`).
 
 #### **`sqlJson(query: string)` - Execute SQL queries with JSON results**
 
