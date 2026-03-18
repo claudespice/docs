@@ -5,7 +5,7 @@ icon: code
 
 # Management API
 
-The Spice.ai Management API (`api.spice.ai`) provides programmatic access to manage your Spice.ai Cloud resources including apps, deployments, secrets, API keys, and organization members.
+The Spice.ai Management API (also known as the control-plane API) provides programmatic access to manage Spice.ai Cloud resources—apps, deployments, secrets, API keys, and organization members.
 
 ## Base URL
 
@@ -27,9 +27,8 @@ The Management API supports three authentication methods:
 
 ### 1. Personal Access Tokens (PATs)
 
-Personal Access Tokens are user-scoped tokens that provide secure, long-lived access to the API. PATs are recommended for:
+PATs are long-lived, user-scoped tokens. Recommended for:
 - CLI tools and automation scripts
-- CI/CD pipelines
 - Personal integrations
 
 **Creating a PAT:**
@@ -50,15 +49,15 @@ Learn more: [Personal Access Tokens](../../portal/profile/personal-access-tokens
 
 ### 2. OAuth 2.0 Client Credentials
 
-OAuth client credentials are organization-scoped tokens ideal for:
+OAuth client credentials are organization-scoped tokens. Ideal for:
+- CI/CD pipelines
 - Service-to-service authentication
 - Multi-tenant applications
 - Third-party integrations
 
-**Using OAuth:**
+**Step 1 — Exchange client credentials for an access token:**
 
 ```bash
-# Exchange client credentials for an access token
 curl -X POST https://spice.ai/api/oauth/token \
   -H "Content-Type: application/json" \
   -d '{
@@ -66,18 +65,31 @@ curl -X POST https://spice.ai/api/oauth/token \
     "client_secret": "your-client-secret",
     "grant_type": "client_credentials"
   }'
+```
 
-# Use the access token
+The response contains an `access_token`:
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+**Step 2 — Use the access token in subsequent requests:**
+
+```bash
 curl -H "Authorization: Bearer <access-token>" \
   https://api.spice.ai/v1/apps
 ```
 
 ### 3. User Session Tokens (CLI)
 
-The Spice CLI uses user session tokens obtained through the browser-based login flow. These tokens provide full access to resources in your personal organization.
+The Spice CLI obtains a user session token through the browser-based login flow. This token grants full access to resources in your personal organization.
 
 ```bash
-spice login  # Initiates browser-based authentication
+spice login  # Opens a browser to authenticate
 ```
 
 ## OAuth Scopes
@@ -100,22 +112,32 @@ Access to API resources is controlled through scopes. PATs and OAuth clients mus
 | `members:write`     | Add and update organization members                           |
 | `members:delete`    | Remove organization members                                   |
 
-**Scope Hierarchy:**
-- Write scopes (`apps:write`) imply read access (`apps:read`)
-- Wildcard scope (`*`) grants all permissions
+**Scope hierarchy:**
+- A write scope automatically includes its corresponding read scope (e.g. `apps:write` implies `apps:read`).
+- The wildcard scope (`*`) grants all permissions.
 
 ## Rate Limiting
 
-The API implements rate limiting to ensure service stability:
-- **Per-user:** 1000 requests per minute
-- **Per-organization:** 10,000 requests per minute
+Requests are rate-limited per app. These limits are a high-level failsafe; actual throughput depends on the size of your deployed Spice instance or cluster.
 
-Rate limit information is included in response headers:
-```
-X-RateLimit-Limit: 1000
-X-RateLimit-Remaining: 995
-X-RateLimit-Reset: 1640000000
-```
+### Per-App Request Rate Limits
+
+| Plan       | Requests / second |
+| ---------- | ----------------- |
+| Community  | 100               |
+| Developer  | 1,000             |
+| Pro Teams  | 10,000            |
+| Enterprise | 100,000           |
+
+### Concurrent Query Limits
+
+These limits apply to SQL queries executed against your Spice runtime, not to management API calls.
+
+| Plan       | Concurrent Queries | Query Timeout |
+| ---------- | ------------------ | ------------- |
+| Developer  | 16                 | 90 seconds    |
+| Pro Teams  | 64                 | 5 minutes     |
+| Enterprise | 1,024              | 30 minutes    |
 
 ## Error Responses
 
@@ -150,7 +172,7 @@ The API uses standard HTTP status codes:
 
 ## Pagination
 
-List endpoints support pagination through query parameters:
+List endpoints support cursor-based pagination with the following query parameters:
 
 | Parameter | Type    | Default | Description                                  |
 | --------- | ------- | ------- | -------------------------------------------- |
@@ -159,13 +181,7 @@ List endpoints support pagination through query parameters:
 
 ## OpenAPI Specification
 
-Interactive API documentation is available at:
-
-```
-https://api.spice.ai/v1/docs
-```
-
-Download the OpenAPI specification:
+Browse the interactive API reference at `https://api.spice.ai/v1/docs`, or download the OpenAPI spec:
 
 ```
 https://api.spice.ai/v1/docs/openapi.json
@@ -192,7 +208,7 @@ Official SDKs are available for popular languages:
 
 ## Terraform Provider
 
-The Management API supports infrastructure-as-code workflows through the [Spice.ai Terraform Provider](terraform.md). See the [Terraform Provider](terraform.md) page for full documentation including resources, data sources, import, and complete examples.
+Manage Spice.ai resources as infrastructure-as-code with the [Spice.ai Terraform Provider](terraform.md). See the [Terraform Provider](terraform.md) page for resources, data sources, import instructions, and complete examples.
 
 ## Examples
 
@@ -244,7 +260,7 @@ curl -X POST https://api.spice.ai/v1/apps/123/secrets \
 
 ## Support
 
-For questions or issues with the Management API:
+Have questions or running into issues?
 - [GitHub Issues](https://github.com/spicehq/spiceai/issues)
 - [Community Discord](https://discord.gg/spiceai)
 - [Support](../../support/support.md)
