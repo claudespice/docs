@@ -12,4 +12,5 @@ Each app has a unique API Key and owned by individual accounts or [**organizatio
 
 * [Transfer an app to another organization](transfer.md)
 * [Connect an app with your existing GitHub repository](connect-github.md)
+* [Delete an app](delete.md)
 * [Create and toggle custom Dataset and Views](../datasets-and-views.md)

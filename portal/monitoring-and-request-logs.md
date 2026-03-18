@@ -7,24 +7,46 @@ icon: monitor-waveform
 
 # Monitoring
 
-Under the Monitoring tab, track your app requests, their status codes, and duration, in addition to the existing usage monitoring metrics dashboard.
+The **Monitoring** tab provides real-time visibility into your app's usage, request performance, and API activity. Use it to track request volume, identify failures, and debug issues.
 
-### Overview
+## Accessing Monitoring
 
-Monitor the success, failures, and durations of SQL queries, AI completions, Vector Searches, Embedding calculations, and accelerated dataset refreshes.
+1. Navigate to your Spice app in the [portal](https://spice.ai).
+2. Click the **Monitoring** tab in the app navigation sidebar.
+
+## Overview
+
+The Monitoring overview shows aggregate metrics for:
+
+- **SQL Queries** — total count, success/failure rate, and average duration.
+- **AI Completions** — LLM inference request metrics.
+- **Vector Searches** — embedding-based search request metrics.
+- **Embedding Calculations** — embedding generation metrics.
+- **Dataset Refreshes** — accelerated dataset refresh success and timing.
 
 <figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.28.01@2x.png" alt=""><figcaption><p>Monitoring Overview</p></figcaption></figure>
 
-### **Metrics Dashboards**
+## Usage Metrics Dashboard
 
-Track request volume, data usage, and query time at 1 hour, 24 hours, 7 days and 28 days granularity. Start by going to your app and navigating to the Monitoring tab.
+Track request volume, data usage, and query time across configurable time ranges.
+
+1. Open the **Monitoring** tab for your app.
+2. Select a time range: **1 hour**, **24 hours**, **7 days**, or **28 days**.
+3. Review the dashboard charts for request counts, data transferred, and query latency.
+
+Use the metrics dashboard to identify usage trends, detect spikes in query duration, and plan capacity.
 
 <figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.32.33@2x.png" alt=""><figcaption></figcaption></figure>
 
-### **API Request Logs**
+## API Request Logs
 
-Under the Monitoring tab, select Logs. You can then toggle between Metrics and Logs views.
+The request logs provide a detailed record of individual API requests to your app's endpoints, including status codes, durations, and timestamps.
 
-Within Logs, you have the option to retrieve API requests from the past hour, 8 hours, 24 hours, or up to the previous three days.
+1. Open the **Monitoring** tab for your app.
+2. Click **Logs** to switch from the Metrics view to the Logs view.
+3. Select a time range: **past hour**, **8 hours**, **24 hours**, or **up to 3 days**.
+4. Browse the log entries to inspect individual request details including endpoint, status code, and duration.
+
+Use request logs to debug failing queries, identify slow requests, and audit API usage.
 
 <figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.33.45@2x.png" alt=""><figcaption></figcaption></figure>
