@@ -13,7 +13,7 @@ description: Returns the bitwise AND of non-NULL input values.
 **Examples**
 
 <pre class="language-sql" data-title="BIT_AND example "><code class="lang-sql"><strong>SELECT BIT_AND(transaction_count)
-</strong>  FROM eth.recent_blocks
+</strong>  FROM taxi_trips
 
 -- EXPR$0
 -- 0
@@ -23,7 +23,7 @@ description: Returns the bitwise AND of non-NULL input values.
 ```sql
 SELECT gas_used, 
   BIT_AND(transaction_count)
-FROM eth.recent_blocks
+FROM taxi_trips
 GROUP BY gas_used
 
 -- total_amount, EXPR$1

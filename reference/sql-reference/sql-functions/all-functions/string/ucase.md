@@ -22,7 +22,7 @@ SELECT UCASE('a guide to data lakehouses')
 {% code title="UCASE example" %}
 ```sql
 SELECT DayOfWeek, UCASE(DayOfWeek) 
-  FROM eth.recent_blocks 
+  FROM taxi_trips 
   LIMIT 3
 
 -- DayOfWeek, EXPR$1

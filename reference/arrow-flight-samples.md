@@ -12,7 +12,7 @@ Queries can be sent and results retrieved as Pandas DataFrames. An example follo
 from pyarrow import flight
 
 apiKey = '[API_KEY]'
-query = 'SELECT * FROM eth.recent_blocks LIMIT 10;'
+query = 'SELECT * FROM taxi_trips LIMIT 10;'
 
 # Connect to the endpoint
 client = flight.connect(f'grpc+tls://flight.spiceai.io')

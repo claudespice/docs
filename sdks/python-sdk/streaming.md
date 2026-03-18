@@ -12,7 +12,7 @@ The object returned from `spicepy.Client.query()` is a [`pyarrow.flight.FlightSt
 >>> from spicepy import Client
 >>> import os
 >>> client = Client(os.environ["API_KEY"])
->>> rdr = client.query("SELECT * FROM eth.recent_blocks")
+>>> rdr = client.query("SELECT * FROM taxi_trips")
 <pyarrow._flight.FlightStreamReader object at 0x1059c9980>
 ```
 

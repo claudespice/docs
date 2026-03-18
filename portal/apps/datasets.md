@@ -1,12 +1,8 @@
 ---
-description: Datasets and Views (Beta)
+description: Datasets and Views
 ---
 
 # Datasets and Views
-
-{% hint style="info" %}
-Self-managed Datasets and Views is in beta for Design Partners. Get in touch for more info.
-{% endhint %}
 
 The Spice.ai platform supports a variety of data sources.
 
@@ -14,7 +10,7 @@ In addition, you can define and create your own private Datasets and Views, whic
 
 ### Defining a Dataset
 
-To define a dataset, first ensure your Spice app is connected to a [GitHub repository](link-github-repository-beta.md), then add a [dataset manifest](../../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
+To define a dataset, first ensure your Spice app is connected to a [GitHub repository](link-github-repository.md), then add a [dataset manifest](../../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
 
 For example:
 

@@ -24,7 +24,7 @@ LAST\_DAY example
 {% code title="LAST_DAY example" %}
 ```sql
 SELECT pickup_datetime, LAST_DAY(pickup_datetime) AS "last_day" 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 3
 
 -- pickup_datetime, last_day

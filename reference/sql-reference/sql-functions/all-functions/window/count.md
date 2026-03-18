@@ -15,7 +15,7 @@ description: Returns the total number of records for the specified expression.
 {% code title="Aggregate function example" %}
 ```sql
 SELECT COUNT(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 338293677
 ```
 {% endcode %}
@@ -25,7 +25,7 @@ FROM eth.recent_blocks
 SELECT "base_fee_per_gas",
   COUNT("total_gas_used") 
   OVER(PARTITION BY "base_fee_per_gas") "count_total_gas_used"
-FROM eth.recent_blocks
+FROM taxi_trips
 LIMIT 1
 
 -- base_fee_per_gas, count_total_gas_used

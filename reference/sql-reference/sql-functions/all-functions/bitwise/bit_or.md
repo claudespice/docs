@@ -15,7 +15,7 @@ description: Returns the bitwise OR of non-NULL input values.
 {% code title="BIT_OR example" %}
 ```sql
 SELECT BIT_OR(passenger_count)
-FROM eth.recent_blocks 
+FROM taxi_trips 
   
 -- EXPR$0
 -- 255
@@ -26,7 +26,7 @@ FROM eth.recent_blocks 
 ```sql
 SELECT total_gas_used, 
   BIT_OR(transaction_count)
-FROM eth.recent_blocks 
+FROM taxi_trips 
 GROUP BY total_gas_used
 
 -- total_gas_used, EXPR$1

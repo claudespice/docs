@@ -18,7 +18,7 @@ description: >-
 {% code title="STDDEV_POP example" %}
 ```sql
 SELECT STDDEV_POP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 2.259665030506379
 ```
 {% endcode %}
@@ -32,7 +32,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_POP example" %}
 ```sql
 SELECT STDDEV_POP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 2.259665030506379
 ```
 {% endcode %}
@@ -46,7 +46,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_POP example" %}
 ```sql
 SELECT STDDEV_POP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.367021462155777
 ```
 {% endcode %}
@@ -60,7 +60,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_POP example" %}
 ```sql
 SELECT STDDEV_POP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.367021462155777
 ```
 {% endcode %}

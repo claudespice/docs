@@ -21,7 +21,7 @@ description: >-
 {% code title="LISTAGG example" %}
 ```sql
 SELECT LISTAGG(city, '; ')
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- AGAWAM; CUSHMAN; BARRE; BELCHERTOWN; BLANDFORD; BRIMFIELD; CHESTER; CHESTERFIELD; CHICOPEE; CHICOPEE
 ```
@@ -31,7 +31,7 @@ FROM eth.recent_blocks
 ```sql
 SELECT LISTAGG(city, ', ') 
 WITHIN GROUP (ORDER BY city DESC) "city_list" 
-FROM eth.recent_blocks
+FROM taxi_trips
 
 -- city_list
 -- ZWOLLE; ZWINGLE; ZURICH; ZUNI; ZUNI; ZUMBROTA; ZORTMAN; ZOLFO SPRINGS; ZOE; ZOARVILLE; ZIRCONIA; ZIO
@@ -43,7 +43,7 @@ FROM eth.recent_blocks
 SELECT state,
 LISTAGG(DISTINCT city, '| ')
 WITHIN GROUP (ORDER BY city) "city_list"
-FROM eth.recent_blocks
+FROM taxi_trips
 GROUP BY state
 ORDER BY state DESC
 

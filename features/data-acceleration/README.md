@@ -37,8 +37,8 @@ Spice supports three modes to refresh/update locally accelerated data from a con
 
 ```yaml
 datasets:
-  - from: databricks:my_dataset
-    name: accelerated_dataset
+  - from: databricks:taxi_trips
+    name: taxi_trips
     acceleration:
       refresh_mode: full
       refresh_check_interval: 10m
@@ -52,8 +52,8 @@ Database indexes are essential for optimizing query performance. Configure index
 
 ```yaml
 datasets:
-  - from: spice.ai/eth.recent_blocks
-    name: eth.recent_blocks
+  - from: databricks:taxi_trips
+    name: taxi_trips
     acceleration:
       enabled: true
       engine: sqlite
@@ -72,8 +72,8 @@ Constraints are specified using [column references](https://docs.spiceai.org/#co
 
 ```yaml
 datasets:
-  - from: spice.ai/eth.recent_blocks
-    name: eth.recent_blocks
+  - from: databricks:taxi_trips
+    name: taxi_trips
     acceleration:
       enabled: true
       engine: sqlite

@@ -17,7 +17,7 @@ description: >-
 {% code title="HASH example" %}
 ```sql
 SELECT HASH(host_id)
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 5
 
 -- 1110609030

@@ -31,7 +31,7 @@ SELECT ISNUMERIC('Hello World!')
 {% code title="ISNUMERIC example" %}
 ```sql
 SELECT ISNUMERIC(transaction_count)
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 1 
 
 -- True

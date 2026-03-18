@@ -22,7 +22,7 @@ SELECT LCASE('A GUIDE to data Lakehouses')
 {% code title="LCASE example" %}
 ```sql
 SELECT Category, LCASE(Category) 
-  FROM eth.recent_blocks 
+  FROM taxi_trips 
   LIMIT 3
 
 -- Category, EXPR$1

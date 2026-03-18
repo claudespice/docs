@@ -17,7 +17,7 @@ description: Computes a specific percentile for sorted values in a column.
 ```sql
 SELECT PERCENTILE_DISC(0.6) WITHIN GROUP ( ORDER BY pop ASC ), 
 PERCENTILE_DISC(0.6) WITHIN GROUP ( ORDER BY pop DESC )
-FROM eth.recent_blocks 
+FROM taxi_trips 
 
 -- EXPR$0, EXPR$0
 -- 4520.0, 1806.0

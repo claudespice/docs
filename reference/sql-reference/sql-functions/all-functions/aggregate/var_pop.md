@@ -15,7 +15,7 @@ description: Returns the population variance of non-NULL records.
 {% code title="VAR_POP example" %}
 ```sql
 SELECT VAR_POP(pop) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.5167869917122573E8
 ```
 {% endcode %}
@@ -29,7 +29,7 @@ FROM eth.recent_blocks
 {% code title="VAR_POP example" %}
 ```sql
 SELECT VAR_POP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 181.26187022731304
 ```
 {% endcode %}
@@ -43,7 +43,7 @@ FROM eth.recent_blocks
 {% code title="VAR_POP example" %}
 ```sql
 SELECT VAR_POP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 181.26187022731304
 ```
 {% endcode %}
@@ -57,7 +57,7 @@ FROM eth.recent_blocks
 {% code title="VAR_POP example" %}
 ```sql
 SELECT VAR_POP(pop) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.5167869917122573E8
 ```
 {% endcode %}

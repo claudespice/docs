@@ -18,7 +18,7 @@ description: >-
 {% code title="STDDEV_SAMP example" %}
 ```sql
 SELECT STDDEV_SAMP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 2.259665033869644
 ```
 {% endcode %}
@@ -32,7 +32,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_SAMP example" %}
 ```sql
 SELECT STDDEV_SAMP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 2.259665033869644
 ```
 {% endcode %}
@@ -46,7 +46,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_SAMP example" %}
 ```sql
 SELECT STDDEV_SAMP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.3670214641762426
 ```
 {% endcode %}
@@ -60,7 +60,7 @@ FROM eth.recent_blocks
 {% code title="STDDEV_SAMP example" %}
 ```sql
 SELECT STDDEV_SAMP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.3670214641762426
 ```
 {% endcode %}

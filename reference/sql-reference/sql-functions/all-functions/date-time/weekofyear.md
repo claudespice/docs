@@ -22,7 +22,7 @@ SELECT WEEKOFYEAR('2003-02-01 11:43:22')
 {% code title="WEEKOFYEAR example" %}
 ```sql
 SELECT "Date", WEEKOFYEAR("Date") 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 3
 
 -- Date, EXPR$1

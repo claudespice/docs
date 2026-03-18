@@ -20,7 +20,7 @@ For example:
 
 ```yaml
 # .spice/datasets/recent_blocks.yml
-name: eth.recent_blocks
+name: taxi_trips
 type: append
 firecache:
   enabled: true
@@ -36,7 +36,7 @@ Once the manifest file is committed to the GitHub repository, navigate to the **
 
 Click the dataset **Deploy** button. Because this dataset was Firecache enabled, the firecache status will now turn to **Ready.**
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-10-24 at 5.48.15 PM.png" alt=""><figcaption><p>Deployed dataset eth.recent_blocks is now firecache Ready.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-10-24 at 5.48.15 PM.png" alt=""><figcaption><p>Deployed dataset is now firecache Ready.</p></figcaption></figure>
 
 ### View Dataset details
 

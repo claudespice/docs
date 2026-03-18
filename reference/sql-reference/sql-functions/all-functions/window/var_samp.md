@@ -15,7 +15,7 @@ description: Returns the sample variance of non-NULL records.
 {% code title="VAR_SAMP example" %}
 ```sql
 SELECT VAR_SAMP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.868747683518558
 ```
 {% endcode %}
@@ -29,7 +29,7 @@ FROM eth.recent_blocks
 {% code title="VAR_SAMP example" %}
 ```sql
 SELECT VAR_SAMP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 5.106086065187043
 ```
 {% endcode %}
@@ -43,7 +43,7 @@ FROM eth.recent_blocks
 {% code title="VAR_SAMP example" %}
 ```sql
 SELECT VAR_SAMP(gas_used) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 5.106086065187043
 ```
 {% endcode %}
@@ -57,7 +57,7 @@ FROM eth.recent_blocks
 {% code title="VAR_SAMP example" %}
 ```sql
 SELECT VAR_SAMP(transaction_count) 
-FROM eth.recent_blocks
+FROM taxi_trips
 -- 1.868747683518558
 ```
 {% endcode %}

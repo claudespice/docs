@@ -33,7 +33,7 @@ SELECT NEXT_DAY('2015-01-14 12:05:55', 'TU')
 {% code title="NEXT_DAY example" %}
 ```sql
 SELECT pickup_datetime, NEXT_DAY(pickup_datetime, 'FRIDAY') AS "next_day" 
-FROM eth.recent_blocks 
+FROM taxi_trips 
 LIMIT 3
 
 -- pickup_datetime, next_day

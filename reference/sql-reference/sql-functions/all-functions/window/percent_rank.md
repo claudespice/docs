@@ -24,7 +24,7 @@ SELECT "Category",
     OVER (
       PARTITION BY "Category" 
       ORDER BY "DayOfWeek")
-FROM eth.recent_blocks 
+FROM taxi_trips 
 
 -- Category, Descript, DayOfWeek, EXPR$3
 -- ARSON, ARSON, Friday, 0.0 
