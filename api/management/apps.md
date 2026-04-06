@@ -164,7 +164,7 @@ Creates a new app in the authenticated organization.
 | `update_channel`        | string         | `stable`, `nightly`, `internal`, or `internal-sandbox` |
 | `replicas`              | integer        | Number of replicas (1-10)                              |
 | `region`                | string \| null | AWS region code                                        |
-| `node_group`            | string \| null | Kubernetes node group                                  |
+| `node_group`            | string \| null | Node group for deployment                              |
 | `storage_claim_size_gb` | number \| null | Persistent volume size                                 |
 {% endtab %}
 
@@ -386,7 +386,7 @@ Updates an app's metadata and configuration. All fields are optional.
 | `update_channel`        | string           | `stable`, `nightly`, `internal`, or `internal-sandbox` |
 | `replicas`              | integer          | Number of replicas (1-10)                              |
 | `region`                | string           | AWS region code                                        |
-| `node_group`            | string           | Kubernetes node group                                  |
+| `node_group`            | string           | Node group for deployment                              |
 | `storage_claim_size_gb` | number           | Persistent volume size                                 |
 
 ### Response
