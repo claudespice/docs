@@ -41,16 +41,22 @@ Returns a list of available regions where apps can be deployed.
 }
 ```
 
-**Response Fields:**
+**Response Object:**
+
+| Field     | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| `regions` | array  | List of available region objects |
+| `default` | string | The default region identifier    |
+
+**Region Object:**
 
 | Field          | Type   | Description                                   |
 | -------------- | ------ | --------------------------------------------- |
 | `name`         | string | Human-readable region name                    |
 | `region`       | string | Region identifier                             |
-| `cname`        | string | Region identifier used when creating apps     |
+| `cname`        | string | Region CNAME identifier                       |
 | `provider`     | string | Cloud provider (`aws`, `azure`, `teraswitch`) |
 | `providerName` | string | Human-readable provider name                  |
-| `default`      | string | The default region identifier                 |
 {% endtab %}
 
 {% tab title="401: Unauthorized" %}
@@ -133,7 +139,7 @@ console.log('Available regions:', data.regions);
 
 ## Using Regions
 
-When creating an app, use the `cname` field from the regions response:
+When creating an app, use the `region` field from the regions response:
 
 ```bash
 curl -X POST https://api.spice.ai/v1/apps \
@@ -141,7 +147,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-west-2-prod-aws-data"
+    "region": "us-west-2"
   }'
 ```
 
@@ -154,5 +160,5 @@ Consider these factors when selecting a region:
 - **Availability:** Check region availability for your plan tier
 
 {% hint style="info" %}
-The default region (`us-east-2`) is recommended for most use cases.
-{% endhint %}
+The default region (`us-west-2`) is recommended for most use cases.
+{% endhint %}`
