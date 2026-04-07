@@ -204,6 +204,7 @@ Official SDKs are available for popular languages:
 - [Secrets](secrets.md) - Manage app secrets
 - [API Keys](api-keys.md) - Manage app API keys
 - [Members](members.md) - Manage organization members
+- [Metrics](metrics.md) - Scrape per-app runtime metrics
 - [Container Images](container-images.md) - List available runtime versions
 
 ## Terraform Provider
