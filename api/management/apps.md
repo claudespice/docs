@@ -107,7 +107,6 @@ Creates a new app in the authenticated organization.
 | `visibility`     | string | No       | `public` or `private` (default: `private`)             |
 | `tags`           | object | No       | Key-value tags for organization                        |
 | `update_channel` | string | No       | `stable` (default), `preview`, or `nightly`            |
-| `resources`      | object | No       | CPU/memory resource requests                           |
 | `executor`       | object | No       | Executor configuration                                 |
 
 ### Response
@@ -128,13 +127,10 @@ Creates a new app in the authenticated organization.
   },
   "config": {
     "spicepod": null,
-    "registry": "ghcr.io",
-    "image": null,
     "image_tag": null,
     "update_channel": "stable",
     "replicas": 1,
     "region": null,
-    "node_group": null,
     "storage_claim_size_gb": null
   }
 }
@@ -302,13 +298,10 @@ Returns details for a specific app, including its configuration.
         }
       ]
     },
-    "registry": "ghcr.io",
-    "image": "spiceai/spiceai",
     "image_tag": "v0.17.0",
     "update_channel": "stable",
     "replicas": 2,
     "region": "us-west-2",
-    "node_group": null,
     "storage_size_gb": 10
   }
 }
@@ -333,15 +326,10 @@ Returns details for a specific app, including its configuration.
 | Field             | Type           | Description                                                          |
 | ----------------- | -------------- | -------------------------------------------------------------------- |
 | `spicepod`        | object \| null | Spicepod YAML configuration                                          |
-| `registry`        | string         | Container registry (e.g., `ghcr.io`)                                 |
-| `image`           | string \| null | Container image name                                                 |
 | `image_tag`       | string \| null | Spice runtime version tag                                            |
 | `update_channel`  | string         | `stable`, `nightly`, `internal`, or `internal-sandbox`               |
 | `replicas`        | integer        | Number of replicas (1-10)                                            |
-| `resources`       | object \| null | CPU/memory resource requests                                         |
-| `executor`        | object \| null | Executor configuration                                               |
 | `region`          | string \| null | AWS region code                                                      |
-| `node_group`      | string \| null | Kubernetes node group                                                |
 | `storage_size_gb` | number \| null | Persistent volume size in GB (`storage_claim_size_gb` is deprecated) |
 {% endtab %}
 
@@ -408,14 +396,9 @@ Updates an app's metadata and configuration. All fields are optional.
 | `tags`            | object           | Key-value tags                                         |
 | `spicepod`        | string \| object | Spicepod YAML string or JSON object                    |
 | `image_tag`       | string           | Spice runtime version                                  |
-| `image`           | string           | Container image name                                   |
-| `registry`        | string           | Container registry                                     |
 | `update_channel`  | string           | `stable` (default), `preview`, or `nightly`            |
 | `replicas`        | integer          | Number of replicas (1-10)                              |
 | `region`          | string           | AWS region code                                        |
-| `node_group`      | string           | Kubernetes node group                                  |
-| `resources`       | object           | CPU/memory resource requests                           |
-| `executor`        | object           | Executor configuration                                 |
 | `storage_size_gb` | number           | Persistent volume size in GB                           |
 
 ### Response
@@ -441,15 +424,10 @@ Updates an app's metadata and configuration. All fields are optional.
       "name": "my-app",
       "datasets": []
     },
-    "registry": "ghcr.io",
-    "image": "spiceai/spiceai",
     "image_tag": "v0.17.1",
     "update_channel": "stable",
     "replicas": 3,
-    "resources": null,
-    "executor": null,
     "region": "us-west-2",
-    "node_group": null,
     "storage_size_gb": 20
   }
 }
@@ -474,15 +452,10 @@ Updates an app's metadata and configuration. All fields are optional.
 | Field             | Type           | Description                                                          |
 | ----------------- | -------------- | -------------------------------------------------------------------- |
 | `spicepod`        | object \| null | Spicepod YAML configuration                                          |
-| `registry`        | string         | Container registry (e.g., `ghcr.io`)                                 |
-| `image`           | string \| null | Container image name                                                 |
 | `image_tag`       | string \| null | Spice runtime version tag                                            |
 | `update_channel`  | string           | `stable` (default), `preview`, or `nightly`            |
-| `replicas`        | integer        | Number of replicas (1-10)                                            |
-| `resources`       | object \| null | CPU/memory resource requests                                         |
 | `executor`        | object \| null | Executor configuration                                               |
 | `region`          | string \| null | AWS region code                                                      |
-| `node_group`      | string \| null | Kubernetes node group                                                |
 | `storage_size_gb` | number \| null | Persistent volume size in GB (`storage_claim_size_gb` is deprecated) |
 {% endtab %}
 
