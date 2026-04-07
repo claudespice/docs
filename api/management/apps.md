@@ -29,7 +29,6 @@ Returns a list of apps for the authenticated organization.
       "visibility": "private",
       "created_at": "2024-01-15T10:00:00.000Z",
       "cname": "us-west-2-prod-aws-data",
-      "api_key": "abc123...",
       "tags": {
         "environment": "production",
         "team": "data"
@@ -41,16 +40,15 @@ Returns a list of apps for the authenticated organization.
 
 **Response Fields:**
 
-| Field         | Type           | Description                                  |
-| ------------- | -------------- | -------------------------------------------- |
-| `id`          | integer        | Unique app identifier                        |
-| `name`        | string         | App name                                     |
-| `description` | string \| null | App description                              |
-| `visibility`  | string         | `public` or `private`                        |
-| `created_at`  | string         | ISO 8601 timestamp                           |
-| `cname`       | string         | Region identifier                            |
-| `api_key`     | string \| null | Primary API key (for runtime authentication) |
-| `tags`        | object \| null | Key-value tags                               |
+| Field         | Type           | Description            |
+| ------------- | -------------- | ---------------------- |
+| `id`          | integer        | Unique app identifier  |
+| `name`        | string         | App name               |
+| `description` | string \| null | App description        |
+| `visibility`  | string         | `public` or `private`  |
+| `created_at`  | string         | ISO 8601 timestamp     |
+| `cname`       | string         | Region identifier      |
+| `tags`        | object \| null | Key-value tags         |
 {% endtab %}
 
 {% tab title="401: Unauthorized" %}
@@ -90,7 +88,7 @@ Creates a new app in the authenticated organization.
 ```json
 {
   "name": "my-app",
-  "cname": "us-west-2-prod-aws-data",
+  "region": "us-west-2",
   "description": "My Spice app",
   "visibility": "private",
   "tags": {
@@ -101,13 +99,15 @@ Creates a new app in the authenticated organization.
 
 **Request Fields:**
 
-| Field         | Type   | Required | Description                                           |
-| ------------- | ------ | -------- | ----------------------------------------------------- |
-| `name`        | string | **Yes**  | App name (min 4 chars, alphanumeric and hyphens only) |
-| `cname`       | string | **Yes**  | Region identifier (get from `/v1/regions`)            |
-| `description` | string | No       | App description                                       |
-| `visibility`  | string | No       | `public` or `private` (default: `private`)            |
-| `tags`        | object | No       | Key-value tags for organization                       |
+| Field            | Type   | Required | Description                                            |
+| ---------------- | ------ | -------- | ------------------------------------------------------ |
+| `name`           | string | **Yes**  | App name (min 4 chars, alphanumeric and hyphens only)  |
+| `region`         | string | **Yes**  | AWS region code (get from `/v1/regions`)               |
+| `description`    | string | No       | App description                                        |
+| `visibility`     | string | No       | `public` or `private` (default: `private`)             |
+| `tags`           | object | No       | Key-value tags for organization                        |
+| `update_channel` | string | No       | `stable` (default), `preview`, or `nightly`            |
+| `executor`       | object | No       | Executor configuration                                 |
 
 ### Response
 
@@ -120,20 +120,17 @@ Creates a new app in the authenticated organization.
   "description": "My Spice app",
   "visibility": "private",
   "created_at": "2024-01-15T10:00:00.000Z",
+  "cname": "us-west-2-prod-aws-data",
   "production_branch": null,
-  "api_key": "abc123...",
   "tags": {
     "environment": "production"
   },
   "config": {
     "spicepod": null,
-    "registry": "ghcr.io",
-    "image": null,
     "image_tag": null,
     "update_channel": "stable",
     "replicas": 1,
     "region": null,
-    "node_group": null,
     "storage_claim_size_gb": null
   }
 }
@@ -148,24 +145,20 @@ Creates a new app in the authenticated organization.
 | `description`       | string \| null | App description                             |
 | `visibility`        | string         | `public` or `private`                       |
 | `created_at`        | string         | ISO 8601 timestamp                          |
+| `cname`             | string         | Region identifier                           |
 | `production_branch` | string \| null | Git branch for production deployments       |
-| `api_key`           | string         | Primary API key                             |
 | `tags`              | object \| null | Key-value tags                              |
 | `config`            | object         | App configuration (see Config Object below) |
 
 **Config Object:**
 
-| Field                   | Type           | Description                                            |
-| ----------------------- | -------------- | ------------------------------------------------------ |
-| `spicepod`              | object \| null | Spicepod YAML configuration                            |
-| `registry`              | string         | Container registry (e.g., `ghcr.io`)                   |
-| `image`                 | string \| null | Container image name                                   |
-| `image_tag`             | string \| null | Spice runtime version tag                              |
-| `update_channel`        | string         | `stable`, `nightly`, `internal`, or `internal-sandbox` |
-| `replicas`              | integer        | Number of replicas (1-10)                              |
-| `region`                | string \| null | AWS region code                                        |
-| `node_group`            | string \| null | Kubernetes node group                                  |
-| `storage_claim_size_gb` | number \| null | Persistent volume size                                 |
+| Field             | Type           | Description                                                                  |
+| ----------------- | -------------- | ---------------------------------------------------------------------------- |
+| `spicepod`        | object \| null | Spicepod YAML configuration                                                  |
+| `image_tag`       | string \| null | Spice runtime version tag                                                    |
+| `update_channel`  | string         | `stable`, `nightly`, `internal`, or `internal-sandbox`                       |
+| `replicas`        | integer        | Number of replicas (1-10)                                                    |
+| `storage_size_gb` | number \| null | Persistent volume size in GB (`storage_claim_size_gb` is deprecated)         |
 {% endtab %}
 
 {% tab title="400: Bad Request" %}
@@ -208,7 +201,7 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-west-2-prod-aws-data",
+    "region": "us-west-2",
     "description": "My production app",
     "visibility": "private",
     "tags": {
@@ -231,7 +224,7 @@ response = requests.post(
     },
     json={
         "name": "my-app",
-        "cname": "us-west-2-prod-aws-data",
+        "region": "us-west-2",
         "description": "My production app"
     }
 )
@@ -251,7 +244,7 @@ const response = await fetch('https://api.spice.ai/v1/apps', {
   },
   body: JSON.stringify({
     name: 'my-app',
-    cname: 'us-west-2-prod-aws-data',
+    region: 'us-west-2',
     description: 'My production app'
   })
 });
@@ -305,17 +298,39 @@ Returns details for a specific app, including its configuration.
         }
       ]
     },
-    "registry": "ghcr.io",
-    "image": "spiceai/spiceai",
     "image_tag": "v0.17.0",
     "update_channel": "stable",
     "replicas": 2,
-    "region": "us-east-2",
-    "node_group": null,
-    "storage_claim_size_gb": 10
+    "region": "us-west-2",
+    "storage_size_gb": 10
   }
 }
 ```
+
+**Response Fields:**
+
+| Field               | Type           | Description                                  |
+| ------------------- | -------------- | -------------------------------------------- |
+| `id`                | integer        | Unique app identifier                        |
+| `name`              | string         | App name                                     |
+| `description`       | string \| null | App description                              |
+| `visibility`        | string         | `public` or `private`                        |
+| `created_at`        | string         | ISO 8601 timestamp                           |
+| `production_branch` | string \| null | Git branch for production deployments        |
+| `api_key`           | string \| null | Primary API key (for runtime authentication) |
+| `tags`              | object \| null | Key-value tags                               |
+| `config`            | object         | App configuration (see Config Object below)  |
+
+**Config Object:**
+
+| Field             | Type           | Description                                                          |
+| ----------------- | -------------- | -------------------------------------------------------------------- |
+| `spicepod`        | object \| null | Spicepod YAML configuration                                          |
+| `image_tag`       | string \| null | Spice runtime version tag                                            |
+| `update_channel`  | string         | `stable`, `nightly`, `internal`, or `internal-sandbox`               |
+| `replicas`        | integer        | Number of replicas (1-10)                                            |
+| `region`          | string \| null | AWS region code                                                      |
+| `storage_size_gb` | number \| null | Persistent volume size in GB (`storage_claim_size_gb` is deprecated) |
 {% endtab %}
 
 {% tab title="404: Not Found" %}
@@ -367,27 +382,24 @@ Updates an app's metadata and configuration. All fields are optional.
   "image_tag": "v0.17.1",
   "replicas": 3,
   "region": "us-west-2",
-  "storage_claim_size_gb": 20
+  "storage_size_gb": 20
 }
 ```
 
 **Request Fields:**
 
-| Field                   | Type             | Description                                            |
-| ----------------------- | ---------------- | ------------------------------------------------------ |
-| `description`           | string           | App description                                        |
-| `visibility`            | string           | `public` or `private`                                  |
-| `production_branch`     | string           | Git branch for production                              |
-| `tags`                  | object           | Key-value tags                                         |
-| `spicepod`              | string \| object | Spicepod YAML string or JSON object                    |
-| `image_tag`             | string           | Spice runtime version                                  |
-| `image`                 | string           | Container image name                                   |
-| `registry`              | string           | Container registry                                     |
-| `update_channel`        | string           | `stable`, `nightly`, `internal`, or `internal-sandbox` |
-| `replicas`              | integer          | Number of replicas (1-10)                              |
-| `region`                | string           | AWS region code                                        |
-| `node_group`            | string           | Kubernetes node group                                  |
-| `storage_claim_size_gb` | number           | Persistent volume size                                 |
+| Field             | Type             | Description                                            |
+| ----------------- | ---------------- | ------------------------------------------------------ |
+| `description`     | string           | App description                                        |
+| `visibility`      | string           | `public` or `private`                                  |
+| `production_branch` | string         | Git branch for production                              |
+| `tags`            | object           | Key-value tags                                         |
+| `spicepod`        | string \| object | Spicepod YAML string or JSON object                    |
+| `image_tag`       | string           | Spice runtime version                                  |
+| `update_channel`  | string           | `stable` (default), `preview`, or `nightly`            |
+| `replicas`        | integer          | Number of replicas (1-10)                              |
+| `region`          | string           | AWS region code                                        |
+| `storage_size_gb` | number           | Persistent volume size in GB                           |
 
 ### Response
 
@@ -412,17 +424,39 @@ Updates an app's metadata and configuration. All fields are optional.
       "name": "my-app",
       "datasets": []
     },
-    "registry": "ghcr.io",
-    "image": "spiceai/spiceai",
     "image_tag": "v0.17.1",
     "update_channel": "stable",
     "replicas": 3,
     "region": "us-west-2",
-    "node_group": null,
-    "storage_claim_size_gb": 20
+    "storage_size_gb": 20
   }
 }
 ```
+
+**Response Fields:**
+
+| Field               | Type           | Description                                  |
+| ------------------- | -------------- | -------------------------------------------- |
+| `id`                | integer        | Unique app identifier                        |
+| `name`              | string         | App name                                     |
+| `description`       | string \| null | App description                              |
+| `visibility`        | string         | `public` or `private`                        |
+| `created_at`        | string         | ISO 8601 timestamp                           |
+| `production_branch` | string \| null | Git branch for production deployments        |
+| `api_key`           | string \| null | Primary API key (for runtime authentication) |
+| `tags`              | object \| null | Key-value tags                               |
+| `config`            | object         | App configuration (see Config Object below)  |
+
+**Config Object:**
+
+| Field             | Type           | Description                                                          |
+| ----------------- | -------------- | -------------------------------------------------------------------- |
+| `spicepod`        | object \| null | Spicepod YAML configuration                                          |
+| `image_tag`       | string \| null | Spice runtime version tag                                            |
+| `update_channel`  | string           | `stable` (default), `preview`, or `nightly`            |
+| `executor`        | object \| null | Executor configuration                                               |
+| `region`          | string \| null | AWS region code                                                      |
+| `storage_size_gb` | number \| null | Persistent volume size in GB (`storage_claim_size_gb` is deprecated) |
 {% endtab %}
 
 {% tab title="400: Bad Request" %}
@@ -575,7 +609,7 @@ Use the `spiceai_app` resource to manage apps. See [Terraform Provider](terrafor
 ```hcl
 resource "spiceai_app" "example" {
   name       = "my-app"
-  cname      = "us-west-2-prod-aws-data"
+  region     = "us-west-2"
   visibility = "private"
 
   spicepod = <<-YAML
