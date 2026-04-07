@@ -5,7 +5,7 @@ icon: dog
 
 # Datadog
 
-Spice Cloud can be monitored with Datadog using the [Metrics endpoint](../api/management/metrics.md) and a pre-built dashboard available in the [Spice repository](https://github.com/spiceai/spiceai/blob/trunk/monitoring/datadog-dashboard.json).
+Spice Cloud can be monitored with Datadog using the [Metrics endpoint](../api/metrics.md) and a pre-built dashboard available in the [Spice repository](https://github.com/spiceai/spiceai/blob/trunk/monitoring/datadog-dashboard.json).
 
 ## Datadog Agent Configuration
 
@@ -41,5 +41,5 @@ The dashboard provides panels for system health, query performance, data acceler
 
 See also:
 
-- [Metrics API](../api/management/metrics.md) - Endpoint reference and full list of available metrics
-- [Grafana & Prometheus](grafana.md) - Alternative monitoring with Grafana
+* [Metrics API](../api/metrics.md) - Endpoint reference and full list of available metrics
+* [Grafana & Prometheus](grafana.md) - Alternative monitoring with Grafana

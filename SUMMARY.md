@@ -78,9 +78,9 @@
   * [Secrets](api/management/secrets.md)
   * [API Keys](api/management/api-keys.md)
   * [Members](api/management/members.md)
-  * [Metrics](api/management/metrics.md)
   * [Container Images](api/management/container-images.md)
   * [Terraform Provider](api/management/terraform.md)
+* [Metrics API](api/metrics.md)
 * [Health API](api/health.md)
 
 ## Portal

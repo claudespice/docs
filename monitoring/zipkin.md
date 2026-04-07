@@ -18,10 +18,10 @@ runtime:
     zipkin_endpoint: "http://your_zipkin_host:9411/api/v2/spans"
 ```
 
-| Parameter          | Default | Description                                                                 |
-| ------------------ | ------- | --------------------------------------------------------------------------- |
-| `zipkin_enabled`   | `false` | Enables or disables Zipkin trace export.                                    |
-| `zipkin_endpoint`  | —       | Required if enabled. The `/api/v2/spans` endpoint on your Zipkin instance.  |
+| Parameter         | Default | Description                                                                |
+| ----------------- | ------- | -------------------------------------------------------------------------- |
+| `zipkin_enabled`  | `false` | Enables or disables Zipkin trace export.                                   |
+| `zipkin_endpoint` | —       | Required if enabled. The `/api/v2/spans` endpoint on your Zipkin instance. |
 
 Trace data will be available in the Zipkin UI at `http://your_zipkin_host:9411`. See the [Zipkin Quickstart](https://zipkin.io/pages/quickstart) to run a test server.
 
@@ -29,15 +29,15 @@ Trace data will be available in the Zipkin UI at `http://your_zipkin_host:9411`.
 
 A trace in Spice represents a completed task. Each trace is a unique span recording execution time, inputs, outputs, and errors.
 
-| Field                  | Description                                           |
-| ---------------------- | ----------------------------------------------------- |
-| `trace_id`             | Unique identifier for the trace                       |
-| `span_id`              | Unique identifier for the span                        |
-| `task`                 | Task type (e.g. `sql_query`, `text_embed`, `health`)  |
-| `start_time`           | When the task started                                 |
-| `end_time`             | When the task completed                               |
-| `execution_duration_ms`| Execution duration in milliseconds                    |
-| `error_message`        | Error details, if the task failed                     |
+| Field                   | Description                                          |
+| ----------------------- | ---------------------------------------------------- |
+| `trace_id`              | Unique identifier for the trace                      |
+| `span_id`               | Unique identifier for the span                       |
+| `task`                  | Task type (e.g. `sql_query`, `text_embed`, `health`) |
+| `start_time`            | When the task started                                |
+| `end_time`              | When the task completed                              |
+| `execution_duration_ms` | Execution duration in milliseconds                   |
+| `error_message`         | Error details, if the task failed                    |
 
 Example trace data:
 
@@ -54,5 +54,5 @@ For more details, see [Task History](../features/observability/task-history.md).
 
 See also:
 
-- [Portal Monitoring](portal.md) - Built-in monitoring in the Spice.ai portal
-- [Metrics API](../api/management/metrics.md) - Prometheus-compatible metrics endpoint
+* [Portal Monitoring](portal.md) - Built-in monitoring in the Spice.ai portal
+* [Metrics API](../api/metrics.md) - Prometheus-compatible metrics endpoint

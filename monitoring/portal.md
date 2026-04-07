@@ -3,7 +3,7 @@ description: Monitor Spice Cloud apps from the Spice.ai portal
 icon: browser
 ---
 
-# Portal Monitoring
+# Portal
 
 The Spice.ai Cloud portal includes a built-in monitoring dashboard — no external tools or configuration required.
 
@@ -11,11 +11,11 @@ The Spice.ai Cloud portal includes a built-in monitoring dashboard — no extern
 
 The **Monitoring** tab in your app provides real-time visibility into usage, request performance, and API activity:
 
-- **SQL Queries** — total count, success/failure rate, and average duration
-- **AI Completions** — LLM inference request metrics
-- **Vector Searches** — embedding-based search request metrics
-- **Embedding Calculations** — embedding generation metrics
-- **Dataset Refreshes** — accelerated dataset refresh success and timing
+* **SQL Queries** — total count, success/failure rate, and average duration
+* **AI Completions** — LLM inference request metrics
+* **Vector Searches** — embedding-based search request metrics
+* **Embedding Calculations** — embedding generation metrics
+* **Dataset Refreshes** — accelerated dataset refresh success and timing
 
 ### Accessing the Dashboard
 
@@ -39,6 +39,6 @@ For full details, see the [Portal Monitoring](../portal/monitoring-and-request-l
 
 See also:
 
-- [Metrics API](../api/management/metrics.md) - Scrape metrics programmatically for external dashboards
-- [Grafana & Prometheus](grafana.md) - Self-hosted monitoring with Grafana
-- [Datadog](datadog.md) - Monitoring with Datadog
+* [Metrics API](../api/metrics.md) - Scrape metrics programmatically for external dashboards
+* [Grafana & Prometheus](grafana.md) - Self-hosted monitoring with Grafana
+* [Datadog](datadog.md) - Monitoring with Datadog
