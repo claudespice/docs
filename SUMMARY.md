@@ -78,6 +78,7 @@
   * [Secrets](api/management/secrets.md)
   * [API Keys](api/management/api-keys.md)
   * [Members](api/management/members.md)
+  * [Metrics](api/management/metrics.md)
   * [Container Images](api/management/container-images.md)
   * [Terraform Provider](api/management/terraform.md)
 * [Health API](api/health.md)
@@ -132,6 +133,14 @@
 * [Rust SDK](sdks/rust-sdk/README.md)
 * [Dotnet SDK](sdks/dotnet-sdk.md)
 * [Java SDK](sdks/java-sdk.md)
+
+## Monitoring
+
+* [Monitoring](monitoring/README.md)
+  * [Portal](monitoring/portal.md)
+  * [Grafana & Prometheus](monitoring/grafana.md)
+  * [Datadog](monitoring/datadog.md)
+  * [Zipkin](monitoring/zipkin.md)
 
 ## Integrations
 
