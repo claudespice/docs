@@ -20,6 +20,10 @@ The `from` field for the ClickHouse connector takes the form of `from:db.dataset
 
 If `db` is not specified in either the `from` field or the `clickhouse_db` parameter, it will default to the `default` database.
 
+{% hint style="info" %}
+Unquoted identifiers are normalized to lowercase. To reference a table or database with mixed-case characters, wrap each case-sensitive part in double quotes: `clickhouse:my_db."MixedCaseTable"`. See [Identifier Case Sensitivity](README.md#identifier-case-sensitivity-and-quoting).
+{% endhint %}
+
 ### `name`
 
 The dataset name. This will be used as the table name within Spice.
