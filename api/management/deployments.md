@@ -5,7 +5,7 @@ icon: rocket
 
 # Deployments API
 
-Deployments represent versions of your app that are deployed to the Spice runtime. Each deployment creates or updates a Kubernetes deployment with your app's spicepod configuration.
+Deployments represent versions of your app that are deployed to the Spice runtime. Each deployment creates or updates a running instance with your app's spicepod configuration.
 
 ## List Deployments
 

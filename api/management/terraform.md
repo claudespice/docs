@@ -124,7 +124,7 @@ resource "spiceai_app" "app" {
 | ------------ | ---------------------------------------------- |
 | `id`         | App ID                                         |
 | `api_key`    | Primary API key (sensitive)                    |
-| `cluster_id` | Kubernetes cluster identifier                  |
+| `cluster_id` | Cluster identifier                             |
 | `created_at` | Timestamp when the app was created             |
 
 The `spicepod` can also be provided as JSON or loaded from a template file:
