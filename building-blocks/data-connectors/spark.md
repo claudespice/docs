@@ -14,6 +14,10 @@ datasets:
       spark_remote: sc://my-spark-endpoint
 ```
 
+{% hint style="info" %}
+Unquoted identifiers are normalized to lowercase. To reference a table with mixed-case characters, wrap each case-sensitive part in double quotes: `spark:my_catalog."MySchema"."MyTable"`. See [Identifier Case Sensitivity](README.md#identifier-case-sensitivity-and-quoting).
+{% endhint %}
+
 ## Configuration
 
 * `spark_remote`: A [spark remote](https://spark.apache.org/docs/latest/spark-connect-overview.html#set-sparkremote-environment-variable) connection URI. Refer to [spark connect client connection string](https://github.com/apache/spark/blob/master/connector/connect/docs/client-connection-string.md) for parameters in URI.
