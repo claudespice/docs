@@ -35,6 +35,10 @@ datasets:
     params: ...
 ```
 
+{% hint style="info" %}
+Unquoted identifiers are normalized to lowercase. To reference a table or schema with mixed-case characters, wrap each case-sensitive part in double quotes: `postgres:my_schema."MixedCaseTable"`. See [Identifier Case Sensitivity](README.md#identifier-case-sensitivity-and-quoting).
+{% endhint %}
+
 ### `name`
 
 The dataset name. This will be used as the table name within Spice.

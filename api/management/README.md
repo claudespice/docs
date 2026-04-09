@@ -28,10 +28,12 @@ The Management API supports three authentication methods:
 ### 1. Personal Access Tokens (PATs)
 
 PATs are long-lived, user-scoped tokens. Recommended for:
-- CLI tools and automation scripts
-- Personal integrations
+
+* CLI tools and automation scripts
+* Personal integrations
 
 **Creating a PAT:**
+
 1. Sign in to [Spice.ai Cloud Portal](https://spice.ai)
 2. Navigate to **Profile** → **Personal Access Tokens**
 3. Click **Create Token**
@@ -50,10 +52,11 @@ Learn more: [Personal Access Tokens](../../portal/profile/personal-access-tokens
 ### 2. OAuth 2.0 Client Credentials
 
 OAuth client credentials are organization-scoped tokens. Ideal for:
-- CI/CD pipelines
-- Service-to-service authentication
-- Multi-tenant applications
-- Third-party integrations
+
+* CI/CD pipelines
+* Service-to-service authentication
+* Multi-tenant applications
+* Third-party integrations
 
 **Step 1 — Exchange client credentials for an access token:**
 
@@ -113,8 +116,9 @@ Access to API resources is controlled through scopes. PATs and OAuth clients mus
 | `members:delete`    | Remove organization members                                   |
 
 **Scope hierarchy:**
-- A write scope automatically includes its corresponding read scope (e.g. `apps:write` implies `apps:read`).
-- The wildcard scope (`*`) grants all permissions.
+
+* A write scope automatically includes its corresponding read scope (e.g. `apps:write` implies `apps:read`).
+* The wildcard scope (`*`) grants all permissions.
 
 ## Rate Limiting
 
@@ -190,21 +194,23 @@ https://api.spice.ai/v1/docs/openapi.json
 ## SDK Support
 
 Official SDKs are available for popular languages:
-- [Python SDK](../../sdks/python-sdk/)
-- [Node.js SDK](../../sdks/node.js-sdk/)
-- [Go SDK](../../sdks/go.md)
-- [Rust SDK](../../sdks/rust-sdk/)
+
+* [Python SDK](../../sdks/python-sdk/)
+* [Node.js SDK](../../sdks/node.js-sdk)
+* [Go SDK](../../sdks/go.md)
+* [Rust SDK](../../sdks/rust-sdk/)
 
 ## Endpoints
 
-- [Health](health.md) - API health check
-- [Regions](regions.md) - List available deployment regions
-- [Apps](apps.md) - Manage Spice apps
-- [Deployments](deployments.md) - Deploy and manage app deployments
-- [Secrets](secrets.md) - Manage app secrets
-- [API Keys](api-keys.md) - Manage app API keys
-- [Members](members.md) - Manage organization members
-- [Container Images](container-images.md) - List available runtime versions
+* [Health](health.md) - API health check
+* [Regions](regions.md) - List available deployment regions
+* [Apps](apps.md) - Manage Spice apps
+* [Deployments](deployments.md) - Deploy and manage app deployments
+* [Secrets](secrets.md) - Manage app secrets
+* [API Keys](api-keys.md) - Manage app API keys
+* [Members](members.md) - Manage organization members
+* [Metrics](../metrics.md) - Scrape per-app runtime metrics
+* [Container Images](container-images.md) - List available runtime versions
 
 ## Terraform Provider
 
@@ -261,6 +267,7 @@ curl -X POST https://api.spice.ai/v1/apps/123/secrets \
 ## Support
 
 Have questions or running into issues?
-- [GitHub Issues](https://github.com/spicehq/spiceai/issues)
-- [Community Discord](https://discord.gg/spiceai)
-- [Support](../../support/support.md)
+
+* [GitHub Issues](https://github.com/spicehq/spiceai/issues)
+* [Community Discord](https://discord.gg/spiceai)
+* [Support](../../support/support.md)
