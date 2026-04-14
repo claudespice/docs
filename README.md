@@ -1,63 +1,74 @@
 ---
-description: Welcome to your team’s developer platform
+icon: hand-wave
+description: Welcome to the Spice.ai Cloud Platform documentation!
 ---
 
-# Developer Platform
+# Welcome to Spice.ai Cloud
 
-<h2 align="center">Developer platform template</h2>
+The **Spice.ai Cloud Platform** is an AI application and agent cloud — an AI-backend-as-a-service with composable, ready-to-use building blocks including high-speed SQL query, LLM inference, vector search, and RAG, built on cloud-scale, managed [Spice.ai OSS](https://github.com/spiceai/spiceai).
 
-<p align="center">Welcome to your team’s new developer platform</p>
+{% hint style="info" %}
+This documentation covers the **Spice.ai Cloud Platform**.
 
-<p align="center"><a href="http://app.gitbook.com/join" class="button primary">Sign up</a> <a href="http://app.gitbook.com/join" class="button secondary">Log in</a></p>
+For the self-hostable **Spice.ai OSS** runtime, visit [**docs.spiceai.org**](https://docs.spiceai.org).
+{% endhint %}
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><h4><i class="fa-leaf">:leaf:</i></h4></td><td><strong>No code</strong></td><td>Get started with the developer platform in 5 minutes.</td><td><a href="https://template.gitbook.com/space-product-docs">https://template.gitbook.com/space-product-docs</a></td><td><a href=".gitbook/assets/no-code.jpg">no-code.jpg</a></td></tr><tr><td><h4><i class="fa-server">:server:</i></h4></td><td><strong>Hosted</strong></td><td>Learn more about hosting the developer platform.</td><td><a href="https://template.gitbook.com/space-product-docs">https://template.gitbook.com/space-product-docs</a></td><td><a href=".gitbook/assets/hosted.jpg">hosted.jpg</a></td></tr><tr><td><h4><i class="fa-terminal">:terminal:</i></h4></td><td><strong>API reference</strong></td><td>Browse, test, and implement APIs.</td><td><a href="https://template.gitbook.com/space-api-reference">https://template.gitbook.com/space-api-reference</a></td><td><a href=".gitbook/assets/api-reference.jpg">api-reference.jpg</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4>:rocket:</h4></td><td><strong>Get Started</strong></td><td>Sign up and run your first query in minutes</td><td><a href="getting-started/get-started/">getting-started/get-started/</a></td></tr><tr><td><h4>:zap:</h4></td><td><strong>Federated SQL Query</strong></td><td>Query across any data source with one SQL interface</td><td><a href="features/federated-sql-query.md">features/federated-sql-query.md</a></td></tr><tr><td><h4>:robot:</h4></td><td><strong>AI Gateway</strong></td><td>OpenAI-compatible API for LLM inference</td><td><a href="features/ai-gateway.md">features/ai-gateway.md</a></td></tr><tr><td><h4>:mag:</h4></td><td><strong>Search &amp; Retrieval</strong></td><td>Vector and hybrid search for RAG workflows</td><td><a href="features/search-and-retrieval.md">features/search-and-retrieval.md</a></td></tr><tr><td><h4>:plug:</h4></td><td><strong>Data Connectors</strong></td><td>Connect to 30+ databases, warehouses, and lakes</td><td><a href="building-blocks/data-connectors/">building-blocks/data-connectors/</a></td></tr><tr><td><h4>:bar_chart:</h4></td><td><strong>Monitoring</strong></td><td>Observe performance with Grafana, Datadog, and more</td><td><a href="monitoring/">monitoring/</a></td></tr></tbody></table>
+
+## What You Can Do
+
+With the **Spice.ai Cloud Platform** you can:
+
+- **Query and accelerate data** — Run high-performance SQL queries across multiple data sources with results optimized for AI applications and agents.
+- **Use AI models** — Perform LLM inference with OpenAI, Anthropic, xAI, and more for chat, completion, and generative AI workflows.
+- **Build agentic AI apps** — Combine data, models, search, and tools into production-grade AI agent backends.
+- **Collaborate on Spicepods** — Share, fork, and manage datasets, models, embeddings, evals, and tools in a collaborative hub indexed by [spicerack.org](https://spicerack.org).
+
+## Use Cases
+
+| Use Case                                            | Description                                                |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| [Agentic AI Apps](use-cases/agentic-ai-apps.md)     | Build AI agent backends with unified data and model access |
+| [Database CDN](use-cases/database-cdn.md)           | Cache and accelerate hot data for low-latency applications |
+| [Data Lakehouse](use-cases/data-lakehouse.md)       | Federated queries across warehouses, lakes, and databases  |
+| [Enterprise Search](use-cases/enterprise-search.md) | Semantic search across enterprise data sources             |
+| [Enterprise RAG](use-cases/enterprise-rag.md)       | Retrieval-augmented generation with your own data          |
 
 {% columns %}
 {% column %}
-### Get started in 5 minutes
 
-Setting up your first API call should be the easiest part of getting started. With clear endpoints, copy-paste-ready examples, and quick authentication, you’ll be up and running in minutes—not hours.
+### Quick Start
 
-No guesswork, no complexity—just your first successful call, fast.
+Get up and running in minutes:
 
-<a href="https://template.gitbook.com/space-product-docs" class="button primary" data-icon="rocket-launch">Get started</a> <a href="https://template.gitbook.com/space-api-reference" class="button secondary" data-icon="terminal">API reference</a>
+1. [Sign in with GitHub](getting-started/get-started/portal-login.md)
+2. [Create a Spice app](getting-started/getting-started/portal-login-1.md)
+3. [Add a dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
+4. [Add an AI model and chat](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
+
+<a href="getting-started/get-started/" class="button primary" data-icon="rocket-launch">Get started</a> <a href="api/sql-query/" class="button secondary" data-icon="terminal">API reference</a>
+
 {% endcolumn %}
 
 {% column %}
-{% code title="index.js" overflow="wrap" %}
-```javascript
-// Import the SDK
-import ExampleAPI from "example-api";
+{% code title="query.py" overflow="wrap" %}
+```python
+from spicepy import Client
 
-// Initialize the client
-const client = new ExampleAPI({ apiKey: "YOUR_API_KEY" });
-
-// Send your first message
-const response = await client.messages.send({
-  message: "Hello, world!"
-});
-
+client = Client("YOUR_API_KEY")
+reader = client.query(
+    "SELECT * FROM my_table LIMIT 10"
+)
+df = reader.read_pandas()
+print(df)
 ```
 {% endcode %}
 {% endcolumn %}
 {% endcolumns %}
 
-{% columns %}
-{% column %}
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/placeholder.png" alt=""><figcaption></figcaption></figure>
-{% endcolumn %}
+## Community & Support
 
-{% column %}
-### Learn more about the developer platform
-
-Read guides, watch tutorials, and learn more about working with the developer platform and integrating it with your own stack.
-
-<a href="https://template.gitbook.com/space-help-center" class="button primary" data-icon="book-open">Guides</a> <a href="https://template.gitbook.com/space-product-docs" class="button secondary" data-icon="book">Documentation</a>
-{% endcolumn %}
-{% endcolumns %}
-
-<h2 align="center">Join a community of over 3,000 developers</h2>
-
-<p align="center">Join our Discord community or create your first PR in just a few steps.</p>
-
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><h4><i class="fa-discord">:discord:</i></h4></td><td><strong>Discord community</strong></td><td>Join our Discord community to post questions, get help, and share resources with over 3,000 like-minded developers.</td><td><a href="https://www.gitbook.com/" class="button secondary">Join Discord</a></td><td></td></tr><tr><td><h4><i class="fa-github">:github:</i></h4></td><td><strong>GitHub</strong></td><td>Our product is 100% open source and built by developers just like you. Head to our GitHub repository to learn how to submit your first PR.</td><td><a href="https://www.gitbook.com/" class="button secondary">Submit a PR</a></td><td></td></tr></tbody></table>
+- **Slack** — Ask questions and get help from the team at [spice.ai/slack](https://spice.ai/slack).
+- **GitHub** — File issues and contribute at [github.com/spiceai/spiceai](https://github.com/spiceai/spiceai).
+- **Enterprise support** — [Paid plans](pricing/plans.md) include priority support with an SLA.
+- **Help Center** — Browse the [Help Center](help/) for troubleshooting, guides, and FAQs.
