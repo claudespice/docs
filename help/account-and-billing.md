@@ -1,0 +1,127 @@
+---
+icon: user-gear
+description: Manage your Spice.ai account, API keys, organizations, and billing.
+---
+
+# Account & Billing
+
+## Signing Up
+
+Spice.ai Cloud uses **GitHub for authentication**. To create an account:
+
+1. Go to [spice.ai](https://spice.ai).
+2. Click **Sign in with GitHub** and authorize the Spice.ai GitHub App.
+3. A personal organization is created automatically for you.
+
+See the full [Getting Started guide](../getting-started/get-started/) for a step-by-step walkthrough.
+
+## API Keys
+
+Each Spice.ai app has **two API keys** that authenticate requests to the data and AI APIs.
+
+### Where to find your API keys
+
+Navigate to your app in the [Portal](https://spice.ai) → **Settings** → **API Keys**.
+
+### How API keys are used
+
+| API                                                             | Authentication        |
+| --------------------------------------------------------------- | --------------------- |
+| [SQL HTTP API](../api/sql-query/http-api.md)                    | `X-API-Key` header    |
+| [Arrow Flight API](../api/sql-query/apache-arrow-flight-api.md) | Password in handshake |
+| [LLM API](../api/openai-api.md)                                 | `X-API-Key` header    |
+| [Search API](../api/search.md)                                  | `X-API-Key` header    |
+| [SDKs](../sdks/python-sdk/)                                     | Client configuration  |
+
+### Rotating API keys
+
+Each app has two keys to support **zero-downtime rotation**:
+
+1. Regenerate Key 2 (while clients use Key 1).
+2. Update all clients to use Key 2.
+3. Regenerate Key 1.
+
+{% hint style="warning" %}
+Regenerating a key **immediately invalidates** the old key. Ensure all clients are updated before regenerating.
+{% endhint %}
+
+API keys can also be managed via the [Management API](../api/management/api-keys.md).
+
+## Personal Access Tokens
+
+The [Management API](../api/management/) uses **personal access tokens** (not app API keys) for authentication. Generate tokens in the Portal under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
+
+## Organizations
+
+Organizations are the primary unit for managing teams, apps, billing, and access.
+
+### Personal organization
+
+Every user automatically receives a **personal organization** on signup. This is a single-member org tied to your account.
+
+### Team organizations
+
+Team organizations allow multiple members to collaborate on shared apps. To create one:
+
+1. In the Portal, go to **Organizations** → **Create Organization**.
+2. Connect a **GitHub organization** to link team membership.
+
+### Managing members
+
+Organization admins can add members by:
+
+- **Spice username**
+- **GitHub username** (requires the user to have a public email on their GitHub profile)
+- **Email invitation**
+
+To remove a member, go to your organization's **Settings** → **Members**.
+
+See [Organizations](../portal/organizations.md) for full details.
+
+## Plans & Billing
+
+### Community Plan (Free)
+
+The free [Community Plan](../pricing/community.md) includes:
+
+- One app per organization.
+- Access to all building blocks (data connectors, AI gateway, search, etc.).
+- **Auto-pause**: Apps without API requests for 7 days are automatically paused. Paused apps can be restored anytime in the Portal.
+
+### Paid Plans
+
+[Paid plans](../pricing/plans.md) provide:
+
+- Higher request and query limits.
+- No auto-pause.
+- Service-level guarantees.
+- Priority support with SLA.
+- SOC 2 Type II report access.
+
+See [Pricing](https://spice.ai/pricing/cloud) for current plan details.
+
+## Secrets
+
+App secrets store sensitive configuration values (API keys for data sources, model provider credentials, etc.).
+
+### Key behaviors
+
+- Secrets are **app-scoped** and encrypted.
+- Values are **write-only** — they cannot be retrieved after saving.
+- To change a value: delete the secret and recreate it.
+- Secret changes require a **new deployment** to take effect.
+- Reference secrets in your Spicepod with: `${secrets:SECRET_NAME}`.
+
+See [Secrets](../portal/apps/secrets.md) for details.
+
+## Security & Compliance
+
+Spice.ai Cloud is **SOC 2 Type II** compliant. Key security measures include:
+
+- Authentication and authorization with RBAC.
+- MFA enforcement.
+- Encryption in transit (TLS 1.2+) and at rest.
+- Auditable access logs.
+- Secure code scanning and third-party audits.
+
+See [Security](../security/security.md) for the full security overview. Enterprise plan customers can request the SOC 2 report.

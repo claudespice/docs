@@ -144,7 +144,6 @@
 
 ## Integrations
 
-* [GitHub Copilot](integrations/github-copilot.md)
 * [Grafana](integrations/grafana.md)
 * [Databricks](integrations/databricks.md)
 
@@ -158,14 +157,20 @@
 
 * [Changelog](changelog/README.md)
 
+## Help Center
+
+* [Help Center](help/README.md)
+  * [Troubleshooting](help/troubleshooting.md)
+  * [Account & Billing](help/account-and-billing.md)
+  * [Connecting Data](help/connecting-data.md)
+  * [AI & Models](help/ai-and-models.md)
+  * [APIs & SDKs](help/apis-and-sdks.md)
+  * [Support](support/support.md)
+
 ## Pricing
 
 * [Paid Plans](pricing/plans.md)
 * [Community Plan](pricing/community.md)
-
-## Support
-
-* [Support](support/support.md)
 
 ## Security
 
