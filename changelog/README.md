@@ -14,10 +14,8 @@ icon: clock-rotate-left
 * **Text-to-SQL Playground** – Added a dedicated Text-to-SQL playground and NSQL API page, followed by improvements to loading behavior and query UX.
 * **Update Channel for Preview Releases** – Spice Cloud users can now select Preview or Stable update channels, with Spice apps automatically upgraded to preview versions.
 * **Org Limits API** – Added `GET /v1/limits` to return organization plan and resource limits.
-* **App API Request/Response Updates** – Added `update_channel` on app create, replaced `cname` with `region` in app creation, and tightened `PUT /v1/apps/:id` spicepod YAML validation and parser error handling.
 * **Monitoring and Deployment Visibility** – Added cluster-aware grouping for SpicepodCluster monitoring and refined acceleration graph visibility in the portal.
-* **Security and Audit Coverage** – Added broader audit logging for login, app, deployment, and admin operations; added `no-store` caching headers on secret-returning API routes; and removed internal fields from public API responses.
-* **AI Platform API Expansion** – Added `/v1/metrics` fan-out aggregation across runtime instances and aligned the Rust API implementation with the Go API surface.
+* **Audit Logging** – Added broader audit logging for login, app, deployment, and admin operations.
 
 ### Runtime
 
@@ -56,12 +54,9 @@ Spice runtime [v2.0-rc.2](https://spiceai.org/releases/v2.0-rc.2) (Apr 10, 2026)
 
 ### Highlights
 
-* **App Naming Validation** – Added a maximum app name length of 38 characters and standardized app name validation behavior.
-* **App API Storage Updates** – Added `storage_size_gb` and `executor.storage_size_gb` support in app update flows and deprecated `storage_claim_size_gb` in API usage.
 * **Cluster Metrics** – Added cluster executor metrics (`active_executors_count`) to monitoring endpoints.
 * **Public Navigation Updates** – Added org and app selectors in topbar for public views.
 * **Model Template Updates** – Updated Bedrock model templates to current Amazon Nova model IDs.
-* **AI Platform API Reliability** – Improved SQL streaming robustness, rate-limiter behavior, and row-limit and error handling in API handlers.
 
 ### Runtime
 
@@ -76,7 +71,6 @@ No runtime releases were published in this window.
 
 <summary>Bug Fixes</summary>
 
-* Preserved newline characters in JSON-formatted spicepod secrets to avoid malformed secret payloads.
 * Fixed `spice login` topbar rendering when no current org context is available.
 * Fixed portal runtime errors related to deployment and dependency updates.
 
