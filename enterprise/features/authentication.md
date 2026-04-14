@@ -9,6 +9,10 @@ Spice.ai Enterprise supports multiple authentication methods that can be used in
 
 ## OIDC (OpenID Connect)
 
+{% hint style="info" %}
+OIDC authentication is currently in **preview**.
+{% endhint %}
+
 Authenticate requests using JWT bearer tokens issued by an OIDC provider (Google, Okta, Azure AD, Auth0, etc.).
 
 ```yaml
