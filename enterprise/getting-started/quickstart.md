@@ -1,23 +1,96 @@
 ---
-icon: bolt
+description: Deploy Spice.ai Enterprise on Kubernetes in minutes.
+icon: rocket
 ---
 
 # Quickstart
 
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-hero.png" alt=""><figcaption></figcaption></figure>
+This guide walks through deploying Spice.ai Enterprise on Kubernetes using the Spice Kubernetes Operator and Helm.
 
-Beautiful documentation starts with the content you create — and GitBook makes it easy to get started with any pre-existing content.
+## Prerequisites
 
-{% hint style="info" %}
-Want to learn about writing content from scratch? Head to the [Basics](../basics/editor.md) section to learn more.
-{% endhint %}
+- Kubernetes 1.33.0+
+- Helm 3.19.0+
+- `kubectl` configured with cluster access
 
-### Import
+## Step 1: Install the Spice Kubernetes Operator
 
-GitBook supports importing content from many popular writing tools and formats. If your content already exists, you can upload a file or group of files to be imported.
+```bash
+helm install spiceai-operator oci://ghcr.io/spicehq/charts/spiceai-operator
+```
 
-<div data-full-width="false"><figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption></figcaption></figure></div>
+Verify the operator is running:
 
-### Sync a repository
+```bash
+kubectl get pods -l spice.ai/app=spiceai-operator
+```
 
-GitBook also allows you to set up a bi-directional sync with an existing repository on GitHub or GitLab. Setting up Git Sync allows you and your team to write content in GitBook or in code, and never have to worry about your content becoming out of sync.
+Confirm the CRDs are installed:
+
+```bash
+kubectl get crd spicepodsets.spice.ai
+kubectl get crd spicepodclusters.spice.ai
+```
+
+## Step 2: Deploy a SpicepodSet
+
+Create a `spicepodset.yaml`:
+
+```yaml
+apiVersion: spice.ai/v1
+kind: SpicepodSet
+metadata:
+  name: my-spicepod
+  namespace: default
+spec:
+  replicas: 1
+  spiceai_image_registry: ghcr.io
+  spiceai_image_name: spicehq/spiceai-enterprise
+  spiceai_image_tag: latest-models
+  spicepod: |
+    name: my-spicepod
+    kind: Spicepod
+    version: v1
+```
+
+Apply it:
+
+```bash
+kubectl apply -f spicepodset.yaml
+```
+
+## Step 3: Verify
+
+```bash
+kubectl get pods -l spice.ai/app=my-spicepod
+kubectl get svc -l spice.ai/app=my-spicepod
+```
+
+The operator creates a `ClusterIP` service exposing:
+
+| Port    | Protocol | Description         |
+| ------- | -------- | ------------------- |
+| `8090`  | HTTP     | HTTP/SQL API        |
+| `50051` | gRPC     | Apache Arrow Flight |
+| `9090`  | HTTP     | Prometheus metrics  |
+
+## Step 4: Query
+
+Port-forward to the service and run a query:
+
+```bash
+kubectl port-forward svc/spicepod-my-spicepod 8090:8090
+```
+
+```bash
+curl http://localhost:8090/v1/sql \
+  -H "Content-Type: application/json" \
+  -d '{"query": "SELECT 1"}'
+```
+
+## Next Steps
+
+- [Configure the Helm chart](../deployment/helm-chart.md) for production use.
+- [Add authentication](../features/authentication.md) with OIDC or API keys.
+- [Deploy a distributed cluster](../kubernetes/spicepodcluster.md) with `SpicepodCluster`.
+- [Configure AWS IRSA](../deployment/aws/irsa.md) for data source access.
