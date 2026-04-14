@@ -1,3 +1,3 @@
 # Table of contents
 
-* [Developer Platform](README.md)
+* [Welcome to the Spice.ai Platform](README.md)
