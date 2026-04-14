@@ -1,9 +1,29 @@
+---
+icon: circle-info
+description: Find answers, troubleshoot issues, and get the most out of Spice.ai Cloud Platform.
+---
+
 # Help Center
 
-<h2 align="center">What can we help you find?</h2>
+Browse the topics below to find answers to common questions, troubleshoot issues, or learn how to get the most out of the Spice.ai Cloud Platform.
 
-<p align="center">Browse the topics below or use the GitBook assistant to ask anything you need help with.</p>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4>:wrench:</h4></td><td><strong>Troubleshooting</strong></td><td>Diagnose and fix common issues</td><td><a href="troubleshooting.md">troubleshooting.md</a></td></tr><tr><td><h4>:gear:</h4></td><td><strong>Account &amp; Billing</strong></td><td>API keys, organizations, and plans</td><td><a href="account-and-billing.md">account-and-billing.md</a></td></tr><tr><td><h4>:floppy_disk:</h4></td><td><strong>Connecting Data</strong></td><td>Data connectors and configuration</td><td><a href="connecting-data.md">connecting-data.md</a></td></tr><tr><td><h4>:robot:</h4></td><td><strong>AI &amp; Models</strong></td><td>AI Gateway, model providers, and inference</td><td><a href="ai-and-models.md">ai-and-models.md</a></td></tr><tr><td><h4>:computer:</h4></td><td><strong>APIs &amp; SDKs</strong></td><td>Endpoints, SDKs, and query best practices</td><td><a href="apis-and-sdks.md">apis-and-sdks.md</a></td></tr><tr><td><h4>:leaf:</h4></td><td><strong>Getting Started</strong></td><td>New to Spice? Start here</td><td><a href="../getting-started/get-started/">../getting-started/get-started/</a></td></tr></tbody></table>
 
-<p align="center"><a href="https://gitbook.com/" class="button primary">Ask GitBook AI</a> <a href="https://gitbook.com/" class="button secondary">Contact support</a></p>
+## Quick Links
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-leaf">:leaf:</i></h4></td><td><strong>Getting started</strong></td><td>Get help with the basics</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr><tr><td><h4><i class="fa-plug">:plug:</i></h4></td><td><strong>Integrations</strong></td><td>Extend your workflow</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr><tr><td><h4><i class="fa-money-bill-wave">:money-bill-wave:</i></h4></td><td><strong>Plans and billing</strong></td><td>Get help with your billing</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr><tr><td><h4><i class="fa-heart">:heart:</i></h4></td><td><strong>Community</strong></td><td>Join our community</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr><tr><td><h4><i class="fa-computer-mouse">:computer-mouse:</i></h4></td><td><strong>Admin</strong></td><td>Manage your account</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr><tr><td><h4><i class="fa-bullhorn">:bullhorn:</i></h4></td><td><strong>Product updates</strong></td><td>See what’s new</td><td><a href="https://www.gitbook.com/">https://www.gitbook.com/</a></td></tr></tbody></table>
+| Topic                 | Link                                                    |
+| --------------------- | ------------------------------------------------------- |
+| Getting started guide | [Get Started](../getting-started/get-started/)          |
+| FAQ                   | [Frequently Asked Questions](../getting-started/faq.md) |
+| Community support     | [Slack](https://spice.ai/slack)                         |
+| Enterprise support    | [Support](../support/support.md)                        |
+| Security & compliance | [Security](../security/security.md)                     |
+| Changelog             | [What's New](../changelog/README.md)                    |
+| Pricing               | [Plans](../pricing/plans.md)                            |
+
+## Need More Help?
+
+- **Community support** — Ask questions and get help from the Spice.ai team and community in [Slack](https://spice.ai/slack).
+- **Enterprise support** — [Enterprise plans](../pricing/plans.md) include priority support with an SLA. See [Support](../support/support.md) for details.
+- **Report a bug** — File issues on [GitHub](https://github.com/spiceai/spiceai/issues).
+- **Report a vulnerability** — See [Security Reporting](../security/report.md).
