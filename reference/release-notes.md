@@ -4,6 +4,69 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 
 # Release Notes
 
+## April 2026
+
+### Highlights
+
+* **Text-to-SQL Playground** – Added a dedicated Text-to-SQL playground and NSQL API page, followed by improvements to loading behavior and query UX.
+* **Org Limits API** – Added `GET /v1/limits` to return organization plan and resource limits.
+* **App API Request/Response Updates** – Added `update_channel` on app create, replaced `cname` with `region` in app creation, and tightened `PUT /v1/apps/:id` spicepod YAML validation and parser error handling.
+* **Monitoring and Deployment Visibility** – Added cluster-aware grouping for SpicepodCluster monitoring and refined acceleration graph visibility in the portal.
+* **Security and Audit Coverage** – Added broader audit logging for login, app, deployment, and admin operations; added `no-store` caching headers on secret-returning API routes; and removed internal fields from public API responses.
+* **AI Platform API Expansion** – Added `/v1/metrics` fan-out aggregation across runtime instances and aligned the Rust API implementation with the Go API surface.
+
+### Runtime
+
+Spice runtime [v1.11.5](https://spiceai.org/releases/v1.11.5) (Apr 1, 2026):
+
+* Improved `on_zero_results: use_source` fallback performance by applying physical optimizer rules to fallback execution plans.
+* Improved Delta Lake file pruning for `>=` timestamp predicates to reduce unnecessary scans.
+* Added PostgreSQL partitioned table support for schema discovery and querying.
+* Improved S3 Parquet read performance by coalescing reads into fewer requests.
+* Fixed Cayenne target file size handling so written files better match configured size.
+
+Spice runtime [v2.0-rc.2](https://spiceai.org/releases/v2.0-rc.2) (Apr 10, 2026):
+
+* Improved distributed Cayenne query and write routing with partition-aware execution and distributed DML handling.
+* Added `MERGE INTO` support for Cayenne catalog tables with distributed execution safeguards.
+* Added `PARTITION BY` support for Cayenne `CREATE TABLE` statements with persisted partition metadata.
+* Added catalog connectors for PostgreSQL, MySQL, MSSQL, and Snowflake, and expanded schema and table discovery coverage.
+* Added HTTP pagination support and expanded JSON ingestion support, including `json_pointer` extraction.
+
+### Bug Fixes
+
+* Fixed deployment status inconsistencies in portal deployment views.
+* Improved catalog explorer performance with lazy metadata loading and related rendering fixes.
+* Fixed playground duration formatting, trace history filtering, and SQL error display behavior.
+* Fixed monitoring overview staleness by disabling inappropriate caching on the monitoring page.
+* Improved GitHub connector loading-state handling to separate organization loading from app installation state.
+
+## March 2026
+
+### Highlights
+
+* **Onboarding Flow Updates** – Refined onboarding step sequencing, moved distributed query onboarding to a dedicated route, and reduced perceived wait time by pre-creating apps at the final step.
+* **App API Storage Updates** – Added `storage_size_gb` and `executor.storage_size_gb` support in app update flows and deprecated `storage_claim_size_gb` in API usage.
+* **Cluster Metrics** – Added cluster executor metrics (`active_executors_count`) to monitoring endpoints.
+* **Public Navigation Updates** – Added org and app selectors in topbar for public views.
+* **Model Template Updates** – Updated Bedrock model templates to current Amazon Nova model IDs.
+* **AI Platform API Reliability** – Improved SQL streaming robustness, rate-limiter behavior, and row-limit and error handling in API handlers.
+
+### Runtime
+
+No runtime releases were published in this window.
+
+### SDKs
+
+* **spice-dotnet** – Updated connection pooling behavior with pooled connection lifetime to improve DNS re-resolution for long-lived connections.
+* **spice-java 0.6.0** – Added `reset()` support and improved transport resilience with keep-alive and DNS re-resolution improvements.
+
+### Bug Fixes
+
+* Fixed onboarding scrollbars in Safari.
+* Fixed `spice login` topbar rendering when no current org context is available.
+* Fixed portal runtime errors related to deployment and dependency updates.
+
 ## February 2026
 
 ### Highlights
