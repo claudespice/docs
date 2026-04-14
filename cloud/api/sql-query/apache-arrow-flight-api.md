@@ -10,7 +10,7 @@ This setup enables high-speed access to your data in [Python](https://arrow.apac
 
 ### SDKs
 
-It's recommended to use the Spice.ai SDKs to connect and query the Arrow Flight endpoint. SDKs are available for [Python](../../sdks/python-sdk/), [Node.js](../../sdks/node.js-sdk/), [Go](../../sdks/go.md), [Rust](../../sdks/rust-sdk/), [Java](../../sdks/java-sdk.md), and [Dotnet](../../sdks/dotnet-sdk.md).
+It's recommended to use the Spice.ai SDKs to connect and query the Arrow Flight endpoint. SDKs are available for [Python](../../../sdks/python-sdk/), [Node.js](../../../sdks/node.js-sdk/), [Go](../../../sdks/go.md), [Rust](../../../sdks/rust-sdk/), [Java](../../../sdks/java-sdk.md), and [Dotnet](../../../sdks/dotnet-sdk.md).
 
 In Python, query results can be easily converted to Pandas or NumPy formats.
 
@@ -21,7 +21,7 @@ You may also use Apache's `pyarrow` library directly.
 
 `The spicepy/pyarrow` installation requires [miniforge](https://github.com/conda-forge/miniforge).
 
-See the [Python SDK page](../../sdks/python-sdk/#m1-macs) for installation steps.
+See the [Python SDK page](../../../sdks/python-sdk/#m1-macs) for installation steps.
 {% endhint %}
 
 ### Connecting to the Endpoint

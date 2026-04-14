@@ -442,6 +442,6 @@ resource "spiceai_member" "team" {
 
 See also:
 
-- [Organizations](../../portal/organizations.md) - Manage organizations in the portal
+- [Organizations](../../../portal/organizations.md) - Manage organizations in the portal
 - [Apps API](apps.md) - Create apps for your team
-- [Personal Access Tokens](../../portal/profile/personal-access-tokens.md) - Create tokens for team members
+- [Personal Access Tokens](../../../portal/profile/personal-access-tokens.md) - Create tokens for team members

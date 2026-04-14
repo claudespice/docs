@@ -504,4 +504,4 @@ See also:
 
 - [Apps API](apps.md) - Configure your app before deploying
 - [Secrets API](secrets.md) - Manage secrets used by your app
-- [Portal Deployments](../../portal/app-spicepod/deployments.md) - View deployments in the portal
+- [Portal Deployments](../../../portal/app-spicepod/deployments.md) - View deployments in the portal

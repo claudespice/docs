@@ -141,4 +141,4 @@ See also:
 
 - [Apps API](apps.md) - Configure app runtime version
 - [Deployments API](deployments.md) - Override image tag per deployment
-- [Spice Runtime Versions](../../portal/app-spicepod/spice-runtime-versions.md) - View versions in the portal
+- [Spice Runtime Versions](../../../portal/app-spicepod/spice-runtime-versions.md) - View versions in the portal
