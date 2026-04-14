@@ -9,6 +9,7 @@ description: Monthly release notes for the Spice.ai Cloud Platform
 ### Highlights
 
 * **Text-to-SQL Playground** – Added a dedicated Text-to-SQL playground and NSQL API page, followed by improvements to loading behavior and query UX.
+* **Update Channel for Preview Releases** – Spice Cloud users can now select Preview or Stable update channels, with Spice apps automatically upgraded to preview versions.
 * **Org Limits API** – Added `GET /v1/limits` to return organization plan and resource limits.
 * **App API Request/Response Updates** – Added `update_channel` on app create, replaced `cname` with `region` in app creation, and tightened `PUT /v1/apps/:id` spicepod YAML validation and parser error handling.
 * **Monitoring and Deployment Visibility** – Added cluster-aware grouping for SpicepodCluster monitoring and refined acceleration graph visibility in the portal.
