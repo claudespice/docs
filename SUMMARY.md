@@ -153,7 +153,10 @@
 * [Core Concepts](reference/core-concepts/README.md)
   * [Duration Literals](reference/core-concepts/duration-literals.md)
 * [SQL Reference](reference/sql-reference.md)
-* [Release Notes](reference/release-notes.md)
+
+## Changelog
+
+* [Changelog](changelog/README.md)
 
 ## Pricing
 
