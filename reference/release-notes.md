@@ -45,7 +45,7 @@ Spice runtime [v2.0-rc.2](https://spiceai.org/releases/v2.0-rc.2) (Apr 10, 2026)
 
 ### Highlights
 
-* **Onboarding Flow Updates** – Refined onboarding step sequencing, moved distributed query onboarding to a dedicated route, and reduced perceived wait time by pre-creating apps at the final step.
+* **App Naming Validation** – Added a maximum app name length of 38 characters and standardized app name validation behavior.
 * **App API Storage Updates** – Added `storage_size_gb` and `executor.storage_size_gb` support in app update flows and deprecated `storage_claim_size_gb` in API usage.
 * **Cluster Metrics** – Added cluster executor metrics (`active_executors_count`) to monitoring endpoints.
 * **Public Navigation Updates** – Added org and app selectors in topbar for public views.
@@ -63,7 +63,7 @@ No runtime releases were published in this window.
 
 ### Bug Fixes
 
-* Fixed onboarding scrollbars in Safari.
+* Preserved newline characters in JSON-formatted spicepod secrets to avoid malformed secret payloads.
 * Fixed `spice login` topbar rendering when no current org context is available.
 * Fixed portal runtime errors related to deployment and dependency updates.
 
