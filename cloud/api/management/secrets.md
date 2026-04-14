@@ -520,5 +520,5 @@ resource "spiceai_secret" "database_password" {
 See also:
 
 - [Apps API](apps.md) - Use secrets in your spicepod configuration
-- [Portal Secrets](../../portal/apps/secrets.md) - Manage secrets in the portal
+- [Portal Secrets](../../../portal/apps/secrets.md) - Manage secrets in the portal
 - [Environment Variables](https://docs.spiceai.org/reference/spicepod/environment-variables) - Spicepod syntax

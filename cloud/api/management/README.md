@@ -47,7 +47,7 @@ curl -H "Authorization: Bearer <your-pat-token>" \
   https://api.spice.ai/v1/apps
 ```
 
-Learn more: [Personal Access Tokens](../../portal/profile/personal-access-tokens.md)
+Learn more: [Personal Access Tokens](../../../portal/profile/personal-access-tokens.md)
 
 ### 2. OAuth 2.0 Client Credentials
 
@@ -195,10 +195,10 @@ https://api.spice.ai/v1/docs/openapi.json
 
 Official SDKs are available for popular languages:
 
-* [Python SDK](../../sdks/python-sdk/)
-* [Node.js SDK](../../sdks/node.js-sdk)
-* [Go SDK](../../sdks/go.md)
-* [Rust SDK](../../sdks/rust-sdk/)
+* [Python SDK](../../../sdks/python-sdk/)
+* [Node.js SDK](../../../sdks/node.js-sdk)
+* [Go SDK](../../../sdks/go.md)
+* [Rust SDK](../../../sdks/rust-sdk/)
 
 ## Endpoints
 
@@ -270,4 +270,4 @@ Have questions or running into issues?
 
 * [GitHub Issues](https://github.com/spicehq/spiceai/issues)
 * [Community Discord](https://discord.gg/spiceai)
-* [Support](../../support/support.md)
+* [Support](../../../support/support.md)

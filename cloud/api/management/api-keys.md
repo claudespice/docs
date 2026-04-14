@@ -412,6 +412,6 @@ output "app_api_key" {
 See also:
 
 - [Apps API](apps.md) - Manage your apps
-- [Portal API Keys](../../portal/apps/api-keys.md) - View keys in the portal
+- [Portal API Keys](../../../portal/apps/api-keys.md) - View keys in the portal
 - [SQL Query API](../sql-query/) - Query your data
-- [AI Gateway](../../features/ai-gateway.md) - Use AI models
+- [AI Gateway](../../../features/ai-gateway.md) - Use AI models
