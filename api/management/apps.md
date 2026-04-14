@@ -285,7 +285,7 @@ Returns details for a specific app, including its configuration.
   },
   "config": {
     "spicepod": {
-      "version": "v1beta1",
+      "version": "v1",
       "kind": "Spicepod",
       "name": "my-app",
       "datasets": [
@@ -374,7 +374,7 @@ Updates an app's metadata and configuration. All fields are optional.
     "environment": "staging"
   },
   "spicepod": {
-    "version": "v1beta1",
+    "version": "v1",
     "kind": "Spicepod",
     "name": "my-app",
     "datasets": []
@@ -419,7 +419,7 @@ Updates an app's metadata and configuration. All fields are optional.
   },
   "config": {
     "spicepod": {
-      "version": "v1beta1",
+      "version": "v1",
       "kind": "Spicepod",
       "name": "my-app",
       "datasets": []
@@ -491,7 +491,7 @@ curl -X PUT https://api.spice.ai/v1/apps/123 \
   -H "Content-Type: application/json" \
   -d '{
     "spicepod": {
-      "version": "v1beta1",
+      "version": "v1",
       "kind": "Spicepod",
       "name": "my-app",
       "datasets": [

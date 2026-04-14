@@ -1,0 +1,111 @@
+---
+description: Spice.ai Enterprise runtime distributions for different workload requirements.
+icon: cube
+---
+
+# Distributions
+
+Spice.ai Enterprise provides multiple runtime distributions optimized for different workloads. All distributions are available in Enterprise; some are restricted or nightly-only in open source.
+
+{% hint style="info" %}
+The Spice runtime is **64-bit only**.
+{% endhint %}
+
+## Supported Platforms
+
+| Platform | Architecture            | Minimum CPU Features                     |
+| -------- | ----------------------- | ---------------------------------------- |
+| Linux    | x86_64                  | AVX2, FMA, BMI1/2, LZCNT, POPCNT         |
+| Linux    | aarch64 (arm64)         | NEON, FP16 (FEAT\_FP16), FHM (FEAT\_FHM) |
+| macOS    | aarch64 (Apple Silicon) | Native                                   |
+
+## Distribution Availability
+
+| Distribution        | Open Source      | Spice Cloud | Enterprise |
+| ------------------- | ---------------- | ----------- | ---------- |
+| Default (Data + AI) | ✅                | ✅           | ✅          |
+| Data-only           | Nightly only     | ✅           | ✅          |
+| NAS (SMB + NFS)     | Nightly only     | —           | ✅          |
+| Metal (macOS)       | ✅                | ✅           | ✅          |
+| CUDA (Linux)        | Nightly only     | ✅           | ✅          |
+| Allocator variants  | Nightly only     | ✅           | ✅          |
+| ODBC connector      | Local build only | ✅           | ✅          |
+
+## Default Distribution
+
+Includes all standard data connectors, embedded data accelerators (Spice Cayenne, DuckDB, SQLite), AI/ML model inference (LLMs, embeddings), search capabilities (vector and BM-25 full-text search), and the default memory allocator (snmalloc).
+
+## Data-Only Distribution
+
+Excludes AI/ML model support. Provides a smaller binary size and reduced attack surface for workloads that only need data federation and acceleration.
+
+## NAS Distribution
+
+Adds SMB and NFS data connector support. **Enterprise-only for production use.**
+
+## GPU-Accelerated Distributions
+
+### Metal (macOS)
+
+GPU-accelerated AI/ML inference on Apple Silicon.
+
+### CUDA (Linux)
+
+CUDA GPU-accelerated model inference. Supported compute capabilities:
+
+| Compute Capability | GPUs               |
+| ------------------ | ------------------ |
+| 80                 | A100, A30          |
+| 86                 | RTX 30xx, A40, A10 |
+| 87                 | Jetson Orin        |
+| 89                 | RTX 40xx, L40, L4  |
+| 90                 | H100, H200         |
+
+Enterprise CUDA images are available from GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/spicehq/spiceai-enterprise:latest-cuda
+```
+
+## Allocator Variants
+
+Different memory allocators can significantly impact performance depending on workload characteristics. Enterprise provides production-ready allocator variant images.
+
+### snmalloc (Default)
+
+The default allocator, optimized for concurrent workloads. Reduces memory usage 10-20% compared to jemalloc/mimalloc.
+
+### jemalloc
+
+Alternative allocator that may perform better for certain memory allocation patterns.
+
+```bash
+docker pull ghcr.io/spicehq/spiceai-enterprise:latest-jemalloc
+```
+
+### mimalloc
+
+Microsoft's mimalloc allocator, designed for performance and security.
+
+```bash
+docker pull ghcr.io/spicehq/spiceai-enterprise:latest-mimalloc
+```
+
+### System Allocator
+
+Uses the system's default allocator (glibc malloc on Linux).
+
+```bash
+docker pull ghcr.io/spicehq/spiceai-enterprise:latest-sysalloc
+```
+
+## Choosing a Distribution
+
+| Use Case                                | Recommended Distribution |
+| --------------------------------------- | ------------------------ |
+| General purpose with AI capabilities    | Default                  |
+| Data federation only, minimal footprint | Data-only                |
+| Network attached storage (SMB/NFS)      | NAS                      |
+| macOS with GPU acceleration             | Metal                    |
+| Linux with NVIDIA GPU                   | CUDA                     |
+| Memory allocation tuning                | Allocator variants       |
