@@ -1,9 +1,25 @@
 ---
 description: Welcome to the Spice.ai Cloud Platform!
 icon: hand-wave
+layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: false
+  pagination:
+    visible: true
+  metadata:
+    visible: false
+  tags:
+    visible: true
 ---
 
-# Welcome
+# Welcome to Spice.ai
 
 The **Spice.ai Cloud Platform** is an AI application and agent cloud — an AI-backend-as-a-service with composable, ready-to-use building blocks including high-speed SQL query, LLM inference, vector search, and RAG, built on cloud-scale, managed [Spice.ai OSS](https://github.com/spiceai/spiceai).
 
@@ -36,7 +52,7 @@ With the **Spice.ai Cloud Platform** you can:
 
 {% columns %}
 {% column %}
-#### Quick Start
+**Quick Start**
 
 Get up and running in minutes:
 
