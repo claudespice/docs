@@ -1,5 +1,5 @@
 ---
-description: Welcome to the Spice.ai Cloud Platform documentation!
+description: Welcome to the Spice.ai Cloud Platform!
 icon: hand-wave
 ---
 
