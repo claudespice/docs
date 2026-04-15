@@ -1,9 +1,9 @@
 ---
-icon: hand-wave
 description: Welcome to the Spice.ai Cloud Platform documentation!
+icon: hand-wave
 ---
 
-# Welcome to Spice.ai Cloud
+# Welcome
 
 The **Spice.ai Cloud Platform** is an AI application and agent cloud — an AI-backend-as-a-service with composable, ready-to-use building blocks including high-speed SQL query, LLM inference, vector search, and RAG, built on cloud-scale, managed [Spice.ai OSS](https://github.com/spiceai/spiceai).
 
@@ -13,16 +13,16 @@ This documentation covers the **Spice.ai Cloud Platform**.
 For the self-hostable **Spice.ai OSS** runtime, visit [**docs.spiceai.org**](https://docs.spiceai.org).
 {% endhint %}
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4>:rocket:</h4></td><td><strong>Get Started</strong></td><td>Sign up and run your first query in minutes</td><td><a href="getting-started/get-started/">getting-started/get-started/</a></td></tr><tr><td><h4>:zap:</h4></td><td><strong>Federated SQL Query</strong></td><td>Query across any data source with one SQL interface</td><td><a href="features/federated-sql-query.md">features/federated-sql-query.md</a></td></tr><tr><td><h4>:robot:</h4></td><td><strong>AI Gateway</strong></td><td>OpenAI-compatible API for LLM inference</td><td><a href="features/ai-gateway.md">features/ai-gateway.md</a></td></tr><tr><td><h4>:mag:</h4></td><td><strong>Search &amp; Retrieval</strong></td><td>Vector and hybrid search for RAG workflows</td><td><a href="features/search-and-retrieval.md">features/search-and-retrieval.md</a></td></tr><tr><td><h4>:plug:</h4></td><td><strong>Data Connectors</strong></td><td>Connect to 30+ databases, warehouses, and lakes</td><td><a href="building-blocks/data-connectors/">building-blocks/data-connectors/</a></td></tr><tr><td><h4>:bar_chart:</h4></td><td><strong>Monitoring</strong></td><td>Observe performance with Grafana, Datadog, and more</td><td><a href="monitoring/">monitoring/</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>:rocket:</strong></td><td><strong>Get Started</strong></td><td>Sign up and run your first query in minutes</td><td><a href="getting-started/get-started/">get-started</a></td></tr><tr><td><strong>:zap:</strong></td><td><strong>Federated SQL Query</strong></td><td>Query across any data source with one SQL interface</td><td><a href="features/federated-sql-query.md">federated-sql-query.md</a></td></tr><tr><td><strong>:robot:</strong></td><td><strong>AI Gateway</strong></td><td>OpenAI-compatible API for LLM inference</td><td><a href="features/ai-gateway.md">ai-gateway.md</a></td></tr><tr><td><strong>:mag:</strong></td><td><strong>Search &#x26; Retrieval</strong></td><td>Vector and hybrid search for RAG workflows</td><td><a href="features/search-and-retrieval.md">search-and-retrieval.md</a></td></tr><tr><td><strong>:plug:</strong></td><td><strong>Data Connectors</strong></td><td>Connect to 30+ databases, warehouses, and lakes</td><td><a href="building-blocks/data-connectors/">data-connectors</a></td></tr><tr><td><strong>:bar_chart:</strong></td><td><strong>Monitoring</strong></td><td>Observe performance with Grafana, Datadog, and more</td><td><a href="monitoring/">monitoring</a></td></tr></tbody></table>
 
 ## What You Can Do
 
 With the **Spice.ai Cloud Platform** you can:
 
-- **Query and accelerate data** — Run high-performance SQL queries across multiple data sources with results optimized for AI applications and agents.
-- **Use AI models** — Perform LLM inference with OpenAI, Anthropic, xAI, and more for chat, completion, and generative AI workflows.
-- **Build agentic AI apps** — Combine data, models, search, and tools into production-grade AI agent backends.
-- **Collaborate on Spicepods** — Share, fork, and manage datasets, models, embeddings, evals, and tools in a collaborative hub indexed by [spicerack.org](https://spicerack.org).
+* **Query and accelerate data** — Run high-performance SQL queries across multiple data sources with results optimized for AI applications and agents.
+* **Use AI models** — Perform LLM inference with OpenAI, Anthropic, xAI, and more for chat, completion, and generative AI workflows.
+* **Build agentic AI apps** — Combine data, models, search, and tools into production-grade AI agent backends.
+* **Collaborate on Spicepods** — Share, fork, and manage datasets, models, embeddings, evals, and tools in a collaborative hub indexed by [spicerack.org](https://spicerack.org).
 
 ## Use Cases
 
@@ -36,8 +36,7 @@ With the **Spice.ai Cloud Platform** you can:
 
 {% columns %}
 {% column %}
-
-### Quick Start
+#### Quick Start
 
 Get up and running in minutes:
 
@@ -47,7 +46,6 @@ Get up and running in minutes:
 4. [Add an AI model and chat](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
 
 <a href="getting-started/get-started/" class="button primary" data-icon="rocket-launch">Get started</a> <a href="api/sql-query/" class="button secondary" data-icon="terminal">API reference</a>
-
 {% endcolumn %}
 
 {% column %}
@@ -68,7 +66,7 @@ print(df)
 
 ## Community & Support
 
-- **Slack** — Ask questions and get help from the team at [spice.ai/slack](https://spice.ai/slack).
-- **GitHub** — File issues and contribute at [github.com/spiceai/spiceai](https://github.com/spiceai/spiceai).
-- **Enterprise support** — [Paid plans](pricing/plans.md) include priority support with an SLA.
-- **Help Center** — Browse the [Help Center](help/) for troubleshooting, guides, and FAQs.
+* **Slack** — Ask questions and get help from the team at [spice.ai/slack](https://spice.ai/slack).
+* **GitHub** — File issues and contribute at [github.com/spiceai/spiceai](https://github.com/spiceai/spiceai).
+* **Enterprise support** — [Paid plans](pricing/plans.md) include priority support with an SLA.
+* **Help Center** — Browse the [Help Center](help/) for troubleshooting, guides, and FAQs.
