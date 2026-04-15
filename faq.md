@@ -1,43 +1,70 @@
 ---
 description: Frequently asked questions
+icon: circle-question
 ---
 
 # FAQ
 
-### What data sources do you have?
+### What's the difference between the Spice.ai Cloud Platform and Spice.ai OSS?
 
-Spice supports a wide variety of data connectors for enterprise data sources. See the [Data Connectors](building-blocks/data-connectors/README.md) documentation and follow the [Release notes](release-notes.md) for updates.
+[**Spice.ai OSS**](https://github.com/spiceai/spiceai) is an open-source project created by the Spice AI team that provides a unified SQL query interface to locally materialize, accelerate, and query data tables sourced from any database, data warehouse, or data lake.
 
-### How much does Spice cost?
+<figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption><p>The Spice.ai OSS runtime</p></figcaption></figure>
 
-Spice is currently in beta and it's free to [get an API key](https://spice.ai), although due to demand there is waitlist.
+**The Spice.ai Cloud Platform** is a data and AI application platform that provides a set of building-blocks to create AI and agentic applications. Building blocks include a cloud-data-warehouse, ML model training and inference, and a cloud-scale, managed Spice.ai OSS cloud-hosted service.
 
-For customers who need higher request or query limits, service guarantees, or priority support we offer high-value paid tiers based on usage.
+<figure><img src="../.gitbook/assets/OGP (1).png" alt=""><figcaption><p>The Spice.ai Cloud Platform</p></figcaption></figure>
+
+### How much does Spice.ai Cloud cost?
+
+It's free to [get an API key](https://spice.ai) to use the [Community Edition](/broken/pages/TswKQuxvMpeSWfvqFhxa).
+
+Customers who need resource limits, service-level guarantees, or priority support we offer [high-value paid tiers](../pricing/plans.md) based on usage.
 
 ### What level of support do you offer?
 
-We offer [best-effort support](broken-reference/) in Discord.
+We offer enterprise-grade support with an SLA [for Enterprise Plans](../pricing/plans.md).
 
-If you'd like higher-priority support or are interested in becoming a [Design Partner](https://www.craft.do/s/bgJFtYzSZwuFXD) with dedicated, enterprise-grade support with an SLA, please get in touch.
+For standard plans we offer [best-effort community support](https://github.com/spicehq/cloud-docs/blob/trunk/broken-reference/README.md) in Discord.
 
-### What SQL query engine/language do you support?
+### What's your approach to security and compliance?
 
-We currently use an [Apache Calcite](https://calcite.apache.org/) based query engine and support the ANSI SQL standard.
+See [Security](../security/security.md). The Spice.ai Cloud Platform is SOC 2 Type II compliant.
 
-[Spice Firecache](reference/specifications/dataset-and-view-yaml-specification/firecache.md) is built on [DuckDB](https://duckdb.org/) and uses the DuckDB SQL dialect.
+### What SQL query engine/dialect do you support?
 
-### Can you add a custom dataset or table?
+Spice.ai OSS is built on [Apache DataFusion](https://datafusion.apache.org/) as its primary query execution engine, providing vectorized, multi-threaded query processing. It uses the PostgreSQL SQL dialect. Spice also supports [DuckDB](https://duckdb.org/), SQLite, and PostgreSQL as acceleration engines at the dataset level.
 
-Most likely, yes! Hit us up on Slack and we can work with you to add new views/tables. The ability to create private custom tables is on our roadmap.
+### What AI capabilities does Spice provide?
 
-### Do you support WebSockets or other streaming?
+Spice provides unified APIs for data and AI workflows, including model inference, embeddings, and an [AI gateway](../features/ai-gateway.md) supporting OpenAI, Anthropic, Amazon Bedrock, and xAI. Spice also includes advanced tools such as [vector and hybrid search](../features/search-and-retrieval.md), text-to-SQL, and data sampling.
 
-WebSocket support is available for [Design Partners](https://www.craft.do/s/bgJFtYzSZwuFXD). Apache Arrow over gRPC streaming is on our roadmap.
+### What AI model providers does Spice support?
 
-### Do you support alerting?
+Spice supports local model serving (e.g. Llama) and gateways to hosted AI platforms including OpenAI, Anthropic, xAI, and Amazon Bedrock. See [Model Providers](../building-blocks/model-providers/) for details.
 
-Not yet, but it is on our roadmap. You can also build your own custom alerting using [Spice Functions](portal/apps/spice-functions/).
+### Can Spice handle federated queries?
 
-### Do you support JDBC/ODBC/ADBC?
+Yes. Spice natively supports [federated SQL queries](../features/federated-sql-query.md) across disparate data sources with advanced query push-down capabilities, executing portions of queries directly on source databases to reduce data transfer and improve performance.
 
-Not yet, but it is on our roadmap.
+### Can Spice integrate with existing BI tools?
+
+Yes. Spice integrates with BI tools through standard SQL interfaces (ODBC, JDBC, ADBC, Arrow Flight SQL), enabling accelerated, real-time analytics for dashboards and reporting.
+
+### Does Spice support Change Data Capture (CDC)?
+
+Yes. Spice supports CDC via [Debezium](../building-blocks/data-connectors/debezium.md), enabling real-time data ingestion and materialization from databases such as PostgreSQL and MySQL.
+
+### Does Spice support schema evolution?
+
+Spice infers the schema for datasets and views at startup and does not apply runtime schema changes by default. If the source schema changes while the runtime is running (e.g. columns are added, removed, or their types change), data refreshes will fail with a schema mismatch error rather than silently applying the new schema.
+
+To pick up a new source schema, restart the Spice runtime. On startup, Spice re-infers the schema from the source and the accelerated table is re-initialized with the updated schema.
+
+### What is Data-grounded AI?
+
+Data-grounded AI anchors models in accurate, current, domain-specific data rather than relying solely on pre-trained knowledge. Spice unifies enterprise data across databases, data lakes, and APIs, dynamically incorporating real-world context at inference time. This helps minimize hallucinations, reduce operational risk, and build trust in AI by delivering reliable, relevant outputs.
+
+### Where can I find examples and recipes?
+
+The [Spice.ai Cookbook](https://github.com/spiceai/cookbook) provides quickstarts and examples demonstrating Spice capabilities, including federated queries, RAG, text-to-SQL, and more.

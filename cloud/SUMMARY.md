@@ -9,7 +9,6 @@
   * [Add a Dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
   * [Add AI Model and chat with your data](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
   * [Next Steps](getting-started/get-started/next-steps.md)
-* [FAQ](getting-started/faq.md)
 
 ## Portal
 
