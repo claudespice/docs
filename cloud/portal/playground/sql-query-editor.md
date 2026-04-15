@@ -1,11 +1,9 @@
 ---
-icon: database
 description: Use the Playground's SQL editor to easily explore data
+icon: database
 ---
 
 # SQL Query
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-20 at 02.11.49@2x.png" alt=""><figcaption><p>Spice.ai Query Editor</p></figcaption></figure>
 
 Open the SQL editor by navigating to an App **Playground** and clicking **SQL Query** in the sidebar.
 
@@ -20,21 +18,9 @@ Examples of using the SQL suggestions:
 
 * Select the `spice.runtime.metrics` table:
   * Type `SELECT * FROM` and press Tab. The editor will suggest `spice.runtime.metrics` as a possible table. Press Enter to insert it into the query.
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-20 at 02.18.11@2x.png" alt=""><figcaption><p>A list of datasets available in Spice</p></figcaption></figure>
-
 * Show the fields in the `spice.runtime.metrics` table:
   * Type `SELECT * FROM spice.runtime.metrics WHERE "`. The editor will list the fields in the table.
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-20 at 02.18.57@2x.png" alt=""><figcaption><p>The available fields for <code>spice.runtime.metrics</code> along with their type.</p></figcaption></figure>
 
 ### Datasets Reference
 
 The datasets reference displays all available datasets from the current app and allows you to search through them. Clicking on the dataset will insert a sample query into the SQL editor, which will be automatically selected for execution.
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-20 at 02.25.32@2x.png" alt=""><figcaption><p>Search for dataset in reference</p></figcaption></figure>
-
-
-
-
-

@@ -50,7 +50,7 @@ trace_id                          | task                | execution_duration_ms 
 3c75d16b6b4b8da98c551d115e1c049c  | sql_query           | 0.1                   | SQL error: ParserError("Expected:...")
 ```
 
-For more details, see [Task History](../features/observability/task-history.md).
+For more details, see [Task History](/broken/pages/s1kRO5emo7UGC2ZHAoXB).
 
 See also:
 

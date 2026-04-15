@@ -7,18 +7,13 @@ icon: circle-2
 
 Once [signed in with GitHub](../get-started/portal-login.md), you will be redirected to the **new application page.** Set a name, add a model provider, and optionally select one of ready to use datasets.
 
-<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 06.58.47@2x.png" alt="Create your first Spice.ai Cloud application."><figcaption><p>Create your first Spice.ai Cloud application.</p></figcaption></figure>
-
 1. Enter a name for the application.
 2. Select region.
 3.  Click **Create application**.
 
     It will take up to 30 seconds to create and provision a dedicated Spice.ai instance for the application.
 4. Once the application instance is deployed and ready, you will be redirected to the [Playground](../../portal/playground/).
-
-<figure><img src="../../.gitbook/assets/CleanShot 2026-01-06 at 07.04.33@2x.png" alt=""><figcaption><p>SQL Query in the Playground.</p></figcaption></figure>
-
-6. Executing the `show tables` SQL query will show the default datasets available for the app.
+5. Executing the `show tables` SQL query will show the default datasets available for the app.
 
 🎉 **Congrats, you've created your first** [**Spice app**](../../portal/apps/)**!**
 

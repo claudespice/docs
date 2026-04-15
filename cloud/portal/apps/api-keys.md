@@ -4,9 +4,7 @@ icon: key
 
 # API keys
 
-Each Spice app has two pre-generated API keys, which can be used with [Spice SDKs](../../sdks/python-sdk/README.md), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](../../api/sql-query/apache-arrow-flight-api.md).
-
-<figure><img src="../../.gitbook/assets/CleanShot 2024-12-27 at 10.13.35@2x.png" alt=""><figcaption></figcaption></figure>
+Each Spice app has two pre-generated API keys, which can be used with [Spice SDKs](../../sdks/python-sdk/), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](../../api/sql-query/apache-arrow-flight-api.md).
 
 ## View API Keys
 

@@ -18,13 +18,11 @@ The **Monitoring** tab provides real-time visibility into your app's usage, requ
 
 The Monitoring overview shows aggregate metrics for:
 
-- **SQL Queries** — total count, success/failure rate, and average duration.
-- **AI Completions** — LLM inference request metrics.
-- **Vector Searches** — embedding-based search request metrics.
-- **Embedding Calculations** — embedding generation metrics.
-- **Dataset Refreshes** — accelerated dataset refresh success and timing.
-
-<figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.28.01@2x.png" alt=""><figcaption><p>Monitoring Overview</p></figcaption></figure>
+* **SQL Queries** — total count, success/failure rate, and average duration.
+* **AI Completions** — LLM inference request metrics.
+* **Vector Searches** — embedding-based search request metrics.
+* **Embedding Calculations** — embedding generation metrics.
+* **Dataset Refreshes** — accelerated dataset refresh success and timing.
 
 ## Usage Metrics Dashboard
 
@@ -36,8 +34,6 @@ Track request volume, data usage, and query time across configurable time ranges
 
 Use the metrics dashboard to identify usage trends, detect spikes in query duration, and plan capacity.
 
-<figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.32.33@2x.png" alt=""><figcaption></figcaption></figure>
-
 ## API Request Logs
 
 The request logs provide a detailed record of individual API requests to your app's endpoints, including status codes, durations, and timestamps.
@@ -48,5 +44,3 @@ The request logs provide a detailed record of individual API requests to your ap
 4. Browse the log entries to inspect individual request details including endpoint, status code, and duration.
 
 Use request logs to debug failing queries, identify slow requests, and audit API usage.
-
-<figure><img src="../.gitbook/assets/CleanShot 2024-12-20 at 02.33.45@2x.png" alt=""><figcaption></figcaption></figure>

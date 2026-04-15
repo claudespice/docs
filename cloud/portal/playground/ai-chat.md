@@ -15,11 +15,7 @@ Ensure the Spice App is deployed with a model. For detailed instructions on how 
 
 Open the AI Chat by navigating to an App **Playground** and clicking **AI Chat** in the sidebar.
 
-<figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
-
 Start to use AI Chat by typing in the question and clicking send.
-
-<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 ### Model-Dependent Capabilities
 
@@ -149,16 +145,10 @@ models:
 
 Ask questions regarding datasets configured in spicepod within the AI Chat.
 
-<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
-
 ### Observability
 
-Spice.ai provides observability Ito the AI Chat,  showing full tool usage traces and chat completion history.
+Spice.ai provides observability Ito the AI Chat, showing full tool usage traces and chat completion history.
 
 Navigate to the **Observability** section in the portal.
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
-
-Select an `ai_chat` task history and view details over the chat completion history, including timestamps, tool usage,  intermediate outputs, etc.
-
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+Select an `ai_chat` task history and view details over the chat completion history, including timestamps, tool usage, intermediate outputs, etc.
