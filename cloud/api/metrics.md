@@ -243,6 +243,6 @@ In addition to these core metrics, individual components can expose their own me
 See also:
 
 * [Monitoring](../../monitoring/) - Set up dashboards with Grafana, Prometheus, or Datadog
-* [Apps API](management/apps.md) - Manage your apps
-* [API Keys](management/api-keys.md) - Manage app API keys
+* [Apps API](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage your apps
+* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage app API keys
 * [Observability](../../features/observability/) - Observability features in the portal

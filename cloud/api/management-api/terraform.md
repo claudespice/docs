@@ -33,7 +33,7 @@ resource "spiceai_deployment" "deploy" {
 
 ## Authentication
 
-The provider authenticates using [OAuth 2.0 Client Credentials](./#id-2.-oauth-2.0-client-credentials). Create an OAuth client in the [Spice.ai Portal](https://spice.ai) under **Settings** → **OAuth Clients**.
+The provider authenticates using [OAuth 2.0 Client Credentials](../management/#id-2.-oauth-2.0-client-credentials). Create an OAuth client in the [Spice.ai Portal](https://spice.ai) under **Settings** → **OAuth Clients**.
 
 Set credentials via environment variables (recommended):
 
@@ -54,11 +54,11 @@ provider "spiceai" {
 
 ### Environment Variables
 
-| Variable                 | Description                                                  |
-| ------------------------ | ------------------------------------------------------------ |
-| `SPICEAI_CLIENT_ID`      | OAuth client ID                                              |
-| `SPICEAI_CLIENT_SECRET`  | OAuth client secret                                          |
-| `SPICEAI_API_ENDPOINT`   | API endpoint (default: `https://api.spice.ai`)               |
+| Variable                 | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| `SPICEAI_CLIENT_ID`      | OAuth client ID                                                    |
+| `SPICEAI_CLIENT_SECRET`  | OAuth client secret                                                |
+| `SPICEAI_API_ENDPOINT`   | API endpoint (default: `https://api.spice.ai`)                     |
 | `SPICEAI_OAUTH_ENDPOINT` | OAuth token endpoint (default: `https://spice.ai/api/oauth/token`) |
 
 ## Resources
@@ -95,37 +95,37 @@ resource "spiceai_app" "app" {
 
 **Required arguments:**
 
-| Argument | Type   | Description                                                |
-| -------- | ------ | ---------------------------------------------------------- |
-| `name`   | string | App name (min 4 chars, alphanumeric and hyphens). Forces replacement on change. |
+| Argument | Type   | Description                                                                                         |
+| -------- | ------ | --------------------------------------------------------------------------------------------------- |
+| `name`   | string | App name (min 4 chars, alphanumeric and hyphens). Forces replacement on change.                     |
 | `cname`  | string | Region identifier. Get values from the `spiceai_regions` data source. Forces replacement on change. |
 
 **Optional arguments:**
 
-| Argument                | Type        | Description                                                 |
-| ----------------------- | ----------- | ----------------------------------------------------------- |
-| `description`           | string      | App description                                             |
-| `visibility`            | string      | `public` or `private` (default: `private`)                  |
-| `spicepod`              | string      | Spicepod configuration (YAML or JSON string)                |
-| `image_tag`             | string      | Spice runtime image tag (e.g., `latest`, `v0.18.0`)         |
-| `image`                 | string      | Image name for the spiced container                         |
-| `registry`              | string      | Registry for the spiced image                               |
-| `replicas`              | number      | Number of replicas (0–10)                                   |
-| `region`                | string      | Deployment region                                           |
-| `node_group`            | string      | Node group for deployment                                   |
-| `storage_claim_size_gb` | number      | Persistent volume size in GB                                |
-| `production_branch`     | string      | Git branch for production deployments                       |
+| Argument                | Type        | Description                                                         |
+| ----------------------- | ----------- | ------------------------------------------------------------------- |
+| `description`           | string      | App description                                                     |
+| `visibility`            | string      | `public` or `private` (default: `private`)                          |
+| `spicepod`              | string      | Spicepod configuration (YAML or JSON string)                        |
+| `image_tag`             | string      | Spice runtime image tag (e.g., `latest`, `v0.18.0`)                 |
+| `image`                 | string      | Image name for the spiced container                                 |
+| `registry`              | string      | Registry for the spiced image                                       |
+| `replicas`              | number      | Number of replicas (0–10)                                           |
+| `region`                | string      | Deployment region                                                   |
+| `node_group`            | string      | Node group for deployment                                           |
+| `storage_claim_size_gb` | number      | Persistent volume size in GB                                        |
+| `production_branch`     | string      | Git branch for production deployments                               |
 | `update_channel`        | string      | Update channel: `stable`, `nightly`, `internal`, `internal-sandbox` |
-| `tags`                  | map(string) | Key-value tags for the app                                  |
+| `tags`                  | map(string) | Key-value tags for the app                                          |
 
 **Read-only attributes:**
 
-| Attribute    | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `id`         | App ID                                         |
-| `api_key`    | Primary API key (sensitive)                    |
-| `cluster_id` | Cluster identifier                             |
-| `created_at` | Timestamp when the app was created             |
+| Attribute    | Description                        |
+| ------------ | ---------------------------------- |
+| `id`         | App ID                             |
+| `api_key`    | Primary API key (sensitive)        |
+| `cluster_id` | Cluster identifier                 |
+| `created_at` | Timestamp when the app was created |
 
 The `spicepod` can also be provided as JSON or loaded from a template file:
 
@@ -182,32 +182,32 @@ resource "spiceai_deployment" "production" {
 
 **Required arguments:**
 
-| Argument | Type   | Description                 |
-| -------- | ------ | --------------------------- |
-| `app_id` | string | The app ID to deploy        |
+| Argument | Type   | Description          |
+| -------- | ------ | -------------------- |
+| `app_id` | string | The app ID to deploy |
 
 **Optional arguments:**
 
-| Argument         | Type        | Description                                               |
-| ---------------- | ----------- | --------------------------------------------------------- |
-| `image_tag`      | string      | Override the Spice runtime image tag                      |
-| `replicas`       | number      | Override the number of replicas (0–10)                    |
-| `debug`          | boolean     | Enable debug mode                                         |
-| `branch`         | string      | Git branch name                                           |
-| `commit_sha`     | string      | Git commit SHA                                            |
-| `commit_message` | string      | Git commit message                                        |
-| `triggers`       | map(string) | Map of values that force a new deployment when changed    |
+| Argument         | Type        | Description                                            |
+| ---------------- | ----------- | ------------------------------------------------------ |
+| `image_tag`      | string      | Override the Spice runtime image tag                   |
+| `replicas`       | number      | Override the number of replicas (0–10)                 |
+| `debug`          | boolean     | Enable debug mode                                      |
+| `branch`         | string      | Git branch name                                        |
+| `commit_sha`     | string      | Git commit SHA                                         |
+| `commit_message` | string      | Git commit message                                     |
+| `triggers`       | map(string) | Map of values that force a new deployment when changed |
 
 **Read-only attributes:**
 
-| Attribute       | Description                                                            |
-| --------------- | ---------------------------------------------------------------------- |
-| `id`            | Deployment ID                                                          |
-| `status`        | Status: `queued`, `in_progress`, `succeeded`, `failed`, `created`      |
-| `created_at`    | Timestamp when the deployment was created                              |
-| `started_at`    | Timestamp when the deployment started running                          |
-| `finished_at`   | Timestamp when the deployment finished                                 |
-| `error_message` | Error message if deployment failed                                     |
+| Attribute       | Description                                                       |
+| --------------- | ----------------------------------------------------------------- |
+| `id`            | Deployment ID                                                     |
+| `status`        | Status: `queued`, `in_progress`, `succeeded`, `failed`, `created` |
+| `created_at`    | Timestamp when the deployment was created                         |
+| `started_at`    | Timestamp when the deployment started running                     |
+| `finished_at`   | Timestamp when the deployment finished                            |
+| `error_message` | Error message if deployment failed                                |
 
 Use `triggers` to automatically redeploy when app configuration changes:
 
@@ -241,19 +241,19 @@ resource "spiceai_secret" "database_password" {
 
 **Required arguments:**
 
-| Argument | Type   | Description                         |
-| -------- | ------ | ----------------------------------- |
-| `app_id` | number | The app ID                          |
+| Argument | Type   | Description                                |
+| -------- | ------ | ------------------------------------------ |
+| `app_id` | number | The app ID                                 |
 | `name`   | string | Secret name. Forces replacement on change. |
-| `value`  | string | Secret value (sensitive)            |
+| `value`  | string | Secret value (sensitive)                   |
 
 **Read-only attributes:**
 
-| Attribute    | Description                             |
-| ------------ | --------------------------------------- |
-| `id`         | Secret ID                               |
-| `created_at` | Timestamp when the secret was created   |
-| `updated_at` | Timestamp when the secret was updated   |
+| Attribute    | Description                           |
+| ------------ | ------------------------------------- |
+| `id`         | Secret ID                             |
+| `created_at` | Timestamp when the secret was created |
+| `updated_at` | Timestamp when the secret was updated |
 
 {% hint style="info" %}
 After importing a secret, you must set the `value` attribute in your configuration since secret values are not returned by the API.
@@ -277,24 +277,24 @@ resource "spiceai_member" "admin" {
 
 **Required arguments:**
 
-| Argument   | Type   | Description                                   |
-| ---------- | ------ | --------------------------------------------- |
+| Argument   | Type   | Description                                         |
+| ---------- | ------ | --------------------------------------------------- |
 | `username` | string | Username of the user. Forces replacement on change. |
 
 **Optional arguments:**
 
-| Argument | Type      | Description                                    |
-| -------- | --------- | ---------------------------------------------- |
-| `roles`  | list(string) | Roles to assign (`admin`, `member`)         |
+| Argument | Type         | Description                         |
+| -------- | ------------ | ----------------------------------- |
+| `roles`  | list(string) | Roles to assign (`admin`, `member`) |
 
 **Read-only attributes:**
 
-| Attribute    | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `id`         | Member ID (same as `user_id`)                  |
-| `user_id`    | User ID                                        |
-| `is_owner`   | Whether the member is the organization owner   |
-| `created_at` | Timestamp when the member was added            |
+| Attribute    | Description                                  |
+| ------------ | -------------------------------------------- |
+| `id`         | Member ID (same as `user_id`)                |
+| `user_id`    | User ID                                      |
+| `is_owner`   | Whether the member is the organization owner |
+| `created_at` | Timestamp when the member was added          |
 
 {% hint style="warning" %}
 Organization owners cannot be managed via Terraform. Attempting to modify or delete an owner will result in an error.
@@ -320,9 +320,9 @@ resource "spiceai_app" "app" {
 | -------- | ------ | ------------------------------------------------ |
 | `env`    | string | Optional. Filter by environment: `prod` or `dev` |
 
-| Attribute | Description                  |
-| --------- | ---------------------------- |
-| `default` | Default region identifier    |
+| Attribute | Description                                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------------------------ |
+| `default` | Default region identifier                                                                                    |
 | `regions` | List of region objects with `cname`, `region`, `name`, `provider`, `provider_name`, `is_default`, `disabled` |
 
 ### spiceai\_container\_images
@@ -341,14 +341,14 @@ resource "spiceai_app" "app" {
 }
 ```
 
-| Argument  | Type   | Description                                                    |
-| --------- | ------ | -------------------------------------------------------------- |
+| Argument  | Type   | Description                                                             |
+| --------- | ------ | ----------------------------------------------------------------------- |
 | `channel` | string | Optional. Release channel: `stable` or `enterprise` (default: `stable`) |
 
-| Attribute | Description                                                       |
-| --------- | ----------------------------------------------------------------- |
-| `default` | Default image tag                                                 |
-| `images`  | List of image objects with `tag`, `name`, `channel`               |
+| Attribute | Description                                         |
+| --------- | --------------------------------------------------- |
+| `default` | Default image tag                                   |
+| `images`  | List of image objects with `tag`, `name`, `channel` |
 
 ### spiceai\_api\_keys
 
@@ -365,14 +365,14 @@ output "primary_api_key" {
 }
 ```
 
-| Argument | Type   | Description     |
-| -------- | ------ | --------------- |
+| Argument | Type   | Description              |
+| -------- | ------ | ------------------------ |
 | `app_id` | string | **Required.** The app ID |
 
-| Attribute   | Description                       |
-| ----------- | --------------------------------- |
-| `api_key`   | Primary API key (sensitive)       |
-| `api_key_2` | Secondary API key (sensitive)     |
+| Attribute   | Description                   |
+| ----------- | ----------------------------- |
+| `api_key`   | Primary API key (sensitive)   |
+| `api_key_2` | Secondary API key (sensitive) |
 
 ### spiceai\_app
 
@@ -539,4 +539,4 @@ See also:
 
 * [Terraform Provider on Registry](https://registry.terraform.io/providers/spiceai/spiceai/latest)
 * [Provider Source on GitHub](https://github.com/spiceai/terraform-provider-spiceai)
-* [Management API Overview](./)
+* [Management API Overview](../management/)

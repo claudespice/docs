@@ -24,16 +24,16 @@ Runtime APIs are served at `https://data.spiceai.io` and authenticated with [App
 
 The Management API is served at `https://api.spice.ai` and authenticated with [Personal Access Tokens](../../portal/profile/personal-access-tokens.md) or OAuth client credentials.
 
-| Endpoint         | Documentation                                          |
-| ---------------- | ------------------------------------------------------ |
-| Apps             | [Apps API](management/apps.md)                         |
-| Deployments      | [Deployments API](management/deployments.md)           |
-| Secrets          | [Secrets API](management/secrets.md)                   |
-| API Keys         | [API Keys API](management/api-keys.md)                 |
-| Members          | [Members API](management/members.md)                   |
-| Regions          | [Regions API](management/regions.md)                   |
-| Container Images | [Container Images API](management/container-images.md) |
-| Health           | [Health API](management/health.md)                     |
+| Endpoint         | Documentation                                              |
+| ---------------- | ---------------------------------------------------------- |
+| Apps             | [Apps API](/broken/pages/Cxualhhbj3JVjFycQplA)             |
+| Deployments      | [Deployments API](/broken/pages/cW4Y9zvF1YF9X2ExU15D)      |
+| Secrets          | [Secrets API](/broken/pages/jux7LfeRfZnBFKMpjIXA)          |
+| API Keys         | [API Keys API](/broken/pages/C2SEPG58kdQqhs4SL9B7)         |
+| Members          | [Members API](/broken/pages/fDcgKtae3y2pEzLWtbVg)          |
+| Regions          | [Regions API](/broken/pages/6ZPPX3ncuyaq7usBYCzO)          |
+| Container Images | [Container Images API](/broken/pages/5fsccwHHHi12wJt5s0Ca) |
+| Health           | [Health API](/broken/pages/MMiAVKRYaydEPCc1zdZU)           |
 
 See the full [Management API reference](management/) for authentication, scopes, rate limits, and examples.
 

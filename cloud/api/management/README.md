@@ -3,7 +3,7 @@ description: Management and Deployment API documentation for api.spice.ai
 icon: code
 ---
 
-# Management API
+# Management APIs
 
 The Spice.ai Management API (also known as the control-plane API) provides programmatic access to manage Spice.ai Cloud resources—apps, deployments, secrets, API keys, and organization members.
 
@@ -202,19 +202,19 @@ Official SDKs are available for popular languages:
 
 ## Endpoints
 
-* [Health](health.md) - API health check
-* [Regions](regions.md) - List available deployment regions
-* [Apps](apps.md) - Manage Spice apps
-* [Deployments](deployments.md) - Deploy and manage app deployments
-* [Secrets](secrets.md) - Manage app secrets
-* [API Keys](api-keys.md) - Manage app API keys
-* [Members](members.md) - Manage organization members
+* [Health](/broken/pages/MMiAVKRYaydEPCc1zdZU) - API health check
+* [Regions](/broken/pages/6ZPPX3ncuyaq7usBYCzO) - List available deployment regions
+* [Apps](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage Spice apps
+* [Deployments](/broken/pages/cW4Y9zvF1YF9X2ExU15D) - Deploy and manage app deployments
+* [Secrets](/broken/pages/jux7LfeRfZnBFKMpjIXA) - Manage app secrets
+* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage app API keys
+* [Members](/broken/pages/fDcgKtae3y2pEzLWtbVg) - Manage organization members
 * [Metrics](../metrics.md) - Scrape per-app runtime metrics
-* [Container Images](container-images.md) - List available runtime versions
+* [Container Images](/broken/pages/5fsccwHHHi12wJt5s0Ca) - List available runtime versions
 
 ## Terraform Provider
 
-Manage Spice.ai resources as infrastructure-as-code with the [Spice.ai Terraform Provider](terraform.md). See the [Terraform Provider](terraform.md) page for resources, data sources, import instructions, and complete examples.
+Manage Spice.ai resources as infrastructure-as-code with the [Spice.ai Terraform Provider](../management-api/terraform.md). See the [Terraform Provider](../management-api/terraform.md) page for resources, data sources, import instructions, and complete examples.
 
 ## Examples
 
