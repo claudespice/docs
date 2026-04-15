@@ -3,6 +3,22 @@
 * [Welcome](README.md)
 * [FAQ](faq/md)
 
+## Features
+
+* [Federated SQL Query](features/federated-sql-query.md)
+* [Data Acceleration](features/data-acceleration/README.md)
+  * [In-Memory Arrow Data Accelerator](features/data-acceleration/in-memory-arrow-data-accelerator.md)
+  * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
+  * [PostgreSQL Data Accelerator](features/data-acceleration/postgresql-data-accelerator.md)
+  * [SQLite Data Accelerator](features/data-acceleration/sqlite-data-accelerator.md)
+* [Search & Retrieval](features/search-and-retrieval.md)
+* [AI Gateway](features/ai-gateway.md)
+* [Semantic Models](features/semantic-models.md)
+* [ML Models](building-blocks/spice-models.md)
+* [Observability](features/observability/README.md)
+  * [Task History](features/observability/task-history.md)
+  * [Zipkin](features/observability/zipkin.md)
+
 ## Building Blocks
 
 * [Data Connectors](building-blocks/data-connectors/README.md)
