@@ -97,6 +97,8 @@ Spice infers the schema for datasets and views at startup and does not apply run
 
 To pick up a new source schema, restart the Spice runtime. On startup, Spice re-infers the schema from the source and the accelerated table is re-initialized with the updated schema.
 
+Automatic runtime schema evolution is on the [Spice v2.1 roadmap](https://github.com/spiceai/spiceai/blob/trunk/docs/ROADMAP.md).
+
 ### What is Data-grounded AI?
 
 Data-grounded AI anchors models in accurate, current, domain-specific data rather than relying solely on pre-trained knowledge. Spice unifies enterprise data across databases, data lakes, and APIs, dynamically incorporating real-world context at inference time. This helps minimize hallucinations, reduce operational risk, and build trust in AI by delivering reliable, relevant outputs.
