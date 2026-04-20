@@ -53,7 +53,12 @@ Yes. Spice integrates with BI tools through standard SQL interfaces (ODBC, JDBC,
 
 ### Does Spice support Change Data Capture (CDC)?
 
-Yes. Spice supports CDC via [Debezium](../building-blocks/data-connectors/debezium.md), enabling real-time data ingestion and materialization from databases such as PostgreSQL and MySQL.
+Yes. Spice supports CDC in two ways:
+
+- **Native PostgreSQL logical replication** (recommended for PostgreSQL sources). Spice connects directly to the source using Postgres' `wal_level=logical` and streams `INSERT`/`UPDATE`/`DELETE` events into the accelerator — no Debezium, no Kafka, no external services. See [PostgreSQL Logical Replication](https://spiceai.org/docs/features/cdc/postgres-replication) in the OSS documentation.
+- **[Debezium](../building-blocks/data-connectors/debezium.md)**, for sources where Debezium + Kafka is already deployed, or for non-PostgreSQL databases (MySQL, SQL Server, etc.).
+
+Both paths are enabled by setting `refresh_mode: changes` on the accelerated dataset.
 
 ### How do I keep an accelerated dataset incrementally up-to-date?
 
