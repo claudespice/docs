@@ -5,6 +5,14 @@ icon: circle-question
 
 # FAQ
 
+### What's the difference between Spice.ai OSS, Cloud, and Enterprise?
+
+- **Spice.ai OSS** — the open-source Spice runtime. Self-hosted, free, Apache 2.0.
+- **Spice.ai Cloud** — a managed, multi-tenant hosted service running Spice as a platform with additional building blocks (cloud data warehouse, model training/inference, AI gateway).
+- **Spice.ai Enterprise** — a self-hosted enterprise distribution of Spice with advanced features (HA, RBAC, SSO, governance, premium connectors), enterprise support, and an SLA.
+
+See [Distributions](https://docs.spice.ai/docs/enterprise/getting-started/distributions) for a detailed comparison.
+
 ### What's the difference between the Spice.ai Cloud Platform and Spice.ai OSS?
 
 [**Spice.ai OSS**](https://github.com/spiceai/spiceai) is an open-source project created by the Spice AI team that provides a unified SQL query interface to locally materialize, accelerate, and query data tables sourced from any database, data warehouse, or data lake.
