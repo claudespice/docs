@@ -63,7 +63,7 @@ If soft deletes are not available, schedule a periodic `refresh_mode: full` snap
 
 #### Example - Incrementally ingest the last 90 days of GitHub pull requests <a href="#example" id="example"></a>
 
-Checks for new and updated records every 15 minutes, with a 5-minute overlap to cover clock skew and late arrivals:
+Checks for new and updated records every 15 minutes, with a 5-minute overlap to cover clock skew and late arrivals. Rows updated in the source are upserted via `primary_key` + `on_conflict: upsert`, and soft-deleted rows (`deleted_at IS NOT NULL`) are evicted by `retention_sql` in addition to the time-based `retention_period`:
 
 ```yaml
 datasets:
@@ -80,8 +80,12 @@ datasets:
       refresh_append_overlap: 5m
       refresh_data_window: 90d
       primary_key: id
-      retention_period: 90d
+      on_conflict:
+        id: upsert
+      retention_check_enabled: true
       retention_check_interval: 1h
+      retention_period: 90d
+      retention_sql: DELETE FROM pulls WHERE deleted_at IS NOT NULL
 ```
 
 ### Indexes
