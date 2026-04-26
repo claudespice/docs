@@ -16,6 +16,15 @@
 * [GKE Workload Identity](deployment/gke-workload-identity.md)
 * [Azure Workload Identity](deployment/azure-workload-identity.md)
 
+## Production
+
+* [Production Readiness](production/README.md)
+* [High Availability](production/high-availability.md)
+* [Storage](production/storage.md)
+* [Observability](production/observability.md)
+* [Security](production/security.md)
+* [Upgrades](production/upgrades.md)
+
 ## Kubernetes Operator
 
 * [Overview](kubernetes/README.md)
