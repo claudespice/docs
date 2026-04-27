@@ -41,6 +41,10 @@ spec:
 ```
 
 {% hint style="warning" %}
+Only deploy the Local Volume Static Provisioner together with its [stale-PV/PVC cleanup controller](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/pull/385). Without it, when a node is replaced (EC2 instance refresh, autoscaler scale-in, spot reclaim, etc.) the PVC remains bound to the deleted node and the pod will not reschedule until the PVC is manually deleted — a frequent production footgun. The cleanup controller runs as a separate `Deployment` alongside the per-node `DaemonSet`; see the [provisioner deployment docs](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/tree/master/docs) for the required RBAC and minimum Kubernetes version.
+{% endhint %}
+
+{% hint style="warning" %}
 Local NVMe does not survive node replacement. Pair local volumes with a refresh strategy (refresh-on-startup datasets) or rely on the underlying source of truth for re-hydration. Always size accelerations smaller than the local NVMe so eviction never triggers.
 {% endhint %}
 
