@@ -13,12 +13,12 @@ For protocol-level details, see [Authentication](../features/authentication.md) 
 
 ### Image provenance
 
-- Pull only signed images from official registries: `ghcr.io/spicehq/spiceai-enterprise` and `ghcr.io/spicehq/spiceai-operator`. AWS Marketplace customers may also pull from the Marketplace ECR.
+- Pull Spice.ai Enterprise operator and runtime images only from the official **AWS Marketplace ECR registry** issued at subscription. The images are not currently published to a public registry; contact [Spice.ai support](mailto:support@spice.ai) for the registry URI for your subscription.
 - Pin every image reference to an **immutable digest** rather than a floating tag:
 
 ```yaml
 spec:
-  spiceai_image_registry: ghcr.io
+  spiceai_image_registry: <marketplace-ecr-uri>
   spiceai_image_name: spicehq/spiceai-enterprise
   spiceai_image_tag: latest-models@sha256:1f4a...
 ```
