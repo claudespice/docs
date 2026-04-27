@@ -5,31 +5,36 @@ icon: docker
 
 # Docker
 
-Enterprise container images are published to GitHub Container Registry (GHCR) and AWS Marketplace ECR.
+Enterprise container images are distributed exclusively through the [AWS Marketplace ECR](aws-marketplace.md) registry. Subscribe to the Spice.ai Enterprise listing on AWS Marketplace, then authenticate with `aws ecr get-login-password` before pulling.
 
 ## Images
 
-| Image                                                | Description                                   |
-| ---------------------------------------------------- | --------------------------------------------- |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-models`   | Default distribution with AI/ML model support |
-| `ghcr.io/spicehq/spiceai-enterprise:latest`          | Data-only distribution                        |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-cuda`     | CUDA GPU-accelerated distribution             |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-nas`      | NAS distribution (SMB + NFS connectors)       |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-jemalloc` | jemalloc memory allocator variant             |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-mimalloc` | mimalloc memory allocator variant             |
-| `ghcr.io/spicehq/spiceai-enterprise:latest-sysalloc` | System (glibc) memory allocator variant       |
+Replace `<repo>` below with either `spiceai-enterprise-byol` (Bring Your Own License) or `spiceai-enterprise-plan` (Marketplace subscription) — see [AWS Marketplace](aws-marketplace.md) for details.
+
+| Image                                                                              | Description                                   |
+| ---------------------------------------------------------------------------------- | --------------------------------------------- |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-models`       | Default distribution with AI/ML model support |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest`              | Data-only distribution                        |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-cuda`         | CUDA GPU-accelerated distribution             |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-nas`          | NAS distribution (SMB + NFS connectors)       |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-jemalloc`     | jemalloc memory allocator variant             |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-mimalloc`     | mimalloc memory allocator variant             |
+| `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/<repo>:latest-sysalloc`     | System (glibc) memory allocator variant       |
 
 ## Pull an Image
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-enterprise:latest-models
+aws ecr get-login-password --region us-east-1 \
+  | docker login --username AWS --password-stdin 709825985650.dkr.ecr.us-east-1.amazonaws.com
+
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-models
 ```
 
 ## Run
 
 ```bash
 docker run -p 8090:8090 -p 50051:50051 -p 9090:9090 \
-  ghcr.io/spicehq/spiceai-enterprise:latest-models \
+  709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-models \
   --http 0.0.0.0:8090 \
   --metrics 0.0.0.0:9090 \
   --flight 0.0.0.0:50051
@@ -42,7 +47,7 @@ Mount a Spicepod YAML file into the container:
 ```bash
 docker run -p 8090:8090 -p 50051:50051 -p 9090:9090 \
   -v $(pwd)/spicepod.yaml:/app/spicepod.yaml \
-  ghcr.io/spicehq/spiceai-enterprise:latest-models
+  709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-models
 ```
 
 ## Exposed Ports

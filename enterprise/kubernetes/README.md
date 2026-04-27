@@ -12,31 +12,34 @@ The Spice.ai Kubernetes Operator automates the deployment, scaling, and lifecycl
 
 ## Installation
 
+The Spice Kubernetes Operator is distributed exclusively through the [AWS Marketplace](../deployment/aws-marketplace.md) Spice.ai Enterprise listing. Subscribe and authenticate to the Marketplace ECR registry, then install:
+
 ### Helm
 
 ```bash
-helm install spiceai-operator oci://ghcr.io/spicehq/charts/spiceai-operator
+helm install spiceai-operator \
+  oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/charts/spiceai-operator
 ```
 
 ### Docker
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-operator:latest
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-operator:latest
 ```
 
 ### Helm Values
 
-| Parameter                    | Description                           | Default                    |
-| ---------------------------- | ------------------------------------- | -------------------------- |
-| `image.repository`           | Operator image repository             | `ghcr.io`                  |
-| `image.name`                 | Operator image name                   | `spicehq/spiceai-operator` |
-| `image.tag`                  | Operator image tag                    | `latest`                   |
-| `image.pullSecrets`          | Image pull secrets                    | —                          |
-| `installCRDs`                | Install/update CRDs with the chart    | `true`                     |
-| `serviceAccount.annotations` | Annotations (e.g. for IRSA)           | `{}`                       |
-| `servicemonitor.enabled`     | Enable Prometheus `ServiceMonitor`    | `false`                    |
-| `cluster.clusterDomain`      | Kubernetes cluster domain             | `cluster.local`            |
-| `telemetryProperties`        | Key/value pairs for the Spice runtime | —                          |
+| Parameter                    | Description                           | Default                                                                  |
+| ---------------------------- | ------------------------------------- | ------------------------------------------------------------------------ |
+| `image.repository`           | Operator image repository             | `709825985650.dkr.ecr.us-east-1.amazonaws.com`                            |
+| `image.name`                 | Operator image name                   | `spice-ai/spiceai-operator`                                              |
+| `image.tag`                  | Operator image tag                    | `latest`                                                                 |
+| `image.pullSecrets`          | Image pull secrets                    | —                                                                        |
+| `installCRDs`                | Install/update CRDs with the chart    | `true`                                                                   |
+| `serviceAccount.annotations` | Annotations (e.g. for IRSA)           | `{}`                                                                     |
+| `servicemonitor.enabled`     | Enable Prometheus `ServiceMonitor`    | `false`                                                                  |
+| `cluster.clusterDomain`      | Kubernetes cluster domain             | `cluster.local`                                                          |
+| `telemetryProperties`        | Key/value pairs for the Spice runtime | —                                                                        |
 
 ## Managed Resources
 
@@ -107,6 +110,7 @@ spiceai-operator crd --output FILE
 ## Upgrading
 
 ```bash
-helm upgrade spiceai-operator oci://ghcr.io/spicehq/charts/spiceai-operator \
+helm upgrade spiceai-operator \
+  oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/charts/spiceai-operator \
   --values my-values.yaml
 ```

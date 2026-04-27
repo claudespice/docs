@@ -29,8 +29,8 @@ Configure a custom Spice.ai Enterprise image:
 
 ```yaml
 spec:
-  spiceai_image_registry: ghcr.io
-  spiceai_image_name: spicehq/spiceai-enterprise
+  spiceai_image_registry: 709825985650.dkr.ecr.us-east-1.amazonaws.com
+  spiceai_image_name: spice-ai/spiceai-enterprise-byol
   spiceai_image_tag: latest-models
   spiceai_image_pull_secret: my-pull-secret
 ```

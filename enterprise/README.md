@@ -46,6 +46,17 @@ Enterprise extends the open-source Spice runtime with:
 Spice.ai Enterprise requires a **commercial license** or an **AWS Marketplace subscription**. [Contact us](https://spice.ai/contact) to get started or request a trial.
 {% endhint %}
 
+## Production-Ready by Design
+
+Spice.ai Enterprise is the supported path for running Spice in production. The [**Production Readiness**](production/README.md) section is the canonical reference for promoting a deployment to production:
+
+- [**Production Readiness Checklist**](production/README.md) \u2014 sign-off list covering topology, storage, observability, security, and upgrades.
+- [**High Availability**](production/high-availability.md) \u2014 multi-replica, multi-AZ, and `SpicepodCluster` topologies.
+- [**Storage**](production/storage.md) \u2014 NVMe, `io2` Block Express, Premium SSD v2, and acceleration sizing.
+- [**Observability**](production/observability.md) \u2014 Prometheus metrics, Grafana dashboard, log routing, and the recommended alert set.
+- [**Security**](production/security.md) \u2014 image pinning, Pod Security Standards, NetworkPolicy, mTLS, and secrets management.
+- [**Upgrades**](production/upgrades.md) \u2014 versioning, rolling upgrades, and rollback procedures.
+
 ## Get Started
 
 <table data-card-size="large" data-view="cards">
