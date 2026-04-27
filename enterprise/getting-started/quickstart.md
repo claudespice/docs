@@ -15,8 +15,11 @@ This guide walks through deploying Spice.ai Enterprise on Kubernetes using the S
 
 ## Step 1: Install the Spice Kubernetes Operator
 
+The operator is distributed via the [AWS Marketplace](../deployment/aws-marketplace.md) Spice.ai Enterprise listing. Subscribe and authenticate to the Marketplace ECR registry first, then install:
+
 ```bash
-helm install spiceai-operator oci://ghcr.io/spicehq/charts/spiceai-operator
+helm install spiceai-operator \
+  oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/charts/spiceai-operator
 ```
 
 Verify the operator is running:
@@ -44,8 +47,8 @@ metadata:
   namespace: default
 spec:
   replicas: 1
-  spiceai_image_registry: ghcr.io
-  spiceai_image_name: spicehq/spiceai-enterprise
+  spiceai_image_registry: 709825985650.dkr.ecr.us-east-1.amazonaws.com
+  spiceai_image_name: spice-ai/spiceai-enterprise-byol
   spiceai_image_tag: latest-models
   spicepod: |
     name: my-spicepod

@@ -52,7 +52,8 @@ Always upgrade the operator (and its CRDs) before bumping runtime images to a ne
 ### Step 2 \u2014 Upgrade the operator and CRDs
 
 ```bash
-helm upgrade spiceai-operator oci://ghcr.io/spicehq/charts/spiceai-operator \
+helm upgrade spiceai-operator \
+  oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/charts/spiceai-operator \
   --version <NEW_VERSION> \
   --values my-values.yaml
 ```

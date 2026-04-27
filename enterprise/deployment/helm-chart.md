@@ -18,7 +18,7 @@ helm install spiceai deploy/chart \
 
 | Parameter                                | Description                                       | Default                              |
 | ---------------------------------------- | ------------------------------------------------- | ------------------------------------ |
-| `image.repository`                       | Container image repository                        | `ghcr.io/spicehq/spiceai-enterprise` |
+| `image.repository`                       | Container image repository                        | `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol` |
 | `image.tag`                              | Container image tag                               | `latest-models`                      |
 | `replicaCount`                           | Number of replicas                                | `1`                                  |
 | `serviceAccount.create`                  | Create a `ServiceAccount`                         | `false`                              |

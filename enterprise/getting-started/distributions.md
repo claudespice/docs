@@ -61,10 +61,10 @@ CUDA GPU-accelerated model inference. Supported compute capabilities:
 | 89                 | RTX 40xx, L40, L4  |
 | 90                 | H100, H200         |
 
-Enterprise CUDA images are available from GitHub Container Registry:
+Enterprise CUDA images are available from the AWS Marketplace ECR registry (see [AWS Marketplace](../deployment/aws-marketplace.md) for subscription and authentication):
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-enterprise:latest-cuda
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-cuda
 ```
 
 ## Allocator Variants
@@ -80,7 +80,7 @@ The default allocator, optimized for concurrent workloads. Reduces memory usage 
 Alternative allocator that may perform better for certain memory allocation patterns.
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-enterprise:latest-jemalloc
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-jemalloc
 ```
 
 ### mimalloc
@@ -88,7 +88,7 @@ docker pull ghcr.io/spicehq/spiceai-enterprise:latest-jemalloc
 Microsoft's mimalloc allocator, designed for performance and security.
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-enterprise:latest-mimalloc
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-mimalloc
 ```
 
 ### System Allocator
@@ -96,7 +96,7 @@ docker pull ghcr.io/spicehq/spiceai-enterprise:latest-mimalloc
 Uses the system's default allocator (glibc malloc on Linux).
 
 ```bash
-docker pull ghcr.io/spicehq/spiceai-enterprise:latest-sysalloc
+docker pull 709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol:latest-sysalloc
 ```
 
 ## Choosing a Distribution
