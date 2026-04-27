@@ -5,6 +5,14 @@ icon: circle-question
 
 # FAQ
 
+### What's the difference between Spice.ai OSS, Cloud, and Enterprise?
+
+- **Spice.ai OSS** — the open-source Spice runtime. Self-hosted, free, Apache 2.0.
+- **Spice.ai Cloud** — a managed, multi-tenant hosted service running Spice as a platform with additional building blocks (cloud data warehouse, model training/inference, AI gateway).
+- **Spice.ai Enterprise** — a self-hosted enterprise distribution of Spice with advanced features (HA, RBAC, SSO, governance, premium connectors), enterprise support, and an SLA.
+
+See [Distributions](https://docs.spice.ai/docs/enterprise/getting-started/distributions) for a detailed comparison.
+
 ### What's the difference between the Spice.ai Cloud Platform and Spice.ai OSS?
 
 [**Spice.ai OSS**](https://github.com/spiceai/spiceai) is an open-source project created by the Spice AI team that provides a unified SQL query interface to locally materialize, accelerate, and query data tables sourced from any database, data warehouse, or data lake.
@@ -53,13 +61,24 @@ Yes. Spice integrates with BI tools through standard SQL interfaces (ODBC, JDBC,
 
 ### Does Spice support Change Data Capture (CDC)?
 
-Yes. Spice supports CDC via [Debezium](../building-blocks/data-connectors/debezium.md), enabling real-time data ingestion and materialization from databases such as PostgreSQL and MySQL.
+Yes. Spice supports streaming ingestion from several sources:
+
+- **Native PostgreSQL logical replication** (recommended for PostgreSQL sources). Spice connects directly to the source using Postgres' `wal_level=logical` and streams `INSERT`/`UPDATE`/`DELETE` events into the accelerator. See [PostgreSQL Logical Replication](https://spiceai.org/docs/features/cdc/postgres-replication) in the OSS documentation.
+- **[DynamoDB Streams](../building-blocks/data-connectors/dynamodb.md)** for Amazon DynamoDB sources — Spice consumes the table's change stream and applies `INSERT`/`UPDATE`/`DELETE` events to the accelerator with `refresh_mode: changes`.
+- **[Apache Kafka](../building-blocks/data-connectors/kafka.md)** for event-streaming topics — Spice consumes records directly with `refresh_mode: append` for real-time, append-only acceleration.
+- **[Debezium](../building-blocks/data-connectors/debezium.md)** (over Kafka) for sources where Debezium is already deployed, or for databases without a native Spice CDC path (MySQL, SQL Server, etc.).
+
+### How do I keep an accelerated dataset incrementally up-to-date?
+
+For sources with a monotonically-increasing version column (e.g. `updated_at`), Spice incrementally ingests new and modified records using `time_column` + `refresh_mode: append`, with `refresh_append_overlap` to tolerate clock skew and `retention_period` to evict old or soft-deleted records. See [Incremental Ingestion](../features/data-acceleration/README.md#incremental-ingestion) for configuration details and examples.
 
 ### Does Spice support schema evolution?
 
 Spice infers the schema for datasets and views at startup and does not apply runtime schema changes by default. If the source schema changes while the runtime is running (e.g. columns are added, removed, or their types change), data refreshes will fail with a schema mismatch error rather than silently applying the new schema.
 
 To pick up a new source schema, restart the Spice runtime. On startup, Spice re-infers the schema from the source and the accelerated table is re-initialized with the updated schema.
+
+Automatic runtime schema evolution is on the [Spice v2.1 roadmap](https://github.com/spiceai/spiceai/blob/trunk/docs/ROADMAP.md).
 
 ### What is Data-grounded AI?
 
