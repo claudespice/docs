@@ -12,6 +12,7 @@ Enterprise extends the open-source Spice runtime with:
 - **Multi-node clustering and HA** — Multi-active distributed query with automatic failover, built on Apache Ballista.
 - **Kubernetes Operator** — Automated deployment, scaling, and lifecycle management via `SpicepodSet` and `SpicepodCluster` CRDs.
 - **Acceleration snapshots** — Object-store-backed snapshot, bootstrap, and recovery for accelerated datasets.
+- **Authorization policy** — Cedar-based fine-grained access control over datasets, models, tools, and endpoints.
 - **Enterprise distributions** — NAS (SMB/NFS), CUDA GPU-accelerated, data-only, and ODBC connector builds.
 - **Authentication** — OIDC bearer tokens, API keys, and combined auth with identity SQL functions.
 - **mTLS cluster security** — Auto-provisioned certificates for secure inter-node communication.
