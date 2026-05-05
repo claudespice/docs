@@ -27,7 +27,7 @@ A `SpicepodCluster` deploys a distributed query cluster with dedicated scheduler
 └──────────┘     └──────────┘     └──────────┘
 ```
 
-Schedulers coordinate query planning and execution; executors perform the compute work. Executors initiate connections to all schedulers and are shared across them.
+Schedulers coordinate query planning and partition assignment; executors perform the compute work. Executors initiate connections to all schedulers and are shared across them — partition ownership is committed to a shared object store and pushed to executors via the cluster `ControlStream`. See [Distributed Query](../features/distributed-query.md) for the full execution model.
 
 ## Example
 
@@ -40,7 +40,7 @@ metadata:
 spec:
   schedulerSetSpec:
     replicas: 1
-    spicepod: |
+    spicepod:
       version: v1
       kind: Spicepod
       name: my-cluster-scheduler
@@ -131,4 +131,34 @@ kubectl get pods -l spice.ai/cluster-role=executor
 
 ## Configuration Inheritance
 
-`SpicepodCluster` creates child `SpicepodSet` resources for schedulers and executors. All `SpicepodSet` configuration options (resources, volumes, service accounts, update strategies, health probes, pod scheduling) are available in `schedulerSetSpec` and `executorSetSpec`.
+`SpicepodCluster` creates child `SpicepodSet` resources for schedulers and executors. Both `schedulerSetSpec` and `executorSetSpec` accept the same subset of [`SpicepodSet` fields](spicepodset.md): `image`, `httpPort`, `flightPort`, `metricsPort`, `replicas`, `resources`, `env`, `envFromSource`, `network`, `nodeAffinity`, `tolerations`, `volume`, `serviceAccount`, `annotations`, `labels`, `updateStrategy`, `probes`, `terminationGracePeriodSeconds`, and `cluster`.
+
+The `executorSetSpec` does **not** accept a `spicepod` field — executors fetch the Spicepod definition from the scheduler at startup via `GetAppDefinition`.
+
+### Per-node `cluster` overrides
+
+The `cluster` field on `schedulerSetSpec` / `executorSetSpec` is a small subset (`NodeClusterConfig`) used to override cluster-internal addresses; the operator otherwise auto-populates cluster identity, role, mTLS, and scheduler discovery:
+
+```yaml
+spec:
+  schedulerSetSpec:
+    cluster:
+      bindAddress: "0.0.0.0:50052"
+```
+
+## Status
+
+```bash
+kubectl get spicepodcluster my-cluster -o yaml
+```
+
+| Field                       | Description                                                                |
+| --------------------------- | -------------------------------------------------------------------------- |
+| `rootCertificateReady`      | Whether the cluster's root CA has been generated.                          |
+| `rootSecretName`            | Secret holding the root CA certificate and private key.                    |
+| `rootExpiresAt`             | RFC 3339 expiration of the root CA.                                        |
+| `schedulerSpicepodsetName`  | Name of the child scheduler `SpicepodSet`.                                 |
+| `executorSpicepodsetName`   | Name of the child executor `SpicepodSet`.                                  |
+| `schedulerReadyReplicas`    | Ready scheduler replicas.                                                  |
+| `executorReadyReplicas`     | Ready executor replicas.                                                   |
+| `error`                     | Error message if certificate generation or reconciliation failed.          |
