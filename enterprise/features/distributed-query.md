@@ -222,6 +222,10 @@ Write-through is currently constrained to the Cayenne accelerator (see [Distribu
 
 ## Distributed Accelerations
 
+{% hint style="info" %}
+Full reference: [Distributed Accelerations](distributed-accelerations.md).
+{% endhint %}
+
 In cluster mode, accelerated data is **sharded** across executors: each executor materializes only the partitions it owns. The scheduler's view of the table is a logical UNION ALL across executors; it never holds row data.
 
 ### Engine support
@@ -247,6 +251,10 @@ Each partition has a single owning executor (1:1 assignment in `cluster.json`). 
 - The scheduler can also explicitly issue `RefreshDatasetCommand` over the `ControlStream` to trigger a refresh on a specific executor, which is how API-driven refresh requests are routed.
 
 ### Acceleration snapshots (Cayenne)
+
+{% hint style="info" %}
+Acceleration snapshots are a **Spice.ai Enterprise** feature. See [Acceleration Snapshots](acceleration-snapshots.md) for the full reference. They are not available in Spice.ai OSS.
+{% endhint %}
 
 Cayenne supports object-store-backed acceleration snapshots that integrate naturally with cluster mode, allowing a newly started executor to bootstrap from the shared object store rather than re-fetching from the federated source:
 

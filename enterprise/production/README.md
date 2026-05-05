@@ -38,6 +38,8 @@ Use this checklist as the definitive sign-off list before promoting a Spice.ai E
 - [ ] Local NVMe-backed nodes (AWS `i4i` / `m6id` / `c7gd` / `r7gd`, Azure `Lsv3` / `Ddsv5`, GCP `*-lssd`) for [accelerations](https://spiceai.org/docs/components/data-accelerators).
 - [ ] Backing PVC class is `io2` Block Express (AWS) or Premium SSD v2 (Azure) when shared / replica-attachable persistence is required.
 - [ ] S3-compatible object store provisioned for `SpicepodCluster` shared state; bucket versioning and lifecycle policies are enabled.
+- [ ] Object store backing `runtime.scheduler.state_location` supports conditional writes (ETag / `If-Match`) — required for multi-active correctness.
+- [ ] Every accelerated dataset and view targeted at `SpicepodCluster` declares `acceleration.partition_by`. See [Distributed Query → Partitioning](../features/distributed-query.md#partitioning-sharding-and-partition-aware-queries).
 - [ ] Acceleration sizing has been validated against expected dataset growth for the next 12 months. See [Storage](storage.md).
 
 ### Observability

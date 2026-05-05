@@ -77,14 +77,17 @@ spiced --role executor \
 
 ## Internal Cluster Services (Port 50052)
 
-The internal gRPC services secured by mTLS:
+The internal gRPC services secured by mTLS. See [Distributed Query → Internal gRPC](distributed-query.md#internal-grpc-port-50052) for the full surface.
 
-| RPC                | Description                                                        |
-| ------------------ | ------------------------------------------------------------------ |
-| `GetAppDefinition` | Executors fetch the full Spicepod configuration from the scheduler |
-| `ExpandSecret`     | Executors request secret values from the scheduler's secret store  |
-| `GetCatalog`       | Fetch catalog/schema/table metadata with Arrow schemas             |
-| `GetFunctions`     | Fetch UDF signatures, return types, and documentation              |
+| RPC                             | Description                                                                                              |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `GetAppDefinition`              | Executors fetch the full Spicepod definition (datasets, catalogs, views, UDFs) from the scheduler.       |
+| `ExpandSecret`                  | Executors request secret values from the scheduler's secret store.                                       |
+| `GetSchedulers`                 | Executors fetch the live scheduler membership list to open a poll loop to every scheduler.              |
+| `AllocateInitialPartitions`     | Executors fetch their assigned partition filter expressions per accelerated table.                       |
+| `ControlStream` (bidirectional) | Carries executor heartbeats and metrics; receives partition update, refresh, and cancel commands.        |
+| `GetTaskHistory`                | Federated `runtime.task_history` fan-out across peer schedulers.                                         |
+| `GetMetrics`                    | On-demand OTLP metrics collection across the cluster.                                                    |
 
 {% hint style="danger" %}
 The `--allow-insecure-connections` flag disables all mTLS verification. Never use this in production — all inter-node communication will be unencrypted and unauthenticated.
