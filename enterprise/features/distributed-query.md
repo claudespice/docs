@@ -222,6 +222,10 @@ Write-through is currently constrained to the Cayenne accelerator (see [Distribu
 
 ## Distributed Accelerations
 
+{% hint style="info" %}
+Full reference: [Distributed Accelerations](distributed-accelerations.md).
+{% endhint %}
+
 In cluster mode, accelerated data is **sharded** across executors: each executor materializes only the partitions it owns. The scheduler's view of the table is a logical UNION ALL across executors; it never holds row data.
 
 ### Engine support

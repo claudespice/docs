@@ -36,5 +36,6 @@
 * [Authentication](features/authentication.md)
 * [Authorization Policy](features/policy.md)
 * [Acceleration Snapshots](features/acceleration-snapshots.md)
+* [Distributed Accelerations](features/distributed-accelerations.md)
 * [Distributed Query](features/distributed-query.md)
 * [mTLS Cluster Security](features/mtls.md)
