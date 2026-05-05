@@ -5,7 +5,7 @@ icon: arrows-split-up-and-left
 
 # High Availability
 
-Production Spice.ai Enterprise deployments are built on three HA primitives: **multiple replicas**, **multi-zone scheduling**, and **active-active distributed query**. This page documents the supported topologies and how to configure them.
+Production Spice.ai Enterprise deployments are built on three HA primitives: **multiple replicas**, **multi-zone scheduling**, and **multi-active distributed query**. This page documents the supported topologies and how to configure them.
 
 ## Topology decision tree
 
@@ -31,7 +31,7 @@ Production Spice.ai Enterprise deployments are built on three HA primitives: **m
 | `SpicepodSet` `replicas: 1` | Edge / sidecar deployments where availability is bounded by the parent service.                   | Pod restart on failure; `PodDisruptionBudget` is not applicable.    |
 | `SpicepodSet` `replicas >= 2` (stateless) | Stateless query routing or in-memory accelerations.                                | Multiple replicas behind a load balancer with health-checked routing. |
 | `SpicepodSet` `replicas >= 2` (stateful)  | File-based accelerations that benefit from local replicas.                         | Per-replica `StatefulSet`s with PVCs; ordered or parallel rollout.  |
-| `SpicepodCluster`           | Distributed analytical query, shared accelerations, multi-tenant deployments.                     | Active-active schedulers + executors over object-store-backed state. |
+| `SpicepodCluster`           | Distributed analytical query, shared accelerations, multi-tenant deployments.                     | Multi-active schedulers + executors over object-store-backed state. |
 
 ## Multi-zone scheduling
 
@@ -132,9 +132,9 @@ service:
       timeoutSeconds: 600
 ```
 
-## Active-active distributed query
+## Multi-active distributed query
 
-`SpicepodCluster` runs multiple schedulers in active-active mode with shared state in an object store. Failover is automatic: executors re-register with surviving schedulers via the cluster's known-scheduler list, and in-flight stages are retried by the surviving schedulers without restarting the query.
+`SpicepodCluster` runs multiple schedulers in multi-active mode with shared state in an object store. Failover is automatic: executors re-register with surviving schedulers via the cluster's known-scheduler list, and in-flight stages are retried by the surviving schedulers without restarting the query.
 
 See the [Distributed Query](../features/distributed-query.md) feature documentation for the underlying mechanics.
 
