@@ -106,10 +106,13 @@ Never use `allowInsecureConnections: true` in production. All inter-node communi
 | 9090  | Public       | Prometheus metrics              | No            |
 | 50052 | **Internal** | Scheduler gRPC, Cluster Service | **Required**  |
 
-The internal port (50052) carries cluster coordination traffic:
+The internal port (50052) carries cluster coordination traffic. See [Distributed Query → Internal gRPC](../features/distributed-query.md#internal-grpc-port-50052) for the full RPC surface, including:
 
-- **`GetAppDefinition`** — Executors fetch the full Spicepod configuration from the scheduler.
+- **`GetAppDefinition`** — Executors fetch the full Spicepod definition (datasets, catalogs, views, UDFs) from the scheduler.
 - **`ExpandSecret`** — Executors request secret values from the scheduler's secret store.
+- **`GetSchedulers`** / **`AllocateInitialPartitions`** — Executors fetch scheduler membership and their assigned partitions at startup.
+- **`ControlStream`** — Bidirectional channel carrying executor heartbeats and `UpdatePartitions` / `RefreshDataset` / `CancelTasks` commands.
+- **`GetTaskHistory`** / **`GetMetrics`** — Federated `runtime.task_history` and on-demand metrics fan-out across the cluster.
 
 ## Verification
 

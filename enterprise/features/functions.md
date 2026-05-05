@@ -288,7 +288,7 @@ When `as_tool: true` (the default), every declared function is also registered a
 
 ## Distributed Execution
 
-In a Spice.ai Enterprise [distributed cluster](distributed-query.md), UDFs declared on the scheduler are automatically synchronised to executors via the `GetFunctions` Flight endpoint. Query planning and execution use a consistent view of the function set across all nodes.
+In a Spice.ai Enterprise [distributed cluster](distributed-query.md), UDFs declared on the scheduler are automatically propagated to executors as part of the `GetAppDefinition` bootstrap RPC — executors load the full Spicepod definition (datasets, catalogs, views, and UDFs) from the scheduler at startup, so query planning and execution use a consistent view of the function set across all nodes.
 
 User functions are deny-listed from federation pushdown on every node, so there's no risk of a stray executor attempting to push a user function into a downstream source.
 
