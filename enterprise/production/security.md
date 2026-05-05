@@ -123,6 +123,8 @@ Production deployments must authenticate every external request. Spice.ai suppor
 
 The runtime exposes the authenticated principal in SQL via the [identity functions](../features/authentication.md#identity-sql-functions): `current_principal()`, `current_principal_subject()`, `current_principal_email()`, `current_principal_groups()`. Use these in row-level filters to enforce per-user authorization.
 
+For coarse-grained allow/deny decisions across datasets, models, tools, and endpoints, configure [Cedar-based authorization policy](../features/policy.md) under `runtime.authorization`.
+
 {% hint style="warning" %}
 Never expose the runtime externally without authentication. The default Helm chart configuration permits all callers \u2014 always set `auth.enabled: true` and configure at least one provider for production.
 {% endhint %}
@@ -176,6 +178,7 @@ If running multiple Spice Operators in a single cluster (for multi-tenant isolat
 - [ ] OIDC or API key authentication enabled and tested.
 - [ ] Secrets sourced from a secret store, not `values.yaml`.
 - [ ] Identity SQL functions used for row-level authorization where applicable.
+- [ ] [Cedar authorization policy](../features/policy.md) is enabled with `default: deny` and an audited admin allow rule.
 - [ ] mTLS enabled on every `SpicepodCluster`; certificate expiry alert wired.
 - [ ] Audit logs forwarded to SIEM with 90-day retention.
 - [ ] Operator RBAC reviewed; namespace-scoped operators for multi-tenant clusters.

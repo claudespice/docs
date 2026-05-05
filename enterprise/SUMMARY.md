@@ -34,5 +34,6 @@
 ## Features
 
 * [Authentication](features/authentication.md)
+* [Authorization Policy](features/policy.md)
 * [Distributed Query](features/distributed-query.md)
 * [mTLS Cluster Security](features/mtls.md)
