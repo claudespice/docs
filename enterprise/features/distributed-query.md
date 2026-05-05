@@ -249,7 +249,7 @@ Each partition has a single owning executor (1:1 assignment in `cluster.json`). 
 ### Acceleration snapshots (Cayenne)
 
 {% hint style="info" %}
-Acceleration snapshots are a **Spice.ai Enterprise** feature. They are not available in Spice.ai OSS.
+Acceleration snapshots are a **Spice.ai Enterprise** feature. See [Acceleration Snapshots](acceleration-snapshots.md) for the full reference. They are not available in Spice.ai OSS.
 {% endhint %}
 
 Cayenne supports object-store-backed acceleration snapshots that integrate naturally with cluster mode, allowing a newly started executor to bootstrap from the shared object store rather than re-fetching from the federated source:

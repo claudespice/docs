@@ -67,7 +67,7 @@ Consider the following limitations when using Cayenne acceleration:
 - **File Mode Only**: Cayenne only supports `mode: file` and does not support in-memory (`mode: memory`) acceleration.
 - **No `on_conflict` Support**: Cayenne does not yet support the [`on_conflict`](../../reference/spicepod/datasets.md#accelerationon_conflict) configuration for handling duplicate keys during data refresh.
 - **Data Cleanup Requires `retention_sql`**: Data deletion and cleanup operations require configuring [`retention_sql`](../../reference/spicepod/datasets.md#accelerationretention_sql) to define retention policies. Manual `DELETE` statements can also be executed directly.
-- **No Snapshot Support**: Cayenne does not yet support [acceleration snapshots](../../features/data-acceleration/snapshots.md) for bootstrapping from object storage.
+- **No Snapshot Support**: Cayenne does not yet support acceleration snapshots in Spice.ai OSS. Snapshots are available in [Spice.ai Enterprise](../../enterprise/features/acceleration-snapshots.md).
 - **Data Types**: Some advanced data types may have limited support. Test your specific schema requirements.
 - **Index Support**: Index capabilities are still being developed. Check release notes for the latest supported features.
 
