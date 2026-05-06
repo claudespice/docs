@@ -60,7 +60,25 @@ Spice runtime [v2.0-rc.2](https://spiceai.org/releases/v2.0-rc.2) (Apr 10, 2026)
 
 ### Runtime
 
-No runtime releases were published in this window.
+Spice runtime [v2.0-rc.1](https://spiceai.org/releases/v2.0-rc.1) (Mar 4, 2026) — first release candidate for v2.0:
+
+* **Active-Active HA Distributed Query** – Object-store-native distributed query with dynamic cluster sizing, distributed ingestion for partitioned accelerated tables, and faster failure detection.
+* **Spice Cayenne RC** – Staged append writes via WAL, file-based retention deletes, composite partitioning with `partition_by: [col1, col2]`, and distributed ingestion across executors.
+* **DataFusion v52.2.0** – Sort pushdown, a new merge join, and dynamic filters.
+* **DDL via SQL** – `CREATE TABLE` and `DROP TABLE` support for Iceberg and Cayenne catalogs.
+* **DuckLake Catalog & Connector** – Lakehouse-style data management; new GCS data connector (Alpha); Rust CLI rewrite for a unified single-binary experience.
+
+Spice runtime [v1.11.3](https://spiceai.org/releases/v1.11.3) (Mar 9, 2026):
+
+* Fixed S3 metadata column projection errors when using `location`, `last_modified`, or `size` with filters or scalar functions.
+* Fixed FlightSQL JDBC `Unsupported ArrowType Utf8View` errors by mapping view types to non-view equivalents.
+* Fixed SQL results cache invalidation on every change-stream poll for `refresh_mode: changes` (e.g., DynamoDB Streams).
+* HTTP error responses are now excluded from the cache, and a new `response_headers` column exposes response header metadata.
+
+Spice runtime [v1.11.4](https://spiceai.org/releases/v1.11.4) (Mar 12, 2026):
+
+* Accelerated views now support `on_zero_results: use_source` for source fallback.
+* Improved S3 metadata column query robustness.
 
 ### SDKs
 
