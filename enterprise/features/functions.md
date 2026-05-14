@@ -16,6 +16,10 @@ Functions are automatically registered into the SQL session, exposed via the `li
 User-defined functions are currently in **ALPHA**. Behaviour, on-disk schema, and APIs may change without notice. A one-time warning is logged when the first `functions:` entry is registered.
 {% endhint %}
 
+{% hint style="info" %}
+Set `runtime.functions.enabled: true` in `spicepod.yaml` to register user-defined functions. Without the flag, `functions:` entries log an error and are skipped at startup, and `tools:` entries with `as_sql: true` log a warning and remain LLM-only.
+{% endhint %}
+
 ## Quickstart
 
 Declare a function in `spicepod.yaml`:
@@ -24,6 +28,10 @@ Declare a function in `spicepod.yaml`:
 version: v2
 kind: Spicepod
 name: my_app
+
+runtime:
+  functions:
+    enabled: true
 
 functions:
   - name: haversine_km
@@ -285,6 +293,44 @@ When `as_tool: true` (the default), every declared function is also registered a
   body: "x * 2654435761"
   as_tool: false
 ```
+
+## Exposing Tools as SQL UDFs
+
+The inverse of [LLM Tool Exposure](#llm-tool-exposure): set `as_sql: true` on a `tools:` entry to register the tool as a SQL scalar UDF. The UDF dispatches to the tool per row, packing each row's arguments into a JSON object that matches the supplied signature.
+
+```yaml
+runtime:
+  functions:
+    enabled: true
+
+tools:
+  - name: geocode
+    from: http://geocode.internal/v1/lookup
+    as_sql: true
+    signature:
+      args: [{ name: address, type: utf8 }]
+      returns: utf8
+```
+
+```sql
+SELECT geocode(address) FROM addresses;
+```
+
+### Tool fields for SQL exposure
+
+| Field       | Type      | Description                                                                                                                                                            |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `as_sql`    | bool      | Defaults to `false`. Set to `true` to register a scalar UDF alongside the LLM tool. Requires `runtime.functions.enabled: true` and a `signature:` block.               |
+| `signature` | object    | Typed [signature](#signature) for SQL invocation. Required when `as_sql: true`; ignored otherwise.                                                                     |
+
+### Behaviour
+
+- A `signature:` block is required when `as_sql: true` — a tool's free-form JSON Schema does not uniquely map to a SQL signature, so argument and return Arrow types must be pinned explicitly.
+- Supported Arrow types are the same primitive set as the [Remote tier](#remote-tier): `int64`, `float64`, `utf8`, `boolean`. Other types are rejected at build time with an `Unsupported*Type` error naming the tool.
+- The derived UDF is **always `volatile`**. Constant-folding is disabled and per-row results are not memoized because the underlying tool is non-deterministic RPC.
+- Per-query dispatch is capped at **16 concurrent in-flight calls**, with row order preserved on output.
+- Tool-backed UDFs are automatically added to the federation deny-list and are never pushed down to remote data sources.
+- If `runtime.functions.enabled` is `false`, or `signature:` is missing, SQL registration is skipped with a `WARN` log and the tool remains callable as an LLM tool only.
 
 ## Distributed Execution
 
