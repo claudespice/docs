@@ -38,4 +38,5 @@
 * [Acceleration Snapshots](features/acceleration-snapshots.md)
 * [Distributed Accelerations](features/distributed-accelerations.md)
 * [Distributed Query](features/distributed-query.md)
+* [User-Defined Functions](features/functions.md)
 * [mTLS Cluster Security](features/mtls.md)

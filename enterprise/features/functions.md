@@ -1,16 +1,21 @@
 ---
-description: User-defined SQL functions (UDFs) declared in a spicepod's `functions:` section — SQL and Remote HTTP tiers.
+description: User-defined scalar functions (UDFs) and table functions (UDTFs) declared in a spicepod's `functions:` section — SQL, Remote HTTP, and WebAssembly tiers.
 icon: function
 ---
 
 # User-Defined Functions
 
-Spice.ai supports **user-defined functions (UDFs)** declared declaratively in a spicepod's `functions:` section. Two execution tiers are available:
+Spice.ai supports **user-defined functions** declared declaratively in a spicepod's `functions:` section. Each function can be a **scalar** UDF (one value per input row) or a **table** UDTF (a relation returned in a SQL `FROM` clause), and is dispatched through one of three execution tiers:
 
-- **SQL** (`from: sql`) — in-process scalar UDF whose body is a DataFusion SQL expression.
-- **Remote** (`from: http://…` or `from: https://…`) — async scalar UDF that invokes a remote HTTP endpoint with a JSON row batch and receives a JSON value column back.
+- **SQL** (`from: sql`) — in-process function whose body is a DataFusion SQL expression (scalar) or query (table).
+- **Remote** (`from: http://…` or `from: https://…`) — async function that invokes a remote HTTP endpoint with a JSON request and receives a JSON response.
+- **WebAssembly** (`from: wasm`) — function backed by a sandboxed WASM module invoked with Arrow IPC batches.
 
-Functions are automatically registered into the SQL session, exposed via the `list_udfs()` UDTF and the `GET /v1/functions` HTTP endpoint, and (by default) surfaced to LLM tool-calling. They hot-reload when the spicepod changes on disk.
+Functions are automatically registered into the SQL session, exposed via the `list_udfs()` UDTF and the `GET /v1/functions` HTTP endpoint, and (when scalar) surfaced to LLM tool-calling. They hot-reload when the spicepod changes on disk.
+
+{% hint style="info" %}
+**Distribution availability.** Inline SQL functions (`from: sql`) are available in all Spice distributions, including open source. **Remote HTTP** (`from: http://…`) and **WebAssembly** (`from: wasm`) tiers ship by default in Spice.ai Enterprise and Spice Cloud Platform distributions; open source users can enable them by building locally with the `http-functions` and `wasm-functions` cargo features. See [Distributions](../getting-started/distributions.md).
+{% endhint %}
 
 {% hint style="warning" %}
 User-defined functions are currently in **ALPHA**. Behaviour, on-disk schema, and APIs may change without notice. A one-time warning is logged when the first `functions:` entry is registered.
@@ -66,38 +71,45 @@ Each entry in `functions:` is a `Function` object. Fields are strictly validated
 | Field         | Type     | Required | Description                                                                                                                                                                   |
 | ------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `name`        | string   | yes      | Identifier the function is registered under. Referenced by that name in SQL.                                                                                                  |
-| `from`        | string   | yes      | Source URI selecting the execution tier. `sql`, `http://…`, `https://…`.                                                                                                      |
+| `from`        | string   | yes      | Source URI selecting the execution tier. `sql`, `http://…`, `https://…`, `wasm`.                                                                                              |
+| `enabled`     | bool     | no       | Defaults to `true`. Set to `false` to keep the declaration in the spicepod without registering it for SQL, tool exposure, `list_udfs()`, or `/v1/functions`.                  |
 | `description` | string   | no       | Free-form description surfaced in `list_udfs()` and `GET /v1/functions`.                                                                                                      |
-| `kind`        | enum     | no       | `scalar` (default), `aggregate`, `window`, `table`. Only `scalar` is wired today; other values parse but are rejected at registration with a clear error.                     |
+| `kind`        | enum     | no       | `scalar` (default) or `table`. Both are wired today. `aggregate` and `window` are reserved and rejected at registration with a clear error.                                   |
 | `volatility`  | enum     | no       | `immutable`, `stable`, `volatile` (default). See [Volatility](#volatility).                                                                                                   |
 | `signature`   | object   | yes      | Typed signature. See below.                                                                                                                                                   |
-| `body`        | string   | SQL only | Inline SQL expression. Mutually exclusive with `body_ref`.                                                                                                                    |
-| `body_ref`    | string   | SQL only | Path to a file whose contents are the function body. Resolved relative to the runtime's CWD. Mutually exclusive with `body`. Must **not** be set for non-SQL `from:` schemes. |
+| `body`        | string   | tier-dep | Inline SQL expression (scalar) or `SELECT` query (table). **Required** for `from: sql` unless `body_ref` is set. **Optional** for `from: wasm` to supply a table input from SQL. **Forbidden** for `from: http*`. Mutually exclusive with `body_ref`. |
+| `body_ref`    | string   | tier-dep | Path to a file whose contents are the function body. Resolved relative to the runtime's CWD. Same tier rules as `body`. Mutually exclusive with `body`.                                                                                            |
 | `metadata`    | map      | no       | Free-form metadata surfaced alongside the declaration.                                                                                                                        |
-| `params`      | map      | no       | Tier-specific knobs. Supports `${ secrets:KEY }` / `${ env:KEY }` interpolation. See [Remote params](#remote-params).                                                         |
-| `dependsOn`   | string[] | no       | Names of spicepod components that must load before this function.                                                                                                             |
+| `params`      | map      | no       | Tier-specific knobs. Supports `${ secrets:KEY }` / `${ env:KEY }` interpolation. See [Remote params](#remote-params) and [WebAssembly params](#webassembly-params).            |
+| `dependsOn`   | string[] | no       | Names of spicepod components that must load before this function. Inferred from SQL bodies and `params.input_table` when omitted.                                             |
 | `metrics`     | object   | no       | Per-function metrics configuration.                                                                                                                                           |
-| `as_tool`     | bool     | no       | Expose the function as an LLM tool. Defaults to `true`. See [LLM Tool Exposure](#llm-tool-exposure).                                                                          |
+| `as_tool`     | bool     | no       | Expose the function as an LLM tool. Defaults to `true` for scalar functions; table functions are always SQL-only. See [LLM Tool Exposure](#llm-tool-exposure).                |
 
 ### `signature`
 
 ```yaml
 signature:
-  args:
+  tables:                              # optional; table inputs for the function
+    - name: input
+      columns:
+        - { name: value, type: int64 }
+  args:                                # positional scalar arguments
     - { name: x, type: int64 }
-  returns: int64           # required for scalar / aggregate / window
-  returns_schema: []       # required for table kind, ignored otherwise
-  null_aware: false        # optional; default false
+  returns: int64                       # scalar: a single Arrow type
+  # returns:                           # OR — table: a list of named output columns
+  #   - { name: value, type: int64 }
+  #   - { name: doubled, type: int64 }
 ```
 
-| Field            | Description                                                                                                                                                                                                                 |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `args`           | Positional argument list. Empty for niladic functions.                                                                                                                                                                      |
-| `args[].name`    | Argument name. Referenced by name in SQL bodies.                                                                                                                                                                            |
-| `args[].type`    | Arrow logical-type string (e.g. `float64`, `utf8`, `timestamp(us)`). See [Supported types](#supported-types).                                                                                                               |
-| `returns`        | Arrow return type. Required for non-table kinds.                                                                                                                                                                            |
-| `returns_schema` | Output columns for table functions. Required for `kind: table`.                                                                                                                                                             |
-| `null_aware`     | When `false` (default), DataFusion short-circuits any call with a NULL argument to a NULL result without invoking the function. Set to `true` if the body must inspect NULL inputs itself. Matches Spark default semantics. |
+| Field             | Description                                                                                                                                                                                                                |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tables`          | Optional list of declared table inputs. When present, table inputs are passed before scalar arguments at call sites. Used by [table functions](#table-functions) and scalar functions that consume a relation.             |
+| `tables[].name`   | Logical input name exposed to the backend.                                                                                                                                                                                 |
+| `tables[].columns`| Arrow schema declared for that input.                                                                                                                                                                                      |
+| `args`            | Positional scalar argument list. Empty for niladic functions.                                                                                                                                                              |
+| `args[].name`     | Argument name. Referenced by name in SQL bodies.                                                                                                                                                                           |
+| `args[].type`     | Arrow logical-type string (e.g. `float64`, `utf8`, `list<int64>`, `decimal(38, 10)`, `timestamp(us, utc)`). See [Supported types](#supported-types).                                                                       |
+| `returns`         | For `kind: scalar`, a single Arrow type string. For `kind: table`, a list of named output columns (each with `name` and `type`).                                                                                           |
 
 ## Execution Tiers
 
@@ -117,6 +129,8 @@ The body is parsed into a DataFusion logical expression against a schema derived
 
 The body runs entirely in-process with no sandbox. Prefer SQL-tier UDFs for anything that can be expressed in a SQL expression — they're fastest, type-checked at startup, and don't leave the runtime.
 
+SQL functions support the full set of Arrow logical types accepted by DataFusion, including primitives, `list<…>`, `large_list<…>`, `struct<…>`, `decimal(p, s)`, `decimal256(p, s)`, and `timestamp(unit[, timezone])`.
+
 #### `body_ref` for longer bodies
 
 Keep non-trivial SQL in its own file with proper editor support:
@@ -132,7 +146,11 @@ Keep non-trivial SQL in its own file with proper editor support:
 
 ### Remote (`from: http://…` | `https://…`)
 
-The remote tier invokes an external HTTP endpoint for each batch of rows. Powered by DataFusion's `AsyncScalarUDFImpl`, so the query scheduler overlaps remote calls with other work.
+{% hint style="info" %}
+The remote tier requires the `http-functions` cargo feature. It is enabled by default in Spice.ai Enterprise and Spice Cloud Platform distributions. Open source users must build locally with `--features http-functions`; the prebuilt OSS images and install script do not ship this tier. See [Distributions](../getting-started/distributions.md).
+{% endhint %}
+
+The remote tier invokes an external HTTP endpoint, batching rows for scalar invocations and issuing a single request for table inputs. Powered by DataFusion's `AsyncScalarUDFImpl`, so the query scheduler overlaps remote calls with other work.
 
 ```yaml
 - name: classify_intent
@@ -144,10 +162,13 @@ The remote tier invokes an external HTTP endpoint for each batch of rows. Powere
   params:
     timeout: 2s
     batch_size: 256
+    batch_concurrency: 8
     auth_bearer: ${secrets:classifier_token}
 ```
 
 #### Wire contract
+
+**Scalar functions without table arguments** issue one HTTP request per batch:
 
 - **Request** — `POST <endpoint>`, `Content-Type: application/json`, body:
   ```json
@@ -158,51 +179,163 @@ The remote tier invokes an external HTTP endpoint for each batch of rows. Powere
   {"values": [<row_0_result>, <row_1_result>, ...]}
   ```
 - `values.length` **must** equal `rows.length`. A mismatch is treated as an execution error.
-- Non-`2xx` responses surface as query errors, with the response body snippet (up to 256 chars, one line) included in the error for debugging.
+
+**Scalar functions with dynamic table arguments** and **table functions** (`kind: table`) issue a single request per invocation with both scalar arguments and table inputs:
+
+- **Request body**:
+  ```json
+  {"args": {"<arg_name>": <value>, ...}, "tables": {"<table_name>": [{"<col>": <value>, ...}, ...]}}
+  ```
+  The `tables` field is omitted when no table inputs are declared. Each row in a table input is a JSON object whose keys match the declared `tables[].columns`.
+- **Response body** — `{"rows": [{"<output_col>": <value>, ...}, ...]}` for table functions, `{"values": [<result>]}` for scalar.
+
+Non-`2xx` responses surface as query errors, with the response body snippet (up to 256 chars, one line) included in the error for debugging. Argument and return values are encoded through Arrow's JSON reader/writer, so any Arrow type with a JSON representation (including `list<…>`, `struct<…>`, and timestamps) is permitted.
 
 #### Remote params
 
-| Key           | Type                                                   | Default | Description                                            |
-| ------------- | ------------------------------------------------------ | ------- | ------------------------------------------------------ |
-| `timeout`     | integer seconds **or** duration string (`2s`, `500ms`) | `30s`   | Per-call HTTP timeout.                                 |
-| `batch_size`  | integer, `1..=100000`                                  | `1024`  | Rows per HTTP request. Large inputs are chunked.       |
-| `auth_bearer` | string (supports `${secrets:…}`)                       | none    | Sets `Authorization: Bearer <value>` on every request. |
+| Key                  | Type                                                   | Default | Description                                                                                              |
+| -------------------- | ------------------------------------------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
+| `timeout`            | integer seconds **or** duration string (`2s`, `500ms`) | `30s`   | Per-call HTTP timeout.                                                                                   |
+| `batch_size`         | integer, `1..=100000`                                  | `1024`  | Rows per HTTP request for scalar functions. Large inputs are chunked.                                    |
+| `batch_concurrency`  | integer, `1..=64`                                      | `4`     | Maximum in-flight HTTP batches per invocation. Results are appended in input order.                      |
+| `max_response_bytes` | integer bytes, up to `1 GiB`                           | `10MiB` | Maximum decoded response body size per HTTP call. Larger responses fail the query.                       |
+| `max_rows`           | integer, up to `1000000`                               | `100000`| Cap on rows returned by a table-function call when the query has no `LIMIT`. Ignored for scalar batches. |
+| `auth_bearer`        | string (supports `${secrets:…}`)                       | none    | Sets `Authorization: Bearer <value>` on every request.                                                   |
 
-Batches are currently issued **sequentially** per query. Parallel fan-out is on the roadmap.
+### WebAssembly (`from: wasm`)
+
+{% hint style="info" %}
+The WASM tier requires the `wasm-functions` cargo feature (compiling Rust source additionally requires `wasm-functions-compile`). It is enabled by default in Spice.ai Enterprise and Spice Cloud Platform distributions. Open source users must build locally to enable it. See [Distributions](../getting-started/distributions.md).
+{% endhint %}
+
+The WebAssembly tier executes user code inside a sandboxed [wasmtime](https://wasmtime.dev/) module, exchanging Arrow IPC streams with the host. Both scalar and table kinds are supported; a single guest export serves both shapes.
+
+```yaml
+- name: tokenize_lines
+  from: wasm
+  kind: table
+  signature:
+    tables:
+      - name: input
+        columns: [{ name: doc, type: utf8 }]
+    returns:
+      - { name: token, type: utf8 }
+      - { name: position, type: int64 }
+  params:
+    module: ./modules/tokenizer.wasm
+    entrypoint: spice_transform     # optional, defaults to spice_transform
+    fuel: 100000000                 # default
+    max_memory_bytes: 67108864      # default 64 MiB
+```
+
+#### WebAssembly params
+
+| Key                  | Type   | Default            | Description                                                                                              |
+| -------------------- | ------ | ------------------ | -------------------------------------------------------------------------------------------------------- |
+| `module`             | string | —                  | Path to a precompiled `.wasm` artifact. Mutually exclusive with `source`. One of the two is required.    |
+| `source`             | string | —                  | Path to source code to compile to WASM at registration. Requires `wasm-functions-compile`.               |
+| `language`           | string | `rust`             | Source language when `source` is set. Only `rust` is supported today.                                    |
+| `entrypoint`         | string | `spice_transform`  | Exported guest function name.                                                                            |
+| `input_table`        | string | —                  | Name of an existing table to use as the table input. Mutually exclusive with `body` / `body_ref`.        |
+| `fuel`               | integer| `100000000`        | Per-invocation wasmtime fuel budget. Exhaustion fails the call with an interrupt error.                  |
+| `max_memory_bytes`   | integer| `67108864` (64MiB) | Hard cap on guest linear-memory growth.                                                                  |
+| `max_table_elements` | integer| `1000000`          | Hard cap on guest WASM-table growth.                                                                     |
+
+The guest module must export `memory`, `spice_alloc`, `spice_dealloc`, and the configured entrypoint. The entrypoint receives `(input_ptr, input_len, args_ptr, args_len)` and returns a packed `(output_ptr << 32) | output_len` pointer to an Arrow IPC stream matching the declared return schema.
+
+## Table Functions
+
+Set `kind: table` to register a user-defined table function (UDTF). Table functions return a relation instead of a single value and are invoked in a SQL `FROM` clause:
+
+```sql
+SELECT * FROM split_lines('hello\nworld');
+```
+
+The `signature.returns` field becomes a list of output columns. The function may take any combination of scalar arguments and declared `signature.tables` inputs; table inputs always precede scalar arguments at call sites.
+
+### SQL table functions
+
+The body is a single `SELECT` query. Scalar arguments are visible through the reserved `args` table; declared `signature.tables` inputs are visible by their declared names.
+
+```yaml
+functions:
+  - name: emit_pair
+    from: sql
+    kind: table
+    volatility: immutable
+    signature:
+      args: [{ name: x, type: int64 }]
+      returns:
+        - { name: value,   type: int64 }
+        - { name: doubled, type: int64 }
+    body: |
+      SELECT x AS value, x * 2 AS doubled FROM args
+      UNION ALL
+      SELECT x + 1 AS value, (x + 1) * 2 AS doubled FROM args
+```
+
+```sql
+SELECT * FROM emit_pair(4);
+-- value | doubled
+--   4   |    8
+--   5   |   10
+```
+
+To pass a relation into a table function, declare a `signature.tables` entry and reference the input table inside the body. The argument at the call site can be a table name or an inline subquery:
+
+```yaml
+functions:
+  - name: scale_values
+    from: sql
+    kind: table
+    signature:
+      tables:
+        - name: input
+          columns: [{ name: value, type: int64 }]
+      args: [{ name: factor, type: int64 }]
+      returns:
+        - { name: scaled, type: int64 }
+    body: |
+      SELECT input.value * args.factor AS scaled
+      FROM input CROSS JOIN args
+```
+
+```sql
+SELECT * FROM scale_values(numbers, 3);
+SELECT * FROM scale_values((SELECT value FROM numbers WHERE value > 0), 3);
+```
+
+### Remote and WebAssembly table functions
+
+Remote (`from: http://…`) and WebAssembly (`from: wasm`) table functions follow the same `kind: table` shape. Inputs and outputs are exchanged over the tier's native wire format — JSON for remote, Arrow IPC for WASM — as described in [Execution Tiers](#execution-tiers).
+
+Table functions are always SQL-only. They are not exposed to LLM tool-calling regardless of the `as_tool` setting.
 
 ## Supported Types
 
-Type support differs by tier — pick the narrower set if you need to switch between tiers later.
+All tiers share a single Arrow type parser. Type names are case-insensitive and accept shorthand aliases (`string` ↔ `utf8`, `bool` ↔ `boolean`, `int` ↔ `int32`, `double` ↔ `float64`).
 
-### SQL tier
-
-Type names are case-insensitive. Accepts shorthand (`string` ↔ `utf8`, `bool` ↔ `boolean`).
-
-| Arrow type                                                        | Notes                    |
-| ----------------------------------------------------------------- | ------------------------ |
-| `int8`, `int16`, `int32`, `int64`                                 |                          |
-| `uint8`, `uint16`, `uint32`, `uint64`                             |                          |
-| `float32`, `float64`                                              |                          |
-| `utf8` / `string`                                                 |                          |
-| `boolean` / `bool`                                                |                          |
-| `binary`                                                          |                          |
-| `date32`, `date64`                                                |                          |
-| `timestamp(s)`, `timestamp(ms)`, `timestamp(us)`, `timestamp(ns)` | No timezone support yet. |
+| Arrow type                                                                  | Notes                                                                           |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `int8`, `int16`, `int32`, `int64`                                           |                                                                                 |
+| `uint8`, `uint16`, `uint32`, `uint64`                                       |                                                                                 |
+| `float32`, `float64`                                                        |                                                                                 |
+| `utf8` / `string`, `large_utf8`                                             |                                                                                 |
+| `boolean` / `bool`                                                          |                                                                                 |
+| `binary`, `large_binary`                                                    |                                                                                 |
+| `date32`, `date64`                                                          |                                                                                 |
+| `timestamp(s)`, `timestamp(ms)`, `timestamp(us)`, `timestamp(ns)`           | Optional second argument for a timezone, e.g. `timestamp(us, utc)`.             |
+| `decimal(p, s)`, `decimal128(p, s)`, `decimal256(p, s)`                     |                                                                                 |
+| `list<T>`, `large_list<T>`                                                  |                                                                                 |
+| `struct<name:T, name2:T2, …>`                                               | Field names may be unquoted or quoted (`"name":T` / `'name':T`).                |
 
 Return types are coerced implicitly where DataFusion knows how (e.g. `Int32 → Int64`, `Float32 → Float64`, `Utf8 → LargeUtf8`) — a literal like `6371` widening to `Float64` is fine.
 
-Complex types (`list<…>`, `struct<…>`, `decimal(p,s)`, timestamp with timezone) return a clear `UnsupportedArrowType` error at build time.
+**Tier notes:**
 
-### Remote tier
-
-| Arrow type                                      | JSON wire form        |
-| ----------------------------------------------- | --------------------- |
-| `int64` (also accepts `int8/16/32/int`)         | JSON number (integer) |
-| `float64` (also accepts `float32/float/double`) | JSON number           |
-| `utf8` / `string`                               | JSON string           |
-| `boolean` / `bool`                              | JSON boolean          |
-
-Narrower integers and `float32` silently widen to the canonical Arrow type over the JSON wire. Any other type (`binary`, `date32`, `timestamp(…)`, complex) returns `UnsupportedArrowType` at build time.
+- **SQL tier** lowers the body to a DataFusion physical expression, so any DataFusion-recognised type round-trips natively.
+- **Remote tier** serializes arguments and results through Arrow's JSON reader/writer, so any Arrow type with a JSON representation is acceptable. Plan for wire size when passing nested structures or large lists.
+- **WebAssembly tier** uses Arrow IPC streams as the host/guest ABI; the guest module must understand the declared input and output schemas.
 
 ## Volatility
 
@@ -279,7 +412,7 @@ The OpenAPI spec exposes this under `operation_id: list_functions`, tag `Functio
 
 ## LLM Tool Exposure
 
-When `as_tool: true` (the default), every declared function is also registered as an LLM tool. The tool invokes the function through a `SELECT fn_name(arg0, …) AS result` query over the runtime's DataFusion session, so both SQL and Remote tiers dispatch transparently.
+When `as_tool: true` (the default), every declared **scalar** function is also registered as an LLM tool. The tool invokes the function through a `SELECT fn_name(arg0, …) AS result` query over the runtime's DataFusion session, so all execution tiers dispatch transparently. Table functions (`kind: table`) are always SQL-only and are not surfaced to the LLM.
 
 - Argument values are interpolated as **typed SQL literals** by the tool bridge — integers, floats, strings, booleans. No free-form SQL from the model is ever concatenated.
 - The tool's JSON Schema `parameters` is derived from the function's Arrow signature. Types outside the JSON-encodable primitive set (`int64`, `float64`, `utf8`, `boolean`) are not eligible for tool exposure — the function still registers for SQL use, but tool registration is skipped with a `WARN` log.
@@ -342,9 +475,8 @@ User functions are deny-listed from federation pushdown on every node, so there'
 
 Current (ALPHA) scope:
 
-- Only `kind: scalar` is implemented. `aggregate`, `window`, `table` parse but are rejected at registration.
-- Only `from: sql`, `from: http://…`, `from: https://…` are implemented. Other schemes (e.g. `wasm:…`, `grpc://…`, `flight://…`) parse but are rejected — forward-compatible spicepods still load.
-- SQL tier does **not** support complex Arrow types (list, struct, decimal, timestamp-with-timezone).
-- Remote tier supports only primitive types over the JSON wire (`int64`, `float64`, `utf8`, `boolean`).
-- Remote tier issues batches sequentially per query; parallel fan-out, retries, and circuit-breaker behaviour are not yet implemented.
-- No aggregate/window semantics, UDAF pushdown, or execution-engine delegation beyond what DataFusion's scalar UDF path provides.
+- `kind: scalar` and `kind: table` are implemented. `aggregate` and `window` are reserved kinds — they parse but are rejected at registration so forward-compatible spicepods still load.
+- Supported `from:` schemes are `sql`, `http://`, `https://`, and `wasm`. The HTTP and WASM tiers are gated behind the `http-functions` and `wasm-functions` cargo features respectively (default-on in Enterprise and Cloud, opt-in for OSS builds). Other schemes (e.g. `grpc://`, `flight://`) parse but are rejected.
+- LLM tool exposure (`as_tool: true`) is limited to scalar functions with primitive Arrow types in their signature (`int64`, `float64`, `utf8`, `boolean`). Functions with richer signatures remain callable from SQL.
+- Remote tier issues batches in parallel with a default `batch_concurrency` of 4 (max 64). Retries, circuit-breakers, per-function rate limits, and `http-arrow` / Flight protocols are not yet implemented.
+- No aggregate/window semantics, UDAF pushdown, or execution-engine delegation beyond what DataFusion's scalar UDF and table function paths provide.
