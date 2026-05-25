@@ -21,15 +21,19 @@ The Spice runtime is **64-bit only**.
 
 ## Distribution Availability
 
-| Distribution        | Open Source      | Spice Cloud | Enterprise |
-| ------------------- | ---------------- | ----------- | ---------- |
-| Default (Data + AI) | ✅                | ✅           | ✅          |
-| Data-only           | Nightly only     | ✅           | ✅          |
-| NAS (SMB + NFS)     | Nightly only     | —           | ✅          |
-| Metal (macOS)       | ✅                | ✅           | ✅          |
-| CUDA (Linux)        | Nightly only     | ✅           | ✅          |
-| Allocator variants  | Nightly only     | ✅           | ✅          |
-| ODBC connector      | Local build only | ✅           | ✅          |
+| Distribution / Capability     | Open Source      | Spice Cloud | Enterprise |
+| ----------------------------- | ---------------- | ----------- | ---------- |
+| Default (Data + AI)           | ✅                | ✅           | ✅          |
+| Data-only                     | Nightly only     | ✅           | ✅          |
+| NAS (SMB + NFS)               | Nightly only     | —           | ✅          |
+| Metal (macOS)                 | ✅                | ✅           | ✅          |
+| CUDA (Linux)                  | Nightly only     | ✅           | ✅          |
+| Allocator variants            | Nightly only     | ✅           | ✅          |
+| ODBC connector                | Local build only | ✅           | ✅          |
+| HTTP user-defined functions   | Local build only | ✅           | ✅          |
+| WASM user-defined functions   | Local build only | ✅           | ✅          |
+
+Inline SQL user-defined functions (`from: sql`) are available in every distribution. The HTTP and WebAssembly tiers are shipped pre-built in Cloud and Enterprise distributions; open source users can enable them by building locally with the `http-functions` and `wasm-functions` cargo features. See [User-Defined Functions](../features/functions.md) for the full reference.
 
 ## Default Distribution
 
