@@ -183,3 +183,24 @@ spec:
       periodSeconds: 30
       failureThreshold: 5
 ```
+
+### Gating readiness on executor availability (scheduler role)
+
+In distributed (`SpicepodCluster`) deployments a scheduler can finish loading its own datasets and accelerations before enough executors have connected to actually serve queries. To keep a scheduler out of rotation until the cluster has capacity, `GET /v1/ready` accepts two optional executor gates. They apply only to the **scheduler** role; supplying a non-zero value on a non-scheduler node returns `400`.
+
+| Query parameter                | Description                                                                                                                                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `min_ready_executors`          | Minimum number of currently-ready executors required for the probe to succeed. "Ready" means the scheduler holds a live FlightSQL client for the executor (i.e. it can route queries to it). `0` disables the gate.                     |
+| `min_ready_executors_percent`  | Minimum percentage (`0`–`100`) of ready executors relative to the executors currently registered (control stream open). `0` disables the gate. Values above `100` return `400`.                                                        |
+| `verbose`                      | When `true`, the response body becomes a multi-line diagnostic listing the result of each gate. The HTTP status code is unchanged — useful for `kubectl describe` and `curl` debugging.                                                |
+
+When both gates are supplied, **both** must pass for the probe to return `200 OK`; otherwise the endpoint returns `503` (gate not yet satisfied) or `400` (invalid parameter, e.g. a percentage outside `0`–`100`, or a non-zero gate requested outside scheduler role). Datasets and accelerations must still have completed their initial load regardless of executor gating.
+
+Pass the gates as query parameters on the readiness probe path:
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /v1/ready?min_ready_executors=3&min_ready_executors_percent=80
+    port: 8090
+```
