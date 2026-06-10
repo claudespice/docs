@@ -52,7 +52,7 @@ JWKS keys are refreshed every 5 minutes.
 
 ## API Keys
 
-Authenticate requests using static API keys with `ReadOnly` or `ReadWrite` permission levels.
+Authenticate requests using static API keys with `ReadOnly` or `ReadWrite` permission levels. Each key is a string; an optional `:ro` or `:rw` suffix sets its permission level.
 
 ```yaml
 runtime:
@@ -60,22 +60,18 @@ runtime:
     api_key:
       enabled: true
       keys:
-        - ReadOnly:
-            key: ${secrets:ro_api_key}
-        - ReadWrite:
-            key: ${secrets:rw_api_key}
+        - ${secrets:ro_api_key}:ro    # read-only
+        - ${secrets:rw_api_key}:rw    # read-write
 ```
 
 ### Permission Levels
 
-| Level       | Description                                  |
-| ----------- | -------------------------------------------- |
-| `ReadOnly`  | Can execute queries and read data            |
-| `ReadWrite` | Full access including DDL and DML operations |
+| Suffix | Level       | Description                                  |
+| ------ | ----------- | -------------------------------------------- |
+| `:ro`  | `ReadOnly`  | Can execute queries and read data            |
+| `:rw`  | `ReadWrite` | Full access including DDL and DML operations |
 
-### String Shorthand
-
-For convenience, keys can be specified as strings (defaults to `ReadWrite`):
+A key with no suffix defaults to `ReadOnly`:
 
 ```yaml
 runtime:
@@ -83,7 +79,7 @@ runtime:
     api_key:
       enabled: true
       keys:
-        - ${secrets:api_key}
+        - ${secrets:api_key}    # ReadOnly
 ```
 
 ## Combined Authentication
@@ -101,8 +97,7 @@ runtime:
     api_key:
       enabled: true
       keys:
-        - ReadOnly:
-            key: ${secrets:ro_api_key}
+        - ${secrets:ro_api_key}:ro
 ```
 
 ## Protocol-Specific Authentication
@@ -117,12 +112,12 @@ runtime:
 
 When authentication is enabled, the following SQL functions return information about the authenticated user:
 
-| Function                | Description                                                          |
-| ----------------------- | -------------------------------------------------------------------- |
-| `current_user_id()`     | Returns the user ID from the JWT `user_id` claim or API key identity |
-| `current_org_id()`      | Returns the organization ID from the JWT `org_id` claim              |
-| `current_role()`        | Returns the role of the authenticated user                           |
-| `session_property(key)` | Returns a session property by key                                    |
+| Function                          | Description                                                          |
+| --------------------------------- | -------------------------------------------------------------------- |
+| `current_user_id()`               | Returns the user ID from the JWT `user_id` claim or API key identity |
+| `current_org_id()`                | Returns the organization ID from the JWT `org_id` claim              |
+| `current_user_has_role('<role>')` | Returns `true` if the authenticated user has the given role          |
+| `session_property('<key>')`       | Returns a session property by key                                    |
 
 These functions enable row-level security and tenant-scoped queries:
 

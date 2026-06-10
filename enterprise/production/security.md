@@ -121,9 +121,9 @@ Production deployments must authenticate every external request. Spice.ai suppor
 - [**API keys**](../features/authentication.md#api-keys) \u2014 hashed keys configured in the runtime, suitable for service-to-service calls.
 - **Combined** \u2014 OIDC for human users, API keys for service callers, both checked on every request.
 
-The runtime exposes the authenticated principal in SQL via the [identity functions](../features/authentication.md#identity-sql-functions): `current_principal()`, `current_principal_subject()`, `current_principal_email()`, `current_principal_groups()`. Use these in row-level filters to enforce per-user authorization.
+The runtime exposes the authenticated principal in SQL via the [identity functions](../features/authentication.md#identity-sql-functions): `current_user_id()`, `current_org_id()`, `current_user_has_role('<role>')`, and `session_property('<key>')`. Use these in row filters and column masks to enforce per-user authorization.
 
-For coarse-grained allow/deny decisions across datasets, models, tools, and endpoints, configure [Cedar-based authorization policy](../features/policy.md) under `runtime.authorization`.
+For allow/deny decisions across datasets, models, tools, and endpoints — plus fine-grained [row filters and column masks](../features/policy.md#row-filters-and-column-masks) — configure [Cedar-based authorization policy](../features/policy.md) under `runtime.authorization`.
 
 {% hint style="warning" %}
 Never expose the runtime externally without authentication. The default Helm chart configuration permits all callers \u2014 always set `auth.enabled: true` and configure at least one provider for production.
