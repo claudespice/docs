@@ -25,8 +25,8 @@ curl -H "Authorization: Bearer <token>" \
       "cluster_name": "acme-prod-sandbox",
       "region": "us-west-2",
       "cloud_provider": "aws",
-      "endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
-      "public_endpoint": "acme-prod-us-west-2-prod-data.spiceai.io",
+      "endpoint": "acme-prod-us-west-2-prod-data.spiceai.io",
+      "private_endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
       "created_at": "2026-06-11T00:00:00Z",
       "updated_at": "2026-06-11T00:00:00Z"
     }
@@ -35,8 +35,8 @@ curl -H "Authorization: Bearer <token>" \
 ```
 
 - **`cluster_name`** — the cluster's identifier. Use it when creating or reassigning apps.
-- **`endpoint`** — the cluster's **private** data-plane host, reachable only over your private connectivity (see [Querying apps](#querying-apps-on-a-dedicated-cluster)).
-- **`public_endpoint`** — the cluster's **public** data-plane host, always reachable over the internet.
+- **`endpoint`** — the cluster's **public** data-plane host, always reachable over the internet.
+- **`private_endpoint`** — the cluster's **private** data-plane host, reachable only over your private connectivity (VPC peering). `null` if the cluster has no private endpoint.
 
 ## Create an app on a dedicated cluster
 
@@ -53,14 +53,15 @@ curl -X POST https://api.spice.ai/v1/apps \
   }'
 ```
 
-The response includes the resolved assignment (`endpoint` is the cluster's private host):
+The response includes the resolved assignment and both endpoints:
 
 ```json
 {
   "id": 123,
   "name": "my-app",
   "cluster_name": "acme-prod-sandbox",
-  "endpoint": "https://private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
+  "endpoint": "https://acme-prod-us-west-2-prod-data.spiceai.io",
+  "private_endpoint": "https://private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
   "...": "..."
 }
 ```
@@ -97,10 +98,10 @@ Reassigning an app changes its data and Flight endpoints. Update any clients tha
 
 ## Querying apps on a dedicated cluster
 
-`GET /v1/clusters` returns two data-plane hosts for each cluster — use whichever fits your connectivity:
+The app and `GET /v1/clusters` responses return two data-plane hosts — use whichever fits your connectivity:
 
-- **`endpoint`** — the cluster's **private** host (`private-…`). Reachable only when **VPC peering / private connectivity** is enabled for your cluster.
-- **`public_endpoint`** — always reachable over the public internet.
+- **`endpoint`** — the **public** host, always reachable over the internet.
+- **`private_endpoint`** — the **private** host, reachable only when **VPC peering / private connectivity** is enabled for your cluster (`null` if the cluster has none).
 
 Both serve the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take either host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
 
