@@ -20,7 +20,7 @@ Policy evaluation is the standard Cedar `(principal, action, resource, context)`
 | Entity            | Description                                                                 | Notable attributes                       |
 | ----------------- | --------------------------------------------------------------------------- | ---------------------------------------- |
 | `Spice::User`     | An authenticated principal (OIDC subject, API key identity, …). `in [Role]` | `org_id`                                 |
-| `Spice::Role`     | A role or group the user belongs to (mapped from OIDC groups / API key tags) | —                                        |
+| `Spice::Role`     | A role the user belongs to. For OIDC principals, sourced from the configured role/group claims; for API-key principals, the key's `read` or `read_write` permission level | —                                        |
 | `Spice::Dataset`  | A registered dataset (table) in the runtime                                 | `catalog`, `schema`                      |
 | `Spice::Model`    | An LLM model available for inference                                        | —                                        |
 | `Spice::Tool`     | A tool (built-in or MCP) available for execution                            | —                                        |
@@ -30,7 +30,8 @@ Policy evaluation is the standard Cedar `(principal, action, resource, context)`
 
 | Action                                                 | Applies to        | Description                              |
 | ------------------------------------------------------ | ----------------- | ---------------------------------------- |
-| `Spice::Action::"query"`                               | `Spice::Dataset`  | `SELECT` and read paths.                 |
+| `Spice::Action::"query"`                               | `Spice::Dataset`  | `SELECT` / scan of a dataset.            |
+| `Spice::Action::"read"`                                | `Spice::Dataset`  | Reading a dataset's contents. Carries the fine-grained **row filter** and **column mask** annotations (see [Row Filters and Column Masks](#row-filters-and-column-masks)). A `read` permit also implicitly authorizes `query`. |
 | `Spice::Action::"insert"`                              | `Spice::Dataset`  | `INSERT` write path.                     |
 | `Spice::Action::"update"`                              | `Spice::Dataset`  | `UPDATE` write path.                     |
 | `Spice::Action::"delete"`                              | `Spice::Dataset`  | `DELETE` write path.                     |
@@ -49,8 +50,9 @@ Policies are configured under `runtime.authorization` in `spicepod.yaml`. Authen
 runtime:
   auth:
     oidc:
-      issuer: https://auth.example.com/
-      audience: spice-runtime
+      issuer_url: https://auth.example.com/
+      audience:
+        - spice-runtime
 
   authorization:
     enabled: true              # default: true
@@ -137,7 +139,9 @@ forbid(
 unless { principal in Spice::Role::"sales-ops" };
 ```
 
-### Block PII columns from non-privileged roles
+### Block a PII schema from non-privileged roles
+
+To mask individual columns rather than block access entirely, use [column masks](#row-filters-and-column-masks).
 
 ```cedar
 forbid(
@@ -183,24 +187,77 @@ unless { principal in Spice::Role::"engineer" };
 
 Policy reloads are **atomic**: in-flight requests complete against the previous policy set, and subsequent requests evaluate against the new set. Empty policy fetches do not silently disable enforcement — combined with `default: deny`, an empty set denies everything.
 
-## Combining Policy with Identity SQL Functions
+## Row Filters and Column Masks
 
-Cedar handles coarse-grained allow/deny decisions across actions and resources. For **row-level** filtering, combine policy with the [identity SQL functions](authentication.md#identity-sql-functions) in dataset views or `WHERE` clauses:
+Beyond coarse allow/deny, policies enforce **fine-grained access** — row-level filtering and column-level masking — on the `read` action. The runtime compiles these from Cedar **policy annotations** into SQL that is applied to the table scan, so filtered rows and masked values are never materialized for the request: they are enforced before any downstream operator (or the client) observes them.
 
-```yaml
-views:
-  - name: my_orders
-    sql: |
-      SELECT *
-      FROM sales.orders
-      WHERE owner_email = current_principal_email()
-        OR 'sales-ops' = ANY(current_principal_groups())
+Annotations attach to a `permit` policy for `Spice::Action::"read"`. A `read` permit also implicitly authorizes `query`, so a single `read` policy can grant masked, row-filtered access in one rule.
+
+### Annotations
+
+| Annotation                            | Effect                                                                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `@row_filter("<sql predicate>")`      | Adds a SQL boolean predicate as a row filter. May be repeated with a suffix (e.g. `@row_filter_region`); multiple filters are AND-combined. |
+| `@mask_<column>("<sql expr>")`        | Replaces `<column>` with the SQL scalar expression.                                                                 |
+| `@column_mask_<column>("<sql expr>")` | Equivalent to `@mask_<column>`.                                                                                     |
+| `@column_mask("<column>=<sql expr>")` | Equivalent, with the column named in the annotation value.                                                          |
+| `@mask_tag_<tag>("<sql expr>")`       | Replaces every column carrying `<tag>` (see [Tagging columns](#tagging-columns)).                                   |
+| `@column_mask_tag("<tag>=<sql expr>")`| Equivalent, with the tag named in the annotation value.                                                             |
+| `@target_table("<dataset>")`          | Scopes the annotations to a single dataset when the policy matches more than one.                                   |
+
+Row filters and mask expressions are evaluated with the request's identity, so they can reference the [identity SQL functions](authentication.md#identity-sql-functions) (`current_user_id()`, `current_org_id()`, `current_user_has_role('...')`) for per-user or per-tenant access.
+
+### Example
+
+```cedar
+// Physicians: full access to patients in their own organization.
+@id("physician_read")
+@row_filter("org = current_org_id()")
+permit(
+  principal in Spice::Role::"physician",
+  action == Spice::Action::"read",
+  resource == Spice::Dataset::"patients"
+);
+
+// Analysts: same org scoping, but SSN and any PHI-tagged column are masked.
+@id("analyst_read")
+@row_filter("org = current_org_id()")
+@mask_ssn("'XXX-XX-XXXX'")
+@mask_tag_phi("'REDACTED'")
+permit(
+  principal in Spice::Role::"analyst",
+  action == Spice::Action::"read",
+  resource == Spice::Dataset::"patients"
+);
 ```
 
-A typical layered model:
+With these policies, an analyst running `SELECT * FROM patients` sees only their organization's rows with `ssn` and any PHI-tagged column replaced, while a physician sees their organization's rows unmasked — from the same query.
 
-1. Cedar policy decides whether the principal may `query` a dataset at all.
-2. SQL views with identity functions filter the rows the principal may see.
+### Tagging columns
+
+Tag-based masks (`@mask_tag_*` / `@column_mask_tag`) target columns by the dataset's column metadata:
+
+```yaml
+datasets:
+  - from: postgres:patients
+    name: patients
+    columns:
+      - name: diagnosis
+        metadata:
+          tags:
+            - phi
+```
+
+### Rules
+
+- Fine-grained annotations are honored only on `permit` policies. Attaching one to a `forbid` is a load-time error.
+- A row filter must evaluate to a Boolean; a column mask expression must return the column's data type. Type mismatches **fail closed** — the query errors rather than returning unmasked data.
+- If two matching policies define conflicting masks for the same column or tag, policy load fails.
+- To deny access outright, use a `forbid` on `read`/`query` rather than a mask.
+
+{% hint style="info" %}
+The [identity SQL functions](authentication.md#identity-sql-functions) are also available directly in dataset views and ad-hoc `WHERE` clauses for row-level logic outside of policy enforcement.
+{% endhint %}
 
 ## Distributed Cluster Behavior
 
