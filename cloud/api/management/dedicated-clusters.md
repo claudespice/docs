@@ -7,8 +7,6 @@ icon: server
 
 Organizations on an enterprise plan can have one or more **dedicated clusters**: Spice-managed, single-tenant infrastructure where your apps run only alongside other apps from your organization — never on shared public infrastructure. Each cluster has its own `cluster_name`, isolated network, and query endpoints.
 
-Clusters can **share underlying infrastructure** with other clusters in your organization — for example an `acme-prod-sandbox` and an `acme-prod-staging` cluster running on the same hardware — or be **completely isolated** on their own dedicated infrastructure. Either way they are separate, independently-addressable clusters; the `infra_cluster_name` field tells you which clusters share infrastructure.
-
 Dedicated clusters are provisioned by Spice.ai. Contact [support](https://spice.ai/support) to request one. Once provisioned and registered to your organization, your clusters are available to the Management API and in the Portal's app-creation picker.
 
 ## List your clusters
@@ -25,19 +23,10 @@ curl -H "Authorization: Bearer <token>" \
   "clusters": [
     {
       "cluster_name": "acme-prod-sandbox",
-      "infra_cluster_name": "acme-prod",
       "region": "us-west-2",
       "cloud_provider": "aws",
       "endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
-      "created_at": "2026-06-11T00:00:00Z",
-      "updated_at": "2026-06-11T00:00:00Z"
-    },
-    {
-      "cluster_name": "acme-prod-staging",
-      "infra_cluster_name": "acme-prod",
-      "region": "us-west-2",
-      "cloud_provider": "aws",
-      "endpoint": "private-acme-prod-staging-us-west-2-prod-data.spiceai.io",
+      "public_endpoint": "acme-prod-us-west-2-prod-data.spiceai.io",
       "created_at": "2026-06-11T00:00:00Z",
       "updated_at": "2026-06-11T00:00:00Z"
     }
@@ -46,8 +35,8 @@ curl -H "Authorization: Bearer <token>" \
 ```
 
 - **`cluster_name`** — the cluster's identifier. Use it when creating or reassigning apps.
-- **`infra_cluster_name`** — the underlying infrastructure the cluster runs on. Clusters that share an `infra_cluster_name` run on the same hardware (while staying isolated from each other); a value unique to one cluster means it's fully isolated.
-- **`endpoint`** — the cluster's **private** data-plane host (see [Querying apps](#querying-apps-on-a-dedicated-cluster)).
+- **`endpoint`** — the cluster's **private** data-plane host, reachable only over your private connectivity (see [Querying apps](#querying-apps-on-a-dedicated-cluster)).
+- **`public_endpoint`** — the cluster's **public** data-plane host, always reachable over the internet.
 
 ## Create an app on a dedicated cluster
 
@@ -87,7 +76,7 @@ If `region` is also provided it must match the cluster's region; the deprecated 
 | Status | Cause |
 | ------ | ----- |
 | `400` `Cluster '<name>' not found` | The cluster does not exist or is not registered to your organization |
-| `400` | The name you passed is shared infrastructure (an `infra_cluster_name`), not a deployable cluster — use a `cluster_name` from `GET /v1/clusters` |
+| `400` `'<name>' is not a deployable cluster` | The name isn't a cluster you can deploy to — pass a `cluster_name` from `GET /v1/clusters` |
 | `400` `region '<r>' does not match cluster region '<r2>'` | An explicit `region` was provided that differs from the cluster's region |
 | `400` `'cname' (deprecated) cannot be combined with 'cluster_name'` | Provide one region source only |
 
@@ -108,16 +97,14 @@ Reassigning an app changes its data and Flight endpoints. Update any clients tha
 
 ## Querying apps on a dedicated cluster
 
-Apps on a dedicated cluster can be reached two ways — a **private** endpoint unique to the cluster, and a **public** endpoint on the cluster's underlying infrastructure. Both route to the same app; authentication is unchanged (use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure).
+`GET /v1/clusters` returns two data-plane hosts for each cluster — use whichever fits your connectivity:
 
-| | HTTP (SQL, search, LLM) | Apache Arrow Flight | Availability |
-| --- | --- | --- | --- |
-| **Private** (this cluster) | `https://private-{cluster_name}-{region}-prod-data.spiceai.io` | `grpc+tls://private-{cluster_name}-{region}-prod-flight.spiceai.io:443` | Only when **VPC peering / private connectivity** is enabled — these hosts resolve to a private address inside the cluster's network |
-| **Public** (shared infrastructure) | `https://{infra_cluster_name}-{region}-prod-data.spiceai.io` | `grpc+tls://{infra_cluster_name}-{region}-prod-flight.spiceai.io:443` | Always available over the public internet |
+- **`endpoint`** — the cluster's **private** host (`private-…`). Reachable only when **VPC peering / private connectivity** is enabled for your cluster.
+- **`public_endpoint`** — always reachable over the public internet.
 
-`GET /v1/clusters` and the app's `endpoint` field return the **private** host. If your cluster doesn't have private connectivity set up, use the **public** host instead — built from `infra_cluster_name` (the Flight host is the same hostname with `-data` replaced by `-flight`).
+Both serve the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take either host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
 
-When using the [SDKs](../../../sdks/), pass the chosen endpoint in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), using the private Flight endpoint over VPC peering:
+When using the [SDKs](../../../sdks/), pass the chosen host in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), over the private Flight endpoint (VPC peering):
 
 ```python
 from spicepy import Client
