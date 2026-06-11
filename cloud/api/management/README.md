@@ -233,11 +233,13 @@ curl -X POST https://api.spice.ai/v1/apps \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-app",
-    "cname": "us-west-2-prod-aws-data",
+    "region": "us-west-2",
     "description": "My Spice app",
     "visibility": "private"
   }'
 ```
+
+Organizations with a [dedicated cluster](dedicated-clusters.md) can pass `cluster_name` in place of `region` to create the app on their dedicated infrastructure.
 
 ### Create a deployment
 

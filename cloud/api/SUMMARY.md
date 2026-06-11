@@ -26,4 +26,5 @@
           kind: openapi
           spec: spiceai-management-api
     ```
+* [Dedicated Clusters](management/dedicated-clusters.md)
 * [Terraform Provider](management-api/terraform.md)
