@@ -69,7 +69,7 @@ The response includes the resolved assignment and both endpoints:
 Apps created without `cluster_name` deploy to the shared regional infrastructure as usual; `cluster_name: null` is equivalent to omitting it.
 
 {% hint style="info" %}
-If `region` is also provided it must match the cluster's region; the deprecated `cname` field cannot be combined with `cluster_name`.
+If `region` is also provided it must match the cluster's region.
 {% endhint %}
 
 ### Errors
@@ -79,7 +79,6 @@ If `region` is also provided it must match the cluster's region; the deprecated 
 | `400` `Cluster '<name>' not found` | The cluster does not exist or is not registered to your organization |
 | `400` `'<name>' is not a deployable cluster` | The name isn't a cluster you can deploy to — pass a `cluster_name` from `GET /v1/clusters` |
 | `400` `region '<r>' does not match cluster region '<r2>'` | An explicit `region` was provided that differs from the cluster's region |
-| `400` `'cname' (deprecated) cannot be combined with 'cluster_name'` | Provide one region source only |
 
 ## Move an existing app to a dedicated cluster
 
