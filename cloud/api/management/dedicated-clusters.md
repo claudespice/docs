@@ -5,7 +5,7 @@ icon: server
 
 # Dedicated Clusters
 
-Organizations on an enterprise plan can have one or more **dedicated clusters**: Spice-managed, single-tenant infrastructure where your apps run only alongside other apps from your organization — never on shared public infrastructure. Each cluster has its own `cluster_name`, isolated network, and query endpoints.
+Organizations on an enterprise plan can have one or more **dedicated clusters**: Spice-managed, single-tenant infrastructure where your apps run only alongside other apps from your organization — never on shared infrastructure. Each cluster has its own `cluster_name`, isolated network, and connection endpoint.
 
 Dedicated clusters are provisioned by Spice.ai. Contact [support](https://spice.ai/support) to request one. Once provisioned and registered to your organization, your clusters are available to the Management API and in the Portal's app-creation picker.
 
@@ -25,8 +25,7 @@ curl -H "Authorization: Bearer <token>" \
       "cluster_name": "acme-prod-sandbox",
       "region": "us-west-2",
       "cloud_provider": "aws",
-      "endpoint": "acme-prod-us-west-2-prod-data.spiceai.io",
-      "private_endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
+      "endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
       "created_at": "2026-06-11T00:00:00Z",
       "updated_at": "2026-06-11T00:00:00Z"
     }
@@ -35,8 +34,7 @@ curl -H "Authorization: Bearer <token>" \
 ```
 
 - **`cluster_name`** — the cluster's identifier. Use it when creating or reassigning apps.
-- **`endpoint`** — the cluster's **public** data-plane host, always reachable over the internet.
-- **`private_endpoint`** — the cluster's **private** data-plane host, reachable only over your private connectivity (VPC peering). `null` if the cluster has no private endpoint.
+- **`endpoint`** — the cluster's data-plane host. Use it to connect to apps running on this cluster.
 
 ## Create an app on a dedicated cluster
 
@@ -53,15 +51,14 @@ curl -X POST https://api.spice.ai/v1/apps \
   }'
 ```
 
-The response includes the resolved assignment and both endpoints:
+The response includes the resolved assignment and the cluster's endpoint:
 
 ```json
 {
   "id": 123,
   "name": "my-app",
   "cluster_name": "acme-prod-sandbox",
-  "endpoint": "https://acme-prod-us-west-2-prod-data.spiceai.io",
-  "private_endpoint": "https://private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
+  "endpoint": "https://private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
   "...": "..."
 }
 ```
@@ -97,14 +94,11 @@ Reassigning an app changes its data and Flight endpoints. Update any clients tha
 
 ## Querying apps on a dedicated cluster
 
-The app and `GET /v1/clusters` responses return two data-plane hosts — use whichever fits your connectivity:
+The app and `GET /v1/clusters` responses return the cluster's `endpoint` — the host you connect to.
 
-- **`endpoint`** — the **public** host, always reachable over the internet.
-- **`private_endpoint`** — the **private** host, reachable only when **VPC peering / private connectivity** is enabled for your cluster (`null` if the cluster has none).
+It serves the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take the host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
 
-Both serve the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take either host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
-
-When using the [SDKs](../../../sdks/), pass the chosen host in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), over the private Flight endpoint (VPC peering):
+When using the [SDKs](../../../sdks/), pass the cluster's host in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), over Flight:
 
 ```python
 from spicepy import Client
