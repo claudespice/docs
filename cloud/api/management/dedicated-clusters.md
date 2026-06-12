@@ -25,7 +25,7 @@ curl -H "Authorization: Bearer <token>" \
       "cluster_name": "acme-prod-sandbox",
       "region": "us-west-2",
       "cloud_provider": "aws",
-      "endpoint": "private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
+      "endpoint": "https://private-acme-prod-sandbox-us-west-2-prod-data.spiceai.io",
       "created_at": "2026-06-11T00:00:00Z",
       "updated_at": "2026-06-11T00:00:00Z"
     }
@@ -34,7 +34,7 @@ curl -H "Authorization: Bearer <token>" \
 ```
 
 - **`cluster_name`** — the cluster's identifier. Use it when creating or reassigning apps.
-- **`endpoint`** — the cluster's data-plane host. Use it to connect to apps running on this cluster.
+- **`endpoint`** — the cluster's data-plane endpoint (an `https://` URL). Use it to connect to apps running on this cluster.
 
 ## Create an app on a dedicated cluster
 
@@ -94,11 +94,11 @@ Reassigning an app changes its data and Flight endpoints. Update any clients tha
 
 ## Querying apps on a dedicated cluster
 
-The app and `GET /v1/clusters` responses return the cluster's `endpoint` — the host you connect to.
+The app and `GET /v1/clusters` responses return the cluster's `endpoint` — the URL you connect to.
 
-It serves the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take the host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
+It serves the same APIs (SQL, search, and LLM over HTTP, plus Apache Arrow Flight), and authentication is unchanged — use the app's [API key](../../portal/apps/api-keys.md) or your platform credentials exactly as on shared infrastructure. For Apache Arrow Flight, take the endpoint's host, replace `-data` with `-flight`, and connect over `grpc+tls://<host>:443`.
 
-When using the [SDKs](../../../sdks/), pass the cluster's host in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), over Flight:
+When using the [SDKs](../../../sdks/), pass the endpoint in place of the `data.spiceai.io` / `flight.spiceai.io` defaults. For example with the [Python SDK](../../../sdks/python-sdk/), over Flight:
 
 ```python
 from spicepy import Client
