@@ -19,6 +19,8 @@ icon: clock-rotate-left
 
 ### Runtime
 
+**Stable channel**
+
 Spice runtime [v1.11.5](https://spiceai.org/releases/v1.11.5) (Apr 1, 2026):
 
 * Improved `on_zero_results: use_source` fallback performance by applying physical optimizer rules to fallback execution plans.
@@ -26,6 +28,16 @@ Spice runtime [v1.11.5](https://spiceai.org/releases/v1.11.5) (Apr 1, 2026):
 * Added PostgreSQL partitioned table support for schema discovery and querying.
 * Improved S3 Parquet read performance by coalescing reads into fewer requests.
 * Fixed Cayenne target file size handling so written files better match configured size.
+
+**Preview channel**
+
+Spice runtime [v2.0-rc.3](https://spiceai.org/releases/v2.0-rc.3) (Apr 21, 2026):
+
+* Added OAuth2 refresh-token authentication, query-parameter pagination, and map-to-array response conversion to the HTTP data connector.
+* Improved Databricks and Unity Catalog reliability with resilience controls, permission prechecks, and structured error reporting.
+* Improved Snowflake and ADBC dataset registration performance and observability.
+* Added authorization header support to the OpenTelemetry metrics exporter and fixed exporter reliability issues.
+* Expanded sort and limit pushdown across connectors, including Oracle and MSSQL, and added MongoDB SRV connection support.
 
 Spice runtime [v2.0-rc.2](https://spiceai.org/releases/v2.0-rc.2) (Apr 10, 2026):
 
