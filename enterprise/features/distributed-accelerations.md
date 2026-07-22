@@ -60,13 +60,11 @@ The `bucket(N, col)` UDF is a deterministic, hash-based bucketing function (`aha
 
 | Engine                | Cluster partition assignment | `write_mode: write_through` | Notes                                                                                             |
 | --------------------- | :--------------------------: | :-------------------------: | ------------------------------------------------------------------------------------------------- |
-| **Cayenne**           |              ✓               |              ✓              | Required for write-through. Vortex storage with SQLite metadata. Supports [acceleration snapshots](acceleration-snapshots.md). |
-| **DuckDB**            |              ✓               |              —              | Read-only partitioned acceleration.                                                               |
-| **SQLite**            |              ✓               |              —              | Read-only.                                                                                        |
-| **Arrow (in-memory)** |              ✓               |              —              | Read-only. Data is lost on pod restart unless backed by snapshots.                                |
-| **Postgres**          |              ✓               |              —              | Read-only.                                                                                        |
+| **Cayenne**                    |     ✓      |     ✓      | Required for write-through. Vortex storage with SQLite metadata. Supports [acceleration snapshots](acceleration-snapshots.md). |
+| **Arrow (in-memory)**          |     ✓      |     —      | Read-only. Data is lost on pod restart unless backed by snapshots. `partition_by` shards it per executor.                     |
+| **DuckDB / SQLite / Postgres** |     —      |     —      | Not supported for distributed acceleration; rejected at startup.                                                              |
 
-Attempting `write_mode: write_through` with a non-Cayenne engine fails fast at startup with `Write-through acceleration currently requires the Cayenne accelerator`.
+Only Arrow (read-only) and Cayenne can be used for distributed acceleration; any other engine is rejected at startup with `… the 'duckdb' engine is not supported for distributed acceleration. Use 'arrow' (optionally with 'partition_by') or 'cayenne' instead.` Because Arrow is read-only, `write_mode: write_through` requires Cayenne.
 
 ## Per-executor sharding
 
