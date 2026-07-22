@@ -74,11 +74,16 @@ For sources with a monotonically-increasing version column (e.g. `updated_at`), 
 
 ### Does Spice support schema evolution?
 
-Spice infers the schema for datasets and views at startup and does not apply runtime schema changes by default. If the source schema changes while the runtime is running (e.g. columns are added, removed, or their types change), data refreshes will fail with a schema mismatch error rather than silently applying the new schema.
+Spice infers the schema for datasets and views at startup. How the runtime responds to a source schema change while running (e.g. columns added, removed, or retyped) is controlled per dataset by the `on_schema_change` setting.
 
-To pick up a new source schema, restart the Spice runtime. On startup, Spice re-infers the schema from the source and the accelerated table is re-initialized with the updated schema.
+By default (`on_schema_change: block`), Spice does not apply source schema changes automatically: the dataset stays healthy and continues serving queries using the schema registered at startup. To evolve the schema without restarting, set `on_schema_change` to one of:
 
-Automatic runtime schema evolution is on the [Spice v2.1 roadmap](https://github.com/spiceai/spiceai/blob/trunk/docs/ROADMAP.md).
+- `append_new_columns` — add newly-appeared source columns; reject removals and incompatible changes.
+- `sync_all_columns` — keep the registered schema synchronized with the source schema.
+- `drop_and_recreate` — apply widening changes in place; otherwise drop and recreate the accelerated table (destructive, and only with `refresh_mode: full`).
+- `fail` — fail the refresh when the source schema diverges.
+
+Restarting the runtime also re-infers the schema from the source and re-initializes the accelerated table.
 
 ### What is Data-grounded AI?
 
