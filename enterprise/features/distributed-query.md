@@ -232,13 +232,11 @@ In cluster mode, accelerated data is **sharded** across executors: each executor
 
 | Engine                | Cluster partition assignment | `write_mode: write_through` | Notes                                                                                             |
 | --------------------- | :--------------------------: | :-------------------------: | ------------------------------------------------------------------------------------------------- |
-| **Cayenne**           |              ✓               |              ✓              | Required for write-through. Vortex storage with SQLite metadata. Supports acceleration snapshots. |
-| **DuckDB**            |              ✓               |              —              | Read-only partitioned acceleration.                                                               |
-| **Arrow (in-memory)** |              ✓               |              —              | Read-only. Data is lost on pod restart unless backed by snapshots.                                |
-| **SQLite**            |              ✓               |              —              | Read-only.                                                                                        |
-| **Postgres**          |              ✓               |              —              | Read-only.                                                                                        |
+| **Cayenne**                    |     ✓      |     ✓      | Required for write-through. Vortex storage with SQLite metadata. Supports acceleration snapshots.       |
+| **Arrow (in-memory)**          |     ✓      |     —      | Read-only. Data is lost on pod restart unless backed by snapshots. `partition_by` shards it per executor. |
+| **DuckDB / SQLite / Postgres** |     —      |     —      | Not supported for distributed acceleration; rejected at startup.                                        |
 
-Attempting `write_mode: write_through` with a non-Cayenne engine fails fast at startup with `Write-through acceleration currently requires the Cayenne accelerator`.
+Only Arrow (read-only) and Cayenne can be used for distributed acceleration; any other engine is rejected at startup with `… the 'duckdb' engine is not supported for distributed acceleration. Use 'arrow' (optionally with 'partition_by') or 'cayenne' instead.` Because Arrow is read-only, `write_mode: write_through` requires Cayenne.
 
 ### Per-executor sharding
 
@@ -341,7 +339,7 @@ If any peer or executor fails, the federated query fails — there are no partia
 | Constraint                                                                                                        | Surface                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | Every accelerated dataset and view in cluster mode must declare `partition_by`.                                   | Startup error: `… has no partition keys configured`.                                    |
-| `write_mode: write_through` requires the Cayenne accelerator.                                                     | Startup error: `Write-through acceleration currently requires the Cayenne accelerator`. |
+| Only Arrow (read-only) and Cayenne are supported for distributed acceleration; `write_mode: write_through` requires Cayenne. | Startup error: `… the 'duckdb' engine is not supported for distributed acceleration. Use 'arrow' (optionally with 'partition_by') or 'cayenne' instead.` |
 | Two scheduler processes cannot share a `scheduler_id` while one is live.                                          | Startup error: `scheduler id {id} is already registered`.                               |
 | All partitions referenced by a query must be assigned to a connected executor at execution time.                  | Runtime error: `Cannot execute query: N partition(s) not assigned to any executor`.     |
 | Default `DoPut` idle timeout is 120 s; override with `SPICE_DO_PUT_IDLE_TIMEOUT_SECS`.                            | Long-running write streams must emit data or rely on the keepalive sentinel.            |
