@@ -74,7 +74,7 @@ Each entry in `functions:` is a `Function` object. Fields are strictly validated
 | `from`        | string   | yes      | Source URI selecting the execution tier. `sql`, `http://…`, `https://…`, `wasm`.                                                                                              |
 | `enabled`     | bool     | no       | Defaults to `true`. Set to `false` to keep the declaration in the spicepod without registering it for SQL, tool exposure, `list_udfs()`, or `/v1/functions`.                  |
 | `description` | string   | no       | Free-form description surfaced in `list_udfs()` and `GET /v1/functions`.                                                                                                      |
-| `kind`        | enum     | no       | `scalar` (default) or `table`. Both are wired today. `aggregate` and `window` are reserved and rejected at registration with a clear error.                                   |
+| `kind`        | enum     | no       | `scalar` (default) or `table`. Any other value (e.g. `aggregate`, `window`) is rejected at parse time as an unknown variant, and the spicepod fails to load.                  |
 | `volatility`  | enum     | no       | `immutable`, `stable`, `volatile` (default). See [Volatility](#volatility).                                                                                                   |
 | `signature`   | object   | yes      | Typed signature. See below.                                                                                                                                                   |
 | `body`        | string   | tier-dep | Inline SQL expression (scalar) or `SELECT` query (table). **Required** for `from: sql` unless `body_ref` is set. **Optional** for `from: wasm` to supply a table input from SQL. **Forbidden** for `from: http*`. Mutually exclusive with `body_ref`. |
@@ -201,6 +201,7 @@ Non-`2xx` responses surface as query errors, with the response body snippet (up 
 | `max_response_bytes` | integer bytes, up to `1 GiB`                           | `10MiB` | Maximum decoded response body size per HTTP call. Larger responses fail the query.                       |
 | `max_rows`           | integer, up to `1000000`                               | `100000`| Cap on rows returned by a table-function call when the query has no `LIMIT`. Ignored for scalar batches. |
 | `auth_bearer`        | string (supports `${secrets:…}`)                       | none    | Sets `Authorization: Bearer <value>` on every request.                                                   |
+| `allowed_endpoint_ranges` | list of CIDR strings                              | `[]`    | SSRF egress allowlist. The remote tier blocks requests that resolve to non-public or cloud-metadata IP ranges; add CIDRs here to explicitly permit specific internal ranges. Resolved IPs are checked before connecting. |
 
 ### WebAssembly (`from: wasm`)
 
@@ -475,7 +476,7 @@ User functions are deny-listed from federation pushdown on every node, so there'
 
 Current (ALPHA) scope:
 
-- `kind: scalar` and `kind: table` are implemented. `aggregate` and `window` are reserved kinds — they parse but are rejected at registration so forward-compatible spicepods still load.
+- `kind: scalar` and `kind: table` are implemented. Any other `kind:` value (e.g. `aggregate`, `window`) is rejected at parse time as an unknown variant and prevents the spicepod from loading.
 - Supported `from:` schemes are `sql`, `http://`, `https://`, and `wasm`. The HTTP and WASM tiers are gated behind the `http-functions` and `wasm-functions` cargo features respectively (default-on in Enterprise and Cloud, opt-in for OSS builds). Other schemes (e.g. `grpc://`, `flight://`) parse but are rejected.
 - LLM tool exposure (`as_tool: true`) is limited to scalar functions with primitive Arrow types in their signature (`int64`, `float64`, `utf8`, `boolean`). Functions with richer signatures remain callable from SQL.
 - Remote tier issues batches in parallel with a default `batch_concurrency` of 4 (max 64). Retries, circuit-breakers, per-function rate limits, and `http-arrow` / Flight protocols are not yet implemented.
