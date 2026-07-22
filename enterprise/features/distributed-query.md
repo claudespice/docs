@@ -280,9 +280,9 @@ Setting `snapshots: bootstrap_only` is recommended on executors when the source 
 | Mode             | Endpoint             | Notes                                                                                                                                                                        |
 | ---------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Synchronous**  | `/v1/sql`, FlightSQL | Client waits for the query to complete and receives results directly. Available in any deployment.                                                                           |
-| **Asynchronous** | `/v1/jobs`           | Client submits a query and polls a `job_id` for status. Results are stored as chunked Arrow IPC under `jobs/` in the shared object store. **Cluster (scheduler) mode only.** |
+| **Asynchronous** | `/v1/queries`        | Client submits a query and polls a `query_id` for status. Full results are retrieved with pagination via `/v1/queries/{query_id}/results`, or chunk-by-chunk via `/v1/queries/{query_id}/results/chunks/{chunk_index}`. **Cluster (scheduler) mode only.** |
 
-Async jobs require `runtime.scheduler.state_location` to be configured.
+Async queries require `runtime.scheduler.state_location` to be configured.
 
 ## Observability
 
