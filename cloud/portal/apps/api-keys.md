@@ -4,7 +4,7 @@ icon: key
 
 # API keys
 
-Each Spice app has two pre-generated API keys, which can be used with [Spice SDKs](../../sdks/python-sdk/), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](../../api/sql-query/apache-arrow-flight-api.md).
+Each Spice app has two pre-generated API keys, which can be used with [Spice SDKs](../../../sdks/), the [HTTP API](../../api/sql-query/http-api.md) or the [Apache Arrow Flight API](../../api/sql-query/apache-arrow-flight-api.md).
 
 ## View API Keys
 
@@ -28,4 +28,4 @@ Regenerating an API key immediately invalidates the old key. Any applications us
 
 ## Regenerate via API
 
-API keys can also be regenerated programmatically. See the [API Keys Management API](../../api/management/api-keys.md#regenerate-api-key) for details.
+API keys can also be regenerated programmatically. See the [Management API](../../api/management/) reference for details.

@@ -5,9 +5,16 @@
 The top-level object that connects to Spice.ai.
 
 * `params.apiKey` (string, optional): API key to authenticate with the endpoint.
-* `params.httpUrl` (string, optional): URL of the HTTP endpoint (default: `http://localhost:8090`).
-* `params.flightUrl` (string, optional): URL of the Flight endpoint (default: `localhost:50051`, using local Spice Runtime).
+* `params.httpUrl` (string, optional): URL of the HTTP endpoint, including the scheme (default: `http://127.0.0.1:8090`).
+* `params.flightUrl` (string, optional): Host and port of the Flight endpoint, without a scheme (default: `127.0.0.1:50051`, using local Spice Runtime).
+* `params.flightTlsEnabled` (boolean, optional): Use TLS for Flight. Defaults to `false` for a localhost address and `true` otherwise.
+* `params.userAgent` (string, optional): Prepended to the reported user agent.
+* `params.customHeaders` (object, optional): Additional headers to send with each request.
+* `params.flightOnly` (boolean, optional): Use only the Flight transport (default: `false`).
+* `params.httpOnly` (boolean, optional): Use only the HTTP transport (default: `false`). Setting both `flightOnly` and `httpOnly` throws.
 * `params.logging` (boolean, optional): Enable or disable logging output (default: `true`).
+
+Supplying only an `apiKey` — with neither URL set — selects the Spice.ai Cloud endpoints for both.
 
 Default connection to local Spice Runtime:
 
@@ -39,19 +46,20 @@ const spiceClient = new SpiceClient('API_KEY');
 
 ### SpiceClient Methods
 
-#### `sql(query, options?, onData?)` — Execute SQL queries
+#### `sql(query, options?, onData?, headers?)` — Execute SQL queries
 
 The recommended method for executing SQL queries. Returns an Apache Arrow [Table](https://arrow.apache.org/docs/js/classes/Arrow_dom.Table.html).
 
 * `query` (string, required): The SQL query to execute.
-* `options` (object, optional): Query options including `parameters` for parameterized queries.
+* `options` (object, optional): Query options including `parameters` for parameterized queries. A callback may be passed in this position instead of `onData`.
 * `onData` (callback, optional): Callback for handling [streaming](streaming.md) data.
+* `headers` (object, optional): Custom headers to include with the request.
 
 ```javascript
 // Standard query
 const table = await spiceClient.sql("SELECT * FROM tpch.lineitem LIMIT 10");
 table.toArray().forEach((row) => {
-  console.log(row.toJSON());
+  console.log(JSON.stringify(row));
 });
 
 // Parameterized query
@@ -60,6 +68,10 @@ const table = await spiceClient.sql(
   { parameters: [2, 5.0] }
 );
 ```
+
+{% hint style="info" %}
+Rows returned by `toArray()` are plain objects when the result contains a decimal, timestamp, list, or struct column, and Arrow row proxies otherwise. Use plain property access or `JSON.stringify(row)` rather than calling `row.toJSON()`, which is not present on the plain-object form.
+{% endhint %}
 
 Get all elements for a column by calling [`getChild(name: string)`](https://arrow.apache.org/docs/js/classes/Arrow_dom.Table.html#getChild):
 
@@ -100,9 +112,11 @@ Converts natural language queries into SQL and executes them.
 
 * `query` (string, required): The natural language query.
 * `options` (object, optional):
-  * `datasets` (array, optional): Dataset names to limit the query scope.
-  * `model` (string, optional): Model to use for SQL generation (default: `"nql"`).
-  * `sample_data_enabled` (boolean, optional): Include sample data in context (default: `true`).
+  * `datasets` (array, optional): Dataset names to sample from when building the model context. A sampling hint only — it does not restrict which tables the query can target.
+  * `model` (string, optional): Model to use for SQL generation. When omitted, the single compatible model configured in the app is used; if none or more than one is configured, the request fails.
+  * `sample_data_enabled` (boolean, optional): Include sample data in context (default: `false`).
+
+See the [Text-to-SQL API](../../cloud/api/nsql.md) for the full contract.
 
 ```javascript
 const result = await spiceClient.nsql('Show me the top 5 customers by total sales');
@@ -148,9 +162,17 @@ Checks if the Spice runtime is ready to accept queries. This endpoint is **authe
 const isReady = await spiceClient.isSpiceReady();
 ```
 
-#### `query(sql, onData?)` — Legacy query method
+#### `search(query, options?)` — Search datasets
 
-The legacy query method. Still supported, but `sql()` is recommended for new code.
+Runs a search query against the app's datasets.
+
+```javascript
+const results = await spiceClient.search('quarterly revenue trends');
+```
+
+#### `query(sql, onData?, headers?)` — Deprecated query method
+
+Deprecated and scheduled for removal in a future version. Use `sql()` instead.
 
 ```javascript
 const table = await spiceClient.query("SELECT * FROM tpch.lineitem LIMIT 10");

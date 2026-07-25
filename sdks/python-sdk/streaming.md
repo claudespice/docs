@@ -11,21 +11,22 @@ The object returned from `spicepy.Client.query()` is a [`pyarrow.flight.FlightSt
 ```python
 >>> from spicepy import Client
 >>> import os
->>> client = Client(os.environ["API_KEY"])
+>>> client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://flight.spiceai.io")
 >>> rdr = client.query("SELECT * FROM taxi_trips")
 <pyarrow._flight.FlightStreamReader object at 0x1059c9980>
 ```
 
-Calling `to_pandas()` on the `FlightStreamReader` will wait for the stream to return all of the data before returning a pandas DataFrame.
+Calling `read_pandas()` on the `FlightStreamReader` will wait for the stream to return all of the data before returning a pandas DataFrame.
 
 To operate on partial results while the data is streaming, we will take advantage of the [`read_chunk()`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.flight.FlightStreamReader.html#pyarrow.flight.FlightStreamReader.read_chunk) method on `FlightStreamReader`. This returns a `FlightStreamChunk`, which has a `data` attribute that is a [`RecordBatch`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.RecordBatch.html#pyarrow.RecordBatch). Once we have the RecordBatch, we can call `to_pandas()` on it to return the partial data as a pandas DataFrame. When the stream has ended, calling `read_chunk()` will raise a `StopIteration` exception that we can catch.
 
 In this example, we retrieve all 10,000 suppliers from the TPCH Suppliers table. This query retrieves all suppliers in a single call:
 
 ```python
+import os
 from spicepy import Client
 
-client = Client(os.environ["API_KEY"])
+client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://flight.spiceai.io")
 query = """
     SELECT s_suppkey, s_name
     FROM tpch.supplier
@@ -51,3 +52,7 @@ while has_more:
     except StopIteration:
         has_more = False
 ```
+
+{% hint style="info" %}
+`query_with_params()` returns a `pyarrow.RecordBatchReader`, but the full result is read before the reader is returned, so it does not deliver partial results as they arrive. Use `query()` for streaming.
+{% endhint %}

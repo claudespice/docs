@@ -55,9 +55,18 @@ const spiceClient = new SpiceClient('API_KEY');
 `SpiceClient` accepts a config object or a string API key:
 
 * `apiKey` (string, optional): API key to authenticate with the endpoint.
-* `flightUrl` (string, optional): URL of the Flight endpoint (default: `localhost:50051`).
-* `httpUrl` (string, optional): URL of the HTTP endpoint (default: `http://localhost:8090`).
+* `flightUrl` (string, optional): Host and port of the Flight endpoint, without a scheme (default: `127.0.0.1:50051`).
+* `httpUrl` (string, optional): URL of the HTTP endpoint, including the scheme (default: `http://127.0.0.1:8090`).
+* `flightTlsEnabled` (boolean, optional): Use TLS for Flight. Defaults to `false` for a localhost address and `true` otherwise.
+* `userAgent` (string, optional): Prepended to the reported user agent.
+* `customHeaders` (object, optional): Additional headers to send with each request.
+* `flightOnly` (boolean, optional): Use only the Flight transport (default: `false`).
+* `httpOnly` (boolean, optional): Use only the HTTP transport (default: `false`). Setting both `flightOnly` and `httpOnly` throws.
 * `logging` (boolean, optional): Enable or disable logging output (default: `true`).
+
+{% hint style="info" %}
+Supplying only an `apiKey` — with neither `httpUrl` nor `flightUrl` — selects the Spice.ai Cloud endpoints (`https://data.spiceai.io` and `flight.spiceai.io:443`). Setting either URL explicitly keeps the local defaults for the other.
+{% endhint %}
 
 #### **`sqlJson(query: string)` - Execute SQL queries with JSON results**
 
@@ -83,6 +92,15 @@ The response includes:
 * `schema`: Schema information with field names and types
 * `data`: Array of row objects
 * `execution_time_ms`: Query execution time in milliseconds
+
+#### Other methods
+
+* `nsql(query, options?)` — generate and run SQL from a natural language question. See the [Text-to-SQL API](../../cloud/api/nsql.md).
+* `search(query, options?)` — run a search query against the app's datasets.
+* `refreshAcceleration(dataset, options?)` — trigger a refresh of an accelerated dataset.
+* `isSpiceReady()` and `isSpiceHealthy()` — check the runtime's readiness and health.
+
+See the [API reference](api-reference.md) for full signatures.
 
 ### Usage with local Spice runtime
 

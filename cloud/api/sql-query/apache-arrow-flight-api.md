@@ -16,14 +16,6 @@ In Python, query results can be easily converted to Pandas or NumPy formats.
 
 You may also use Apache's `pyarrow` library directly.
 
-{% hint style="info" %}
-**Note on Apple Silicon Macs** - [How do I know if I have Apple Silicon?](https://support.apple.com/en-us/HT211814)
-
-`The spicepy/pyarrow` installation requires [miniforge](https://github.com/conda-forge/miniforge).
-
-See the [Python SDK page](../../../sdks/python-sdk/#m1-macs) for installation steps.
-{% endhint %}
-
 ### Connecting to the Endpoint
 
 * Endpoint URL: `grpc+tls://flight.spiceai.io`

@@ -32,9 +32,9 @@ OFFSET 1000000
 
 ### Use the Apache Arrow API and SDKs
 
-The [Apache Arrow API](api/sql-query-api/apache-arrow-flight-api.md) uses Apache Arrow Flight to deliver results over a high-performance connection with no row limit.
+The [Apache Arrow API](api/sql-query/apache-arrow-flight-api.md) uses Apache Arrow Flight to deliver results over a high-performance connection with no row limit.
 
-SDKs like the [Python SDK](sdks/python-sdk.md) always use the Arrow API, so they are a convenient way to access Spice data.
+SDKs like the [Python SDK](../sdks/python-sdk/) always use the Arrow API, so they are a convenient way to access Spice data.
 
 ### Combine SQL with Python or other languages
 
