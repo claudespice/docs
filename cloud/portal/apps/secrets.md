@@ -14,7 +14,7 @@ Once a secret is saved, its value cannot be retrieved through Spice Cloud. If yo
 2. Navigate to **Settings** tab and select **Secrets** section.
 3. Fill **Secret Name** and **Secret Value** fields and click **Add**.
 4. Saved secrets can be referenced in the Spicepod configuration as\
-   `${secrets::<SECRET_NAME>}`, for example:
+   `${secrets:<SECRET_NAME>}`, for example:
 
 ```yaml
 models:   

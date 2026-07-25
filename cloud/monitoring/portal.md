@@ -9,7 +9,7 @@ The Spice.ai Cloud portal includes a built-in monitoring dashboard — no extern
 
 ## Monitoring Dashboard
 
-The **Monitoring** tab in your app provides real-time visibility into usage, request performance, and API activity:
+The **Observability** tab in your app provides real-time visibility into usage, request performance, and API activity:
 
 * **SQL Queries** — total count, success/failure rate, and average duration
 * **AI Completions** — LLM inference request metrics
@@ -20,7 +20,7 @@ The **Monitoring** tab in your app provides real-time visibility into usage, req
 ### Accessing the Dashboard
 
 1. Navigate to your Spice app in the [portal](https://spice.ai)
-2. Click the **Monitoring** tab in the app navigation sidebar
+2. Click the **Observability** tab in the app navigation bar
 3. Select a time range: **1 hour**, **24 hours**, **7 days**, or **28 days**
 
 Use the metrics dashboard to identify usage trends, detect spikes in query duration, and plan capacity.
@@ -29,8 +29,8 @@ Use the metrics dashboard to identify usage trends, detect spikes in query durat
 
 The request logs provide a detailed record of individual API requests, including status codes, durations, and timestamps.
 
-1. Open the **Monitoring** tab for your app
-2. Click **Logs** to switch from the Metrics view to the Logs view
+1. Open the **Observability** tab for your app
+2. Select **Request Logs** in the left navigation
 3. Select a time range: **past hour**, **8 hours**, **24 hours**, or **up to 3 days**
 
 Use request logs to debug failing queries, identify slow requests, and audit API usage.

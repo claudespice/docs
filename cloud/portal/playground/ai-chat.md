@@ -19,7 +19,7 @@ Start to use AI Chat by typing in the question and clicking send.
 
 ### Model-Dependent Capabilities
 
-The ability of AI Chat depends on the model configuration, including [Language Model Overrides](https://docs.spiceai.org/features/large-language-models/parameter_overrides), [Model Runtime Tools](https://docs.spiceai.org/features/large-language-models/runtime_tools), etc. Refer to the [Model Documentation](https://docs.spiceai.org/reference/spicepod/models) for details of customizing the model used in AI Chat.
+The ability of AI Chat depends on the model configuration, including [Language Model Overrides](https://docs.spiceai.org/features/large-language-models/parameter_overrides), [Model Runtime Tools](https://docs.spiceai.org/features/large-language-models/tools), etc. Refer to the [Model Documentation](https://docs.spiceai.org/reference/spicepod/models) for details of customizing the model used in AI Chat.
 
 #### Example:
 
@@ -30,7 +30,7 @@ models:
   - from: openai:gpt-4o
     name: openai-with-spice
     params:
-      spice_tools: auto
+      tools: auto
       openai_api_key: ${secrets:OPENAI_API_KEY}
       system_prompt: >-
         **You are an AI assistant integrated with GitHub Copilot. Your primary role
@@ -149,6 +149,6 @@ Ask questions regarding datasets configured in spicepod within the AI Chat.
 
 Spice.ai provides observability Ito the AI Chat, showing full tool usage traces and chat completion history.
 
-Navigate to the **Observability** section in the portal.
+Navigate to the **Observability** tab in the portal and select **Traces**.
 
 Select an `ai_chat` task history and view details over the chat completion history, including timestamps, tool usage, intermediate outputs, etc.

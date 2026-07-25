@@ -11,7 +11,7 @@ An [OpenAI API Platform](https://platform.openai.com/) account and API key is re
 
 ### Adding a Model Provider
 
-1. Navigate to **Code** tab.
+1. Navigate to **Build** > **Code**.
 2. In **Components** sidebar, click **Model Providers** tab, and select **OpenAI**.
 3. Enter the **Model name.**
 4. Enter the **Model ID**, (e.g. `gpt-4o`).
