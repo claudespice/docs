@@ -63,6 +63,19 @@
   * [SpiceAI](building-blocks/model-providers/spiceai.md)
   * [XAI](building-blocks/model-providers/xai.md)
 
+## SDKs
+
+* [SDKs](sdks/README.md)
+  * [Python SDK](sdks/python-sdk/README.md)
+    * [Streaming](sdks/python-sdk/streaming.md)
+  * [Node.js SDK](sdks/node.js-sdk/README.md)
+    * [API Reference](sdks/node.js-sdk/api-reference.md)
+    * [Streaming](sdks/node.js-sdk/streaming.md)
+  * [Go SDK](sdks/go.md)
+  * [Rust SDK](sdks/rust-sdk/README.md)
+  * [Java SDK](sdks/java-sdk.md)
+  * [Dotnet SDK](sdks/dotnet-sdk.md)
+
 ## Use-Cases
 
 * [Agentic AI Apps](use-cases/agentic-ai-apps.md)

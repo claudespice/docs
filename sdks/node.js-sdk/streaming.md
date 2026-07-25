@@ -6,27 +6,30 @@ This can be used to enable more efficient pipelining scenarios where processing 
 
 The [`SpiceClient.sql`](api-reference.md#spiceclient-methods) method takes an optional `onData` callback that will be passed partial results as they become available.
 
-```javascript
+```typescript
 public async sql(
     queryText: string,
-    options?: SqlQueryOptions,
-    onData?: (data: Table) => void
+    optionsOrCallback?: SqlQueryOptions | ((data: Table) => void),
+    onData?: (data: Table) => void,
+    headers?: { [key: string]: string }
   ): Promise<Table>
 ```
+
+A callback may be passed either as the second argument or as `onData`.
 
 In this example, we retrieve all 10,000 suppliers from the TPCH Suppliers table. This query retrieves all suppliers in a single call:
 
 ```javascript
 import { SpiceClient } from "@spiceai/spice";
 
-const spiceClient = new SpiceClient(process.env.API_KEY);
+const spiceClient = new SpiceClient({ apiKey: process.env.API_KEY! });
 const query = `
 SELECT s_suppkey, s_name
 FROM tpch.supplier
 `;
 const allSuppliers = await spiceClient.sql(query);
 allSuppliers.toArray().forEach((row) => {
-    processSupplier(row.toJSON());
+    processSupplier(row);
 });
 ```
 
@@ -37,14 +40,18 @@ Alternatively, data can be processed as it is streamed to the SDK. Provide a cal
 ```javascript
 import { SpiceClient } from "@spiceai/spice";
 
-const spiceClient = new SpiceClient(process.env.API_KEY);
+const spiceClient = new SpiceClient({ apiKey: process.env.API_KEY! });
 const query = `
 SELECT s_suppkey, s_name
 FROM tpch.supplier
 `;
 await spiceClient.sql(query, undefined, (partialData) => {
     partialData.toArray().forEach((row) => {
-        processSupplier(row.toJSON());
+        processSupplier(row);
     });
 });
 ```
+
+{% hint style="info" %}
+On the Arrow Flight transport the first message carries the schema and is not passed to `onData`; each subsequent message is delivered as its own `Table`. The promise still resolves with the complete result assembled from every chunk.
+{% endhint %}
