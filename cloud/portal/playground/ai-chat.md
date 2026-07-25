@@ -149,6 +149,6 @@ Ask questions regarding datasets configured in spicepod within the AI Chat.
 
 Spice.ai provides observability Ito the AI Chat, showing full tool usage traces and chat completion history.
 
-Navigate to the **Observability** section in the portal.
+Navigate to the **Observability** tab in the portal and select **Traces**.
 
 Select an `ai_chat` task history and view details over the chat completion history, including timestamps, tool usage, intermediate outputs, etc.
