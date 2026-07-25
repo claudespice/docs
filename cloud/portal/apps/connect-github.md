@@ -17,7 +17,7 @@ Before connecting:
 To quickly set up a new repository, use the [spiceai/spicepod-template](https://github.com/spiceai/spicepod-template) as a starting point:
 
 {% hint style="warning" %}
-Make sure to copy app spicepod.yaml contents from the **Code** tab and place it in the root of the repository before linking.
+Make sure to copy app spicepod.yaml contents from **Build** > **Code** and place it in the root of the repository before linking.
 {% endhint %}
 
 ## Connect

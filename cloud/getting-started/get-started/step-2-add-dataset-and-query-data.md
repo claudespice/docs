@@ -5,13 +5,13 @@ icon: circle-3
 
 # Add a Dataset and query data
 
-To add a dataset to the Spice app, navigate to the [**Code**](../../portal/app-spicepod/) tab.
+To add a dataset to the Spice app, navigate to **Build** > [**Code**](../../portal/app-spicepod/).
 
 Use the **Components sidebar** on the right to select from available **Data Connectors**, **Model Providers**, and ready-to-use **Datasets**.
 
 ### Adding a ready-to-use Dataset
 
-1. Navigate to **Code** tab.
+1. Navigate to **Build** > **Code**.
 2. In **Components** sidebar, click the **Datasets** tab.
 3. Select and add the **NYC Taxi Trips** dataset
    1. Note the configuration has been added to the editor

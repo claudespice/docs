@@ -6,7 +6,7 @@ icon: square-code
 
 ### Edit app spicepod not connected to GitHub
 
-To update Spice App spicepod.yaml, navigate to **Code** tab. Use Components sidebar to add data connectors, model providers and preconfigured datasets, or manually edit spicepod.yaml in code editor.
+To update Spice App spicepod.yaml, navigate to **Build** > **Code**. Use Components sidebar to add data connectors, model providers and preconfigured datasets, or manually edit spicepod.yaml in code editor.
 
 After saving the spicepod changes, a new deployment must be triggered. Learn more about [Spicepod Deployments](deployments.md).
 
@@ -16,4 +16,4 @@ If the Spice App is connected to a GitHub repository ([learn more](../apps/conne
 
 To apply the updated spicepod, a new deployment must be triggered. Learn more about [Spicepod Deployments](deployments.md).
 
-App Code tab allows to explore and preview files in connected repository.
+The **Build** > **Code** view allows to explore and preview files in connected repository.

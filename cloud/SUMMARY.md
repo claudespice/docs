@@ -14,7 +14,7 @@
 
 * [Playground](portal/playground/README.md)
   * [SQL Query](portal/playground/sql-query-editor.md)
-  * [NSQL Query](portal/playground/nsql-query.md)
+  * [Text-to-SQL](portal/playground/nsql-query.md)
   * [AI Chat](portal/playground/ai-chat.md)
   * [Search](portal/playground/search.md)
 * [Organizations](portal/organizations.md)
@@ -35,8 +35,7 @@
   * [Spice Runtime Versions](portal/app-spicepod/spice-runtime-versions.md)
 * [Datasets](portal/datasets-and-views.md)
 * [Models](portal/models.md)
-* [Monitoring](portal/monitoring-and-request-logs.md)
-* [Observability](portal/observability.md)
+* [Observability](portal/monitoring-and-request-logs.md)
 * [Profile](portal/profile/README.md)
   * [Personal Access Tokens](portal/profile/personal-access-tokens.md)
 * [External Data Sources](portal/external-data-sources.md)

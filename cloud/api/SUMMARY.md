@@ -8,6 +8,7 @@
   * [HTTP API](sql-query/http-api.md)
   * [Apache Arrow Flight API](sql-query/apache-arrow-flight-api.md)
 * [LLM API](openai-api.md)
+* [Text-to-SQL API](nsql.md)
 * [Search API](search.md)
 * [Health API](health.md)
 * [Metrics API](metrics.md)
