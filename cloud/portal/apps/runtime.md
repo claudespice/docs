@@ -15,7 +15,7 @@ The runtime version determines the Spice.ai Open Source version for your Spice a
 
 The runtime region specifies the geographic location of the data center hosting your Spice application. Region selection optimizes latency, compliance, and performance based on your business needs.
 
-* **Availability**: Region selection is exclusive to Enterprise plan customers.
+* **Availability**: The region is selected when the app is created. Changing the region of an existing app is available to Enterprise plan customers — contact support to request the change.
 * **Supported Regions**:
   * **North America**:
     * **US East (N. Virginia)** - `us-east-1` (AWS)
