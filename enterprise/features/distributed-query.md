@@ -44,6 +44,8 @@ Multiple schedulers run simultaneously without an external coordinator:
 - **Reaper** — Schedulers whose last heartbeat exceeds `ttl_ms + 5 s` clock-skew tolerance are evicted on the next reaper tick (jittered ±20 % around `ttl_ms`).
 - **Takeover safety** — Each scheduler process generates a fresh `instance_id` (UUID) at startup, so a restarted process can safely reclaim its previous `scheduler_id` without colliding with itself.
 - **Executor failover** — Executors maintain a poll loop (Fibonacci backoff, max 5 s) and a `ControlStream` to every scheduler concurrently. If a scheduler dies, the executor's other connections remain live and surviving schedulers continue to drive partition assignment and refresh commands without re-binding the executor.
+- **Shared job state** — Job execution graphs are persisted to the object store under `{state_location}/scheduler/graph/{job_id}`, alongside a small compare-and-set governed metadata record holding each job's status and owner. Any scheduler can therefore report the status of a job it did not plan, and if the owning scheduler is lost, another scheduler takes ownership and resumes driving the job to completion instead of failing it.
+- **Job ownership fencing** — Ownership is keyed by the owning scheduler's per-process `instance_id`, and a monotonic `epoch` is incremented on every ownership transfer. A scheduler that was presumed dead but later resurfaces observes the higher epoch and declines to continue, so two schedulers never drive the same job.
 
 The object store backing `state_location` **must** support conditional writes. Native AWS S3, S3-compatible stores with `PutIfNotExists`/`PutIfMatch` semantics, and the `file://` backend (for local development) are supported.
 
@@ -200,6 +202,29 @@ Executor selection uses a greedy minimum set-cover algorithm: pick the executor 
 
 On executors, the `AcceleratedPartitionProvider` resolves partitions to local `TableProvider`s. Row-level partition predicates are not re-evaluated on executors — each executor only holds its own partitions, so filtering happens by ownership.
 
+### Broadcast joins for small dimension tables
+
+A join between a partitioned fact table and a small dimension table can be federated only at the scans, in which case every fact row travels up to the scheduler, which repartitions and joins centrally. On a large fact table, that transfer dominates query time.
+
+The scheduler instead pushes the join back down to the executors. Each fact-partition executor joins its local fact slice against the full dimension — gathered from its peers — and returns only the joined rows. The rewrite is automatic on scheduler-role nodes; there is no setting to enable.
+
+It applies only when every one of the following holds:
+
+| Condition                     | Requirement                                                                                                                                   |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Join type**                 | Inner equi-join with no residual filter. Joins using `IS NOT DISTINCT FROM` (NULL-equals-NULL) semantics are left alone.                       |
+| **Statistics**                | Row-count statistics are available on both sides. Without them the smaller side cannot be identified and the plan is left unchanged.           |
+| **Cost test**                 | The dimension is small enough that broadcasting beats shipping the fact: `dim_rows × executors × 4 < fact_rows`.                               |
+| **Dimension size**            | The dimension side is at most 25,000,000 rows, an absolute cap that bounds per-executor memory regardless of the cost test.                    |
+
+Because each fact row lives in exactly one partition and joins independently, the union of the per-partition joins equals the centralized join, so results are unchanged.
+
+### Iceberg catalog scans
+
+Scans of [Iceberg catalog](../../building-blocks/catalogs/iceberg.md) tables are distributed across executors. An Iceberg scan holds a live table handle that cannot be serialized, so the scheduler ships a *recipe* instead — the table reference plus the scan's projection, filters, and limit. Each executor resolves the same table and replays the scan locally, which means catalog credentials are never sent over the wire.
+
+Single-node sessions are unaffected — the scan is planned exactly as it would be without a cluster.
+
 ### Partition-aware writes
 
 Write-through `INSERT`, `UPDATE`, `DELETE`, and `MERGE INTO` flow through the same partition-aware Arrow Flight `DoPut` path on the scheduler:
@@ -280,7 +305,7 @@ Setting `snapshots: bootstrap_only` is recommended on executors when the source 
 | **Synchronous**  | `/v1/sql`, FlightSQL | Client waits for the query to complete and receives results directly. Available in any deployment.                                                                           |
 | **Asynchronous** | `/v1/queries`        | Client submits a query and polls a `query_id` for status. Full results are retrieved with pagination via `/v1/queries/{query_id}/results`, or chunk-by-chunk via `/v1/queries/{query_id}/results/chunks/{chunk_index}`. **Cluster (scheduler) mode only.** |
 
-Async queries require `runtime.scheduler.state_location` to be configured.
+Async queries require `runtime.scheduler.state_location` to be configured. Because job state is shared through that object store, an in-flight async query survives the loss of the scheduler that planned it — a surviving scheduler assumes ownership and continues driving it, and the client keeps polling the same `query_id`.
 
 ## Observability
 
