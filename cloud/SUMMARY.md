@@ -29,6 +29,7 @@
   * [Delete](portal/apps/delete.md)
   * [Runtime](portal/apps/runtime.md)
 * [Public Apps](portal/public-apps.md)
+* [SpiceRack Registry](portal/spicerack.md)
 * [App Spicepod](portal/app-spicepod/README.md)
   * [Spicepod Configuration](portal/app-spicepod/spicepod-configuration.md)
   * [Deployments](portal/app-spicepod/deployments.md)
