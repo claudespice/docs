@@ -15,6 +15,7 @@ The tab groups the app's metrics, request logs, and traces into sections, listed
 * **API** — API request metrics.
 * **Cache** — results cache metrics. Shown when SQL results caching is enabled.
 * **Data** — dataset and acceleration metrics.
+* **Resources** — CPU and memory usage for the app's running instances.
 * **Request Logs** — a record of individual API requests.
 * **Traces** — task traces. Shown for apps with a spicepod.
 
@@ -32,6 +33,17 @@ The **Overview** section shows aggregate metrics for:
 * **Vector Searches** — embedding-based search request metrics.
 * **Embedding Calculations** — embedding generation metrics.
 * **Dataset Refreshes** — accelerated dataset refresh success and timing.
+
+## Resources
+
+The **Resources** section charts CPU and memory usage per running instance of the app.
+
+1. Open the **Observability** tab for your app.
+2. Select **Resources** in the left navigation.
+
+CPU is reported as utilization against the app's configured CPU limit. Apps with no CPU limit set — including apps on dedicated clusters — report absolute core usage instead. Memory is reported in bytes.
+
+Use the resource charts to size an app before raising its limits, and to correlate slow queries with memory or CPU pressure.
 
 ## Usage Metrics Dashboard
 
