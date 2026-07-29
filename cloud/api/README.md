@@ -19,6 +19,7 @@ Runtime APIs are served at `https://data.spiceai.io` and authenticated with [App
 | Text-to-SQL              | `POST /v1/nsql`                | [Text-to-SQL API](nsql.md)                               |
 | Text-to-SQL context      | `GET /v1/nsql/context`         | [Text-to-SQL API](nsql.md)                               |
 | Search                   | `POST /v1/search`              | [Search API](search.md)                                  |
+| MCP                      | `POST /v1/mcp`                 | [MCP API](mcp.md)                                        |
 | Health                   | `GET /health`                  | [Health API](health.md)                                  |
 | Metrics                  | `GET /v1/metrics`              | [Metrics API](metrics.md)                                |
 

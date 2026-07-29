@@ -10,6 +10,7 @@
 * [LLM API](openai-api.md)
 * [Text-to-SQL API](nsql.md)
 * [Search API](search.md)
+* [MCP API](mcp.md)
 * [Health API](health.md)
 * [Metrics API](metrics.md)
 
