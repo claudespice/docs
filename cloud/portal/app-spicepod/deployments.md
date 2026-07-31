@@ -37,10 +37,13 @@ Issues are surfaced in four places:
 
 * A banner on every page of the app, listing the most recent error and the number of other errors. The banner covers errors only — warnings appear in the **Issues** panel.
 * An error count on the **Deployments** tab in the app navigation.
-* An **Issues** panel on the **Deployments** page, listing every issue for the app, and on each instance page, scoped to that instance.
+* An **Issues** panel on the **Deployments** page, and on each instance page scoped to that instance. Each panel lists up to five issues and links to the full list.
+* A dedicated **Issues** page for the app, listing every issue without a limit.
 * An indicator on the affected row in **Datasets** and **Models**, when an issue can be attributed to a component.
 
 The feed combines runtime `ERROR` and `WARN` log lines with the reported status of each dataset. Repeats of the same failure collapse into one row with an occurrence count, so a connector retrying every second appears once rather than hundreds of times.
+
+Issues are ordered errors first, then by how often they occurred, then by how recently. A panel capped at five rows therefore shows the errors before any warning, and the panel header keeps the full error and warning counts for the app or instance. **View all** *N* **issues** in the panel footer opens the dedicated **Issues** page, which lists the entire set.
 
 Each row shows where the issue came from, how many times it occurred, when it was last seen, the dataset or model it was attributed to, and the instance that reported it. **Show details** expands the full text, including stack traces. The link on the row opens the originating instance's logs filtered to the issue, or the component's page for an issue reported by a dataset.
 
@@ -48,7 +51,17 @@ Each row shows where the issue came from, how many times it occurred, when it wa
 Dismissing an error hides that specific error. A different failure raises the banner again.
 {% endhint %}
 
-An app with no issues shows no banner, no count, and no panel.
+An app with no issues shows no banner, no count, and no panel. The dedicated **Issues** page remains reachable and reports that no issues were detected.
+
+#### Get AI help
+
+Each issue row has a **Get AI help** action that analyzes that issue on demand. The analysis reads the app's recent runtime logs and returns a likely root cause, a short numbered list of fix steps, links to the relevant documentation, and a confidence level.
+
+Results are generated per issue and are not produced until the action is used.
+
+{% hint style="warning" %}
+An AI analysis is a suggestion, not a diagnosis. Verify each step against the app's own configuration before applying it.
+{% endhint %}
 
 ### Spicepod Instance Logs
 
