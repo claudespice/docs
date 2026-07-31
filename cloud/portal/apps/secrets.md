@@ -4,9 +4,11 @@ icon: lock
 
 # Secrets
 
-App Secrets are key-value pairs that are passed to the Spice Runtime instance as environment secrets. Secrets are securely encrypted and accessible only through the app in which they were created.
+App Secrets are key-value pairs that are passed to the Spice Runtime instance as environment secrets. Secrets are securely encrypted and accessible only through the app in which they were created. To share one secret across several apps, use an [organization secret](../organization-secrets.md) instead.
 
-Once a secret is saved, its value cannot be retrieved through Spice Cloud. If you need to update the secret value, you must delete the existing secret and create a new one.
+Once a secret is saved, its value cannot be retrieved through Spice Cloud. Editing a secret replaces its value; the name cannot be changed.
+
+The **Secrets** section is available to organization owners, admins, and members. Viewers cannot view or manage secrets.
 
 ### Create a new secret
 
@@ -25,3 +27,11 @@ models:
 ```
 
 5. To apply secrets, you must initiate a new spicepod deployment. [Learn more about deployments.](../app-spicepod/deployments.md)
+
+Secret names must start with a letter or an underscore and may contain only letters, numbers, and underscores.
+
+### Linked Organization Secrets
+
+Secrets defined for the organization are listed under **Linked Organization Secrets**. Only the secrets selected and saved here are available to the app at runtime and in secret pickers. When an app secret and a linked organization secret have the same name, the app secret takes precedence.
+
+[Learn more about organization secrets.](../organization-secrets.md)
