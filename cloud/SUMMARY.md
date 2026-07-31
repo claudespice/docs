@@ -18,6 +18,7 @@
   * [AI Chat](portal/playground/ai-chat.md)
   * [Search](portal/playground/search.md)
 * [Organizations](portal/organizations.md)
+  * [Organization Secrets](portal/organization-secrets.md)
 * [OAuth Clients](portal/oauth-clients.md)
 * [Apps](portal/apps/README.md)
   * [API keys](portal/apps/api-keys.md)
