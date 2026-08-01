@@ -24,7 +24,7 @@ The library targets **Java 11** and above, and is tested against the following i
 <dependency>
     <groupId>ai.spice</groupId>
     <artifactId>spiceai</artifactId>
-    <version>0.6.0</version>
+    <version>0.7.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -32,7 +32,7 @@ The library targets **Java 11** and above, and is tested against the following i
 
 {% tab title="Gradle" %}
 ```groovy
-implementation 'ai.spice:spiceai:0.6.0'
+implementation 'ai.spice:spiceai:0.7.0'
 ```
 {% endtab %}
 {% endtabs %}
@@ -59,6 +59,8 @@ try (SpiceClient spice = SpiceClient.builder()
 ```
 
 The builder also accepts `withFlightAddress(URI)`, `withHttpAddress(URI)`, `withUserAgent(String)`, `withMaxRetries(int)`, and `withArrowMemoryLimitMB(long)`. The API key must be in `appId|key` form.
+
+For mutual TLS, connection pooling, and query deadlines, see [Mutual TLS](#mutual-tls) and [Performance tuning](#performance-tuning).
 
 3\. Execute a query and get back a [`FlightStream`](https://arrow.apache.org/docs/java/reference/org.apache.arrow.flight.core/org/apache/arrow/flight/FlightStream.html).
 
@@ -90,6 +92,18 @@ try (ArrowReader reader = spice.queryWithParams(
     }
 }
 ```
+
+Parameterized queries run on Apache Arrow Flight SQL prepared statements over the same connections as `query()`, so they inherit the client's TLS, retry, and keep-alive settings.
+
+Prepared statements are cached and reused, which removes the prepare round trips from every repeated query. The cache holds 64 statements by default; `withPreparedStatementCacheSize(0)` disables caching:
+
+```java
+SpiceClient spice = SpiceClient.builder()
+    .withPreparedStatementCacheSize(128)
+    .build();
+```
+
+Failures surface as a `FlightRuntimeException` wrapped in an `ExecutionException`.
 
 ### Usage with local Spice.ai OSS runtime
 
@@ -127,6 +141,73 @@ Check [Spice OSS documentation](https://docs.spiceai.org/sdks/java) or [Java SDK
 
 These can also be set with the `SPICE_FLIGHT_URL` and `SPICE_HTTP_URL` environment variables.
 
+### Mutual TLS
+
+Connect to a Spice deployment that requires mutual TLS, or one presenting a certificate signed by a private certificate authority. All three options take a path to a PEM file:
+
+```java
+try (SpiceClient spice = SpiceClient.builder()
+        .withFlightAddress(new URI("grpc+tls://spice.example-org.com:50051"))
+        .withTlsClientCertFile("/etc/spice/client.crt")
+        .withTlsClientKeyFile("/etc/spice/client.key")
+        .withTlsRootCertFile("/etc/spice/ca.crt")
+        .build()) {
+    // query here
+}
+```
+
+| Option                     | Purpose                                            |
+| -------------------------- | -------------------------------------------------- |
+| `withTlsClientCertFile`    | Client certificate presented to the server         |
+| `withTlsClientKeyFile`     | Private key for the client certificate             |
+| `withTlsRootCertFile`      | Certificate authority used to verify the server    |
+
+The settings apply to Flight queries, parameterized queries, and HTTP operations. `withTlsRootCertFile` can be used on its own to trust a private CA without presenting a client certificate.
+
+### Health and runtime status
+
+Three methods report runtime state. None throws when the runtime is unreachable, so they are safe to poll from a health probe.
+
+```java
+boolean healthy = spice.isHealthy(); // runtime is responding
+boolean ready = spice.isReady();     // datasets are loaded and queryable
+
+for (ConnectionDetails details : spice.runtimeStatus()) {
+    System.out.printf("%s (%s): %s%n",
+        details.getName(), details.getEndpoint(), details.getStatus());
+}
+```
+
+`isHealthy()` suits a liveness check, and `isReady()` a readiness check — a runtime can respond before its datasets finish loading.
+
+`runtimeStatus()` returns per-connection detail and throws `ExecutionException` on failure. Each `ConnectionDetails` exposes `getName()`, `getEndpoint()`, `getStatus()`, `getRawStatus()`, and `isReady()`. `getStatus()` returns a `ComponentStatus`: `INITIALIZING`, `READY`, `DISABLED`, `ERROR`, `REFRESHING`, `SHUTTING_DOWN`, `NOT_LOADED`, or `UNKNOWN`.
+
+{% hint style="info" %}
+`UNKNOWN` means the runtime reported a status this version of the SDK does not recognize. Use `getRawStatus()` to read the value the runtime sent.
+{% endhint %}
+
+### Performance tuning
+
+```java
+SpiceClient spice = SpiceClient.builder()
+    .withChannelCount(4)
+    .withQueryTimeout(Duration.ofSeconds(30))
+    .withPreparedStatementCacheSize(128)
+    .build();
+```
+
+| Option                              | Default | Description                                                                   |
+| ----------------------------------- | ------- | ----------------------------------------------------------------------------- |
+| `withChannelCount(int)`             | `1`     | Size of the round-robin gRPC connection pool, for highly concurrent workloads  |
+| `withQueryTimeout(Duration)`        | none    | Deadline for query planning, prepare, and bind calls; must be positive         |
+| `withPreparedStatementCacheSize(int)` | `64`  | Prepared statements retained for reuse; `0` disables caching                    |
+
+`withQueryTimeout` bounds the planning and binding calls, not the streaming of results — a long-running result stream is not cut short by it.
+
+### Connection pooling with HikariCP
+
+Spice can also be reached over JDBC using the Apache Arrow Flight SQL JDBC driver, which allows pooling connections with HikariCP. See the [spice-java README](https://github.com/spiceai/spice-java#readme) for a worked example.
+
 ### Refreshing a dataset
 
 `refreshDataset(String dataset)` triggers a refresh of an accelerated dataset, optionally taking a `RefreshOptions`.
@@ -142,6 +223,18 @@ SpiceClient client = SpiceClient.builder()
 ```
 
 Retries are performed for connection and system internal errors. It is the SDK user's responsibility to properly handle other errors, for example `RESOURCE_EXHAUSTED (HTTP 429)`.
+
+Attempts use exponential backoff with random jitter, capped at 10 seconds per wait. The jitter keeps a fleet of clients from retrying in lockstep, and the backoff lets the default three attempts span a load-balancer failover or a runtime restart.
+
+{% hint style="info" %}
+Because retries now wait between attempts, a query against an unreachable runtime takes longer to report failure. Use `withMaxRetries(0)` where a fast failure matters more than surviving a restart.
+{% endhint %}
+
+### Re-authentication
+
+An expired handshake token is detected and renewed automatically: the client re-handshakes once and retries the request, so long-lived `SpiceClient` instances keep working without calling `reset()`.
+
+`reset()` retires existing connections gracefully — in-flight queries and open result streams run to completion while new queries use fresh connections.
 
 ### Contributing
 
