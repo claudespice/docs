@@ -5,7 +5,13 @@ icon: code
 
 # Management APIs
 
-The Spice.ai Management API (also known as the control-plane API) provides programmatic access to manage Spice.ai Cloud resources—apps, deployments, secrets, API keys, and organization members.
+The Spice.ai Management API (also known as the control-plane API) provides programmatic access to manage Spice.ai Cloud resources—projects, deployments, secrets, API keys, and organization members.
+
+{% hint style="info" %}
+**Projects were previously called apps.** Every `/v1/projects` endpoint is also served at the legacy `/v1/apps` path, which remains supported. Existing integrations continue to work without changes.
+
+The legacy paths are marked deprecated in the OpenAPI specification, and new integrations should use `/v1/projects`. See [Projects and apps](#projects-and-apps).
+{% endhint %}
 
 ## Base URL
 
@@ -20,6 +26,24 @@ All API endpoints are versioned under `/v1`:
 ```
 https://api.spice.ai/v1
 ```
+
+## Projects and apps
+
+What the API and portal now call a **project** was previously called an **app**. The resource is unchanged — only the name is different.
+
+Both path prefixes reach the same handlers:
+
+| Path                     | Status                | List response envelope |
+| ------------------------ | --------------------- | ---------------------- |
+| `/v1/projects`           | Canonical             | `{ "projects": [...] }` |
+| `/v1/apps`               | Legacy, still served   | `{ "apps": [...] }`     |
+
+Two details matter when migrating:
+
+* **The list envelope differs.** `GET /v1/projects` returns results under a `projects` key, while `GET /v1/apps` keeps its original `apps` key. A client switching to the canonical path must read the new key. All other response shapes and field names are identical, including the `id` and `name` fields on each resource.
+* **OAuth scope names are unchanged.** The scopes are still `apps:read`, `apps:write`, and `apps:delete`, because they are embedded in already-issued tokens. They grant access to projects under either path.
+
+The Spice CLI, Terraform provider, and SDKs continue to call the legacy paths and are unaffected.
 
 ## Authentication
 
@@ -44,7 +68,7 @@ PATs are long-lived, user-scoped tokens. Recommended for:
 
 ```bash
 curl -H "Authorization: Bearer <your-pat-token>" \
-  https://api.spice.ai/v1/apps
+  https://api.spice.ai/v1/projects
 ```
 
 Learn more: [Personal Access Tokens](../../../portal/profile/personal-access-tokens.md)
@@ -84,7 +108,7 @@ The response contains an `access_token`:
 
 ```bash
 curl -H "Authorization: Bearer <access-token>" \
-  https://api.spice.ai/v1/apps
+  https://api.spice.ai/v1/projects
 ```
 
 ### 3. User Session Tokens (CLI)
@@ -102,15 +126,15 @@ Access to API resources is controlled through scopes. PATs and OAuth clients mus
 | Scope               | Description                                                   |
 | ------------------- | ------------------------------------------------------------- |
 | `*`                 | Full access to all resources (not recommended for production) |
-| `apps:read`         | Read app information                                          |
-| `apps:write`        | Create and update apps                                        |
-| `apps:delete`       | Delete apps                                                   |
+| `apps:read`         | Read project information                                      |
+| `apps:write`        | Create and update projects                                    |
+| `apps:delete`       | Delete projects                                               |
 | `deployments:read`  | View deployment status and history                            |
 | `deployments:write` | Create new deployments                                        |
 | `secrets:read`      | List and view secrets (values are masked)                     |
 | `secrets:write`     | Create, update, and delete secrets                            |
-| `config:read`       | Read app configuration                                        |
-| `config:write`      | Update app configuration                                      |
+| `config:read`       | Read project configuration                                    |
+| `config:write`      | Update project configuration                                  |
 | `members:read`      | View organization members                                     |
 | `members:write`     | Add and update organization members                           |
 | `members:delete`    | Remove organization members                                   |
@@ -119,12 +143,13 @@ Access to API resources is controlled through scopes. PATs and OAuth clients mus
 
 * A write scope automatically includes its corresponding read scope (e.g. `apps:write` implies `apps:read`).
 * The wildcard scope (`*`) grants all permissions.
+* The `apps:*` scope names are unchanged by the projects rename, and apply to projects.
 
 ## Rate Limiting
 
-Requests are rate-limited per app. These limits are a high-level failsafe; actual throughput depends on the size of your deployed Spice instance or cluster.
+Requests are rate-limited per project. These limits are a high-level failsafe; actual throughput depends on the size of your deployed Spice instance or cluster.
 
-### Per-App Request Rate Limits
+### Per-Project Request Rate Limits
 
 | Plan       | Requests / second |
 | ---------- | ----------------- |
@@ -204,12 +229,12 @@ Official SDKs are available for popular languages:
 
 * [Health](/broken/pages/MMiAVKRYaydEPCc1zdZU) - API health check
 * [Regions](/broken/pages/6ZPPX3ncuyaq7usBYCzO) - List available deployment regions
-* [Apps](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage Spice apps
-* [Deployments](/broken/pages/cW4Y9zvF1YF9X2ExU15D) - Deploy and manage app deployments
-* [Secrets](/broken/pages/jux7LfeRfZnBFKMpjIXA) - Manage app secrets
-* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage app API keys
+* [Projects](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage Spice projects
+* [Deployments](/broken/pages/cW4Y9zvF1YF9X2ExU15D) - Deploy and manage project deployments
+* [Secrets](/broken/pages/jux7LfeRfZnBFKMpjIXA) - Manage project secrets
+* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage project API keys
 * [Members](/broken/pages/fDcgKtae3y2pEzLWtbVg) - Manage organization members
-* [Metrics](../metrics.md) - Scrape per-app runtime metrics
+* [Metrics](../metrics.md) - Scrape per-project runtime metrics
 * [Container Images](/broken/pages/5fsccwHHHi12wJt5s0Ca) - List available runtime versions
 
 ## Terraform Provider
@@ -218,33 +243,35 @@ Manage Spice.ai resources as infrastructure-as-code with the [Spice.ai Terraform
 
 ## Examples
 
-### List all apps
+### List all projects
 
 ```bash
 curl -H "Authorization: Bearer <token>" \
-  https://api.spice.ai/v1/apps
+  https://api.spice.ai/v1/projects
 ```
 
-### Create a new app
+Results are returned under a `projects` key. The legacy `GET /v1/apps` path returns the same records under an `apps` key.
+
+### Create a new project
 
 ```bash
-curl -X POST https://api.spice.ai/v1/apps \
+curl -X POST https://api.spice.ai/v1/projects \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "my-app",
+    "name": "my-project",
     "region": "us-west-2",
-    "description": "My Spice app",
+    "description": "My Spice project",
     "visibility": "private"
   }'
 ```
 
-Organizations with a [dedicated cluster](dedicated-clusters.md) can pass `cluster_name` in place of `region` to create the app on their dedicated infrastructure.
+Organizations with a [dedicated cluster](dedicated-clusters.md) can pass `cluster_name` in place of `region` to create the project on their dedicated infrastructure.
 
 ### Create a deployment
 
 ```bash
-curl -X POST https://api.spice.ai/v1/apps/123/deployments \
+curl -X POST https://api.spice.ai/v1/projects/123/deployments \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -257,7 +284,7 @@ curl -X POST https://api.spice.ai/v1/apps/123/deployments \
 ### Add a secret
 
 ```bash
-curl -X POST https://api.spice.ai/v1/apps/123/secrets \
+curl -X POST https://api.spice.ai/v1/projects/123/secrets \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{
