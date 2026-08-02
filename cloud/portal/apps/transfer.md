@@ -4,19 +4,24 @@ icon: arrow-right-from-arc
 
 # Transfer
 
-You can transfer an App's ownership to another [**organization**](/broken/pages/05CWejAJRFHeBbS9KyeQ)**.**
+You can transfer a project's ownership to another [**organization**](../organizations.md)**.**
 
 {% hint style="info" %}
-App transfer is currently limited to organizations you have access to.
+Project transfer is currently limited to organizations you have access to, and requires organization admin permissions.
 {% endhint %}
 
 Learn more about [**organization management**](../organizations.md).
 
-## Transfer an App
+## Transfer a project
 
-1. To transfer an app, click **Settings** in the app navigation.
-2. In the **Danger Zone** section of **App Settings**, click the **Transfer app** button.
-3. On the **Transfer application** page, select the **New owner** organization from the menu.
-4. Type the full app name into the text box to confirm and click **Transfer Application** to complete process.
+1. To transfer a project, click **Settings** in the project navigation.
+2. In the **Danger Zone** section, click the **Transfer project** button.
+3. On the **Transfer project** page, select the **New owner** organization from the menu.
+4. Type `<org-name>/<project-name>` into the text box to confirm.
+5. Click **Transfer & redeploy project** to complete the process.
 
-The App will now be accessible by the receiving organization and its members.
+The project will now be accessible by the receiving organization and its members.
+
+{% hint style="info" %}
+A project connected to a GitHub repository cannot be transferred. Disconnect the repository first — see [Connect GitHub](connect-github.md).
+{% endhint %}
