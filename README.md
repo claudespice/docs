@@ -45,6 +45,7 @@ With the **Spice.ai Cloud Platform** you can:
 | Use Case                                            | Description                                                |
 | --------------------------------------------------- | ---------------------------------------------------------- |
 | [Agentic AI Apps](use-cases/agentic-ai-apps.md)     | Build AI agent backends with unified data and model access |
+| [Analytics Replica](use-cases/analytics-replica.md) | Run analytics on operational data without ETL or migration |
 | [Database CDN](use-cases/database-cdn.md)           | Cache and accelerate hot data for low-latency applications |
 | [Data Lakehouse](use-cases/data-lakehouse.md)       | Federated queries across warehouses, lakes, and databases  |
 | [Enterprise Search](use-cases/enterprise-search.md) | Semantic search across enterprise data sources             |
