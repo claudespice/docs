@@ -24,7 +24,7 @@ The established workarounds each trade one problem for another:
 
 ### How it works
 
-An analytics replica connects to the operational database, loads an initial snapshot, then applies committed changes continuously from the source's native changelog — the PostgreSQL write-ahead log, a MongoDB change stream, a DynamoDB stream. There is no batch interval; a committed change is queryable within seconds.
+An analytics replica connects to the operational database, loads an initial snapshot, then uses change data capture (CDC) to apply committed changes continuously from the source's native changelog — the PostgreSQL write-ahead log, a MongoDB change stream, a DynamoDB stream. There is no batch interval; a committed change is queryable within seconds.
 
 The replica stores data in a columnar format on its own storage and compute, so scans are fast and the load never reaches the primary. Queries run through the same federated SQL interface as the rest of the platform, which means a replicated table can be joined against a data lake, a warehouse, or another operational system in a single query.
 
@@ -47,7 +47,7 @@ datasets:
         id: upsert
 ```
 
-See [Replication](../features/replication.md) for the supported sources, source prerequisites, and full configuration reference.
+See [Database Replication and CDC](../features/database-replication-and-cdc.md) for the supported sources, source prerequisites, and full configuration reference.
 
 ### Why it differs from a read replica
 
@@ -74,7 +74,7 @@ Because queries reach the replica rather than the operational database, access i
 
 ### Related
 
-* [Replication](../features/replication.md) — configuration, supported sources, and prerequisites
+* [Database Replication and CDC](../features/database-replication-and-cdc.md) — configuration, supported sources, and prerequisites
 * [Federated SQL Query](../features/federated-sql-query.md) — joining a replica against other systems
 * [Database CDN](database-cdn.md) — colocating a hot working set with an application
 * [Agentic AI Apps](agentic-ai-apps.md) — grounding agents in operational data

@@ -19,7 +19,7 @@
   * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
   * [PostgreSQL Data Accelerator](features/data-acceleration/postgresql-data-accelerator.md)
   * [SQLite Data Accelerator](features/data-acceleration/sqlite-data-accelerator.md)
-* [Replication](features/replication.md)
+* [Database Replication and CDC](features/database-replication-and-cdc.md)
 * [Search & Retrieval](features/search-and-retrieval.md)
 * [AI Gateway](features/ai-gateway.md)
 * [Semantic Models](features/semantic-models.md)

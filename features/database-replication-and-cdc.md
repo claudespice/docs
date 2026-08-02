@@ -1,16 +1,18 @@
 ---
 icon: arrows-rotate
-description: Continuously replicate committed changes from operational databases into an accelerated, query-ready replica
+description: Replicate committed changes from operational databases into an accelerated, query-ready replica using change data capture
 ---
 
-# Replication
+# Database Replication and CDC
 
-**Replication** keeps an accelerated dataset continuously in step with its source by reading the source database's own changelog. Committed inserts, updates, and deletes are applied to the local replica within seconds, with no batch window and no external pipeline.
+**Database replication** keeps an accelerated dataset continuously in step with its source by reading the source database's own changelog. Committed inserts, updates, and deletes are applied to the local replica within seconds, with no batch window and no external pipeline.
 
-Replication is enabled by setting `refresh_mode: changes` on an accelerated dataset. Spice reads the source's native change feed — the PostgreSQL write-ahead log, a MongoDB change stream, a DynamoDB stream — and applies each change to the accelerator as it commits.
+The mechanism is **change data capture (CDC)**: rather than re-reading the source table on a schedule, Spice consumes the stream of changes the database already produces for its own recovery and replication — the PostgreSQL write-ahead log, a MongoDB change stream, a DynamoDB stream — and applies each change to the accelerator as it commits.
+
+Replication is enabled by setting `refresh_mode: changes` on an accelerated dataset.
 
 {% hint style="info" %}
-Replication is one of three [refresh modes](data-acceleration/README.md#refresh-modes). Use `full` to replace a dataset on each refresh, `append` for immutable or time-series data, and `changes` to mirror a mutable source that emits a change feed.
+`changes` is one of three [refresh modes](data-acceleration/README.md#refresh-modes). Use `full` to replace a dataset on each refresh, `append` for immutable or time-series data, and `changes` to mirror a mutable source that emits a change feed.
 {% endhint %}
 
 ### Why replicate
@@ -21,7 +23,7 @@ Running analytical queries against a production database competes with transacti
 * **Read replicas** relieve the primary but run the same row-oriented engine, so analytical scans remain slow.
 * **HTAP databases** require migrating off the existing system and couple transactional and analytical failure domains.
 
-Replication into a columnar accelerator avoids all three. The operational database keeps serving transactions, analytical load lands on separate storage and compute, and the replica stays seconds behind rather than hours.
+CDC-based replication into a columnar accelerator avoids all three. The operational database keeps serving transactions, analytical load lands on separate storage and compute, and the replica stays seconds behind rather than hours.
 
 For the architecture built on this capability, see [Analytics Replica](../use-cases/analytics-replica.md).
 
@@ -92,7 +94,7 @@ An inactive replication slot causes the source server to retain write-ahead log 
 
 ### Handling deletes
 
-Replication propagates hard deletes, which sets it apart from incremental ingestion. A `DELETE` on the source removes the row from the replica on the next change event, with no reconciling full refresh and no soft-delete convention in the source schema.
+CDC propagates hard deletes, which sets replication apart from incremental ingestion. A `DELETE` on the source removes the row from the replica on the next change event, with no reconciling full refresh and no soft-delete convention in the source schema.
 
 Sources that expose no change feed at all — HTTP APIs, for example — use [incremental ingestion](data-acceleration/README.md#incremental-ingestion) with `refresh_mode: append` instead, where deletes are handled by soft-delete tombstones or a periodic full refresh.
 
