@@ -48,6 +48,8 @@
   * [Portal](monitoring/portal.md)
   * [Grafana & Prometheus](monitoring/grafana.md)
   * [Datadog](monitoring/datadog.md)
+  * [New Relic](monitoring/new-relic.md)
+  * [OpenTelemetry](monitoring/opentelemetry.md)
   * [Zipkin](monitoring/zipkin.md)
 
 ## Integrations
