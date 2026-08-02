@@ -12,11 +12,15 @@ curl https://<app-cname>.spiceai.io/v1/metrics \
   -H "X-API-Key: <API_KEY>"
 ```
 
+Metrics can also be **pushed** to any OpenTelemetry-compatible backend over OTLP, configured in the app spicepod, which needs no scraping agent. See [OpenTelemetry](opentelemetry.md).
+
 Pre-built dashboards and setup guides are available:
 
 * [Portal](portal.md) - Built-in monitoring dashboard in the Spice.ai Cloud portal
 * [Grafana & Prometheus](grafana.md) - Scrape metrics with Prometheus, visualize in Grafana
 * [Datadog](datadog.md) - Scrape metrics with the Datadog Agent's OpenMetrics integration
+* [New Relic](new-relic.md) - Push metrics over OTLP, or scrape with the infrastructure agent
+* [OpenTelemetry](opentelemetry.md) - Push metrics to any OTLP-compatible backend
 * [Zipkin](zipkin.md) - Distributed tracing with Zipkin
 
 For the full list of available metrics, see the [Metrics API reference](../api/metrics.md#available-metrics).
