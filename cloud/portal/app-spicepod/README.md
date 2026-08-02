@@ -2,9 +2,9 @@
 icon: cube
 ---
 
-# App Spicepod
+# Project Spicepod
 
-Every Spice app is powered by a managed instance of the [Spice OSS Runtime](https://www.spiceai.org/) deployed to the platform.
+Every Spice project is powered by a managed instance of the [Spice OSS Runtime](https://www.spiceai.org/) deployed to the platform.
 
 A **Spicepod** is a package that encapsulates application-centric datasets and machine learning (ML) models.
 

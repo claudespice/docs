@@ -50,7 +50,7 @@ models:
 
 ### \[Optional] Call chat completions API using cURL
 
-10. Replace `[API-KEY]` in the sample below with the app API Key and execute in a terminal.
+10. Replace `[API-KEY]` in the sample below with the project API Key and execute in a terminal.
 
 {% tabs %}
 {% tab title="cURL" %}

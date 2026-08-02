@@ -1,40 +1,40 @@
 ---
-description: Publish app to https://spicerack.org
+description: Publish a project to https://spicerack.org
 icon: globe
 ---
 
-# Public Apps
+# Public Projects
 
-Public Spice Apps can be forked, added as a dependency or connected to using Spice OSS Spice.ai connector.
+Public Spice projects can be forked, added as a dependency or connected to using Spice OSS Spice.ai connector.
 
-### Making the app public
+### Making the project public
 
 {% hint style="info" %}
-The app must be connected to a public GitHub repository to be made public.\
-Check out how to connect app to the repository - [connect GitHub](apps/connect-github.md).
+The project must be connected to a public GitHub repository to be made public.\
+Check out how to connect a project to the repository - [connect GitHub](apps/connect-github.md).
 {% endhint %}
 
-To make your app public, go to your app settings and click **Make public**.
+To make your project public, go to your project settings, click **Publish project** in the **Project visibility** section, then confirm with **Make public**.
 
-After that, the app will be visible to all users at `https://spice.ai/<org-name>/<app-name>` and searchable at [https://spicerack.org](https://spicerack.org).
+After that, the project will be visible to all users at `https://spice.ai/<org-name>/<project-name>` and searchable at [https://spicerack.org](https://spicerack.org).
 
 ### On the registry
 
-A public app is indexed on [SpiceRack](https://spicerack.org), the package registry for Spicepods. Its package page sits at `https://spicerack.org/<org-name>/<app-name>` and lists the datasets, models, and dependencies declared in the app's Spicepod manifest.
+A public project is indexed on [SpiceRack](https://spicerack.org), the package registry for Spicepods. Its package page sits at `https://spicerack.org/<org-name>/<project-name>` and lists the datasets, models, and dependencies declared in the project's Spicepod manifest.
 
 Other users install the published Spicepod in one of three ways:
 
 ```bash
-spice add <org-name>/<app-name>
+spice add <org-name>/<project-name>
 ```
 
 ```bash
-spice connect <org-name>/<app-name>
+spice connect <org-name>/<project-name>
 ```
 
 ```yaml
 dependencies:
-  - <org-name>/<app-name>
+  - <org-name>/<project-name>
 ```
 
 See [SpiceRack Registry](spicerack.md) for browsing, search, and the registry API.

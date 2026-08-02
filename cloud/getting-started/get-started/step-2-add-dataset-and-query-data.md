@@ -5,7 +5,7 @@ icon: circle-3
 
 # Add a Dataset and query data
 
-To add a dataset to the Spice app, navigate to **Build** > [**Code**](../../portal/app-spicepod/).
+To add a dataset to the Spice project, navigate to **Build** > [**Code**](../../portal/app-spicepod/).
 
 Use the **Components sidebar** on the right to select from available **Data Connectors**, **Model Providers**, and ready-to-use **Datasets**.
 
@@ -20,7 +20,7 @@ Use the **Components sidebar** on the right to select from available **Data Conn
 
 ### \[Optional] Execute a SQL query using cURL
 
-6. Go app **Settings** and copy one of the app API Keys.
+6. Go to project **Settings** and copy one of the project API Keys.
 7. Replace `[API-KEY]` in the sample below with your API Key and execute from a terminal.
 
 {% tabs %}

@@ -7,7 +7,7 @@ icon: boxes-stacked
 
 [SpiceRack](https://spicerack.org) is the public package registry for Spicepods. It indexes the datasets, models, and AI apps that publishers have made public, and every package installs into any Spice runtime.
 
-Browsing and installing require no account. Publishing requires a public Spice app — see [Public Apps](public-apps.md).
+Browsing and installing require no account. Publishing requires a public Spice project — see [Public Projects](public-apps.md).
 
 ## Browse and search
 
@@ -71,4 +71,4 @@ The full reference, including per-parameter defaults, is published at [https://s
 
 ## Publish a package
 
-Make a Spice app public and it is indexed on SpiceRack. See [Public Apps](public-apps.md) for the prerequisites and the steps.
+Make a Spice project public and it is indexed on SpiceRack. See [Public Projects](public-apps.md) for the prerequisites and the steps.

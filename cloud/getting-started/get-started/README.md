@@ -11,7 +11,7 @@ description: Get started with the Spice.ai Cloud Platform in 5 mins.
 [portal-login.md](portal-login.md)
 {% endcontent-ref %}
 
-### Create a Spice app
+### Create a Spice project
 
 {% content-ref url="../getting-started/portal-login-1.md" %}
 [portal-login-1.md](../getting-started/portal-login-1.md)
