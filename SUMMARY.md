@@ -19,6 +19,7 @@
   * [DuckDB Data Accelerator](features/data-acceleration/duckdb-data-accelerator.md)
   * [PostgreSQL Data Accelerator](features/data-acceleration/postgresql-data-accelerator.md)
   * [SQLite Data Accelerator](features/data-acceleration/sqlite-data-accelerator.md)
+* [Database Replication and CDC](features/database-replication-and-cdc.md)
 * [Search & Retrieval](features/search-and-retrieval.md)
 * [AI Gateway](features/ai-gateway.md)
 * [Semantic Models](features/semantic-models.md)
@@ -79,6 +80,7 @@
 ## Use-Cases
 
 * [Agentic AI Apps](use-cases/agentic-ai-apps.md)
+* [Analytics Replica](use-cases/analytics-replica.md)
 * [Database CDN](use-cases/database-cdn.md)
 * [Data Lakehouse](use-cases/data-lakehouse.md)
 * [Enterprise Search](use-cases/enterprise-search.md)

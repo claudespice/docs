@@ -33,6 +33,8 @@ Spice supports three modes to refresh/update locally accelerated data from a con
 | `append`  | Append/add data to the dataset on each refresh       | Append-only, immutable datasets, such as time-series or log data |
 | `changes` | Apply incremental changes                            | Customer order lifecycle table                                   |
 
+`refresh_mode: changes` streams committed inserts, updates, and deletes from the source's own changelog. See [Database Replication and CDC](../database-replication-and-cdc.md) for supported sources and configuration.
+
 #### Example - Accelerate with arrow accelerator under full refresh mode <a href="#example" id="example"></a>
 
 ```yaml
