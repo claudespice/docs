@@ -41,6 +41,9 @@ Metric names are exported verbatim, without a namespace prefix and without unit 
 | `flight_request_duration_ms`                  | Histogram |            | Arrow Flight RPC latency.                                                      |
 | `process_resident_memory_bytes`               | Gauge     |            | Resident set size of the `spiced` process.                                     |
 | `query_memory_pool_used_bytes`                | Gauge     |            | Memory currently held by the query memory pool.                                |
+| `cayenne_compaction_memory_pool_bytes`        | Gauge     |            | Size of the dedicated compaction memory pool, when one is reserved.             |
+| `cayenne_compaction_memory_pool_used_bytes`   | Gauge     |            | Memory currently held by the compaction memory pool.                           |
+| `cayenne_compaction_memory_exhausted_total`   | Counter   | `table`, `kind` | Compaction passes that could not reserve memory from the compaction pool. |
 | `spiced_cpu_budget_cores`                     | Gauge     | `source`   | Cores the runtime sized itself for, and where that value came from. See [CPU sizing](../kubernetes/user-guide.md#request-cpu-and-memory). |
 | `scheduler_active_executors_count`            | Gauge     | `node_id`  | (`SpicepodCluster`) Executors registered with the scheduler.                    |
 | `scheduler_job_queue_depth`                   | Gauge     | `node_id`  | (`SpicepodCluster`) Queued jobs awaiting scheduling.                            |
@@ -54,6 +57,20 @@ For the full list, query the running runtime: `curl localhost:9090/metrics | gre
 {% hint style="info" %}
 Query metrics are reported regardless of the `runtime.task_history` setting, so disabling task history does not disable the query counters and histograms above.
 {% endhint %}
+
+### Memory pools
+
+Memory budgets are derived from the running process's own cgroup limit, so a container sees the memory it was allocated rather than the memory of its host.
+
+A dedicated compaction memory pool is reserved only for [Cayenne](https://spiceai.org/docs/components/data-accelerators/cayenne) accelerations that can compact into it — file mode with a small-write refresh profile. Other deployments, including `refresh_mode: full`, keep the whole memory limit available to queries.
+
+Compare `query_memory_pool_used_bytes` against the memory limit to see query headroom. A rising `cayenne_compaction_memory_exhausted_total` means compaction cannot reserve the memory its rewrite working set needs; raise the memory limit for the deployment.
+
+When a memory pool refuses a reservation, the query fails with the `ResourcesExhausted` error code, the HTTP API returns `503 Service Unavailable`, and Arrow Flight reports `RESOURCE_EXHAUSTED`. Both are retriable, so pool exhaustion stays distinguishable from a rejected query, which returns `400`. Alert on it through the `err_code` label:
+
+```
+sum(rate(query_failures{err_code="ResourcesExhausted"}[5m])) > 0
+```
 
 ## Grafana dashboard
 
