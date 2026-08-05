@@ -45,7 +45,15 @@ The feed combines runtime `ERROR` and `WARN` log lines with the reported status 
 
 Issues are ordered errors first, then by how often they occurred, then by how recently. A panel capped at five rows therefore shows the errors before any warning, and the panel header keeps the full error and warning counts for the project or instance. **View all** *N* **issues** in the panel footer opens the dedicated **Issues** page, which lists the entire set.
 
-Each row shows where the issue came from, how many times it occurred, when it was last seen, the dataset or model it was attributed to, and the instance that reported it. **Show details** expands the full text, including stack traces. The link on the row opens the originating instance's logs filtered to the issue, or the component's page for an issue reported by a dataset.
+Each row shows where the issue came from, how many times it occurred, when it was last seen, the dataset or model it was attributed to, and the instance that reported it. A failure seen on more than one replica reports the count instead of a single name. **Show details** expands the full text, including stack traces. The link on the row opens the originating instance's logs filtered to the issue, or the component's page for an issue reported by a dataset.
+
+#### Filter by instance
+
+When more than one instance has reported issues, the dedicated **Issues** page shows an instance selector. **All instances** is the default. Selecting an instance narrows the list to the failures that instance reported, and a failure seen on several replicas matches when any one of them is selected.
+
+The selection is held in the `instance` query parameter, so a filtered view survives a reload and can be shared as a link. Opening **View all** *N* **issues** from an instance's panel arrives with that instance already selected.
+
+Issues derived from dataset status are reported by the project rather than by a particular replica, so they appear only under **All instances**.
 
 {% hint style="info" %}
 Dismissing an error hides that specific error. A different failure raises the banner again.
