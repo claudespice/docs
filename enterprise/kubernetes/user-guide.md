@@ -135,11 +135,9 @@ spec:
       memory: 4Gi
 ```
 
-The runtime derives its thread pools, query partitioning, and accelerator concurrency from a single CPU entitlement. It detects that entitlement from the pod's cgroup CPU quota, which Kubernetes sets from `resources.limits.cpu`.
+The runtime derives its thread pools, query partitioning, and accelerator concurrency from a single CPU entitlement, which it detects from the processors available to it: the pod's cgroup CPU quota where `resources.limits.cpu` sets one, and otherwise the cores on the node. A `requests.cpu` value is a scheduling floor rather than a ceiling, so it is never inferred as an entitlement.
 
-A pod that sets `requests.cpu` without a matching `limits.cpu` exposes no quota, so the runtime sizes itself for every core on the node rather than the share it was allocated. On a large shared node this over-provisions thread pools and inflates the memory footprint. Kubernetes derives a CPU *share* from `requests.cpu`, but a request is a scheduling floor rather than a ceiling — a pod with a request and no limit may burst across idle cores — so the runtime deliberately does not infer an entitlement from it.
-
-Set the entitlement explicitly with `runtime.cpu.cores` when a pod has no CPU limit, or when it should size itself to its request:
+You may want to leave `limits.cpu` unset to allow bursting above the requested CPU, which performs better when other workloads on the machine are idle. In such cases, if the machine has significantly more cores than requested (or than are typically used), you may find the runtime is oversized — more threads and query partitions than the CPU it actually gets. Set the entitlement directly with `runtime.cpu.cores`:
 
 ```yaml
 spec:
