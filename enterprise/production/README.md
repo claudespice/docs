@@ -63,8 +63,9 @@ Use this checklist as the definitive sign-off list before promoting a Spice.ai E
 ### Capacity and resource limits
 
 - [ ] CPU and memory `requests` and `limits` are set on every pod.
+- [ ] Every pod either sets `resources.limits.cpu` or declares `runtime.cpu.cores` explicitly. Without one of the two, the runtime sizes its thread pools for every core on the node instead of its allocated share. See [Request CPU and memory](../kubernetes/user-guide.md#request-cpu-and-memory).
 - [ ] Resource sizing has been validated under projected concurrent query load. Start at `cpu: 2 / memory: 8Gi` and scale based on `runtime.task_history` and Prometheus metrics.
-- [ ] [Crashloop protection](../kubernetes/spicepodset.md) threshold is left at the default `10`, or tuned for the deployment.
+- [ ] [Crashloop protection](../kubernetes/spicepodset.md#crashloop-protection) is enabled. The operator chart ships `pauseCrashloopingPodsThreshold: 0`, which disables it — set a positive integer (the binary's own default is `10`).
 
 ### Lifecycle and upgrades
 

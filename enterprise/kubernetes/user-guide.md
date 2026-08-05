@@ -135,6 +135,38 @@ spec:
       memory: 4Gi
 ```
 
+The runtime derives its thread pools, query partitioning, and accelerator concurrency from a single CPU entitlement. It detects that entitlement from the pod's cgroup CPU quota, which Kubernetes sets from `resources.limits.cpu`.
+
+A pod that sets `requests.cpu` without a matching `limits.cpu` exposes no quota, so the runtime sizes itself for every core on the node rather than the share it was allocated. On a large shared node this over-provisions thread pools and inflates the memory footprint. Kubernetes derives a CPU *share* from `requests.cpu`, but a request is a scheduling floor rather than a ceiling — a pod with a request and no limit may burst across idle cores — so the runtime deliberately does not infer an entitlement from it.
+
+Set the entitlement explicitly with `runtime.cpu.cores` when a pod has no CPU limit, or when it should size itself to its request:
+
+```yaml
+spec:
+  spicepod:
+    name: my-spicepod
+    kind: Spicepod
+    version: v1
+    runtime:
+      cpu:
+        cores: 4 # `auto` (the default) detects it
+```
+
+`cores` accepts a Kubernetes CPU quantity — `4`, `3.5`, or `3500m` — or `auto`. The equivalent environment variable is `SPICE_CPU_CORES`, which is useful when the entitlement should track the pod spec rather than the Spicepod:
+
+```yaml
+spec:
+  env:
+    - name: SPICE_CPU_CORES
+      value: "2"
+```
+
+Precedence is the `--cpu-cores` command-line flag, then `SPICE_CPU_CORES`, then `runtime.cpu.cores`, then detection. The effective value, its source, and the derived sizing are logged at startup and exported as the `spiced_cpu_budget_cores` gauge — see [Observability](../production/observability.md#key-metrics).
+
+{% hint style="warning" %}
+The CPU entitlement is applied at startup only. The thread pools it sizes cannot be resized by editing the Spicepod, so changing `cores` requires a rollout.
+{% endhint %}
+
 ### Inject environment variables and secrets
 
 ```yaml
