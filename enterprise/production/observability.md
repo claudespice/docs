@@ -25,21 +25,35 @@ monitoring:
 
 ### Key metrics
 
-| Metric                                       | Type      | Meaning                                                                              |
-| -------------------------------------------- | --------- | ------------------------------------------------------------------------------------ |
-| `spiced_query_duration_seconds`              | Histogram | End-to-end query latency.                                                            |
-| `spiced_query_total{result="error"}`         | Counter   | Failed queries. Drives the [error rate alert](#alerts).                              |
-| `spiced_acceleration_refresh_duration_seconds` | Histogram | Per-dataset acceleration refresh latency.                                          |
-| `spiced_acceleration_refresh_total{result}`  | Counter   | Refresh successes and failures per dataset.                                          |
-| `spiced_acceleration_rows`                   | Gauge     | Row count per accelerated dataset.                                                   |
-| `spiced_http_request_duration_seconds`       | Histogram | HTTP API latency by route.                                                           |
-| `spiced_flight_request_duration_seconds`     | Histogram | Arrow Flight RPC latency.                                                            |
-| `spiced_cluster_executor_count`              | Gauge     | (`SpicepodCluster`) Number of executors registered with the scheduler.               |
-| `spiced_cluster_certificate_expiry_seconds`  | Gauge     | (`SpicepodCluster`) Time-to-expiry for the per-node leaf certificate.                |
-| `spiceai_operator_reconcile_duration_seconds`| Histogram | Operator reconcile loop latency.                                                     |
-| `spiceai_operator_pod_dead_total`            | Counter   | Dead pod observations. Triggers crashloop pause when above the configured threshold. |
+Metric names are exported verbatim, without a namespace prefix and without unit or counter suffixes. Durations are milliseconds, and the unit is part of the name.
+
+| Metric                                        | Type      | Labels     | Meaning                                                                        |
+| --------------------------------------------- | --------- | ---------- | ------------------------------------------------------------------------------ |
+| `query_duration_ms`                           | Histogram |            | End-to-end query latency, in milliseconds.                                     |
+| `query_execution_duration_ms`                 | Histogram |            | Query execution latency, excluding planning.                                   |
+| `query_executions`                            | Counter   |            | Queries executed. The denominator for the [error rate alert](#alerts).          |
+| `query_failures`                              | Counter   | `err_code` | Failed queries, by error code.                                                 |
+| `dataset_acceleration_refresh_duration_ms`    | Histogram | `dataset`  | Per-dataset acceleration refresh latency.                                      |
+| `dataset_acceleration_refresh_errors`         | Counter   | `dataset`  | Refresh failures per dataset.                                                  |
+| `dataset_acceleration_last_refresh_unix_time_ms` | Gauge  | `dataset`  | When the last refresh completed, as a Unix timestamp in milliseconds.           |
+| `dataset_acceleration_size_bytes`             | Gauge     | `dataset`  | Size of the accelerated table storage.                                         |
+| `http_requests_duration_ms`                   | Histogram |            | HTTP API latency.                                                              |
+| `flight_request_duration_ms`                  | Histogram |            | Arrow Flight RPC latency.                                                      |
+| `process_resident_memory_bytes`               | Gauge     |            | Resident set size of the `spiced` process.                                     |
+| `query_memory_pool_used_bytes`                | Gauge     |            | Memory currently held by the query memory pool.                                |
+| `spiced_cpu_budget_cores`                     | Gauge     | `source`   | Cores the runtime sized itself for, and where that value came from. See [CPU sizing](../kubernetes/user-guide.md#request-cpu-and-memory). |
+| `scheduler_active_executors_count`            | Gauge     | `node_id`  | (`SpicepodCluster`) Executors registered with the scheduler.                    |
+| `scheduler_job_queue_depth`                   | Gauge     | `node_id`  | (`SpicepodCluster`) Queued jobs awaiting scheduling.                            |
+| `spiceai_operator_reconcile_duration_seconds` | Histogram | `controller` | Operator reconcile loop latency.                                             |
+| `spiceai_operator_cluster_ca_expiry_timestamp_seconds` | Gauge | `cluster` | Cluster CA certificate expiry, as a Unix timestamp in seconds.              |
+
+The `spiced_cpu_budget_cores` `source` label reports how the entitlement was determined: `configured`, `cgroup_quota`, `affinity`, or `fallback`.
 
 For the full list, query the running runtime: `curl localhost:9090/metrics | grep -E '^# HELP'`.
+
+{% hint style="info" %}
+Query metrics are reported regardless of the `runtime.task_history` setting, so disabling task history does not disable the query counters and histograms above.
+{% endhint %}
 
 ## Grafana dashboard
 
@@ -104,9 +118,9 @@ groups:
     rules:
       - alert: SpiceAIQueryErrorRateHigh
         expr: |
-          sum(rate(spiced_query_total{result="error"}[5m]))
+          sum(rate(query_failures[5m]))
             /
-          sum(rate(spiced_query_total[5m])) > 0.05
+          sum(rate(query_executions[5m])) > 0.05
         for: 10m
         labels:
           severity: warning
@@ -115,7 +129,7 @@ groups:
 
       - alert: SpiceAIAccelerationRefreshFailing
         expr: |
-          increase(spiced_acceleration_refresh_total{result="error"}[15m]) > 3
+          increase(dataset_acceleration_refresh_errors[15m]) > 3
         for: 15m
         labels:
           severity: warning
@@ -125,8 +139,8 @@ groups:
       - alert: SpiceAIQueryLatencyP95
         expr: |
           histogram_quantile(0.95, sum by (le) (
-            rate(spiced_query_duration_seconds_bucket[5m])
-          )) > 2
+            rate(query_duration_ms_bucket[5m])
+          )) > 2000
         for: 10m
         labels:
           severity: warning
@@ -135,31 +149,30 @@ groups:
 
       - alert: SpiceAIExecutorMissing
         expr: |
-          spiced_cluster_executor_count < 2
+          scheduler_active_executors_count < 2
         for: 5m
         labels:
           severity: critical
         annotations:
-          summary: "{{ $labels.cluster }} has fewer than 2 executors registered."
+          summary: "Scheduler {{ $labels.node_id }} has fewer than 2 executors registered."
 
-      - alert: SpiceAICertificateExpiringSoon
+      - alert: SpiceAIClusterCAExpiringSoon
         expr: |
-          spiced_cluster_certificate_expiry_seconds < 7 * 24 * 3600
+          spiceai_operator_cluster_ca_expiry_timestamp_seconds - time() < 7 * 24 * 3600
         for: 10m
         labels:
           severity: warning
         annotations:
-          summary: "Cluster certificate expires in less than 7 days."
-
-      - alert: SpiceAICrashLoop
-        expr: |
-          increase(spiceai_operator_pod_dead_total[15m]) > 5
-        for: 15m
-        labels:
-          severity: critical
-        annotations:
-          summary: "{{ $labels.spicepodset }} crashlooping \u2014 operator may pause it."
+          summary: "{{ $labels.cluster }} CA certificate expires in less than 7 days."
 ```
+
+The latency threshold is in milliseconds, matching the `query_duration_ms` histogram.
+
+{% hint style="info" %}
+`spiceai_operator_cluster_ca_expiry_timestamp_seconds` is emitted by the Kubernetes Operator, not the runtime, so this alert requires the operator to be scraped as well. See [Operator Metrics](../kubernetes/metrics.md).
+{% endhint %}
+
+Crashloop protection is not exposed as a metric. The operator records it on the resource as a pause reason and emits Kubernetes events \u2014 see [Crashloop Protection](../kubernetes/spicepodset.md#crashloop-protection). Alert on container restarts using the `kube_pod_container_status_restarts_total` series from kube-state-metrics.
 
 ## Health endpoints
 
