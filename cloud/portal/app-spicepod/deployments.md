@@ -29,19 +29,31 @@ Each deployment listed on the **Deployments** tab reports a status derived from 
 
 **Ready with errors** distinguishes a deployment that started successfully from one that works. The instances pass their health checks, but the runtime inside them is reporting problems — a dataset that cannot connect, or a model that fails to load. A failing health check is the stronger signal, so a deployment that is both unhealthy and reporting errors shows **Unhealthy**.
 
+While a rollout is underway, the **Deployments** tab in the project navigation carries a count of the deployments still in progress — those reporting **Pending**, **Deploying**, **Loading**, or **Terminating**. The count clears once every deployment has settled.
+
 ### Issues
 
 When a deployed Spicepod reports errors or warnings, the portal collects them into a single **Issues** feed instead of leaving them in the log tail.
 
-Issues are surfaced in four places:
+Issues are surfaced in five places:
 
 * A banner on every page of the project, listing the most recent error and the number of other errors. The banner covers errors only — warnings appear in the **Issues** panel.
-* An error count on the **Deployments** tab in the project navigation.
+* An **Issues** tab in the project navigation. The tab shows a check mark while the project reports no errors, and a warning mark with the current error count when it does. Counts above 99 display as `99+`.
 * An **Issues** panel on the **Deployments** page, and on each instance page scoped to that instance. Each panel lists up to five issues and links to the full list.
-* A dedicated **Issues** page for the project, listing every issue without a limit.
+* A dedicated **Issues** page for the project, opened from the tab, listing every issue without a limit.
 * An indicator on the affected row in **Datasets** and **Models**, when an issue can be attributed to a component.
 
+The count on the **Issues** tab always reflects the full feed. Dismissing an error from the banner does not lower it.
+
 The feed combines runtime `ERROR` and `WARN` log lines with the reported status of each dataset. Repeats of the same failure collapse into one row with an occurrence count, so a connector retrying every second appears once rather than hundreds of times.
+
+#### When an issue leaves the feed
+
+The feed reports the current state of the runtime rather than the full log history, so failures that no longer apply drop out on their own.
+
+Once an instance reports that all of its components are loaded, failures recorded only before that point are dropped. Reaching a ready state is treated as evidence that the startup retries succeeded and the optional components came up. A startup failure that occurs again afterwards stays in the feed and keeps its original first-seen time and occurrence count. A dataset that is still broken continues to be reported through its dataset status, so a persistent failure does not disappear.
+
+Failures recorded after an instance is ready leave the feed an hour after their last occurrence. That hour is measured against the newest entry in the log rather than the current time. An instance that crashed and stopped logging therefore still shows the errors it ended on, while one that recovered and keeps logging normally drops the older failure as fresher activity accumulates.
 
 Issues are ordered errors first, then by how often they occurred, then by how recently. A panel capped at five rows therefore shows the errors before any warning, and the panel header keeps the full error and warning counts for the project or instance. **View all** *N* **issues** in the panel footer opens the dedicated **Issues** page, which lists the entire set.
 
@@ -56,7 +68,9 @@ The selection is held in the `instance` query parameter, so a filtered view surv
 Issues derived from dataset status are reported by the project rather than by a particular replica, so they appear only under **All instances**.
 
 {% hint style="info" %}
-Dismissing an error hides that specific error. A different failure raises the banner again.
+Dismissing an error hides that specific error from the banner only. The **Issues** page, the panels, and the tab count continue to report it. A different failure raises the banner again.
+
+Dismissals are remembered per project in the browser used to dismiss them, so they survive a reload but do not apply to other browsers or to other members of the organization.
 {% endhint %}
 
 A project with no issues shows no banner, no count, and no panel. The dedicated **Issues** page remains reachable and reports that no issues were detected.
