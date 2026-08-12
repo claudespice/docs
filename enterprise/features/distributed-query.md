@@ -181,7 +181,7 @@ The scheduler runs a `PartitionAssignmentTask` on `partition_assignment_interval
 
 ### Partition-aware query planning
 
-The DataFusion analyzer rule `PartitionedTableScanRewrite` (scheduler-only) rewrites every `TableScan` on an accelerated table into a `UNION ALL` over per-executor FlightSQL scans, pushing down the executor's partition filter and any user predicates:
+The DataFusion analyzer rule `PartitionedTableScanRewrite` runs on scheduler-role nodes and rewrites every `TableScan` on an accelerated table into a `UNION ALL` over per-executor FlightSQL scans, pushing down the executor's partition filter and any user predicates:
 
 ```text
 Before:
@@ -201,6 +201,8 @@ Executor selection uses a greedy minimum set-cover algorithm: pick the executor 
 > `Cannot execute query: N partition(s) not assigned to any executor`
 
 On executors, the `AcceleratedPartitionProvider` resolves partitions to local `TableProvider`s. Row-level partition predicates are not re-evaluated on executors — each executor only holds its own partitions, so filtering happens by ownership.
+
+This rewrite is how [synchronous](#execution-modes) queries reach executor-resident data. Asynchronous queries do not use it — Ballista distributes their scans natively while planning query stages.
 
 ### Broadcast joins for small dimension tables
 
@@ -300,12 +302,22 @@ Setting `snapshots: bootstrap_only` is recommended on executors when the source 
 
 ## Execution Modes
 
-| Mode             | Endpoint             | Notes                                                                                                                                                                        |
-| ---------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Synchronous**  | `/v1/sql`, FlightSQL | Client waits for the query to complete and receives results directly. Available in any deployment.                                                                           |
-| **Asynchronous** | `/v1/queries`        | Client submits a query and polls a `query_id` for status. Full results are retrieved with pagination via `/v1/queries/{query_id}/results`, or chunk-by-chunk via `/v1/queries/{query_id}/results/chunks/{chunk_index}`. **Cluster (scheduler) mode only.** |
+The two modes distribute work differently, and the choice determines whether a query becomes a multi-stage cluster job.
 
-Async queries require `runtime.scheduler.state_location` to be configured. Because job state is shared through that object store, an in-flight async query survives the loss of the scheduler that planned it — a surviving scheduler assumes ownership and continues driving it, and the client keeps polling the same `query_id`.
+| Mode             | Endpoint             | How work is distributed                                                                                                                                                                                                                                | Notes                                                                                                                                                                                                                                                     |
+| ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Synchronous**  | `/v1/sql`, FlightSQL | Scan fan-out only. The scheduler plans and runs the query itself, reading each partition from its owning executor over FlightSQL (see [Partition-aware query planning](#partition-aware-query-planning)). No cluster job, no query stages, no shuffles. | Client waits for the query to complete and receives results directly. Available in any deployment.                                                                                                                                                        |
+| **Asynchronous** | `/v1/queries`        | Full stage-based execution. The plan is split into Ballista query stages and dispatched as tasks to executors, which shuffle intermediate results between stages.                                                                                       | Client submits a query and polls a `query_id` for status. Full results are retrieved with pagination via `/v1/queries/{query_id}/results`, or chunk-by-chunk via `/v1/queries/{query_id}/results/chunks/{chunk_index}`. **Cluster (scheduler) mode only.** |
+
+Only asynchronous queries create cluster jobs. A synchronous query against a partitioned accelerated table still reads from executors in parallel, but the joins, aggregations, and sorts above those scans run on the scheduler. Submit workloads whose cost sits above the scan — large joins, wide aggregations, distributed sorts — asynchronously so the cluster executes them across executors.
+
+Submit an async query over HTTP with `POST /v1/queries`, or from the CLI with `spice query`, which submits the query and polls until it completes.
+
+Async queries require `runtime.scheduler.state_location` to be configured. Without it the API returns `503`:
+
+> Async queries API requires distributed mode with `runtime.scheduler.state_location` configured. Start with: `spiced --role scheduler`
+
+Because job state is shared through that object store, an in-flight async query survives the loss of the scheduler that planned it — a surviving scheduler assumes ownership and continues driving it, and the client keeps polling the same `query_id`.
 
 ## Observability
 
