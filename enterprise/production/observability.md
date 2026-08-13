@@ -72,6 +72,56 @@ When a memory pool refuses a reservation, the query fails with the `ResourcesExh
 sum(rate(query_failures{err_code="ResourcesExhausted"}[5m])) > 0
 ```
 
+### Cache metrics
+
+Each cache the runtime maintains exports its own metric family. The SQL results cache uses the `results_` prefix; the search results and embeddings caches use `search_results_` and `embeddings_` and expose the same metric names.
+
+| Metric                                     | Type    | Labels   | Meaning                                                                                                                         |
+| ------------------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `results_cache_requests`                   | Counter |          | Lookups against the cache.                                                                                                      |
+| `results_cache_hits`                       | Counter |          | Lookups served from the cache.                                                                                                  |
+| `results_cache_misses`                     | Counter |          | Lookups not served from the cache.                                                                                              |
+| `results_cache_hit_ratio`                  | Gauge   |          | Hits divided by total requests.                                                                                                 |
+| `results_cache_items_count`                | Gauge   |          | Entries currently held.                                                                                                         |
+| `results_cache_size_bytes`                 | Gauge   |          | Size of the cache in bytes.                                                                                                     |
+| `results_cache_max_size_bytes`             | Gauge   |          | Configured `max_size`, in bytes.                                                                                                |
+| `results_cache_evictions`                  | Counter | `reason` | Entries removed from the cache, by cause.                                                                                       |
+| `results_cache_stale_rejections`           | Counter |          | Lookups that found an entry but did not serve it, because a table it read was invalidated first. Also counted as misses.        |
+| `results_cache_stale_swr_count`            | Counter |          | Stale-while-revalidate refreshes skipped because a revalidation was already in flight.                                          |
+| `results_cache_swr_background_query_count` | Counter |          | Background queries started for stale-while-revalidate refreshes.                                                                |
+
+The `reason` label on `*_cache_evictions` separates three causes that call for different responses:
+
+| `reason`      | Cause                                                                | Response                                                                    |
+| ------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `size`        | The cache exceeded `max_size` and reclaimed an entry.                | Raise `max_size` if the hit ratio is also falling.                          |
+| `expired`     | The entry outlived `item_ttl`.                                       | Expected. Raise `item_ttl` only if the data tolerates a longer staleness window. |
+| `invalidated` | A refresh or a DML write dropped the entries referencing a table.    | Expected on an accelerated dataset with a periodic refresh.                 |
+
+On an accelerated dataset with a periodic refresh, `invalidated` is normally the dominant cause and would swamp an unlabelled total. Alert on `size` instead, which is the reason that indicates real cache pressure:
+
+```
+sum(rate(results_cache_evictions{reason="size"}[5m])) > 0
+```
+
+{% hint style="info" %}
+Cache counters are published at zero when the runtime starts, so each series exists before it first increments. A series that is absent altogether therefore indicates a scrape or configuration problem rather than an idle cache.
+{% endhint %}
+
+### Cayenne segment cache
+
+[Cayenne](https://spiceai.org/docs/components/data-accelerators/cayenne) accelerations read through a segment cache, sized per dataset by the `cayenne_segment_cache_mb` acceleration parameter (default `256`). Every series carries a `dataset` label.
+
+| Metric                                 | Type    | Labels    | Meaning                                            |
+| -------------------------------------- | ------- | --------- | -------------------------------------------------- |
+| `cayenne_segment_cache_accesses`       | Counter | `dataset` | Segment cache lookups.                             |
+| `cayenne_segment_cache_hits`           | Counter | `dataset` | Lookups served from the cache.                     |
+| `cayenne_segment_cache_entries`        | Gauge   | `dataset` | Approximate number of entries held.                |
+| `cayenne_segment_cache_weighted_bytes` | Gauge   | `dataset` | Approximate size of the live cache, in bytes.      |
+| `cayenne_segment_cache_capacity_bytes` | Gauge   | `dataset` | Configured capacity, in bytes.                     |
+
+The accesses and hits series are cumulative counters, so read them with `rate()` or `increase()` rather than as instantaneous values. A hit ratio that falls while `cayenne_segment_cache_weighted_bytes` sits at `cayenne_segment_cache_capacity_bytes` means the working set no longer fits; raise `cayenne_segment_cache_mb` for that dataset.
+
 ## Grafana dashboard
 
 Spice.ai publishes a maintained Grafana dashboard with the panels operations teams need most often (query rate / latency / errors, acceleration freshness and row counts, executor registration, certificate expiry).
