@@ -20,7 +20,6 @@ See [AI Gateway](../features/ai-gateway.md) for full feature details.
 | Azure OpenAI | [Azure](../building-blocks/model-providers/azure.md)              |
 | xAI (Grok)   | [XAI](../building-blocks/model-providers/xai.md)                  |
 | Hugging Face | [Hugging Face](../building-blocks/model-providers/huggingface.md) |
-| Perplexity   | [Perplexity](../building-blocks/model-providers/perplexity.md)    |
 | Spice.ai     | [SpiceAI](../building-blocks/model-providers/spiceai.md)          |
 
 See [Model Providers](../building-blocks/model-providers/) for the complete list.

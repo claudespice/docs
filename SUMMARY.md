@@ -60,7 +60,6 @@
   * [Azure](building-blocks/model-providers/azure.md)
   * [Hugging Face](building-blocks/model-providers/huggingface.md)
   * [OpenAI](building-blocks/model-providers/openai.md)
-  * [Perplexity](building-blocks/model-providers/perplexity.md)
   * [SpiceAI](building-blocks/model-providers/spiceai.md)
   * [XAI](building-blocks/model-providers/xai.md)
 
