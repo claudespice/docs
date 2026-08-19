@@ -71,7 +71,7 @@ curl -H "Authorization: Bearer <your-pat-token>" \
   https://api.spice.ai/v1/projects
 ```
 
-Learn more: [Personal Access Tokens](../../../portal/profile/personal-access-tokens.md)
+Learn more: [Personal Access Tokens](../../portal/profile/personal-access-tokens.md)
 
 ### 2. OAuth 2.0 Client Credentials
 
