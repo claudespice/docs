@@ -119,6 +119,70 @@ The Spice CLI obtains a user session token through the browser-based login flow.
 spice login  # Opens a browser to authenticate
 ```
 
+## Organization context
+
+Every Management API request acts on exactly one organization. By default that is the organization the credential was minted against. Send the `X-Org-Name` header with an organization handle to act on a different one.
+
+| Credential                            | Organizations it can act on                     |
+| ------------------------------------- | ----------------------------------------------- |
+| Personal access token or CLI session  | Any organization the token owner belongs to      |
+| OAuth client credentials              | Only the organization the client was issued to   |
+
+A user credential carries a user identity, so the API authorizes the request against that user's membership. A machine credential carries no user identity and stays pinned to one organization: a header naming a different organization is refused rather than ignored.
+
+{% hint style="info" %}
+**Reach never widens on its own.** Without `X-Org-Name`, a credential acts on the organization it was minted against. Reaching another organization requires the client to send the header, and the caller to hold the membership, role, and scope the action needs.
+{% endhint %}
+
+Handles are matched case-insensitively and may contain letters, numbers, dots, hyphens, and underscores.
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+  -H "X-Org-Name: acme-corp" \
+  https://api.spice.ai/v1/projects
+```
+
+### Discovering organizations
+
+`GET /v1/orgs` lists the organizations the caller belongs to, with the caller's role in each. Use it to choose a value for `X-Org-Name`.
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+  https://api.spice.ai/v1/orgs
+```
+
+```json
+{
+  "orgs": [
+    { "id": 42, "name": "acme-corp", "role": "owner" },
+    { "id": 57, "name": "example-org", "role": "member" }
+  ]
+}
+```
+
+* `name` is the organization handle — the value `X-Org-Name` accepts, and the one used in `<org>/<project>` addressing.
+* `role` is the caller's highest-privilege role in that organization: `owner`, `admin`, `member`, or `viewer`.
+* A caller who belongs to no organization receives `200` with an empty `orgs` array, never a `404`.
+* An OAuth client credential lists only the organization it was issued to, with the role `owner`.
+* Requires the `apps:read` scope.
+
+### Refused requests
+
+A refusal returns a machine-readable `code` alongside `error`, because each one has a different remedy:
+
+| Code                     | Status | Meaning                                                          | Remedy                                          |
+| ------------------------ | ------ | ---------------------------------------------------------------- | ----------------------------------------------- |
+| `org_forbidden`          | `403`  | The caller is not a member of the named organization             | Ask an organization owner for an invitation      |
+| `forbidden`              | `403`  | The caller is a member but lacks the role the action needs        | Ask an owner or admin for a higher role          |
+| `insufficient_scope`     | `403`  | The credential was not granted the required scope                 | Reissue the credential with the scope            |
+| `org_assertion_mismatch` | `403`  | A machine credential named an organization other than its own     | Use a credential issued for that organization    |
+| `invalid_org_assertion`  | `400`  | The header value is not a valid organization handle               | Correct the handle                               |
+
+Two details are easy to miss:
+
+* **A blank `X-Org-Name` is an error, not an omission.** It returns `invalid_org_assertion`, because a client that sent the header believes it named an organization.
+* **An organization that does not exist and one the caller cannot see both return `org_forbidden`.** The header cannot be used to test whether an organization exists.
+
 ## OAuth Scopes
 
 Access to API resources is controlled through scopes. PATs and OAuth clients must be granted appropriate scopes:
@@ -199,6 +263,17 @@ The API uses standard HTTP status codes:
 }
 ```
 
+Authorization failures also carry a machine-readable `code`, so a client can tell the refusals apart instead of guessing:
+
+```json
+{
+  "error": "You are not a member of the requested organization",
+  "code": "org_forbidden"
+}
+```
+
+See [Refused requests](#refused-requests) for the codes and their remedies.
+
 ## Pagination
 
 List endpoints support cursor-based pagination with the following query parameters:
@@ -210,11 +285,13 @@ List endpoints support cursor-based pagination with the following query paramete
 
 ## OpenAPI Specification
 
-Browse the interactive API reference at `https://api.spice.ai/v1/docs`, or download the OpenAPI spec:
+The API publishes its own OpenAPI specification, which describes every endpoint and the headers it accepts:
 
 ```
-https://api.spice.ai/v1/docs/openapi.json
+https://api.spice.ai/openapi.json
 ```
+
+The same document is also served at `https://api.spice.ai/v1/docs` and `https://api.spice.ai/v1/docs/openapi.json`.
 
 ## SDK Support
 
@@ -234,6 +311,7 @@ Official SDKs are available for popular languages:
 * [Secrets](/broken/pages/jux7LfeRfZnBFKMpjIXA) - Manage project secrets
 * [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage project API keys
 * [Members](/broken/pages/fDcgKtae3y2pEzLWtbVg) - Manage organization members
+* [Organizations](#discovering-organizations) - List the organizations the caller belongs to
 * [Metrics](../metrics.md) - Scrape per-project runtime metrics
 * [Container Images](/broken/pages/5fsccwHHHi12wJt5s0Ca) - List available runtime versions
 
