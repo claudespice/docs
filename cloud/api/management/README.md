@@ -172,7 +172,7 @@ A refusal returns a machine-readable `code` alongside `error`, because each one 
 
 | Code                     | Status | Meaning                                                          | Remedy                                          |
 | ------------------------ | ------ | ---------------------------------------------------------------- | ----------------------------------------------- |
-| `org_forbidden`          | `403`  | The caller is not a member of the named organization             | Ask an organization owner for an invitation      |
+| `org_forbidden`          | `403`  | The named organization does not exist or is not visible to the caller | Verify the handle; if it is correct, ask an organization owner for an invitation |
 | `forbidden`              | `403`  | The caller is a member but lacks the role the action needs        | Ask an owner or admin for a higher role          |
 | `insufficient_scope`     | `403`  | The credential was not granted the required scope                 | Reissue the credential with the scope            |
 | `org_assertion_mismatch` | `403`  | A machine credential named an organization other than its own     | Use a credential issued for that organization    |
