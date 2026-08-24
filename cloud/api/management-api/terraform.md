@@ -97,7 +97,7 @@ resource "spiceai_app" "app" {
 
 | Argument | Type   | Description                                                                                         |
 | -------- | ------ | --------------------------------------------------------------------------------------------------- |
-| `name`   | string | App name (min 4 chars, alphanumeric and hyphens). Forces replacement on change.                     |
+| `name`   | string | App name: 4–38 characters, letters, numbers, and hyphens only. Forces replacement on change.        |
 | `cname`  | string | Region identifier. Get values from the `spiceai_regions` data source. Forces replacement on change. |
 
 **Optional arguments:**
