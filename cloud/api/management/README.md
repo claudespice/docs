@@ -346,6 +346,12 @@ curl -X POST https://api.spice.ai/v1/projects \
 
 Organizations with a [dedicated cluster](dedicated-clusters.md) can pass `cluster_name` in place of `region` to create the project on their dedicated infrastructure.
 
+{% hint style="info" %}
+**Project name requirements.** `name` must be 4–38 characters and contain only letters, numbers, and hyphens. A name outside those bounds is rejected with `400`.
+
+Names are unique within an organization and are compared case-insensitively, so a name that differs from an existing project only by case is rejected with `409`.
+{% endhint %}
+
 ### Create a deployment
 
 ```bash

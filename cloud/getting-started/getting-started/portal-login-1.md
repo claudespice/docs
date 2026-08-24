@@ -7,7 +7,7 @@ icon: circle-2
 
 Once [signed in with GitHub](../get-started/portal-login.md), you will be redirected to the **new project page.** Set a name, add a model provider, and optionally select one of ready to use datasets.
 
-1. Enter a name for the project.
+1. Enter a name for the project. Project names are 4–38 characters and use only letters, numbers, and hyphens.
 2. Select region.
 3.  Click **Create project**.
 
