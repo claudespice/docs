@@ -10,7 +10,7 @@ In addition, you can define and create your own private Datasets and Views, whic
 
 ### Defining a Dataset
 
-To define a dataset, first ensure your Spice project is connected to a [GitHub repository](link-github-repository.md), then add a [dataset manifest](../../reference/specifications/dataset-and-view-yaml-specification/) file to the GitHub repository in the `.spice/datasets` path.
+To define a dataset, first ensure your Spice project is connected to a [GitHub repository](link-github-repository.md), then add a dataset manifest file to the GitHub repository in the `.spice/datasets` path.
 
 For example:
 
@@ -24,7 +24,7 @@ firecache:
   time_column: timestamp
 ```
 
-See the [Dataset & View YAML Specification](../../reference/specifications/spice-functions-yaml-specification/) for the full YAML schema.
+See the Dataset & View YAML Specification for the full YAML schema.
 
 ### Sync with GitHub
 

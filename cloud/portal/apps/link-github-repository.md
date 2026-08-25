@@ -4,7 +4,7 @@ description: Connect your Spice.ai to a GitHub repository
 
 # Connect GitHub repository
 
-Connecting your Spice.ai project to a GitHub repository allows you to create custom [Datasets and Views](datasets.md), add datasets to Spice Firecache, author [Spice Functions](spice-functions/), and train AI Models.
+Connecting your Spice.ai project to a GitHub repository allows you to create custom [Datasets and Views](datasets.md), add datasets to Spice Firecache, author Spice Functions, and train AI Models.
 
 ## Prepare the repository
 

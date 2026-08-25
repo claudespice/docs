@@ -13,15 +13,15 @@ Browse the topics below to find answers to common questions, troubleshoot issues
 
 ## Quick Links
 
-| Topic                 | Link                                                    |
-| --------------------- | ------------------------------------------------------- |
-| Getting started guide | [Get Started](../cloud/getting-started/get-started/)          |
-| FAQ                   | [Frequently Asked Questions](../faq.md) |
-| Community support     | [Slack](https://spice.ai/slack)                         |
-| Enterprise support    | [Support](../support/support.md)                        |
-| Security & compliance | [Security](../security/security.md)                     |
-| Changelog             | [What's New](../changelog/)                             |
-| Pricing               | [Plans](../cloud/pricing/plans.md)                            |
+| Topic                 | Link                                                 |
+| --------------------- | ---------------------------------------------------- |
+| Getting started guide | [Get Started](../cloud/getting-started/get-started/) |
+| FAQ                   | [Frequently Asked Questions](../faq.md)              |
+| Community support     | [Slack](https://spice.ai/slack)                      |
+| Enterprise support    | [Support](../support/support.md)                     |
+| Security & compliance | [Security](../security/security.md)                  |
+| Changelog             | [What's New](../changelog/)                          |
+| Pricing               | [Plans](../cloud/pricing/plans.md)                   |
 
 ## Need More Help?
 
