@@ -118,7 +118,7 @@ runtime:
     cayenne_segment_cache_mb: 1024
 ```
 
-When unset, the budget is approximately 1/64 of the detected memory entitlement, clamped to between `256` and `2048` MB. A value of `0` disables segment caching. Every series carries a `cache` label; the shared cache reports as `shared`.
+When unset, the budget is approximately 1/64 of the detected memory entitlement, clamped to between `256` MiB and `2` GiB. The parameter counts binary megabytes, so `cayenne_segment_cache_mb: 1024` reserves 1 GiB. A value of `0` disables segment caching. Every series carries a `cache` label; the shared cache reports as `shared`.
 
 {% hint style="info" %}
 `cayenne_segment_cache_mb` is only read from `runtime.params`. A value set on an individual `acceleration` or `catalog` is ignored, and the runtime reports it at startup against the dataset or catalog that set it.
