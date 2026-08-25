@@ -56,15 +56,18 @@ datasets:
         type: bigint
       - name: total
         type: double precision
-    primary_key: id
     acceleration:
       engine: cayenne
+      mode: file
       refresh_mode: changes
+      primary_key: id
       on_conflict:
         id: upsert
 ```
 
 Without the declared schema the dataset fails to register rather than waiting for a first event.
+
+A post to `/v1/datasets/{name}/cdc` blocks until the batch has been applied, so a Debezium sink commits its source offset on the response. Give the acceleration a durable `mode` for that acknowledgement to be worth anything: on the default `mode: memory` the applied rows are gone after a restart while the producer resumes from the offset it already committed, and unlike a connector-backed dataset there is no source for Spice to re-read to close the gap.
 
 ### Configuration
 
@@ -128,7 +131,7 @@ binlog_row_image = FULL
 binlog_row_value_options = ''
 ```
 
-`binlog_row_image = FULL` is required because Spice matches updates and deletes on the full old-row image. `binlog_row_value_options` must be empty for the same reason: its only other setting, `PARTIAL_JSON`, logs JSON columns as partial diffs rather than whole values, and Spice rejects it at startup. A server can satisfy the first three settings and still fail on this one. The connecting user needs the replication privileges plus read access to the replicated tables:
+`binlog_row_image = FULL` is required because Spice's binlog decoder needs every row image to carry every column, and fails to decode one that omits any; rows themselves are matched by the configured `primary_key`, not by comparing whole images. `binlog_row_value_options` must be empty for the same reason: its only other setting, `PARTIAL_JSON`, logs JSON columns as partial diffs rather than whole values, and Spice rejects it at startup. A server can satisfy the first three settings and still fail on this one. The connecting user needs the replication privileges plus read access to the replicated tables:
 
 ```sql
 -- Replication privileges are server-wide; MySQL has no narrower scope for them.
@@ -138,6 +141,8 @@ GRANT SELECT ON `app`.`orders` TO 'spice'@'%';
 ```
 
 Spice validates all of this before it starts replicating and fails with a specific error naming what is missing.
+
+Retain binary logs for at least as long as the replica may be offline. Spice resumes from the position it persisted, and a source that has purged past that position cannot be resumed from — the stream stops with an error naming the position that is gone. Size `binlog_expire_logs_seconds` against expected downtime. Where rebuilding is preferable to stopping, set `mysql_replication_invalid_checkpoint_behavior: restart` to drop the saved position and re-snapshot the table instead; the default is to error so that re-snapshotting a large source stays a deliberate choice.
 
 Each replica registers a `server_id` on the source, which must be unique among every replica attached to that source. It is derived from the dataset name by default; set `mysql_replication_server_id` when a fixed value is needed.
 
@@ -177,7 +182,7 @@ A table is eligible when its `REPLICA IDENTITY` yields a key Spice can upsert on
 A table that qualifies under none of these is skipped with a warning naming its fix, and left out of the catalog namespace rather than failing the whole catalog. Narrow `include` and `exclude` to keep known-ineligible tables out, and reach them through federation or a `refresh_mode: full` dataset instead.
 
 {% hint style="warning" %}
-Catalog CDC acceleration is **Alpha**: its configuration may still change. Use a durable acceleration `mode` — the default `mode: memory` re-runs the initial snapshot of every table on each restart.
+Catalog CDC acceleration is **Alpha**: its configuration may still change. Use a durable acceleration `mode` — the default `mode: memory` re-runs the initial snapshot of every table on each restart. Dropping and recreating a matched source table is not yet handled: the accelerated table can go on serving rows captured from the table it replaced, with no error and no warning ([#12110](https://github.com/spiceai/spiceai/issues/12110)). A rename is the same class of event. The stale mapping is held for the lifetime of the process, so restart the runtime after a migration that recreates or renames a replicated table.
 {% endhint %}
 
 ### Handling deletes
