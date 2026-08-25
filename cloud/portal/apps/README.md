@@ -22,5 +22,6 @@ The name forms part of the project's URL in the portal, and renaming a project a
 
 * [Transfer a project to another organization](transfer.md)
 * [Connect a project with your existing GitHub repository](connect-github.md)
+* [Pause and resume a project](pause.md)
 * [Delete a project](delete.md)
 * [Create and toggle custom Dataset and Views](../datasets-and-views.md)
