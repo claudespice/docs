@@ -7,7 +7,7 @@ description: Replicate committed changes from operational databases into an acce
 
 **Database replication** keeps an accelerated dataset continuously in step with its source by reading the source database's own changelog. Committed inserts, updates, and deletes are applied to the local replica within seconds, with no batch window and no external pipeline.
 
-The mechanism is **change data capture (CDC)**: rather than re-reading the source table on a schedule, Spice consumes the stream of changes the database already produces for its own recovery and replication — the PostgreSQL write-ahead log, a MongoDB change stream, a DynamoDB stream — and applies each change to the accelerator as it commits.
+The mechanism is **change data capture (CDC)**: rather than re-reading the source table on a schedule, Spice consumes the stream of changes the database already produces for its own recovery and replication — the PostgreSQL write-ahead log, the MySQL binary log, a MongoDB change stream, a DynamoDB stream — and applies each change to the accelerator as it commits.
 
 Replication is enabled by setting `refresh_mode: changes` on an accelerated dataset.
 
@@ -32,14 +32,18 @@ For the architecture built on this capability, see [Analytics Replica](../use-ca
 | Source | Mechanism | Configuration |
 | ------ | --------- | ------------- |
 | [PostgreSQL](../building-blocks/data-connectors/postgres.md) | Logical replication from the write-ahead log | `refresh_mode: changes` |
+| [MySQL](../building-blocks/data-connectors/mysql.md) | Binary log (binlog) replication | `refresh_mode: changes` |
 | [MongoDB](../building-blocks/data-connectors/mongodb.md) | Change streams on the source collection | `refresh_mode: changes` |
 | [DynamoDB](../building-blocks/data-connectors/dynamodb.md) | DynamoDB Streams | `refresh_mode: changes` |
 | [Apache Kafka](../building-blocks/data-connectors/kafka.md) | Event stream consumption | `refresh_mode: append` |
 | [Debezium](../building-blocks/data-connectors/debezium.md) | Debezium change events over Kafka | `refresh_mode: changes` |
+| `cdc` | Debezium change events posted directly to Spice, without Kafka | `refresh_mode: changes` |
 
 {% hint style="info" %}
-Sources without a native Spice change feed — including MySQL and SQL Server — replicate through [Debezium](../building-blocks/data-connectors/debezium.md) over Kafka.
+Sources without a native Spice change feed — SQL Server, for example — replicate through [Debezium](../building-blocks/data-connectors/debezium.md).
 {% endhint %}
+
+A `cdc` dataset is the Debezium path without the message bus. Any Debezium source plugin posts its change events straight to Spice at `POST /v1/datasets/{name}/cdc`, in JSON or Avro, so a replica needs no Kafka cluster to sit between the plugin and the runtime. The `debezium` connector, which consumes the same events over Kafka, is unchanged.
 
 ### Configuration
 
@@ -92,6 +96,56 @@ The connecting role needs the `REPLICATION` attribute, plus `SELECT` on the repl
 An inactive replication slot causes the source server to retain write-ahead log segments indefinitely, which can exhaust disk on the primary. Drop the slot on the source if a replicated dataset is removed permanently.
 {% endhint %}
 
+### MySQL prerequisites
+
+Row-based binary logging must be enabled on the source server, with complete row images:
+
+```
+log_bin = ON
+binlog_format = ROW
+binlog_row_image = FULL
+```
+
+`binlog_row_image = FULL` is required because Spice matches updates and deletes on the full old-row image. The connecting user needs the replication privileges plus read access to the replicated tables:
+
+```sql
+GRANT REPLICATION SLAVE, REPLICATION CLIENT, SELECT ON *.* TO 'spice'@'%';
+```
+
+Spice validates all of this before it starts replicating and fails with a specific error naming what is missing.
+
+Each replica registers a `server_id` on the source, which must be unique among every replica attached to that source. It is derived from the dataset name by default; set `mysql_replication_server_id` when a fixed value is needed.
+
+Where the source server has [GTIDs](https://dev.mysql.com/doc/refman/8.4/en/replication-gtids.html) enabled, Spice tracks its replication position as a GTID set rather than a file-and-offset. A GTID set stays valid across a replica promotion, so replication survives a failover to a new primary without rebuilding the accelerated dataset.
+
+### Catalog-level replication
+
+A whole PostgreSQL database can be replicated from one catalog entry, with no per-table configuration. Set `refresh_mode: changes` on the catalog's acceleration and Spice replicates every table the `include` patterns match:
+
+```yaml
+catalogs:
+  - from: pg
+    name: pg
+    include:
+      - 'public.*'
+    params:
+      pg_host: postgres.example-org.com
+      pg_db: myapp
+      pg_user: spice
+      pg_pass: ${secrets:pg_pass}
+    acceleration:
+      refresh_mode: changes
+      mode: file
+```
+
+Every table shares one replication slot and one publication, so the write-ahead log is decoded once for the catalog rather than once per table. The catalog's `acceleration.mode` and `acceleration.params` apply uniformly to each table, and tables are reachable as `{catalog}.{schema}.{table}`.
+
+A table with no usable CDC key — no primary key and no `REPLICA IDENTITY USING INDEX` — is skipped with a warning and left out of the catalog namespace rather than failing the whole catalog. Narrow `include` and `exclude` to keep known-ineligible tables out, and reach them through federation or a `refresh_mode: full` dataset instead.
+
+{% hint style="warning" %}
+Catalog CDC acceleration is **Alpha**: its configuration may still change. Use a durable acceleration `mode` — the default `mode: memory` re-runs the initial snapshot of every table on each restart.
+{% endhint %}
+
 ### Handling deletes
 
 CDC propagates hard deletes, which sets replication apart from incremental ingestion. A `DELETE` on the source removes the row from the replica on the next change event, with no reconciling full refresh and no soft-delete convention in the source schema.
@@ -104,3 +158,6 @@ Sources that expose no change feed at all — HTTP APIs, for example — use [in
 * [Data Acceleration](data-acceleration/README.md) — refresh modes, incremental ingestion, and retention
 * [Database CDN](../use-cases/database-cdn.md) — colocating a hot working set with an application
 * [Change data capture](https://spiceai.org/docs/features/cdc) in the Spice.ai OSS documentation
+* [MySQL CDC recipe](https://github.com/spiceai/cookbook/tree/trunk/mysql/cdc) — binlog replication from a MySQL table
+* [Amazon Aurora MySQL CDC recipe](https://github.com/spiceai/cookbook/tree/trunk/mysql/rds-aurora-cdc) — the same setup against an Aurora MySQL cluster
+* [PostgreSQL catalog CDC recipe](https://github.com/spiceai/cookbook/tree/trunk/catalogs/postgres-cdc) — replicating every table of a database from one catalog entry
