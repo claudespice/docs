@@ -28,7 +28,7 @@ See [Model Providers](../building-blocks/model-providers/) for the complete list
 
 ### 1. Add a model provider secret
 
-Store your model provider API key as a [secret](../portal/apps/secrets.md) in your project (e.g., `OPENAI_API_KEY`).
+Store your model provider API key as a [secret](../cloud/portal/apps/secrets.md) in your project (e.g., `OPENAI_API_KEY`).
 
 ### 2. Configure a model in your Spicepod
 
@@ -46,7 +46,7 @@ Deploy your project to make the model available.
 
 ### 4. Use the API
 
-Send requests to the [LLM API](../api/openai-api.md):
+Send requests to the [LLM API](../cloud/api/openai-api.md):
 
 ```bash
 curl https://data.spiceai.io/v1/chat/completions \
@@ -73,7 +73,7 @@ Configure custom tools and system prompts in your model configuration to tailor 
 Spice supports [vector and hybrid search](../features/search-and-retrieval.md) for retrieval-augmented generation (RAG) workflows:
 
 - Configure [embeddings](../building-blocks/embeddings/) for your datasets.
-- Use the [Search API](../api/search.md) for semantic search.
+- Use the [Search API](../cloud/api/search.md) for semantic search.
 
 ### Observability
 
@@ -99,7 +99,7 @@ These typically come from the upstream model provider (e.g., OpenAI). Check your
 ## Further Reading
 
 - [AI Gateway](../features/ai-gateway.md)
-- [LLM API reference](../api/openai-api.md)
+- [LLM API reference](../cloud/api/openai-api.md)
 - [Search & Retrieval](../features/search-and-retrieval.md)
 - [Model Providers](../building-blocks/model-providers/)
 - [Semantic Models](../features/semantic-models.md)

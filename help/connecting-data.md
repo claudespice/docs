@@ -26,7 +26,7 @@ For the full list of connectors and configuration options, see [Data Connectors]
 
 ### 1. Store credentials as secrets
 
-Data source credentials should be stored as [secrets](../portal/apps/secrets.md) in your project. In the Portal, go to your project → **Secrets** and create entries for connection strings, access keys, or tokens.
+Data source credentials should be stored as [secrets](../cloud/portal/apps/secrets.md) in your project. In the Portal, go to your project → **Secrets** and create entries for connection strings, access keys, or tokens.
 
 {% hint style="info" %}
 Secret values are write-only and cannot be retrieved after saving.

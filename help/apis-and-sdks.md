@@ -13,25 +13,17 @@ Spice.ai exposes two sets of APIs: **runtime APIs** (for querying data and AI) a
 
 | API                | Endpoint                                      | Auth                  | Documentation                                                   |
 | ------------------ | --------------------------------------------- | --------------------- | --------------------------------------------------------------- |
-| SQL (HTTP)         | `https://data.spiceai.io/v1/sql`              | `X-API-Key` header    | [HTTP API](../api/sql-query/http-api.md)                        |
-| SQL (Arrow Flight) | `grpc+tls://flight.spiceai.io`                | Password in handshake | [Arrow Flight API](../api/sql-query/apache-arrow-flight-api.md) |
-| LLM Chat           | `https://data.spiceai.io/v1/chat/completions` | `X-API-Key` header    | [LLM API](../api/openai-api.md)                                 |
-| Search             | `https://data.spiceai.io/v1/search`           | `X-API-Key` header    | [Search API](../api/search.md)                                  |
-| Health             | `https://data.spiceai.io/health`              | None                  | [Health API](../api/health.md)                                  |
+| SQL (HTTP)         | `https://data.spiceai.io/v1/sql`              | `X-API-Key` header    | [HTTP API](../cloud/api/sql-query/http-api.md)                        |
+| SQL (Arrow Flight) | `grpc+tls://flight.spiceai.io`                | Password in handshake | [Arrow Flight API](../cloud/api/sql-query/apache-arrow-flight-api.md) |
+| LLM Chat           | `https://data.spiceai.io/v1/chat/completions` | `X-API-Key` header    | [LLM API](../cloud/api/openai-api.md)                                 |
+| Search             | `https://data.spiceai.io/v1/search`           | `X-API-Key` header    | [Search API](../cloud/api/search.md)                                  |
+| Health             | `https://data.spiceai.io/health`              | None                  | [Health API](../cloud/api/health.md)                                  |
 
 ### Management API
 
 The Management API at `https://api.spice.ai/v1/` uses **personal access tokens** or **OAuth tokens** (not project API keys).
 
-| Endpoint    | Documentation                                       |
-| ----------- | --------------------------------------------------- |
-| Projects        | [Projects API](../api/management/apps.md)               |
-| Deployments | [Deployments API](../api/management/deployments.md) |
-| API Keys    | [API Keys API](../api/management/api-keys.md)       |
-| Secrets     | [Secrets API](../api/management/secrets.md)         |
-| Members     | [Members API](../api/management/members.md)         |
-
-See the full [Management API reference](../api/management/).
+Projects, deployments, API keys, secrets, and organization members are all managed through it. Every operation is listed in the [Management API reference](../cloud/api/management/), which renders the published OpenAPI specification.
 
 ## SDKs
 
@@ -117,13 +109,13 @@ The HTTP API has built-in row and timeout limits. Switch to Arrow Flight or an S
 
 ### Management API returns `401`
 
-The Management API uses **personal access tokens**, not project API keys. Generate a token under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
+The Management API uses **personal access tokens**, not project API keys. Generate a token under [Profile → Personal Access Tokens](../cloud/portal/profile/personal-access-tokens.md).
 
 ## Further Reading
 
-- [SQL Query API](../api/sql-query/)
-- [LLM API](../api/openai-api.md)
-- [Search API](../api/search.md)
-- [Best Practices](../best-practices.md)
-- [SQL Reference](../reference/sql-reference.md)
-- [Arrow Flight Samples](../reference/arrow-flight-samples.md)
+- [SQL Query API](../cloud/api/sql-query/)
+- [LLM API](../cloud/api/openai-api.md)
+- [Search API](../cloud/api/search.md)
+- [Best Practices](../cloud/best-practices.md)
+- [SQL Reference](../cloud/reference/sql-reference.md)
+- [Arrow Flight Samples](../cloud/reference/arrow-flight-samples.md)
