@@ -110,17 +110,29 @@ Cache counters are published at zero when the runtime starts, so each series exi
 
 ### Cayenne segment cache
 
-[Cayenne](https://spiceai.org/docs/components/data-accelerators/cayenne) accelerations read through a segment cache, sized per dataset by the `cayenne_segment_cache_mb` acceleration parameter (default `256`). Every series carries a `dataset` label.
+[Cayenne](https://spiceai.org/docs/components/data-accelerators/cayenne) accelerations read through one in-memory segment cache shared by every Cayenne table in the process. Size it with `cayenne_segment_cache_mb` under `runtime.params`:
 
-| Metric                                 | Type    | Labels    | Meaning                                            |
-| -------------------------------------- | ------- | --------- | -------------------------------------------------- |
-| `cayenne_segment_cache_accesses`       | Counter | `dataset` | Segment cache lookups.                             |
-| `cayenne_segment_cache_hits`           | Counter | `dataset` | Lookups served from the cache.                     |
-| `cayenne_segment_cache_entries`        | Gauge   | `dataset` | Approximate number of entries held.                |
-| `cayenne_segment_cache_weighted_bytes` | Gauge   | `dataset` | Approximate size of the live cache, in bytes.      |
-| `cayenne_segment_cache_capacity_bytes` | Gauge   | `dataset` | Configured capacity, in bytes.                     |
+```yaml
+runtime:
+  params:
+    cayenne_segment_cache_mb: 1024
+```
 
-The accesses and hits series are cumulative counters, so read them with `rate()` or `increase()` rather than as instantaneous values. A hit ratio that falls while `cayenne_segment_cache_weighted_bytes` sits at `cayenne_segment_cache_capacity_bytes` means the working set no longer fits; raise `cayenne_segment_cache_mb` for that dataset.
+When unset, the budget is approximately 1/64 of the detected memory entitlement, clamped to between `256` MiB and `2` GiB. The parameter counts binary megabytes, so `cayenne_segment_cache_mb: 1024` reserves 1 GiB. A value of `0` disables segment caching. Every series carries a `cache` label; the shared cache reports as `shared`.
+
+{% hint style="info" %}
+`cayenne_segment_cache_mb` is only read from `runtime.params`. A value set on an individual `acceleration` or `catalog` is ignored, and the runtime reports it at startup against the dataset or catalog that set it.
+{% endhint %}
+
+| Metric                                 | Type    | Labels  | Meaning                                       |
+| -------------------------------------- | ------- | ------- | --------------------------------------------- |
+| `cayenne_segment_cache_accesses`       | Counter | `cache` | Segment cache lookups.                        |
+| `cayenne_segment_cache_hits`           | Counter | `cache` | Lookups served from the cache.                |
+| `cayenne_segment_cache_entries`        | Gauge   | `cache` | Approximate number of entries held.           |
+| `cayenne_segment_cache_weighted_bytes` | Gauge   | `cache` | Approximate size of the live cache, in bytes. |
+| `cayenne_segment_cache_capacity_bytes` | Gauge   | `cache` | Configured capacity, in bytes.                |
+
+The accesses and hits series are cumulative counters, so read them with `rate()` or `increase()` rather than as instantaneous values. A hit ratio that falls while `cayenne_segment_cache_weighted_bytes` sits at `cayenne_segment_cache_capacity_bytes` means the combined working set of every Cayenne table no longer fits; raise `runtime.params.cayenne_segment_cache_mb`.
 
 ## Grafana dashboard
 
