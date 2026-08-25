@@ -45,6 +45,27 @@ Sources without a native Spice change feed — SQL Server, for example — repli
 
 A `cdc` dataset is the Debezium path without the message bus. Any Debezium source plugin posts its change events straight to Spice at `POST /v1/datasets/{name}/cdc`, in JSON or Avro, so a replica needs no Kafka cluster to sit between the plugin and the runtime. The `debezium` connector, which consumes the same events over Kafka, is unchanged.
 
+Unlike the connectors above, this one is configured entirely from the Spicepod: it takes a `from: cdc:<name>` source, and because nothing is there to peek at until a plugin posts, it cannot infer a schema. Declare `columns` and their types, alongside the `refresh_mode: changes` acceleration:
+
+```yaml
+datasets:
+  - from: cdc:orders
+    name: orders
+    columns:
+      - name: id
+        type: bigint
+      - name: total
+        type: double precision
+    primary_key: id
+    acceleration:
+      engine: cayenne
+      refresh_mode: changes
+      on_conflict:
+        id: upsert
+```
+
+Without the declared schema the dataset fails to register rather than waiting for a first event.
+
 ### Configuration
 
 A replicated dataset needs a `primary_key` so that updates and deletes can be matched to existing rows, and an `on_conflict` rule so that repeated keys upsert rather than duplicate.
@@ -104,12 +125,16 @@ Row-based binary logging must be enabled on the source server, with complete row
 log_bin = ON
 binlog_format = ROW
 binlog_row_image = FULL
+binlog_row_value_options = ''
 ```
 
-`binlog_row_image = FULL` is required because Spice matches updates and deletes on the full old-row image. The connecting user needs the replication privileges plus read access to the replicated tables:
+`binlog_row_image = FULL` is required because Spice matches updates and deletes on the full old-row image. `binlog_row_value_options` must be empty for the same reason: its only other setting, `PARTIAL_JSON`, logs JSON columns as partial diffs rather than whole values, and Spice rejects it at startup. A server can satisfy the first three settings and still fail on this one. The connecting user needs the replication privileges plus read access to the replicated tables:
 
 ```sql
-GRANT REPLICATION SLAVE, REPLICATION CLIENT, SELECT ON *.* TO 'spice'@'%';
+-- Replication privileges are server-wide; MySQL has no narrower scope for them.
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'spice'@'%';
+-- Read access only needs to reach the tables being replicated. Repeat per table.
+GRANT SELECT ON `app`.`orders` TO 'spice'@'%';
 ```
 
 Spice validates all of this before it starts replicating and fails with a specific error naming what is missing.
@@ -140,7 +165,16 @@ catalogs:
 
 Every table shares one replication slot and one publication, so the write-ahead log is decoded once for the catalog rather than once per table. The catalog's `acceleration.mode` and `acceleration.params` apply uniformly to each table, and tables are reachable as `{catalog}.{schema}.{table}`.
 
-A table with no usable CDC key — no primary key and no `REPLICA IDENTITY USING INDEX` — is skipped with a warning and left out of the catalog namespace rather than failing the whole catalog. Narrow `include` and `exclude` to keep known-ineligible tables out, and reach them through federation or a `refresh_mode: full` dataset instead.
+A table is eligible when its `REPLICA IDENTITY` yields a key Spice can upsert on, which is narrower than simply having a primary key:
+
+| `REPLICA IDENTITY` | Eligible |
+| ------------------ | -------- |
+| `DEFAULT`          | With a primary key. |
+| `FULL`             | With a primary key — `FULL` alone logs the whole row but names no upsert key. |
+| `USING INDEX`      | When the nominated index is unique, non-partial, and on `NOT NULL` columns. |
+| `NOTHING`          | Never, even with a primary key — no row identity is logged, so updates and deletes cannot be replicated. |
+
+A table that qualifies under none of these is skipped with a warning naming its fix, and left out of the catalog namespace rather than failing the whole catalog. Narrow `include` and `exclude` to keep known-ineligible tables out, and reach them through federation or a `refresh_mode: full` dataset instead.
 
 {% hint style="warning" %}
 Catalog CDC acceleration is **Alpha**: its configuration may still change. Use a durable acceleration `mode` — the default `mode: memory` re-runs the initial snapshot of every table on each restart.
