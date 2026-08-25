@@ -101,14 +101,14 @@ resource "spiceai_app" "app" {
 
 | Argument | Type   | Description                                                                                         |
 | -------- | ------ | --------------------------------------------------------------------------------------------------- |
-| `name`   | string | Project name: 4–38 characters, letters, numbers, and hyphens only. Forces replacement on change.        |
+| `name`   | string | Project name: 4–38 characters, letters, numbers, and hyphens only. Forces replacement on change.    |
 | `cname`  | string | Region identifier. Get values from the `spiceai_regions` data source. Forces replacement on change. |
 
 **Optional arguments:**
 
 | Argument                | Type        | Description                                                         |
 | ----------------------- | ----------- | ------------------------------------------------------------------- |
-| `description`           | string      | Project description                                                     |
+| `description`           | string      | Project description                                                 |
 | `visibility`            | string      | `public` or `private` (default: `private`)                          |
 | `spicepod`              | string      | Spicepod configuration (YAML or JSON string)                        |
 | `image_tag`             | string      | Spice runtime image tag (e.g., `latest`, `v0.18.0`)                 |
@@ -120,15 +120,15 @@ resource "spiceai_app" "app" {
 | `storage_claim_size_gb` | number      | Persistent volume size in GB                                        |
 | `production_branch`     | string      | Git branch for production deployments                               |
 | `update_channel`        | string      | Update channel: `stable`, `nightly`, `internal`, `internal-sandbox` |
-| `tags`                  | map(string) | Key-value tags for the project                                          |
+| `tags`                  | map(string) | Key-value tags for the project                                      |
 
 **Read-only attributes:**
 
-| Attribute    | Description                        |
-| ------------ | ---------------------------------- |
+| Attribute    | Description                            |
+| ------------ | -------------------------------------- |
 | `id`         | Project ID                             |
-| `api_key`    | Primary API key (sensitive)        |
-| `cluster_id` | Cluster identifier                 |
+| `api_key`    | Primary API key (sensitive)            |
+| `cluster_id` | Cluster identifier                     |
 | `created_at` | Timestamp when the project was created |
 
 The `spicepod` can also be provided as JSON or loaded from a template file:
@@ -186,9 +186,9 @@ resource "spiceai_deployment" "production" {
 
 **Required arguments:**
 
-| Argument | Type   | Description          |
-| -------- | ------ | -------------------- |
-| `app_id` | string | The app ID to deploy |
+| Argument | Type   | Description              |
+| -------- | ------ | ------------------------ |
+| `app_id` | string | The project ID to deploy |
 
 **Optional arguments:**
 
@@ -247,7 +247,7 @@ resource "spiceai_secret" "database_password" {
 
 | Argument | Type   | Description                                |
 | -------- | ------ | ------------------------------------------ |
-| `app_id` | number | The app ID                                 |
+| `app_id` | number | The project ID                             |
 | `name`   | string | Secret name. Forces replacement on change. |
 | `value`  | string | Secret value (sensitive)                   |
 
@@ -369,9 +369,9 @@ output "primary_api_key" {
 }
 ```
 
-| Argument | Type   | Description              |
-| -------- | ------ | ------------------------ |
-| `app_id` | string | **Required.** The app ID |
+| Argument | Type   | Description                  |
+| -------- | ------ | ---------------------------- |
+| `app_id` | string | **Required.** The project ID |
 
 | Attribute   | Description                   |
 | ----------- | ----------------------------- |
@@ -472,7 +472,7 @@ data "spiceai_container_images" "stable" {
 # Create the project
 resource "spiceai_app" "production" {
   name        = "my-production-app"
-  description = "Production analytics app"
+  description = "Production analytics project"
   visibility  = "private"
   cname       = data.spiceai_regions.available.regions[0].cname
 
