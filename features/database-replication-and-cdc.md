@@ -96,7 +96,7 @@ datasets:
 
 On startup Spice loads an initial snapshot of the table, then switches to streaming changes. No `refresh_check_interval` is required — changes are applied as they arrive rather than on a poll.
 
-Any accelerator engine can back a replicated dataset. [Cayenne](../building-blocks/data-accelerators/cayenne.md) is built for this workload, sustaining a high-throughput change feed while serving analytical scans from the same table.
+Any accelerator engine can back a replicated dataset. [Cayenne](../building-blocks/data-accelerators/cayenne.md) is built for this workload, sustaining a high-throughput change feed while serving analytical scans from the same table. This applies to datasets; catalog-level replication below is Cayenne-only.
 
 ### PostgreSQL prerequisites
 
@@ -169,6 +169,8 @@ catalogs:
 ```
 
 Every table shares one replication slot and one publication, so the write-ahead log is decoded once for the catalog rather than once per table. The catalog's `acceleration.mode` and `acceleration.params` apply uniformly to each table, and tables are reachable as `{catalog}.{schema}.{table}`.
+
+A catalog's `acceleration.engine` accepts only `cayenne`, and its `refresh_mode` only `changes`; any other value is rejected when the Spicepod is read. The engine may be left out, as above, since `cayenne` is the default.
 
 A table is eligible when its `REPLICA IDENTITY` yields a key Spice can upsert on, which is narrower than simply having a primary key:
 
