@@ -1,27 +1,27 @@
 ---
-description: Scrape per-app runtime metrics
+description: Scrape per-project runtime metrics
 icon: chart-line
 ---
 
 # Metrics API
 
-The metrics endpoint exposes per Spice app instance runtime metrics in Prometheus format. Use this endpoint to scrape metrics and send them to Datadog, Grafana, Prometheus, and OpenTelemetry compatible systems for dashboards and alerting.
+The metrics endpoint exposes per Spice project instance runtime metrics in Prometheus format. Use this endpoint to scrape metrics and send them to Datadog, Grafana, Prometheus, and OpenTelemetry compatible systems for dashboards and alerting.
 
 {% hint style="info" %}
-**Runtime Endpoint:** The metrics endpoint is served by your Spice runtime instance (e.g. `https://<app-cname>.spiceai.io`), not the Management API (`https://api.spice.ai`). Authenticate with your **app API key**, not a Personal Access Token.
+**Runtime Endpoint:** The metrics endpoint is served by your Spice runtime instance (e.g. `https://<project-cname>.spiceai.io`), not the Management API (`https://api.spice.ai`). Authenticate with your **project API key**, not a Personal Access Token.
 {% endhint %}
 
 ## Get Metrics
 
-<mark style="color:blue;">`GET`</mark> `https://<app-cname>.spiceai.io/v1/metrics`
+<mark style="color:blue;">`GET`</mark> `https://<project-cname>.spiceai.io/v1/metrics`
 
-Returns runtime metrics for the Spice app instance in Prometheus exposition format.
+Returns runtime metrics for the Spice project instance in Prometheus exposition format.
 
 ### Headers
 
 | Header      | Type   | Description      |
 | ----------- | ------ | ---------------- |
-| `X-API-Key` | string | Your app API key |
+| `X-API-Key` | string | Your project API key |
 
 ### Response
 
@@ -243,6 +243,6 @@ In addition to these core metrics, individual components can expose their own me
 See also:
 
 * [Monitoring](../../monitoring/) - Set up dashboards with Grafana, Prometheus, or Datadog
-* [Apps API](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage your apps
-* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage app API keys
+* [Projects API](/broken/pages/Cxualhhbj3JVjFycQplA) - Manage your projects
+* [API Keys](/broken/pages/C2SEPG58kdQqhs4SL9B7) - Manage project API keys
 * [Observability](../../features/observability/) - Observability features in the portal

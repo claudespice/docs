@@ -5,11 +5,11 @@ icon: terminal
 
 # API Reference
 
-The Spice.ai Cloud Platform exposes two sets of APIs: **Runtime APIs** for querying data and AI, and the **Management API** for managing apps and infrastructure.
+The Spice.ai Cloud Platform exposes two sets of APIs: **Runtime APIs** for querying data and AI, and the **Management API** for managing projects and infrastructure.
 
 ## Runtime APIs
 
-Runtime APIs are served at `https://data.spiceai.io` and authenticated with [App API keys](../portal/apps/api-keys.md).
+Runtime APIs are served at `https://data.spiceai.io` and authenticated with [Project API keys](../portal/apps/api-keys.md).
 
 | API                      | Endpoint                       | Documentation                                            |
 | ------------------------ | ------------------------------ | -------------------------------------------------------- |
@@ -29,7 +29,7 @@ The Management API is served at `https://api.spice.ai` and authenticated with [P
 
 | Endpoint         | Documentation                                              |
 | ---------------- | ---------------------------------------------------------- |
-| Apps             | [Apps API](/broken/pages/Cxualhhbj3JVjFycQplA)             |
+| Projects             | [Projects API](/broken/pages/Cxualhhbj3JVjFycQplA)             |
 | Deployments      | [Deployments API](/broken/pages/cW4Y9zvF1YF9X2ExU15D)      |
 | Secrets          | [Secrets API](/broken/pages/jux7LfeRfZnBFKMpjIXA)          |
 | API Keys         | [API Keys API](/broken/pages/C2SEPG58kdQqhs4SL9B7)         |

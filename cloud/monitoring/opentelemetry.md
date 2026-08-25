@@ -7,7 +7,7 @@ icon: satellite-dish
 
 Spice Cloud can **push** metrics to any OpenTelemetry-compatible backend over OTLP, as an alternative to having a monitoring agent **scrape** the [metrics endpoint](../api/metrics.md).
 
-Pushing is configured in the app's [spicepod](../portal/app-spicepod/spicepod-configuration.md) under `runtime.telemetry.otel_exporter`. No collector or agent is required — the runtime exports directly to the endpoint.
+Pushing is configured in the project's [spicepod](../portal/app-spicepod/spicepod-configuration.md) under `runtime.telemetry.otel_exporter`. No collector or agent is required — the runtime exports directly to the endpoint.
 
 ```yaml
 runtime:
@@ -25,11 +25,11 @@ Both paths expose the same runtime metrics. They differ in which side initiates 
 | | Scrape | Push (OTLP) |
 | --- | --- | --- |
 | Initiated by | The monitoring agent | The Spice runtime |
-| Configured in | The agent | The app spicepod |
-| Reachability | Agent must reach the app endpoint | Runtime must reach the backend |
+| Configured in | The agent | The project spicepod |
+| Reachability | Agent must reach the project endpoint | Runtime must reach the backend |
 | Temporality | Always cumulative | `delta` by default, configurable |
 
-Push suits backends that offer a hosted OTLP intake, and avoids running an agent that has network access to the app. Scrape suits an existing Prometheus-based stack. See [Grafana & Prometheus](grafana.md) and [Datadog](datadog.md) for the scrape path.
+Push suits backends that offer a hosted OTLP intake, and avoids running an agent that has network access to the project. Scrape suits an existing Prometheus-based stack. See [Grafana & Prometheus](grafana.md) and [Datadog](datadog.md) for the scrape path.
 
 ### Configuration reference
 

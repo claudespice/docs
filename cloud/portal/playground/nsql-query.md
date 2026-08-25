@@ -7,11 +7,11 @@ icon: comment-code
 
 **Text-to-SQL** turns a natural language question into a SQL query, runs it, and shows both the query and its results. The generated SQL stays visible and editable, so it can be checked and corrected before being relied on.
 
-Open it by navigating to an App **Playground** and clicking **Text-to-SQL** in the sidebar.
+Open it by navigating to a project's **Playground** and clicking **Text-to-SQL** in the sidebar.
 
 ## Prerequisites
 
-The app must have a model with tools support configured in its spicepod — Text-to-SQL relies on the model's access to dataset schemas to generate a query. When no suitable model is configured, the page prompts to configure one instead.
+The project must have a model with tools support configured in its spicepod — Text-to-SQL relies on the model's access to dataset schemas to generate a query. When no suitable model is configured, the page prompts to configure one instead.
 
 To add a model, see [Spicepod Configuration](../app-spicepod/spicepod-configuration.md) and set `tools: auto` in the model's `params`, as in the [AI Chat](ai-chat.md) example.
 
@@ -25,7 +25,7 @@ To add a model, see [Spicepod Configuration](../app-spicepod/spicepod-configurat
 The generated SQL appears in the editor and runs automatically, with results in the panel below. The SQL can then be edited and re-run, as in the [SQL Query](sql-query-editor.md) editor.
 
 {% hint style="info" %}
-Enabling **Sample data** sends sample values from the app's datasets to the configured model provider. Leave it off when working with sensitive data.
+Enabling **Sample data** sends sample values from the project's datasets to the configured model provider. Leave it off when working with sensitive data.
 {% endhint %}
 
 ## Using the API

@@ -5,7 +5,7 @@ icon: database
 
 # SQL Query
 
-Open the SQL editor by navigating to an App **Playground** and clicking **SQL Query** in the sidebar.
+Open the SQL editor by navigating to a project's **Playground** and clicking **SQL Query** in the sidebar.
 
 ### SQL table, column, and keyword suggestions
 
@@ -23,4 +23,4 @@ Examples of using the SQL suggestions:
 
 ### Datasets Reference
 
-The datasets reference displays all available datasets from the current app and allows you to search through them. Clicking on the dataset will insert a sample query into the SQL editor, which will be automatically selected for execution.
+The datasets reference displays all available datasets from the current project and allows you to search through them. Clicking on the dataset will insert a sample query into the SQL editor, which will be automatically selected for execution.

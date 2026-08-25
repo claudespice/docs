@@ -24,11 +24,11 @@ See [AI Gateway](../features/ai-gateway.md) for full feature details.
 
 See [Model Providers](../building-blocks/model-providers/) for the complete list.
 
-## Setting Up AI in Your App
+## Setting Up AI in Your Project
 
 ### 1. Add a model provider secret
 
-Store your model provider API key as a [secret](../portal/apps/secrets.md) in your app (e.g., `OPENAI_API_KEY`).
+Store your model provider API key as a [secret](../portal/apps/secrets.md) in your project (e.g., `OPENAI_API_KEY`).
 
 ### 2. Configure a model in your Spicepod
 
@@ -42,7 +42,7 @@ models:
 
 ### 3. Deploy
 
-Deploy your app to make the model available.
+Deploy your project to make the model available.
 
 ### 4. Use the API
 
@@ -62,7 +62,7 @@ curl https://data.spiceai.io/v1/chat/completions \
 
 ### OpenAI-compatible API
 
-The AI Gateway exposes an OpenAI-compatible interface at `https://data.spiceai.io/v1/chat/completions`. You can use any OpenAI-compatible client library — just point it at the Spice.ai endpoint and use your app's API key.
+The AI Gateway exposes an OpenAI-compatible interface at `https://data.spiceai.io/v1/chat/completions`. You can use any OpenAI-compatible client library — just point it at the Spice.ai endpoint and use your project's API key.
 
 ### Custom tools & system prompts
 
@@ -83,9 +83,9 @@ All AI requests include full [OpenTelemetry observability](../features/observabi
 
 ### AI chat returns errors
 
-1. **Model not configured** — Ensure a model is defined in your Spicepod and the app is deployed.
+1. **Model not configured** — Ensure a model is defined in your Spicepod and the project is deployed.
 2. **Missing secret** — Verify the model provider API key is stored as a secret and referenced correctly with `${secrets:SECRET_NAME}`.
-3. **Secret changes require redeployment** — After adding or updating secrets, redeploy the app.
+3. **Secret changes require redeployment** — After adding or updating secrets, redeploy the project.
 
 ### Model not found
 

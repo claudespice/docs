@@ -1,18 +1,18 @@
 ---
-description: Monitor Spice Cloud apps with Prometheus, Grafana, Datadog, and OpenTelemetry
+description: Monitor Spice Cloud projects with Prometheus, Grafana, Datadog, and OpenTelemetry
 icon: chart-mixed
 ---
 
 # Monitoring
 
-Spice Cloud exposes a [Prometheus-compatible metrics endpoint](../api/metrics.md) (`/v1/metrics`) on each app instance. Use it to scrape runtime metrics and build dashboards and alerts in your monitoring platform of choice.
+Spice Cloud exposes a [Prometheus-compatible metrics endpoint](../api/metrics.md) (`/v1/metrics`) on each project instance. Use it to scrape runtime metrics and build dashboards and alerts in your monitoring platform of choice.
 
 ```bash
-curl https://<app-cname>.spiceai.io/v1/metrics \
+curl https://<project-cname>.spiceai.io/v1/metrics \
   -H "X-API-Key: <API_KEY>"
 ```
 
-Metrics can also be **pushed** to any OpenTelemetry-compatible backend over OTLP, configured in the app spicepod, which needs no scraping agent. See [OpenTelemetry](opentelemetry.md).
+Metrics can also be **pushed** to any OpenTelemetry-compatible backend over OTLP, configured in the project spicepod, which needs no scraping agent. See [OpenTelemetry](opentelemetry.md).
 
 Pre-built dashboards and setup guides are available:
 

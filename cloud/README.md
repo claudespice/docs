@@ -29,6 +29,10 @@ This documentation covers the **Spice.ai Cloud Platform**.
 For the self-hostable **Spice.ai OSS** runtime, visit [**docs.spiceai.org**](https://docs.spiceai.org).
 {% endhint %}
 
+{% hint style="info" %}
+**Projects were previously called apps.** These docs use **project** throughout. The resource is unchanged — only the name is different. The Management API still serves the legacy `/v1/apps` paths, the OAuth scopes are still named `apps:read`, `apps:write`, and `apps:delete`, and the Terraform provider still uses `spiceai_app`. See [Projects](portal/apps/) and [Management APIs](api/management/).
+{% endhint %}
+
 <table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>:rocket:</strong></td><td><strong>Get Started</strong></td><td>Sign up and run your first query in minutes</td><td><a href="getting-started/get-started/">get-started</a></td></tr><tr><td><strong>:zap:</strong></td><td><strong>Federated SQL Query</strong></td><td>Query across any data source with one SQL interface</td><td><a href="/broken/pages/BAR8Dpx6oKXyrfmiHXyC">Broken link</a></td></tr><tr><td><strong>:robot:</strong></td><td><strong>AI Gateway</strong></td><td>OpenAI-compatible API for LLM inference</td><td><a href="/broken/pages/hA54hkUt5wHuVhwyvawp">Broken link</a></td></tr><tr><td><strong>:mag:</strong></td><td><strong>Search &#x26; Retrieval</strong></td><td>Vector and hybrid search for RAG workflows</td><td><a href="/broken/pages/JyUtOgBpN04WM4vzH1tc">Broken link</a></td></tr><tr><td><strong>:plug:</strong></td><td><strong>Data Connectors</strong></td><td>Connect to 30+ databases, warehouses, and lakes</td><td><a href="/broken/pages/TqUYlnf0jpMU6k3dv9vL">Broken link</a></td></tr><tr><td><strong>:bar_chart:</strong></td><td><strong>Monitoring</strong></td><td>Observe performance with Grafana, Datadog, and more</td><td><a href="monitoring/">monitoring</a></td></tr></tbody></table>
 
 ## What You Can Do
@@ -57,7 +61,7 @@ With the **Spice.ai Cloud Platform** you can:
 Get up and running in minutes:
 
 1. [Sign in with GitHub](getting-started/get-started/portal-login.md)
-2. [Create a Spice app](getting-started/getting-started/portal-login-1.md)
+2. [Create a Spice project](getting-started/getting-started/portal-login-1.md)
 3. [Add a dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
 4. [Add an AI model and chat](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
 

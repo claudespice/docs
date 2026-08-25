@@ -35,6 +35,6 @@ Once these options are set, click "Save & Test". Grafana should report "OK" if t
 
 Create a visualization using the FlightSQL Spice.AI data source. Select the configured datasource from the list of datasources in the visualization creator.
 
-Create your query using the SQL builder, or switch to a plain SQL editor by clicking the "Edit SQL" button. In this example, the query retrieves the latest query execution times from the configured App instance and displays them as a line graph.
+Create your query using the SQL builder, or switch to a plain SQL editor by clicking the "Edit SQL" button. In this example, the query retrieves the latest query execution times from the configured Project instance and displays them as a line graph.
 
 Grafana may not automatically update the visualization when changes are made to the query. To force the visualization to update with new query changes, click the "Query Inspector" button, and click "Refresh".

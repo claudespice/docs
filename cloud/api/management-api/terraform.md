@@ -7,6 +7,10 @@ icon: cube
 
 The [Spice.ai Terraform Provider](https://registry.terraform.io/providers/spiceai/spiceai/latest) enables infrastructure-as-code management of your Spice.ai Cloud resources.
 
+{% hint style="info" %}
+Projects were previously called apps. The provider's published schema still uses the original names — the resource is `spiceai_app`, the data sources are `spiceai_app` and `spiceai_apps`, and the attribute is `app_id`. Existing configurations continue to work unchanged, and the examples below use those names.
+{% endhint %}
+
 ## Quick Start
 
 ```hcl
@@ -65,7 +69,7 @@ provider "spiceai" {
 
 ### spiceai\_app
 
-Manages a Spice.ai application.
+Manages a Spice.ai project.
 
 ```hcl
 resource "spiceai_app" "app" {
@@ -97,14 +101,14 @@ resource "spiceai_app" "app" {
 
 | Argument | Type   | Description                                                                                         |
 | -------- | ------ | --------------------------------------------------------------------------------------------------- |
-| `name`   | string | App name: 4–38 characters, letters, numbers, and hyphens only. Forces replacement on change.        |
+| `name`   | string | Project name: 4–38 characters, letters, numbers, and hyphens only. Forces replacement on change.        |
 | `cname`  | string | Region identifier. Get values from the `spiceai_regions` data source. Forces replacement on change. |
 
 **Optional arguments:**
 
 | Argument                | Type        | Description                                                         |
 | ----------------------- | ----------- | ------------------------------------------------------------------- |
-| `description`           | string      | App description                                                     |
+| `description`           | string      | Project description                                                     |
 | `visibility`            | string      | `public` or `private` (default: `private`)                          |
 | `spicepod`              | string      | Spicepod configuration (YAML or JSON string)                        |
 | `image_tag`             | string      | Spice runtime image tag (e.g., `latest`, `v0.18.0`)                 |
@@ -116,16 +120,16 @@ resource "spiceai_app" "app" {
 | `storage_claim_size_gb` | number      | Persistent volume size in GB                                        |
 | `production_branch`     | string      | Git branch for production deployments                               |
 | `update_channel`        | string      | Update channel: `stable`, `nightly`, `internal`, `internal-sandbox` |
-| `tags`                  | map(string) | Key-value tags for the app                                          |
+| `tags`                  | map(string) | Key-value tags for the project                                          |
 
 **Read-only attributes:**
 
 | Attribute    | Description                        |
 | ------------ | ---------------------------------- |
-| `id`         | App ID                             |
+| `id`         | Project ID                             |
 | `api_key`    | Primary API key (sensitive)        |
 | `cluster_id` | Cluster identifier                 |
-| `created_at` | Timestamp when the app was created |
+| `created_at` | Timestamp when the project was created |
 
 The `spicepod` can also be provided as JSON or loaded from a template file:
 
@@ -159,10 +163,10 @@ resource "spiceai_app" "templated" {
 
 ### spiceai\_deployment
 
-Creates a deployment for a Spice.ai app. Deployments are immutable — any changes create a new deployment.
+Creates a deployment for a Spice.ai project. Deployments are immutable — any changes create a new deployment.
 
 ```hcl
-# Basic deployment using app defaults
+# Basic deployment using project defaults
 resource "spiceai_deployment" "deploy" {
   app_id = spiceai_app.app.id
 }
@@ -209,7 +213,7 @@ resource "spiceai_deployment" "production" {
 | `finished_at`   | Timestamp when the deployment finished                            |
 | `error_message` | Error message if deployment failed                                |
 
-Use `triggers` to automatically redeploy when app configuration changes:
+Use `triggers` to automatically redeploy when project configuration changes:
 
 ```hcl
 resource "spiceai_deployment" "auto" {
@@ -229,7 +233,7 @@ Deployments are append-only. Removing a deployment resource from your configurat
 
 ### spiceai\_secret
 
-Manages secrets for a Spice.ai app. Secret values are encrypted at rest.
+Manages secrets for a Spice.ai project. Secret values are encrypted at rest.
 
 ```hcl
 resource "spiceai_secret" "database_password" {
@@ -309,7 +313,7 @@ Lists available deployment regions.
 ```hcl
 data "spiceai_regions" "available" {}
 
-# Use in app resource
+# Use in project resource
 resource "spiceai_app" "app" {
   name  = "my-spicecloud-app"
   cname = data.spiceai_regions.available.regions[0].cname
@@ -352,7 +356,7 @@ resource "spiceai_app" "app" {
 
 ### spiceai\_api\_keys
 
-Retrieves the API keys for an app. Each app has two API keys to support key rotation.
+Retrieves the API keys for a project. Each project has two API keys to support key rotation.
 
 ```hcl
 data "spiceai_api_keys" "keys" {
@@ -376,7 +380,7 @@ output "primary_api_key" {
 
 ### spiceai\_app
 
-Gets details about an existing app by ID.
+Gets details about an existing project by ID.
 
 ```hcl
 data "spiceai_app" "existing" {
@@ -390,7 +394,7 @@ output "app_name" {
 
 ### spiceai\_apps
 
-Lists all apps in the organization.
+Lists all projects in the organization.
 
 ```hcl
 data "spiceai_apps" "all" {}
@@ -414,7 +418,7 @@ output "member_usernames" {
 
 ### spiceai\_secrets
 
-Lists secrets for an app (values are masked).
+Lists secrets for a project (values are masked).
 
 ```hcl
 data "spiceai_secrets" "app_secrets" {
@@ -431,7 +435,7 @@ output "secret_names" {
 Import existing resources into Terraform state:
 
 ```bash
-# Import an app by ID
+# Import a project by ID
 terraform import spiceai_app.example 12345
 
 # Import a deployment (app_id/deployment_id)
@@ -465,7 +469,7 @@ data "spiceai_container_images" "stable" {
   channel = "stable"
 }
 
-# Create the app
+# Create the project
 resource "spiceai_app" "production" {
   name        = "my-production-app"
   description = "Production analytics app"

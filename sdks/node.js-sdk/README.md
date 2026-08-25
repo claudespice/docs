@@ -96,7 +96,7 @@ The response includes:
 #### Other methods
 
 * `nsql(query, options?)` — generate and run SQL from a natural language question. See the [Text-to-SQL API](../../cloud/api/nsql.md).
-* `search(query, options?)` — run a search query against the app's datasets.
+* `search(query, options?)` — run a search query against the project's datasets.
 * `refreshAcceleration(dataset, options?)` — trigger a refresh of an accelerated dataset.
 * `isSpiceReady()` and `isSpiceHealthy()` — check the runtime's readiness and health.
 

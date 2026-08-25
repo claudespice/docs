@@ -13,7 +13,7 @@ Spice supports federated queries, enabling you to join and combine data from mul
 
 ### Playground SQL Explorer
 
-The Playground SQL Explorer is the fastest way to get started with federated queries, debugging queries, and iterating quickly. The SQL Query Editor be accessed by clicking on the **SQL Explorer** tab after selecting **Playground** in the app navigation bar.
+The Playground SQL Explorer is the fastest way to get started with federated queries, debugging queries, and iterating quickly. The SQL Query Editor be accessed by clicking on the **SQL Explorer** tab after selecting **Playground** in the project navigation bar.
 
 <figure><img src="../.gitbook/assets/CleanShot 2026-01-09 at 00.43.27@2x.png" alt=""><figcaption><p>The Playground SQL Query Editor.</p></figcaption></figure>
 

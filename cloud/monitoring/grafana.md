@@ -9,7 +9,7 @@ Spice Cloud can be monitored with Grafana using the [Metrics endpoint](../api/me
 
 ## Prometheus Configuration
 
-Configure a Prometheus instance to scrape metrics from your Spice Cloud app:
+Configure a Prometheus instance to scrape metrics from your Spice Cloud project:
 
 ```yaml
 global:
@@ -20,12 +20,12 @@ scrape_configs:
     scheme: https
     metrics_path: /v1/metrics
     static_configs:
-      - targets: ['<app-cname>.spiceai.io']
+      - targets: ['<project-cname>.spiceai.io']
     headers:
       X-API-Key: <API_KEY>
 ```
 
-Replace `<app-cname>` with your app's CNAME (e.g. `us-west-2-prod-aws-data`) and `<API_KEY>` with your [app API key](../portal/apps/api-keys.md).
+Replace `<project-cname>` with your project's CNAME (e.g. `us-west-2-prod-aws-data`) and `<API_KEY>` with your [project API key](../portal/apps/api-keys.md).
 
 ## Import Grafana Dashboard
 

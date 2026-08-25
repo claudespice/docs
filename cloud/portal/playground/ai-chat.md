@@ -8,12 +8,12 @@ icon: user-robot
 {% hint style="info" %}
 **PREREQUISITE**
 
-Ensure the Spice App is deployed with a model. For detailed instructions on how to deploy a model, refer to the [Model Documentation](../models.md).
+Ensure the Spice project is deployed with a model. For detailed instructions on how to deploy a model, refer to the [Model Documentation](../models.md).
 {% endhint %}
 
 ### Using AI Chat
 
-Open the AI Chat by navigating to an App **Playground** and clicking **AI Chat** in the sidebar.
+Open the AI Chat by navigating to a project's **Playground** and clicking **AI Chat** in the sidebar.
 
 Start to use AI Chat by typing in the question and clicking send.
 

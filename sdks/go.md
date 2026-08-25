@@ -59,7 +59,7 @@ The options passed to `Init` are package-level functions on `gospice`, not metho
 
 | Option                     | Description                                                       |
 | -------------------------- | ----------------------------------------------------------------- |
-| `WithApiKey(key)`          | App API key, in `appId\|secret` form.                             |
+| `WithApiKey(key)`          | Project API key, in `appId\|secret` form.                             |
 | `WithSpiceCloudAddress()`  | Connect to Spice.ai Cloud.                                        |
 | `WithFlightAddress(addr)`  | Arrow Flight address. A `grpc://` prefix selects plaintext; otherwise TLS is used. |
 | `WithHttpAddress(addr)`    | HTTP address, used for health checks and dataset refreshes.        |

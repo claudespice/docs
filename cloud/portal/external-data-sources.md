@@ -11,7 +11,7 @@ External Data Sources initially supports connecting to [PostgreSQL](https://www.
 
 ### Adding an External Data Source
 
-External Data Sources are added and managed through [organizations](organizations.md) and are available to all Spice applications within the organization. They are private and are not visible or accessible to applications in other organizations.
+External Data Sources are added and managed through [organizations](organizations.md) and are available to all Spice projects within the organization. They are private and are not visible or accessible to projects in other organizations.
 
 Navigate to the organization's **Settings** and then the **Data Sources** section.
 

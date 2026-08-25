@@ -53,7 +53,7 @@ pd = data.read_pandas()
 
 `Client` has the following arguments, all optional:
 
-* **api\_key** (string): App API key, used to authenticate with Spice.ai Cloud. Falls back to the `SPICE_API_KEY` environment variable.
+* **api\_key** (string): Project API key, used to authenticate with Spice.ai Cloud. Falls back to the `SPICE_API_KEY` environment variable.
 * **flight\_url** (string): Arrow Flight endpoint (default: `grpc://localhost:50051`). Use `grpc+tls://` for TLS and `grpc://` for plaintext.
 * **http\_url** (string): HTTP endpoint, used for dataset refreshes (default: `https://data.spiceai.io`).
 * **tls\_root\_cert** (Path or string): Path to the TLS certificate to use for the secure connection (omit for automatic detection).

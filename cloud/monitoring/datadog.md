@@ -17,7 +17,7 @@ Configure the Datadog Agent to scrape your Spice Cloud metrics endpoint. Edit th
 init_config:
 
 instances:
-  - prometheus_url: https://<app-cname>.spiceai.io/v1/metrics
+  - prometheus_url: https://<project-cname>.spiceai.io/v1/metrics
     headers:
       X-API-Key: <API_KEY>
     namespace: spice
@@ -25,7 +25,7 @@ instances:
       - '*'
 ```
 
-Replace `<app-cname>` with your app's CNAME (e.g. `us-west-2-prod-aws-data`) and `<API_KEY>` with your [app API key](../portal/apps/api-keys.md).
+Replace `<project-cname>` with your project's CNAME (e.g. `us-west-2-prod-aws-data`) and `<API_KEY>` with your [project API key](../portal/apps/api-keys.md).
 
 Restart the Agent to start collecting Spice metrics. Refer to [Prometheus and OpenMetrics metrics collection from a host](https://docs.datadoghq.com/integrations/guide/prometheus-host-collection/) for all available configuration options and supported parameters.
 

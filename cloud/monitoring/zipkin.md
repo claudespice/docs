@@ -9,7 +9,7 @@ Spice supports distributed tracing by integrating with Zipkin and compatible tra
 
 ## Configuration
 
-Enable Zipkin tracing by configuring the `runtime.tracing` section in your app's `spicepod.yaml`:
+Enable Zipkin tracing by configuring the `runtime.tracing` section in your project's `spicepod.yaml`:
 
 ```yaml
 runtime:
