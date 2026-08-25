@@ -21,6 +21,8 @@ helm install spiceai deploy/chart \
 | `image.repository`                       | Container image repository                        | `709825985650.dkr.ecr.us-east-1.amazonaws.com/spice-ai/spiceai-enterprise-byol` |
 | `image.tag`                              | Container image tag                               | `latest-models`                      |
 | `replicaCount`                           | Number of replicas                                | `1`                                  |
+| `strategy`                               | Update strategy for the `Deployment`              | — (Kubernetes default)               |
+| `updateStrategy`                         | Update strategy for the `StatefulSet`             | — (Kubernetes default)               |
 | `serviceAccount.create`                  | Create a `ServiceAccount`                         | `false`                              |
 | `serviceAccount.name`                    | `ServiceAccount` name                             | —                                    |
 | `serviceAccount.annotations`             | Annotations for the `ServiceAccount`              | `{}`                                 |
@@ -69,6 +71,26 @@ stateful:
   size: 50Gi
   mountPath: /data
 ```
+
+## Update Strategy
+
+Both keys are unset by default, so Kubernetes applies its own default strategy. Which one the chart reads depends on `stateful.enabled`.
+
+With `stateful.enabled: false` the chart renders a `Deployment` and reads `strategy`:
+
+```yaml
+strategy:
+  type: Recreate
+```
+
+With `stateful.enabled: true` the chart renders a `StatefulSet` and reads `updateStrategy`:
+
+```yaml
+updateStrategy:
+  type: RollingUpdate
+```
+
+The key that does not match `stateful.enabled` is ignored, so setting `strategy` on a `StatefulSet` deployment has no effect. Each value is passed through to the workload spec unchanged, so any field the Kubernetes strategy type accepts — `rollingUpdate.maxUnavailable`, `rollingUpdate.partition` — can be set alongside `type`.
 
 ## Resource Limits
 
