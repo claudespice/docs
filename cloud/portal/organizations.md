@@ -12,7 +12,7 @@ When you create an account on Spice.ai, a single member organization of the same
 
 Spice.ai organizations are created by connecting an existing GitHub organization to Spice.ai.
 
-1. Click on the organization dropdown icon in the application selector. Next, select the **Create Org** option from the menu.
+1. Click on the organization dropdown icon in the project selector. Next, select the **Create Org** option from the menu.
 2. Check to accept the terms and conditions for the new organization, then proceed by clicking the **Connect GitHub organization** button.
 3. A window will pop up from GitHub where you can select the organization to install the Spice.ai GitHub App into.
 4. On the confirmation page proceed by clicking the **Install** button.
@@ -20,13 +20,13 @@ Spice.ai organizations are created by connecting an existing GitHub organization
 
 ### View Organizations
 
-To view your organizations, click the dropdown icon from the application selector.
+To view your organizations, click the dropdown icon from the project selector.
 
 All organizations you have access to are listed.
 
 ### Organization Management
 
-Click on the first tab to access the details of your current organization or select another organization from the menu to view its information. On this page, you will see all the applications that have been created within the selected organization.
+Click on the first tab to access the details of your current organization or select another organization from the menu to view its information. On this page, you will see all the projects that have been created within the selected organization.
 
 Click the **Settings** tab to view information about the organization, including members and billing information.
 

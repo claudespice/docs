@@ -25,7 +25,7 @@ Roles are assigned per organization member. [Learn more about organizations.](or
 
 ### Create an organization secret
 
-1. Select the organization from the application selector.
+1. Select the organization from the project selector.
 2. Navigate to the **Settings** tab and select the **Secrets** section.
 3. Fill the **Name** and **Value** fields and click **Add**.
 

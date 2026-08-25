@@ -107,7 +107,7 @@ Secret changes require a **new deployment** before they take effect. After updat
 
 ### Project is paused
 
-On the [Community Plan](../pricing/community.md), applications that receive no API requests for 7 consecutive days are automatically paused. To restore:
+On the [Community Plan](../pricing/community.md), projects that receive no API requests for 7 consecutive days are automatically paused. To restore:
 
 1. Go to your project in the [Portal](https://spice.ai).
 2. Resume the project.
