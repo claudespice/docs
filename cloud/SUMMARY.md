@@ -26,6 +26,7 @@
   * [Tags](portal/apps/tags.md)
   * [Publish](portal/apps/publish.md)
   * [Connect GitHub](portal/apps/connect-github.md)
+  * [Pause and Resume](portal/apps/pause.md)
   * [Transfer](portal/apps/transfer.md)
   * [Delete](portal/apps/delete.md)
   * [Runtime](portal/apps/runtime.md)
