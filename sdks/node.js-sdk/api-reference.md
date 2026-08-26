@@ -170,13 +170,23 @@ Runs a search query against the project's datasets.
 const results = await spiceClient.search('quarterly revenue trends');
 ```
 
-#### `query(sql, onData?, headers?)` — Deprecated query method
+#### `query(sql, options?)` — Submit an asynchronous query
 
-Deprecated and scheduled for removal in a future version. Use `sql()` instead.
+Submits a query for asynchronous execution and resolves to an `AsyncQuery` handle rather than a `Table`. Requires the runtime to be running in distributed (scheduler) mode. Use `sql()` for the synchronous, streaming path.
+
+* `sql` (string, required): The SQL query to submit.
+* `options` (object, optional): Query options, including `parameters` for parameterized queries.
 
 ```javascript
-const table = await spiceClient.query("SELECT * FROM tpch.lineitem LIMIT 10");
+const job = await spiceClient.query('SELECT * FROM taxi_trips');
+const table = await job.results(); // waits for completion, then fetches results
 ```
+
+The handle exposes `status()`, `waitForCompletion(options?)`, `results()`, and `cancel()`. `queryWithParams(sql, parameters)` is equivalent to `query()` with `options.parameters` set, and `listQueries()` lists submitted jobs.
+
+{% hint style="warning" %}
+Before `3.2.0`, `query()` was a synchronous alias for `sql()`. The call compiles unchanged but now resolves to a job handle instead of a `Table`.
+{% endhint %}
 
 #### `setMaxRetries(retries)` — Configure connection retries
 

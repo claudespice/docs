@@ -44,7 +44,7 @@ The builder also accepts `WithApiKey(string)`, `WithFlightAddress(string)`, `Wit
 2. Execute a query and get back an Apache Arrow [Flight Client Record Batch Stream Reader](https://github.com/apache/arrow/blob/67bbf846d0d47075e1711b3fb4cf8fb05c74bd09/csharp/src/Apache.Arrow.Flight/Client/FlightClientRecordBatchStreamReader.cs#L22).
 
 ```csharp
-var result = await client.Query("SELECT * FROM tpch.lineitem LIMIT 10;");
+var result = await client.SqlAsync("SELECT * FROM tpch.lineitem LIMIT 10;");
 ```
 
 3. Iterate through the reader to access the records.
@@ -60,10 +60,10 @@ while (await enumerator.MoveNextAsync())
 
 ### Parameterized queries
 
-`QueryWithParams(string sql, params object?[] parameters)` binds positional `$1`, `$2` placeholders:
+`SqlWithParamsAsync(string sql, params object?[] parameters)` binds positional `$1`, `$2` placeholders:
 
 ```csharp
-var data = await client.QueryWithParams(
+var data = await client.SqlWithParamsAsync(
     "SELECT * FROM tpch.lineitem WHERE l_quantity > $1 LIMIT 10;", 10);
 
 var batch = await data!.ReadNextRecordBatchAsync();
@@ -72,6 +72,17 @@ var batch = await data!.ReadNextRecordBatchAsync();
 {% hint style="info" %}
 Parameters are positional only. Named placeholders such as `:product_id` are not supported.
 {% endhint %}
+
+### Asynchronous queries
+
+`QueryAsync(string sql)` and `QueryWithParamsAsync(string sql, params object?[] parameters)` submit a query for asynchronous execution and return an `AsyncQuery` handle instead of a reader. They require the runtime to be running in distributed (scheduler) mode.
+
+```csharp
+var query = await client.QueryAsync("SELECT * FROM taxi_trips");
+var stream = await query.GetResultsAsync(); // waits for completion
+```
+
+The handle also exposes `Id`, `GetStatusAsync()`, `WaitAsync()`, and `CancelAsync()`.
 
 ### Usage with local Spice runtime
 
@@ -83,7 +94,7 @@ using Spice;
 using var client = new SpiceClientBuilder()
     .Build();
 
-var data = await client.Query("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;");
+var data = await client.SqlAsync("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;");
 ```
 
 Or using a custom flight address:
