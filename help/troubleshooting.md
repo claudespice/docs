@@ -9,7 +9,7 @@ description: Solutions to common issues with the Spice.ai Cloud Platform.
 
 ### API requests return `401 Unauthorized`
 
-- Verify you're using the correct API key for your app. Each app has its own keys — find them in the [Portal](../portal/apps/api-keys.md) under your app's settings.
+- Verify you're using the correct API key for your project. Each project has its own keys — find them in the [Portal](../portal/apps/api-keys.md) under your project's settings.
 - If you recently regenerated a key, the old key is immediately invalidated. Update all clients to use the new key.
 - Ensure the API key is passed correctly:
   - **HTTP API**: Include the `X-API-Key` header.
@@ -18,7 +18,7 @@ description: Solutions to common issues with the Spice.ai Cloud Platform.
 
 ### API key rotation without downtime
 
-Each app has **two API keys**. To rotate without downtime:
+Each project has **two API keys**. To rotate without downtime:
 
 1. Regenerate **Key 2** (while all clients use Key 1).
 2. Update all clients to use Key 2.
@@ -36,7 +36,7 @@ See [API Keys](../portal/apps/api-keys.md) for details.
   SELECT * FROM "MyTable"
   ```
 
-- Confirm the dataset is configured in your app's [Spicepod](../portal/app-spicepod/spicepod-configuration.md) and the app has been deployed.
+- Confirm the dataset is configured in your project's [Spicepod](../portal/app-spicepod/spicepod-configuration.md) and the project has been deployed.
 - Ensure the data connector credentials (secrets) are correct and the source is accessible.
 
 ### Query times out or is slow
@@ -57,7 +57,7 @@ The HTTP SQL API has row and timeout limits. If you're hitting these:
 
 ### Data connector fails to connect
 
-- Verify the connection credentials are stored as [secrets](../portal/apps/secrets.md) in your app and referenced correctly in the Spicepod using `${secrets:SECRET_NAME}` syntax.
+- Verify the connection credentials are stored as [secrets](../portal/apps/secrets.md) in your project and referenced correctly in the Spicepod using `${secrets:SECRET_NAME}` syntax.
 - Confirm the data source is network-accessible from Spice.ai Cloud (check firewalls, IP allowlists, VPC peering).
 - Check the [Data Connectors](../building-blocks/data-connectors/) documentation for connector-specific configuration requirements.
 
@@ -65,7 +65,7 @@ The HTTP SQL API has row and timeout limits. If you're hitting these:
 
 Spice infers the dataset schema at deployment time. If the source schema has changed (columns added, removed, or types changed):
 
-1. Redeploy the app to re-infer the schema.
+1. Redeploy the project to re-infer the schema.
 
 The accelerated table will be re-initialized with the updated schema on redeployment.
 
@@ -79,9 +79,9 @@ When connecting to object stores (S3, ABFS, etc.):
 
 ### AI chat returns errors or empty responses
 
-- Confirm a [model is configured](../features/ai-gateway.md) in your app's Spicepod and the app is deployed.
+- Confirm a [model is configured](../features/ai-gateway.md) in your project's Spicepod and the project is deployed.
 - Ensure the model provider API key (e.g., OpenAI, Anthropic) is stored as a [secret](../portal/apps/secrets.md) and referenced correctly.
-- After adding or changing a secret, **redeploy the app** — secret changes don't take effect until the next deployment.
+- After adding or changing a secret, **redeploy the project** — secret changes don't take effect until the next deployment.
 
 ### Model not available or not responding
 
@@ -97,7 +97,7 @@ This is by design. Secret values are **write-only** — they cannot be retrieved
 
 1. Delete the existing secret.
 2. Create a new secret with the same name and the updated value.
-3. Redeploy the app.
+3. Redeploy the project.
 
 ### Changes to secrets not taking effect
 
@@ -105,12 +105,12 @@ Secret changes require a **new deployment** before they take effect. After updat
 
 ## Deployments
 
-### App is paused
+### Project is paused
 
-On the [Community Plan](../pricing/community.md), applications that receive no API requests for 7 consecutive days are automatically paused. To restore:
+On the [Community Plan](../pricing/community.md), projects that receive no API requests for 7 consecutive days are automatically paused. To restore:
 
-1. Go to your app in the [Portal](https://spice.ai).
-2. Resume the app.
+1. Go to your project in the [Portal](https://spice.ai).
+2. Resume the project.
 
 [Paid plans](../pricing/plans.md) do not auto-pause.
 

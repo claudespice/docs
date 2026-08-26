@@ -1,7 +1,7 @@
 ---
 description: >-
   A step-by-step guide to login to your Spice.ai account, connect with your
-  Github organizations, and create your first app.
+  Github organizations, and create your first project.
 ---
 
 # Step 1 - Portal Login
@@ -25,7 +25,7 @@ description: >-
 
 <figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-**Congrats, you're ready to create your first** [**app**](../portal/apps/)**!**
+**Congrats, you're ready to create your first** [**project**](../portal/apps/)**!**
 
 {% hint style="info" %}
 Raise issues or feedback with our team on [Slack](https://spiceai.org/slack).

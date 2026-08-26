@@ -21,7 +21,7 @@ You may also use Apache's `pyarrow` library directly.
 * Endpoint URL: `grpc+tls://flight.spiceai.io`
 * Basic Authentication:
   * Username can be set to an empty string
-  * Password should be set to the API key of your app
+  * Password should be set to the API key of your project
 
 #### Requirements
 

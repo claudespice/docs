@@ -17,11 +17,11 @@ See the full [Getting Started guide](../getting-started/get-started/) for a step
 
 ## API Keys
 
-Each Spice.ai app has **two API keys** that authenticate requests to the data and AI APIs.
+Each Spice.ai project has **two API keys** that authenticate requests to the data and AI APIs.
 
 ### Where to find your API keys
 
-Navigate to your app in the [Portal](https://spice.ai) → **Settings** → **API Keys**.
+Navigate to your project in the [Portal](https://spice.ai) → **Settings** → **API Keys**.
 
 ### How API keys are used
 
@@ -35,7 +35,7 @@ Navigate to your app in the [Portal](https://spice.ai) → **Settings** → **AP
 
 ### Rotating API keys
 
-Each app has two keys to support **zero-downtime rotation**:
+Each project has two keys to support **zero-downtime rotation**:
 
 1. Regenerate Key 2 (while clients use Key 1).
 2. Update all clients to use Key 2.
@@ -49,11 +49,11 @@ API keys can also be managed via the [Management API](../api/management/api-keys
 
 ## Personal Access Tokens
 
-The [Management API](../api/management/) uses **personal access tokens** (not app API keys) for authentication. Generate tokens in the Portal under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
+The [Management API](../api/management/) uses **personal access tokens** (not project API keys) for authentication. Generate tokens in the Portal under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
 
 ## Organizations
 
-Organizations are the primary unit for managing teams, apps, billing, and access.
+Organizations are the primary unit for managing teams, projects, billing, and access.
 
 ### Personal organization
 
@@ -61,7 +61,7 @@ Every user automatically receives a **personal organization** on signup. This is
 
 ### Team organizations
 
-Team organizations allow multiple members to collaborate on shared apps. To create one:
+Team organizations allow multiple members to collaborate on shared projects. To create one:
 
 1. In the Portal, go to **Organizations** → **Create Organization**.
 2. Connect a **GitHub organization** to link team membership.
@@ -84,9 +84,9 @@ See [Organizations](../portal/organizations.md) for full details.
 
 The free [Community Plan](../pricing/community.md) includes:
 
-- One app per organization.
+- One project per organization.
 - Access to all building blocks (data connectors, AI gateway, search, etc.).
-- **Auto-pause**: Apps without API requests for 7 days are automatically paused. Paused apps can be restored anytime in the Portal.
+- **Auto-pause**: Projects without API requests for 7 days are automatically paused. Paused projects can be restored anytime in the Portal.
 
 ### Paid Plans
 
@@ -102,11 +102,11 @@ See [Pricing](https://spice.ai/pricing/cloud) for current plan details.
 
 ## Secrets
 
-App secrets store sensitive configuration values (API keys for data sources, model provider credentials, etc.).
+Project secrets store sensitive configuration values (API keys for data sources, model provider credentials, etc.).
 
 ### Key behaviors
 
-- Secrets are **app-scoped** and encrypted.
+- Secrets are **project-scoped** and encrypted.
 - Values are **write-only** — they cannot be retrieved after saving.
 - To change a value: delete the secret and recreate it.
 - Secret changes require a **new deployment** to take effect.

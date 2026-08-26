@@ -7,7 +7,7 @@ description: Spice.ai APIs, SDKs, endpoints, and query best practices.
 
 ## API Endpoints
 
-Spice.ai exposes two sets of APIs: **runtime APIs** (for querying data and AI) and the **Management API** (for managing apps and infrastructure).
+Spice.ai exposes two sets of APIs: **runtime APIs** (for querying data and AI) and the **Management API** (for managing projects and infrastructure).
 
 ### Runtime APIs
 
@@ -21,11 +21,11 @@ Spice.ai exposes two sets of APIs: **runtime APIs** (for querying data and AI) a
 
 ### Management API
 
-The Management API at `https://api.spice.ai/v1/` uses **personal access tokens** or **OAuth tokens** (not app API keys).
+The Management API at `https://api.spice.ai/v1/` uses **personal access tokens** or **OAuth tokens** (not project API keys).
 
 | Endpoint    | Documentation                                       |
 | ----------- | --------------------------------------------------- |
-| Apps        | [Apps API](../api/management/apps.md)               |
+| Projects        | [Projects API](../api/management/apps.md)               |
 | Deployments | [Deployments API](../api/management/deployments.md) |
 | API Keys    | [API Keys API](../api/management/api-keys.md)       |
 | Secrets     | [Secrets API](../api/management/secrets.md)         |
@@ -117,7 +117,7 @@ The HTTP API has built-in row and timeout limits. Switch to Arrow Flight or an S
 
 ### Management API returns `401`
 
-The Management API uses **personal access tokens**, not app API keys. Generate a token under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
+The Management API uses **personal access tokens**, not project API keys. Generate a token under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
 
 ## Further Reading
 

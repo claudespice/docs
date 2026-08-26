@@ -113,7 +113,7 @@ Converts natural language queries into SQL and executes them.
 * `query` (string, required): The natural language query.
 * `options` (object, optional):
   * `datasets` (array, optional): Dataset names to sample from when building the model context. A sampling hint only — it does not restrict which tables the query can target.
-  * `model` (string, optional): Model to use for SQL generation. When omitted, the single compatible model configured in the app is used; if none or more than one is configured, the request fails.
+  * `model` (string, optional): Model to use for SQL generation. When omitted, the single compatible model configured in the project is used; if none or more than one is configured, the request fails.
   * `sample_data_enabled` (boolean, optional): Include sample data in context (default: `false`).
 
 See the [Text-to-SQL API](../../cloud/api/nsql.md) for the full contract.
@@ -164,7 +164,7 @@ const isReady = await spiceClient.isSpiceReady();
 
 #### `search(query, options?)` — Search datasets
 
-Runs a search query against the app's datasets.
+Runs a search query against the project's datasets.
 
 ```javascript
 const results = await spiceClient.search('quarterly revenue trends');

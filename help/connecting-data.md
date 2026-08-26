@@ -26,7 +26,7 @@ For the full list of connectors and configuration options, see [Data Connectors]
 
 ### 1. Store credentials as secrets
 
-Data source credentials should be stored as [secrets](../portal/apps/secrets.md) in your app. In the Portal, go to your app → **Secrets** and create entries for connection strings, access keys, or tokens.
+Data source credentials should be stored as [secrets](../portal/apps/secrets.md) in your project. In the Portal, go to your project → **Secrets** and create entries for connection strings, access keys, or tokens.
 
 {% hint style="info" %}
 Secret values are write-only and cannot be retrieved after saving.
@@ -34,7 +34,7 @@ Secret values are write-only and cannot be retrieved after saving.
 
 ### 2. Configure the dataset in your Spicepod
 
-Add a dataset entry to your app's `spicepod.yaml` referencing the connector and secrets:
+Add a dataset entry to your project's `spicepod.yaml` referencing the connector and secrets:
 
 ```yaml
 datasets:
@@ -50,7 +50,7 @@ datasets:
 
 ### 3. Deploy
 
-Commit and deploy your app to make the dataset available for querying.
+Commit and deploy your project to make the dataset available for querying.
 
 ## Data Acceleration
 
@@ -89,7 +89,7 @@ When connecting to object stores (S3, ABFS):
 
 ### Schema changes break data refresh
 
-Spice infers the schema at deployment time. If the source schema changes, refresh will fail. **Redeploy the app** to pick up the new schema.
+Spice infers the schema at deployment time. If the source schema changes, refresh will fail. **Redeploy the project** to pick up the new schema.
 
 ### Connection failures
 

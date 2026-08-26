@@ -58,7 +58,7 @@ With the **Spice.ai Cloud Platform** you can:
 Get up and running in minutes:
 
 1. [Sign in with GitHub](getting-started/get-started/portal-login.md)
-2. [Create a Spice app](getting-started/getting-started/portal-login-1.md)
+2. [Create a Spice project](getting-started/getting-started/portal-login-1.md)
 3. [Add a dataset and query data](getting-started/get-started/step-2-add-dataset-and-query-data.md)
 4. [Add an AI model and chat](getting-started/get-started/step-3-add-ai-model-and-chat-with-your-app.md)
 
