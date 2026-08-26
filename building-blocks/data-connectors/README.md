@@ -47,7 +47,7 @@ File formats currently supported are:
 | Name                                           | Parameter              | Supported | Is Document Format |
 | ---------------------------------------------- | ---------------------- | --------- | ------------------ |
 | [Apache Parquet](https://parquet.apache.org/)  | `file_format: parquet` | ✅         | ❌                  |
-| [CSV](../../reference/file-format.md#csv) | `file_format: csv`     | ✅         | ❌                  |
+| [CSV](../../cloud/reference/file-format.md#csv) | `file_format: csv`     | ✅         | ❌                  |
 | [Apache Iceberg](https://iceberg.apache.org/)  | `file_format: iceberg` | Roadmap   | ❌                  |
 | JSON                                           | `file_format: json`    | Roadmap   | ❌                  |
 | Microsoft Excel                                | `file_format: xlsx`    | Roadmap   | ❌                  |
@@ -56,7 +56,7 @@ File formats currently supported are:
 | PDF                                            | `file_format: pdf`     | Alpha     | ✅                  |
 | Microsoft Word                                 | `file_format: docx`    | Alpha     | ✅                  |
 
-File formats support additional parameters in the `params` (like `csv_has_header`) described in [File Formats](/reference/file-format.md)
+File formats support additional parameters in the `params` (like `csv_has_header`) described in [File Formats](../../cloud/reference/file-format.md)
 
 If a format is a document format, each file will be treated as a document, as per [document support](./#document-support) below.
 
