@@ -44,7 +44,7 @@ from spicepy import Client
 
 client = Client(
     api_key='API_KEY',
-    flight_url='grpc+tls://flight.spiceai.io',
+    flight_url='grpc+tls://us-east-1-prod-aws-flight.spiceai.io',
 )
 
 data = client.sql('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
@@ -55,7 +55,9 @@ pd = data.read_pandas()
 
 * **api\_key** (string): Project API key, used to authenticate with Spice.ai Cloud. Falls back to the `SPICE_API_KEY` environment variable.
 * **flight\_url** (string): Arrow Flight endpoint (default: `grpc://localhost:50051`). Use `grpc+tls://` for TLS and `grpc://` for plaintext.
-* **http\_url** (string): HTTP endpoint, used for dataset refreshes (default: `https://data.spiceai.io`).
+* **http\_url** (string): HTTP endpoint, used for dataset refreshes (default: `http://localhost:8090`).
+
+  Both default to the **local runtime**. Cloud endpoints are region-specific — substitute your app's region for `us-east-1` in `grpc+tls://us-east-1-prod-aws-flight.spiceai.io` and `https://us-east-1-prod-aws-data.spiceai.io`. The region-agnostic `flight.spiceai.io` and `data.spiceai.io` hostnames are retired and no longer resolve for this SDK.
 * **tls\_root\_cert** (Path or string): Path to the TLS certificate to use for the secure connection (omit for automatic detection).
 * **user\_agent** (string): Overrides the reported user agent.
 

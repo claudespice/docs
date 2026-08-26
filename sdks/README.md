@@ -51,6 +51,10 @@ Each SDK ships defaults for both Cloud and a local runtime. The exact values and
 Most SDKs default to the **local** runtime for Flight. Connecting to Spice.ai Cloud generally requires setting the Cloud endpoint explicitly, or calling the SDK's Cloud helper — supplying an API key alone is not always enough. Each page states what its own defaults are.
 {% endhint %}
 
+{% hint style="danger" %}
+**The Cloud hosts above are region-agnostic, and the Python SDK no longer accepts them.** From `spicepy` v4.0.0 the Cloud endpoints are region-specific — `grpc+tls://<region>-prod-aws-flight.spiceai.io` and `https://<region>-prod-aws-data.spiceai.io`, defaulting to `us-east-1` — and the SDK documents `flight.spiceai.io` / `data.spiceai.io` as no longer valid. Substitute your app's region. The other SDK pages still show the region-agnostic hosts; see [spicehq/docs#160](https://github.com/spicehq/docs/issues/160) for the per-SDK audit.
+{% endhint %}
+
 ## Choosing between an SDK and the APIs directly
 
 An SDK is preferable for application code: it handles the Flight handshake, authentication headers, and retries. Query directly against the [HTTP API](../cloud/api/sql-query/http-api.md) or [Arrow Flight API](../cloud/api/sql-query/apache-arrow-flight-api.md) when a language has no SDK, or for one-off requests from a shell.

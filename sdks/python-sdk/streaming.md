@@ -11,7 +11,7 @@ The object returned from `spicepy.Client.sql()` is a [`pyarrow.flight.FlightStre
 ```python
 >>> from spicepy import Client
 >>> import os
->>> client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://flight.spiceai.io")
+>>> client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://us-east-1-prod-aws-flight.spiceai.io")
 >>> rdr = client.sql("SELECT * FROM taxi_trips")
 <pyarrow._flight.FlightStreamReader object at 0x1059c9980>
 ```
@@ -26,7 +26,7 @@ In this example, we retrieve all 10,000 suppliers from the TPCH Suppliers table.
 import os
 from spicepy import Client
 
-client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://flight.spiceai.io")
+client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://us-east-1-prod-aws-flight.spiceai.io")
 query = """
     SELECT s_suppkey, s_name
     FROM tpch.supplier

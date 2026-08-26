@@ -92,19 +92,18 @@ let mut stream = client
 
 `query` and `query_with_bindings` submit a query for asynchronous execution and return a `QueryJob` handle instead of a stream. They require the runtime to be running in distributed (scheduler) mode.
 
-These methods go over HTTP rather than Flight, so the client needs `.http_url()` in addition to the Flight configuration above — without it, `query` returns `QueryError::HttpError` before submitting anything.
+These methods go over HTTP rather than Flight, so the client needs `.http_url()` — without it, `query` returns `QueryError::HttpError` before submitting anything. `results()` does not block: it returns `QueryError::NotReady` while the job is still pending or running, so wait on the handle first with `wait()` or `wait_timeout()`.
 
 ```rust
 let client = ClientBuilder::new()
-  .api_key("API_KEY")
-  .use_spiceai_cloud()
-  .http_url("https://data.spiceai.io")
+  .http_url("http://localhost:8090")
   .build()
   .await
   .unwrap();
 
 let job = client.query("SELECT * FROM taxi_trips").await.expect("Error submitting query");
-let batches = job.results().await.expect("Error reading results"); // waits for completion
+job.wait().await.expect("Error waiting for the query");
+let batches = job.results().await.expect("Error reading results");
 ```
 
 ### Usage with local Spice runtime
