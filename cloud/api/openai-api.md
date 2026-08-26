@@ -6,7 +6,7 @@ icon: brain-circuit
 
 ## Chat Completions
 
-Spice provides an OpenAI compatible chat completion AI at [https://data.spiceai.io/v1/chat/completions](https://data.spiceai.io/v1/chat/completions). Authorize with the endpoint using a [Project API key](../../portal/apps/api-keys.md).
+Spice provides an OpenAI compatible chat completion AI at [https://data.spiceai.io/v1/chat/completions](https://data.spiceai.io/v1/chat/completions). Authorize with the endpoint using a [Project API key](../portal/apps/api-keys.md).
 
 The project requires a configured and deployed model to respond to chat completion requests.
 

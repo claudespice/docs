@@ -1,7 +1,7 @@
 ---
 description: >-
   A step-by-step guide to login to your Spice.ai account, connect with your
-  Github organizations, and create your first project.
+  GitHub organizations, and create your first project.
 ---
 
 # Step 1 - Portal Login

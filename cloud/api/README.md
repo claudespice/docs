@@ -29,7 +29,7 @@ The Management API is served at `https://api.spice.ai` and authenticated with [P
 
 | Endpoint         | Documentation                                              |
 | ---------------- | ---------------------------------------------------------- |
-| Projects             | [Projects API](/broken/pages/Cxualhhbj3JVjFycQplA)             |
+| Projects         | [Projects API](management/)                                |
 | Deployments      | [Deployments API](/broken/pages/cW4Y9zvF1YF9X2ExU15D)      |
 | Secrets          | [Secrets API](/broken/pages/jux7LfeRfZnBFKMpjIXA)          |
 | API Keys         | [API Keys API](/broken/pages/C2SEPG58kdQqhs4SL9B7)         |
