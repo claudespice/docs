@@ -13,7 +13,7 @@ Spice.ai Cloud uses **GitHub for authentication**. To create an account:
 2. Click **Sign in with GitHub** and authorize the Spice.ai GitHub App.
 3. A personal organization is created automatically for you.
 
-See the full [Getting Started guide](../getting-started/get-started/) for a step-by-step walkthrough.
+See the full [Getting Started guide](../cloud/getting-started/get-started/) for a step-by-step walkthrough.
 
 ## API Keys
 
@@ -27,10 +27,10 @@ Navigate to your project in the [Portal](https://spice.ai) → **Settings** → 
 
 | API                                                             | Authentication        |
 | --------------------------------------------------------------- | --------------------- |
-| [SQL HTTP API](../api/sql-query/http-api.md)                    | `X-API-Key` header    |
-| [Arrow Flight API](../api/sql-query/apache-arrow-flight-api.md) | Password in handshake |
-| [LLM API](../api/openai-api.md)                                 | `X-API-Key` header    |
-| [Search API](../api/search.md)                                  | `X-API-Key` header    |
+| [SQL HTTP API](../cloud/api/sql-query/http-api.md)                    | `X-API-Key` header    |
+| [Arrow Flight API](../cloud/api/sql-query/apache-arrow-flight-api.md) | Password in handshake |
+| [LLM API](../cloud/api/openai-api.md)                                 | `X-API-Key` header    |
+| [Search API](../cloud/api/search.md)                                  | `X-API-Key` header    |
 | [SDKs](../sdks/python-sdk/)                                     | Client configuration  |
 
 ### Rotating API keys
@@ -45,11 +45,11 @@ Each project has two keys to support **zero-downtime rotation**:
 Regenerating a key **immediately invalidates** the old key. Ensure all clients are updated before regenerating.
 {% endhint %}
 
-API keys can also be managed via the [Management API](../api/management/api-keys.md).
+API keys can also be managed via the [Management API](../cloud/api/management/).
 
 ## Personal Access Tokens
 
-The [Management API](../api/management/) uses **personal access tokens** (not project API keys) for authentication. Generate tokens in the Portal under [Profile → Personal Access Tokens](../portal/profile/personal-access-tokens.md).
+The [Management API](../cloud/api/management/) uses **personal access tokens** (not project API keys) for authentication. Generate tokens in the Portal under [Profile → Personal Access Tokens](../cloud/portal/profile/personal-access-tokens.md).
 
 ## Organizations
 
@@ -76,13 +76,13 @@ Organization admins can add members by:
 
 To remove a member, go to your organization's **Settings** → **Members**.
 
-See [Organizations](../portal/organizations.md) for full details.
+See [Organizations](../cloud/portal/organizations.md) for full details.
 
 ## Plans & Billing
 
 ### Community Plan (Free)
 
-The free [Community Plan](../pricing/community.md) includes:
+The free [Community Plan](../cloud/pricing/community.md) includes:
 
 - One project per organization.
 - Access to all building blocks (data connectors, AI gateway, search, etc.).
@@ -90,7 +90,7 @@ The free [Community Plan](../pricing/community.md) includes:
 
 ### Paid Plans
 
-[Paid plans](../pricing/plans.md) provide:
+[Paid plans](../cloud/pricing/plans.md) provide:
 
 - Higher request and query limits.
 - No auto-pause.
@@ -112,7 +112,7 @@ Project secrets store sensitive configuration values (API keys for data sources,
 - Secret changes require a **new deployment** to take effect.
 - Reference secrets in your Spicepod with: `${secrets:SECRET_NAME}`.
 
-See [Secrets](../portal/apps/secrets.md) for details.
+See [Secrets](../cloud/portal/apps/secrets.md) for details.
 
 ## Security & Compliance
 

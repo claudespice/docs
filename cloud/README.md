@@ -89,4 +89,4 @@ print(df)
 * **Slack** — Ask questions and get help from the team at [spice.ai/slack](https://spice.ai/slack).
 * **GitHub** — File issues and contribute at [github.com/spiceai/spiceai](https://github.com/spiceai/spiceai).
 * **Enterprise support** — [Paid plans](pricing/plans.md) include priority support with an SLA.
-* **Help Center** — Browse the [Help Center](help/) for troubleshooting, guides, and FAQs.
+* **Help Center** — Browse the [Help Center](../help/) for troubleshooting, guides, and FAQs.
