@@ -76,18 +76,18 @@ Call `read_pandas()` to read the whole result into a dataframe, or read it incre
 
 ### Usage with local Spice runtime
 
-Follow the [quickstart guide](https://github.com/spiceai/spiceai?tab=readme-ov-file#%EF%B8%8F-quickstart-local-machine) to install and run spice locally. `flight_url` already defaults to the local runtime:
+Follow the [quickstart guide](https://github.com/spiceai/spiceai?tab=readme-ov-file#%EF%B8%8F-quickstart-local-machine) to install and run spice locally. `flight_url` and `http_url` both already default to the local runtime, so no arguments are required:
 
 ```python
 from spicepy import Client
 
-client = Client(http_url='http://localhost:8090')
+client = Client()
 data = client.sql('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
 pd = data.read_pandas()
 ```
 
 {% hint style="info" %}
-`flight_url` defaults to the local runtime, but `http_url` defaults to Spice.ai Cloud. When working entirely locally, set `http_url` as above so dataset refreshes are sent to the local runtime.
+Pass `api_key` (and, for Cloud, `flight_url`/`http_url` — see [Usage](#usage) above) when connecting to Spice.ai Cloud instead of a local runtime.
 {% endhint %}
 
 ### Parameterized queries
