@@ -49,7 +49,7 @@ For a Cloud connection with no other configuration, `spiceai::Client::new("API_K
 2\. Execute a query and get back a stream of Apache Arrow record batches.
 
 ```rust
-let mut flight_data_stream = client.query("SELECT * FROM tpch.lineitem LIMIT 10;").await.expect("Error executing query");
+let mut flight_data_stream = client.sql("SELECT * FROM tpch.lineitem LIMIT 10;").await.expect("Error executing query");
 ```
 
 The binding must be `mut`, because advancing the stream takes a mutable borrow.
@@ -74,7 +74,28 @@ while let Some(batch) = flight_data_stream.next().await {
 
 ### Parameterized queries
 
-`query_with_params` binds parameters supplied as an Arrow `RecordBatch` whose fields are named `$1`, `$2`, and so on.
+`sql_with_params` binds parameters supplied as an Arrow `RecordBatch` whose fields are named `$1`, `$2`, and so on. For a single row of scalar values, `sql_with_bindings` builds that batch from a `QueryParameters` list:
+
+```rust
+use spiceai::QueryParameters;
+
+let mut stream = client
+    .sql_with_bindings(
+        "SELECT * FROM taxi_trips WHERE VendorID = $1 AND fare_amount > $2 LIMIT 10;",
+        QueryParameters::new().push(1_i32).push(1.0_f64),
+    )
+    .await
+    .expect("Error executing query");
+```
+
+### Asynchronous queries
+
+`query` and `query_with_bindings` submit a query for asynchronous execution and return a `QueryJob` handle instead of a stream. They require the runtime to be running in distributed (scheduler) mode.
+
+```rust
+let job = client.query("SELECT * FROM taxi_trips").await.expect("Error submitting query");
+let batches = job.results().await.expect("Error reading results"); // waits for completion
+```
 
 ### Usage with local Spice runtime
 
@@ -90,7 +111,7 @@ async fn main() {
     .await
     .unwrap();
 
-  let data = client.query("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;").await;
+  let data = client.sql("SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;").await;
 }
 ```
 

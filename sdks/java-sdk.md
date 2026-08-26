@@ -24,7 +24,7 @@ The library targets **Java 11** and above, and is tested against the following i
 <dependency>
     <groupId>ai.spice</groupId>
     <artifactId>spiceai</artifactId>
-    <version>0.7.0</version>
+    <version>0.8.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -32,7 +32,7 @@ The library targets **Java 11** and above, and is tested against the following i
 
 {% tab title="Gradle" %}
 ```groovy
-implementation 'ai.spice:spiceai:0.7.0'
+implementation 'ai.spice:spiceai:0.8.0'
 ```
 {% endtab %}
 {% endtabs %}
@@ -65,7 +65,7 @@ For mutual TLS, connection pooling, and query deadlines, see [Mutual TLS](#mutua
 3\. Execute a query and get back a [`FlightStream`](https://arrow.apache.org/docs/java/reference/org.apache.arrow.flight.core/org/apache/arrow/flight/FlightStream.html).
 
 ```java
-FlightStream stream = spice.query("SELECT * FROM tpch.lineitem LIMIT 10");
+FlightStream stream = spice.sql("SELECT * FROM tpch.lineitem LIMIT 10");
 ```
 
 4\. Iterate through the `FlightStream` to access the records.
@@ -82,10 +82,10 @@ Check [full example](https://github.com/spiceai/spice-java/blob/trunk/src/main/j
 
 ### Parameterized queries
 
-`queryWithParams(String sql, Object... params)` binds positional `$1`, `$2` placeholders and returns an `ArrowReader`, which the caller closes.
+`sqlWithParams(String sql, Object... params)` binds positional `$1`, `$2` placeholders and returns an `ArrowReader`, which the caller closes.
 
 ```java
-try (ArrowReader reader = spice.queryWithParams(
+try (ArrowReader reader = spice.sqlWithParams(
         "SELECT * FROM tpch.lineitem WHERE l_quantity > $1 LIMIT 10", 10)) {
     while (reader.loadNextBatch()) {
         System.out.println(reader.getVectorSchemaRoot().contentToTSVString());
@@ -93,7 +93,7 @@ try (ArrowReader reader = spice.queryWithParams(
 }
 ```
 
-Parameterized queries run on Apache Arrow Flight SQL prepared statements over the same connections as `query()`, so they inherit the client's TLS, retry, and keep-alive settings.
+Parameterized queries run on Apache Arrow Flight SQL prepared statements over the same connections as `sql()`, so they inherit the client's TLS, retry, and keep-alive settings.
 
 Prepared statements are cached and reused, which removes the prepare round trips from every repeated query. The cache holds 64 statements by default; `withPreparedStatementCacheSize(0)` disables caching:
 
@@ -104,6 +104,22 @@ SpiceClient spice = SpiceClient.builder()
 ```
 
 Failures surface as a `FlightRuntimeException` wrapped in an `ExecutionException`.
+
+### Asynchronous queries
+
+`query(String sql)` and `queryWithParams(String sql, Object... params)` submit a query for asynchronous execution and return an `AsyncQuery` handle instead of streaming results. They require the runtime to be running in distributed (scheduler) mode.
+
+```java
+AsyncQuery asyncQuery = spice.query("SELECT * FROM taxi_trips");
+
+try (ArrowReader reader = asyncQuery.results()) { // blocks until the query completes
+    while (reader.loadNextBatch()) {
+        System.out.println(reader.getVectorSchemaRoot().contentToTSVString());
+    }
+}
+```
+
+The handle also exposes `getQueryId()`, `status()` for a single poll, `waitForCompletion(Duration)` to bound the wait, and `cancel()`.
 
 ### Usage with local Spice.ai OSS runtime
 

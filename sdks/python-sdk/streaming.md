@@ -6,13 +6,13 @@ This can be used to enable more efficient pipelining scenarios where processing 
 
 &#x20;`spicepy` enables streaming through the use of the [pyarrow Flight API](https://arrow.apache.org/docs/dev/python/api/flight.html).
 
-The object returned from `spicepy.Client.query()` is a [`pyarrow.flight.FlightStreamReader`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.flight.FlightStreamReader.html#pyarrow.flight.FlightStreamReader).
+The object returned from `spicepy.Client.sql()` is a [`pyarrow.flight.FlightStreamReader`](https://arrow.apache.org/docs/dev/python/generated/pyarrow.flight.FlightStreamReader.html#pyarrow.flight.FlightStreamReader).
 
 ```python
 >>> from spicepy import Client
 >>> import os
 >>> client = Client(api_key=os.environ["API_KEY"], flight_url="grpc+tls://flight.spiceai.io")
->>> rdr = client.query("SELECT * FROM taxi_trips")
+>>> rdr = client.sql("SELECT * FROM taxi_trips")
 <pyarrow._flight.FlightStreamReader object at 0x1059c9980>
 ```
 
@@ -32,7 +32,7 @@ query = """
     FROM tpch.supplier
 """
 
-reader = client.query(query)
+reader = client.sql(query)
 suppliers = reader.read_pandas()
 ```
 
@@ -41,7 +41,7 @@ This call will return a pandas [`DataFrame`](https://pandas.pydata.org/docs/refe
 Alternatively, to process chunks of data as they arrive instead of waiting for all data to arrive, `FlightStreamReader` supports reading chunks of data as they become available with `read_chunk()`. Using the same query example above, but processing data chunk by chunk:
 
 ```python
-reader = client.query(query)
+reader = client.sql(query)
 
 has_more = True
 while has_more:
@@ -54,5 +54,5 @@ while has_more:
 ```
 
 {% hint style="info" %}
-`query_with_params()` returns a `pyarrow.RecordBatchReader`, but the full result is read before the reader is returned, so it does not deliver partial results as they arrive. Use `query()` for streaming.
+`sql_with_params()` returns a `pyarrow.RecordBatchReader`, but the full result is read before the reader is returned, so it does not deliver partial results as they arrive. Use `sql()` for streaming.
 {% endhint %}

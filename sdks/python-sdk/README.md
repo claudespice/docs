@@ -22,7 +22,7 @@ The following packages are installed automatically:
 Install from the [GitHub repository](https://github.com/spiceai/spicepy), pinned to a release tag:
 
 ```bash
-pip install git+https://github.com/spiceai/spicepy@v3.1.0
+pip install git+https://github.com/spiceai/spicepy@v4.0.0
 ```
 
 {% hint style="danger" %}
@@ -37,7 +37,7 @@ pip install adbc-driver-flightsql adbc-driver-manager
 
 ### Usage
 
-Create a `Client`, then call `query()`:
+Create a `Client`, then call `sql()`:
 
 ```python
 from spicepy import Client
@@ -47,7 +47,7 @@ client = Client(
     flight_url='grpc+tls://flight.spiceai.io',
 )
 
-data = client.query('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
+data = client.sql('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
 pd = data.read_pandas()
 ```
 
@@ -63,7 +63,7 @@ pd = data.read_pandas()
 The `SPICE_API_KEY` environment variable authenticates HTTP requests only — it is not applied to Arrow Flight. Pass `api_key` to the constructor when querying Spice.ai Cloud.
 {% endhint %}
 
-Once a `Client` is obtained, queries can be made using the `query()` function, which returns a `pyarrow.flight.FlightStreamReader`. It has the following arguments:
+Once a `Client` is obtained, queries can be made using the `sql()` function, which returns a `pyarrow.flight.FlightStreamReader`. It has the following arguments:
 
 * **query** (string, required): The SQL query.
 * **timeout** (int, optional): The timeout in seconds.
@@ -80,7 +80,7 @@ Follow the [quickstart guide](https://github.com/spiceai/spiceai?tab=readme-ov-f
 from spicepy import Client
 
 client = Client(http_url='http://localhost:8090')
-data = client.query('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
+data = client.sql('SELECT trip_distance, total_amount FROM taxi_trips ORDER BY trip_distance DESC LIMIT 10;', timeout=5*60)
 pd = data.read_pandas()
 ```
 
@@ -90,10 +90,10 @@ pd = data.read_pandas()
 
 ### Parameterized queries
 
-`query_with_params(sql, params)` binds positional `$1`, `$2` placeholders and returns a `pyarrow.RecordBatchReader`. It requires the two ADBC packages listed under [Installation](#installation).
+`sql_with_params(sql, params)` binds positional `$1`, `$2` placeholders and returns a `pyarrow.RecordBatchReader`. It requires the two ADBC packages listed under [Installation](#installation).
 
 ```python
-reader = client.query_with_params(
+reader = client.sql_with_params(
     'SELECT trip_distance, fare_amount FROM taxi_trips WHERE trip_distance > $1 LIMIT 10',
     [5.0],
 )
@@ -103,6 +103,20 @@ for batch in reader:
 ```
 
 Parameter values may be plain Python values, whose Arrow type is inferred, or `(value, pyarrow_type)` tuples to set the type explicitly. Pass `[]` for a query with no parameters; `None` raises `ValueError`.
+
+### Asynchronous queries
+
+`query(sql)` and `query_with_params(sql, params)` submit a query for asynchronous execution instead of streaming results back. Both return a `QueryJob` handle used to wait for completion and fetch results, and both require `http_url` to be configured and the runtime to be running in distributed (scheduler) mode.
+
+```python
+job = client.query('SELECT * FROM taxi_trips')
+job.wait()
+
+for row in job.results():
+    print(row)
+```
+
+Parameters passed to `query_with_params` must be JSON-encodable values — the `(value, pyarrow_type)` tuple form is accepted only by `sql_with_params`.
 
 ### Refreshing a dataset
 

@@ -9,7 +9,7 @@ The [Go SDK](https://github.com/spiceai/gospice) `gospice` is the easiest way to
 
 It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) to efficiently stream data to the client and [Apache Arrow](https://arrow.apache.org/) Records as data frames.
 
-GoDocs are available at [pkg.go.dev/github.com/spiceai/gospice/v8](https://pkg.go.dev/github.com/spiceai/gospice/v8).
+GoDocs are available at [pkg.go.dev/github.com/spiceai/gospice/v9](https://pkg.go.dev/github.com/spiceai/gospice/v9).
 
 ### Requirements
 
@@ -20,11 +20,11 @@ GoDocs are available at [pkg.go.dev/github.com/spiceai/gospice/v8](https://pkg.g
 Get the **gospice** package.
 
 ```bash
-go get github.com/spiceai/gospice/v8@latest
+go get github.com/spiceai/gospice/v9@latest
 ```
 
 {% hint style="warning" %}
-The module path carries the major version. Requesting `gospice/v7` resolves an older major release, not the latest.
+The module path carries the major version. Requesting `gospice/v8` resolves an older major release, not the latest.
 {% endhint %}
 
 ### Usage
@@ -32,7 +32,7 @@ The module path carries the major version. Requesting `gospice/v7` resolves an o
 1\. Import the package.
 
 ```go
-import gospice "github.com/spiceai/gospice/v8"
+import gospice "github.com/spiceai/gospice/v9"
 ```
 
 2\. Create a `SpiceClient` by providing your API key. Get your free API key at [spice.ai](https://spice.ai/).
@@ -96,6 +96,25 @@ reader, err := spice.SqlWithParams(
     10,
 )
 ```
+
+### Asynchronous queries
+
+`Query` and `QueryWithParams` submit a query for asynchronous execution and return an `*AsyncQuery` handle instead of a record reader. They require the runtime to be running in distributed (scheduler) mode.
+
+```go
+query, err := spice.Query(context.Background(), "SELECT * FROM taxi_trips")
+if err != nil {
+    panic(fmt.Errorf("error submitting query: %w", err))
+}
+
+reader, err := query.Results(context.Background()) // waits for completion
+if err != nil {
+    panic(fmt.Errorf("error reading results: %w", err))
+}
+defer reader.Release()
+```
+
+The handle also exposes `ID()`, `Status(ctx)`, `Wait(ctx)`, and `Cancel(ctx)`.
 
 ### Usage with local Spice runtime
 

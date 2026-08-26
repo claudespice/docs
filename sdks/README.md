@@ -11,12 +11,32 @@ Every SDK connects to either **Spice.ai Cloud** or a **local Spice runtime**. Au
 
 | Language            | Package                         | Latest      | Documentation                       |
 | ------------------- | ------------------------------- | ----------- | ----------------------------------- |
-| Python              | `spicepy`                       | `v3.1.0`    | [Python SDK](python-sdk/)           |
-| TypeScript, Node.js | `@spiceai/spice`                | `3.1.0`     | [Node.js SDK](node.js-sdk/)         |
-| Go                  | `github.com/spiceai/gospice/v8` | `v8.0.1`    | [Go SDK](go.md)                     |
-| Rust                | `spiceai`                       | `3.0.0`     | [Rust SDK](rust-sdk/)               |
-| Java                | `ai.spice:spiceai`              | `0.6.0`     | [Java SDK](java-sdk.md)             |
-| C#, .NET            | `SpiceAI`                       | `0.3.0`     | [.NET SDK](dotnet-sdk.md)           |
+| Python              | `spicepy`                       | `v4.0.0`    | [Python SDK](python-sdk/)           |
+| TypeScript, Node.js | `@spiceai/spice`                | `3.2.0`     | [Node.js SDK](node.js-sdk/)         |
+| Go                  | `github.com/spiceai/gospice/v9` | `v9.0.0`    | [Go SDK](go.md)                     |
+| Rust                | `spiceai`                       | `4.0.0`     | [Rust SDK](rust-sdk/)               |
+| Java                | `ai.spice:spiceai`              | `0.8.0`     | [Java SDK](java-sdk.md)             |
+| C#, .NET            | `SpiceAI`                       | `0.4.0`     | [.NET SDK](dotnet-sdk.md)           |
+
+## Synchronous and asynchronous queries
+
+Every SDK separates the two query paths by method name:
+
+* **`sql()`** runs a query synchronously and streams Arrow record batches back on the open connection. This is the default path for querying.
+* **`query()`** submits the query for asynchronous execution and returns a job handle used to poll status and fetch results once the query completes. Asynchronous queries require the runtime to be running in distributed (scheduler) mode.
+
+| Language            | Synchronous              | Asynchronous                     |
+| ------------------- | ------------------------ | -------------------------------- |
+| Python              | `sql`, `sql_with_params` | `query`, `query_with_params`     |
+| TypeScript, Node.js | `sql`                    | `query`, `queryWithParams`       |
+| Go                  | `Sql`, `SqlWithParams`   | `Query`, `QueryWithParams`       |
+| Rust                | `sql`, `sql_with_params` | `query`, `query_with_bindings`   |
+| Java                | `sql`, `sqlWithParams`   | `query`, `queryWithParams`       |
+| C#, .NET            | `SqlAsync`, `SqlWithParamsAsync` | `QueryAsync`, `QueryWithParamsAsync` |
+
+{% hint style="warning" %}
+In the versions listed above, `query()` submits an asynchronous job. Earlier releases of the Python, Rust, Java, Node.js, and Go SDKs used `query()` for the synchronous path — code calling it compiles unchanged but returns a job handle instead of results. Call `sql()` for the synchronous behavior.
+{% endhint %}
 
 ## Default endpoints
 
