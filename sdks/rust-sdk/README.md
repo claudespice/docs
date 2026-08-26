@@ -11,7 +11,7 @@ It uses [Apache Arrow Flight](https://arrow.apache.org/docs/format/Flight.html) 
 
 ### Requirements
 
-* A Rust toolchain supporting edition 2021
+* Rust 1.93.1 or later — the crate is edition 2024
 * [Tokio](https://tokio.rs/) — every client method is `async`
 
 ### Installation
@@ -92,7 +92,17 @@ let mut stream = client
 
 `query` and `query_with_bindings` submit a query for asynchronous execution and return a `QueryJob` handle instead of a stream. They require the runtime to be running in distributed (scheduler) mode.
 
+These methods go over HTTP rather than Flight, so the client needs `.http_url()` in addition to the Flight configuration above — without it, `query` returns `QueryError::HttpError` before submitting anything.
+
 ```rust
+let client = ClientBuilder::new()
+  .api_key("API_KEY")
+  .use_spiceai_cloud()
+  .http_url("https://data.spiceai.io")
+  .build()
+  .await
+  .unwrap();
+
 let job = client.query("SELECT * FROM taxi_trips").await.expect("Error submitting query");
 let batches = job.results().await.expect("Error reading results"); // waits for completion
 ```

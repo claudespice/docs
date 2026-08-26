@@ -35,7 +35,7 @@ Every SDK separates the two query paths by method name:
 | C#, .NET            | `SqlAsync`, `SqlWithParamsAsync` | `QueryAsync`, `QueryWithParamsAsync` |
 
 {% hint style="warning" %}
-In the versions listed above, `query()` submits an asynchronous job. Earlier releases of the Python, Rust, Java, Node.js, and Go SDKs used `query()` for the synchronous path — code calling it compiles unchanged but returns a job handle instead of results. Call `sql()` for the synchronous behavior.
+In the versions listed above, `query()` submits an asynchronous job. Earlier releases of the Python, Rust, Java, Node.js, and Go SDKs used `query()` for the synchronous path, so its return type changed: it now hands back a job handle rather than a result stream. In the statically typed SDKs (Java, Rust, Go, TypeScript) existing code that assigns or iterates the result no longer compiles; in Python it fails at runtime instead. Call `sql()` for the synchronous behavior.
 {% endhint %}
 
 ## Default endpoints

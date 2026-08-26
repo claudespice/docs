@@ -54,5 +54,5 @@ while has_more:
 ```
 
 {% hint style="info" %}
-`sql_with_params()` returns a `pyarrow.RecordBatchReader`, but the full result is read before the reader is returned, so it does not deliver partial results as they arrive. Use `sql()` for streaming.
+`sql_with_params()` also streams: it returns a `pyarrow.RecordBatchReader` that fetches batches from the server as they are consumed, so the full result is never held in memory unless you materialize it with `read_all()`. The reader keeps the underlying prepared statement open until the stream is drained, so iterate it to completion or close it when you stop early.
 {% endhint %}

@@ -13,7 +13,7 @@ GoDocs are available at [pkg.go.dev/github.com/spiceai/gospice/v9](https://pkg.g
 
 ### Requirements
 
-* [Go 1.24](https://go.dev/doc/go1.24) (or later)
+* [Go 1.25](https://go.dev/doc/go1.25) (or later)
 
 ### Installation
 
